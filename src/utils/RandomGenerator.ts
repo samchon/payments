@@ -1,4 +1,3 @@
-import { back_inserter } from "tstl/iterator/factory";
 import { randint } from "tstl/algorithm/random";
 import { sample as _Sample } from "tstl/ranges/algorithm/random";
 
@@ -6,22 +5,6 @@ import { ArrayUtil } from "./ArrayUtil";
 
 export namespace RandomGenerator
 {
-    /* ----------------------------------------------------------------
-        IDENTIFICATIONS
-    ---------------------------------------------------------------- */
-    const CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    
-    export function alphabets(length: number): string
-    {
-        let ret: string = "";
-        for (let i: number = 0; i < length; ++i)
-        {
-            let index: number = randint(9, CHARACTERS.length - 1);
-            ret += CHARACTERS[index];
-        }
-        return ret;
-    }
-
     export function name(length: number = 3): string
     {
         let ret: string = "";
@@ -31,33 +14,10 @@ export namespace RandomGenerator
         return ret;
     }
 
-    export function paragraph(sentences: number, wordMin: number = 1, wordMax: number = 7): string
+    export function date(from: Date, range: number): Date
     {
-        return ArrayUtil
-            .repeat(sentences, () => name(randint(wordMin, wordMax)))
-            .join(" ");
-    }
-
-    export function content
-        (
-            paragraphes: number, 
-            sentenceMin: number = 10, 
-            sentenceMax: number = 40,
-            wordMin: number = 1, 
-            wordMax: number = 7
-        ): string
-    {
-        return ArrayUtil
-            .repeat(paragraphes, () => paragraph(randint(sentenceMin, sentenceMax), wordMin, wordMax))
-            .join("\n\n");
-    }
-
-    export function partial(content: string): string
-    {
-        const first: number = randint(0, content.length - 1);
-        const last: number = randint(first + 1, content.length);
-
-        return content.substring(first, last).trim();
+        const time: number = from.getTime() + randint(0, range);
+        return new Date(time);
     }
 
     export function mobile(): string
@@ -78,21 +38,8 @@ export namespace RandomGenerator
         return ret;
     }
 
-    export function date(from: Date, range: number): Date
+    export function cardNumber(): string
     {
-        const time: number = from.getTime() + randint(0, range);
-        return new Date(time);
-    }
-
-    export function sample<T>(array: T[], count: number): T[]
-    {
-        const ret: T[] = [];
-        _Sample(array, back_inserter(ret), count);
-        return ret;
-    }
-
-    export function pick<T>(array: T[]): T
-    {
-        return array[randint(0, array.length - 1)];
+        return ArrayUtil.repeat(4, () => digit(1, 4)).join("");
     }
 }

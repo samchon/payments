@@ -1,5 +1,12 @@
 export namespace DateUtil
 {
+    export const SECOND = 1_000;
+    export const MINUTE = 60 * SECOND;
+    export const HOUR = 60 * MINUTE;
+    export const DAY = 24 * HOUR;
+    export const WEEK = 7 * DAY;
+    export const MONTH = 30 * DAY;
+
     export function to_string(date: Date, hms: boolean = false): string
     {
         let ret: string = `${date.getFullYear()}-${_To_cipher_string(date.getMonth()+1)}-${_To_cipher_string(date.getDate())}`;
@@ -7,6 +14,16 @@ export namespace DateUtil
             ret += ` ${_To_cipher_string(date.getHours())}:${_To_cipher_string(date.getMinutes())}:${_To_cipher_string(date.getSeconds())}`;
         
         return ret;
+    }
+
+    export function to_uuid(date: Date = new Date()): string
+    {
+        let output: string = `${date.getFullYear()}${_To_cipher_string(date.getMonth()+1)}${_To_cipher_string(date.getDate())}`;
+        output += `${_To_cipher_string(date.getHours())}${_To_cipher_string(date.getMinutes())}${_To_cipher_string(date.getSeconds())}`;
+        output += `${_To_cipher_string(date.getMilliseconds())}`;
+        output += `-${Math.random().toString().substr(2)}`;
+
+        return output;
     }
 
     export interface IDifference

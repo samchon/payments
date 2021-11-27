@@ -15,6 +15,16 @@ export namespace ArrayUtil
         return ret;
     }
 
+    export async function asyncForEach<Input>
+        (
+            elements: Input[],
+            closure: (elem: Input, index: number, array: Input[]) => Promise<void>
+        ): Promise<void>
+    {
+        for (let i: number = 0; i < elements.length; ++i)
+            await closure(elements[i], i, elements);
+    }
+
     export async function asyncMap<Input, Output>
         (
             elements: Input[], 

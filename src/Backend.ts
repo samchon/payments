@@ -4,7 +4,6 @@ import * as nest from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
 import { Configuration } from "./Configuration";
-import { SGlobal } from "./SGlobal";
 
 export class Backend
 {
@@ -59,13 +58,6 @@ export class Backend
         // DO CLOSE
         await this.application_.close();
         delete this.application_;
-        
-        // EXIT FROM THE CRITICAL-SERVER
-        if (await SGlobal.critical.is_loaded() === true)
-        {
-            const critical = await SGlobal.critical.get();
-            await critical.close();
-        }
     }
 
     private middleware

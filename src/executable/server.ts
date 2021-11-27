@@ -2,17 +2,13 @@ const EXTENSION = __filename.substr(-2);
 if (EXTENSION === "js")
     require("source-map-support/register");
 
-import * as fs from "fs";
-import * as orm from "typeorm";
+import fs from "fs";
 import { Singleton } from "tstl/thread/Singleton";
 import { randint } from "tstl/algorithm/random";
 
 import { Backend } from "../Backend";
 import { Configuration } from "../Configuration";
-import { SGlobal } from "../SGlobal";
-
 import { ErrorUtil } from "../utils/ErrorUtil";
-import { Scheduler } from "../schedulers/Scheduler";
 
 const directory = new Singleton(async () =>
 {
@@ -54,30 +50,13 @@ async function handle_error(exp: any): Promise<void>
 
 async function main(): Promise<void>
 {
-    //----
-    // OPEN SERVER
-    //----
-    // CONFIGURE MODE
-    if (process.argv[2])
-        SGlobal.setMode(process.argv[2].toUpperCase() as typeof SGlobal.mode);
-
-    // CONNECT TO THE DB FIRST
-    await orm.createConnection(Configuration.DB_CONFIG);
-    
     // BACKEND SEVER LATER
     const backend: Backend = new Backend();
     await backend.open(Configuration.API_PORT);
 
-    //----
-    // POST-PROCESSES
-    //----
     // UNEXPECTED ERRORS
     global.process.on("uncaughtException", handle_error);
     global.process.on("unhandledRejection", handle_error);
-
-    // SCHEDULER ONLY WHEN MASTER
-    if (SGlobal.mode !== "REAL" || process.argv[3] === "master")
-        await Scheduler.repeat();
 }
 main().catch(exp =>
 {

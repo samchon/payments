@@ -1,0 +1,12 @@
+.git/
+.github/
+bin/
+node_modules/
+src/
+
+*.js.map
+*.*ignore
+package-lock.json
+tsconfig.api.json
+tsconfig.json
+*.log

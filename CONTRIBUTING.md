@@ -5,7 +5,7 @@ Thanks for your advise. Before publishing an issue, please check some components
 ### 1. Search for duplicates
 Before publishing an issue, please check whether the duplicated issue exists or not.
 
-  - [Ordinary Issues](https://github.com/samchon/backend/issues)
+  - [Ordinary Issues](https://github.com/samchon/toss-payments-server/issues)
 
 ### 2. Did you find a bug?
 When you reporting a bug, then please write about those items:
