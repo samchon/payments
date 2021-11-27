@@ -9,6 +9,9 @@
 
 또한, [toss-payments-server-api](https://www.npmjs.com/package/toss-payments-server-api) 는 토스 페이먼츠 서버와 연동할 수 있는 SDK 라이브러리로써, `fake-toss-payments-server` 의 소스코드를 토대로 [Nestia](https://github.com/samchon/nestia) 를 이용하여 빌드하였다. 그리고 이를 통하여 가짜 토스 페이먼츠 서버 뿐 아니라, 진짜 토스 페이먼츠 서버, 양쪽 모두와 연동할 수 있다.
 
+  - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
+  - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+
 ```typescript
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
@@ -97,6 +100,9 @@ npm install --save fake-toss-payments-server-api
 먼저 위 명령어를 통하여, 귀하의 TypeScript 기반 백엔드 서버에, 토스 페이먼츠 서버와의 연동을 위한 SDK 라이브러리를 설치한다. 그리고 가짜 토스 페이먼츠 서버 `fake-toss-payments-server` 를 구동하여, 이 것과의 결제 연동이 제대로 이루어지는 지 충분할 만큼의 검증을 한다. 테스트 자동화 프로그램을 제작, 이 안정성이 상시 검증될 수 있다면 더더욱 좋다. 
 
 마지막으로 실 서버를 배포하며, 연동 대상 서버를 가짜에서 진짜로 교체해주면 된다.
+
+  - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
+  - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
 
 ```typescript
 import toss from "toss-payments-server-api";
