@@ -40,12 +40,9 @@ export function store
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/billing/authorizations/card`,
+        store.CONFIG,
+        store.METHOD,
+        store.path(),
         input
     );
 }
@@ -53,6 +50,19 @@ export namespace store
 {
     export type Input = Primitive<ITossBilling.IStore>;
     export type Output = Primitive<ITossBilling>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/billing/authorizations/card";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(): string
+    {
+        return `/billing/authorizations/card`;
+    }
 }
 
 

@@ -49,12 +49,9 @@ export function pay
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/billing/${billingKey}`,
+        pay.CONFIG,
+        pay.METHOD,
+        pay.path(billingKey),
         input
     );
 }
@@ -62,6 +59,19 @@ export namespace pay
 {
     export type Input = Primitive<ITossBilling.IPaymentStore>;
     export type Output = Primitive<ITossPayment>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/billing/:billingKey";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(billingKey: string): string
+    {
+        return `/billing/${billingKey}`;
+    }
 }
 
 

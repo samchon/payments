@@ -143,7 +143,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
         // host: "https://api.tosspayments.com/v1" // REAL-SERVER
     };
 
-    const billing: ITossBilling = await api.functional.virtual.toss.billing.authorizations.card.store
+    const billing: ITossBilling = await toss.functional.billing.authorizations.card.store
     (
         connection,
         {
@@ -158,9 +158,10 @@ export async function test_fake_payment_billing_payment(): Promise<void>
     );
     assertType<ITossBilling>(billing);
 
-    const payment: ITossPayment = await api.functional.virtual.toss.billling.pay
+    const payment: ITossPayment = await toss.functional.billling.pay
     (
         connection,
+        billing.billingKey,
         {
             method: "billing",
             billingKey: billing.billingKey,

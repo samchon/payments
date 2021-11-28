@@ -41,12 +41,9 @@ export function at
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/billing/authorizations/${billingKey}`,
+        at.CONFIG,
+        at.METHOD,
+        at.path(billingKey),
         input
     );
 }
@@ -54,6 +51,19 @@ export namespace at
 {
     export type Input = Primitive<ITossBilling.ICustomerKey>;
     export type Output = Primitive<ITossBilling>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/billing/authorizations/:billingKey";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(billingKey: string): string
+    {
+        return `/billing/authorizations/${billingKey}`;
+    }
 }
 
 

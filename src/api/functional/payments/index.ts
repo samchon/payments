@@ -44,17 +44,27 @@ export function at
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "GET",
-        `/payments/${paymentKey}`
+        at.CONFIG,
+        at.METHOD,
+        at.path(paymentKey)
     );
 }
 export namespace at
 {
     export type Output = Primitive<ITossPayment>;
+
+
+    export const METHOD = "GET";
+    export const PATH = "/payments/:paymentKey";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(paymentKey: string): string
+    {
+        return `/payments/${paymentKey}`;
+    }
 }
 
 /**
@@ -89,12 +99,9 @@ export function approve
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/payments/${paymentKey}`,
+        approve.CONFIG,
+        approve.METHOD,
+        approve.path(paymentKey),
         input
     );
 }
@@ -102,6 +109,19 @@ export namespace approve
 {
     export type Input = Primitive<ITossPayment.IApproval>;
     export type Output = Primitive<ITossPayment>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/payments/:paymentKey";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(paymentKey: string): string
+    {
+        return `/payments/${paymentKey}`;
+    }
 }
 
 /**
@@ -142,12 +162,9 @@ export function key_in
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/payments/key-in`,
+        key_in.CONFIG,
+        key_in.METHOD,
+        key_in.path(),
         input
     );
 }
@@ -155,6 +172,19 @@ export namespace key_in
 {
     export type Input = Primitive<ITossCardPayment.IStore>;
     export type Output = Primitive<ITossCardPayment>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/payments/key-in";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(): string
+    {
+        return `/payments/key-in`;
+    }
 }
 
 /**
@@ -184,12 +214,9 @@ export function cancel
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/payments/${paymentKey}/cancel`,
+        cancel.CONFIG,
+        cancel.METHOD,
+        cancel.path(paymentKey),
         input
     );
 }
@@ -197,6 +224,19 @@ export namespace cancel
 {
     export type Input = Primitive<ITossPaymentCancel.IStore>;
     export type Output = Primitive<ITossPayment>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/payments/:paymentKey/cancel";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(paymentKey: string): string
+    {
+        return `/payments/${paymentKey}/cancel`;
+    }
 }
 
 

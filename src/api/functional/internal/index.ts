@@ -40,18 +40,28 @@ export function webhook
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "POST",
-        `/internal/webhook`,
+        webhook.CONFIG,
+        webhook.METHOD,
+        webhook.path(),
         input
     );
 }
 export namespace webhook
 {
     export type Input = Primitive<ITossPaymentWebhook>;
+
+
+    export const METHOD = "POST";
+    export const PATH = "/internal/webhook";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(): string
+    {
+        return `/internal/webhook`;
+    }
 }
 
 /**
@@ -82,17 +92,27 @@ export function deposit
     return Fetcher.fetch
     (
         connection,
-        {
-            input_encrypted: false,
-            output_encrypted: false
-        },
-        "GET",
-        `/internal/${paymentKey}/deposit`
+        deposit.CONFIG,
+        deposit.METHOD,
+        deposit.path(paymentKey)
     );
 }
 export namespace deposit
 {
     export type Output = Primitive<ITossPayment>;
+
+
+    export const METHOD = "GET";
+    export const PATH = "/internal/:paymentKey/deposit";
+    export const CONFIG = {
+        input_encrypted: false,
+        output_encrypted: false,
+    };
+
+    export function path(paymentKey: string): string
+    {
+        return `/internal/${paymentKey}/deposit`;
+    }
 }
 
 
