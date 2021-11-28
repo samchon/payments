@@ -12,7 +12,7 @@ import { TestConnection } from "../../internal/TestConnection";
 import { RandomGenerator } from "../../../utils/RandomGenerator";
 import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
 
-export async function test_virtual_storage_expiration_time(): Promise<void>
+export async function test_storage_expiration_time(): Promise<void>
 {
     let time: number = Configuration.EXPIRATION.time;
     FakeTossStorage.payments.clear();
@@ -23,7 +23,7 @@ export async function test_virtual_storage_expiration_time(): Promise<void>
     {
         const payment: ITossPayment = await toss.functional.payments.key_in
         (
-            TestConnection.LOCAL,
+            TestConnection.FAKE,
             {
                 method: "card",
 
@@ -42,9 +42,9 @@ export async function test_virtual_storage_expiration_time(): Promise<void>
             await exception_must_be_thrown
             (
                 "VirtualTossStorageProvider.payments.get() for expired record",
-                () => toss.functional.payments.at(TestConnection.LOCAL, previous!)
+                () => toss.functional.payments.at(TestConnection.FAKE, previous!)
             );
-        await toss.functional.payments.at(TestConnection.LOCAL, payment.paymentKey);
+        await toss.functional.payments.at(TestConnection.FAKE, payment.paymentKey);
         previous = payment.paymentKey;
     }
     Configuration.EXPIRATION.time = time;

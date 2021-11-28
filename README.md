@@ -11,6 +11,10 @@
 
   - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
   - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+  - 예제 코드
+    - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
+    - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
+    - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
 
 ```typescript
 import toss from "toss-payments-server-api";
@@ -20,8 +24,11 @@ import { assertType } from "typescript-is";
 export async function test_fake_payment_approval(): Promise<void>
 {
     const connection: toss.IConnection = {
-        host: "http://127.0.0.1:30771" // FAKE-SERVER
-        // host: "https://api.tosspayments.com/v1" // REAL-SERVER
+        host: "http://127.0.0.1:30771", // FAKE-SERVER
+        // host: "https://api.tosspayments.com/v1", // REAL-SERVER
+        headers: {
+            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
+        }
     };
 
     const payments: ITossPayment = await toss.functional.payments.key_in
@@ -129,6 +136,10 @@ npm install --save fake-toss-payments-server-api
 
   - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
   - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+  - 예제 코드
+    - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
+    - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
+    - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
 
 ```typescript
 import toss from "toss-payments-server-api";
@@ -139,8 +150,11 @@ import { assertType } from "typescript-is";
 export async function test_fake_payment_billing_payment(): Promise<void>
 {
     const connection: toss.IConnection = {
-        host: "http://127.0.0.1:30771" // FAKE-SERVER
-        // host: "https://api.tosspayments.com/v1" // REAL-SERVER
+        host: "http://127.0.0.1:30771", // FAKE-SERVER
+        // host: "https://api.tosspayments.com/v1", // REAL-SERVER
+        headers: {
+            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
+        }
     };
 
     const billing: ITossBilling = await toss.functional.billing.authorizations.card.store

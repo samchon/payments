@@ -181,9 +181,13 @@ export namespace ITossCardPayment
          * 어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 
          * 상황을 시뮬레이션할 수 있다.
          * 
-         * 본디 `ITossCardPayment.IStore` 가 사용되는 실제 토스 페이먼츠 서버의 
-         * {@link functional.payments.key_in} 함수는, 백엔드 서버를 통하여 요청된 결제를
-         * 그 즉시로 승인해주기에, `fake-toss-payments-server` 에서 별도의 승인 처리가 
+         * 본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,
+         * 토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, 
+         * 백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 
+         * 정식 결제로 인청치 아니한다.
+         * 
+         * 반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는
+         * 이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가
          * 필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것.
          */
         __approved?: boolean;

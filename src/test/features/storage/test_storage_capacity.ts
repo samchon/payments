@@ -12,7 +12,7 @@ import { RandomGenerator } from "../../../utils/RandomGenerator";
 import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
 import { Configuration } from "../../../Configuration";
 
-export async function test_virtual_storage_capacity(): Promise<void>
+export async function test_storage_capacity(): Promise<void>
 {
     let capacity: number = Configuration.EXPIRATION.capacity;
     
@@ -27,7 +27,7 @@ export async function test_virtual_storage_capacity(): Promise<void>
         const customerKey: string = v4();
         const billing: ITossBilling = await toss.functional.billing.authorizations.card.store
         (
-            TestConnection.LOCAL,
+            TestConnection.FAKE,
             {
                 customerKey,
                 customerBirthday: "880311",
@@ -45,7 +45,7 @@ export async function test_virtual_storage_capacity(): Promise<void>
 
         const payment: ITossPayment = await toss.functional.billing.pay
         (
-            TestConnection.LOCAL,
+            TestConnection.FAKE,
             billing.billingKey,
             {
                 method: "billing",
@@ -60,7 +60,7 @@ export async function test_virtual_storage_capacity(): Promise<void>
         // APPROVE THE PAYMENT
         await toss.functional.payments.approve
         (
-            TestConnection.LOCAL,
+            TestConnection.FAKE,
             payment.paymentKey, 
             {
                 orderId,
@@ -73,9 +73,9 @@ export async function test_virtual_storage_capacity(): Promise<void>
             await exception_must_be_thrown
             (
                 "VirtualTossStorage.payments.get() for expired record",
-                () => toss.functional.payments.at(TestConnection.LOCAL, previous!)
+                () => toss.functional.payments.at(TestConnection.FAKE, previous!)
             );
-        await toss.functional.payments.at(TestConnection.LOCAL, payment.paymentKey);
+        await toss.functional.payments.at(TestConnection.FAKE, payment.paymentKey);
         previous = payment.paymentKey;
     }
 
