@@ -9,7 +9,7 @@ async function main(): Promise<void>
 {
     // BACKEND SERVER
     const backend: Backend = new Backend();
-    await backend.open(Configuration.API_PORT);
+    await backend.open();
 
     // CONNECTION INFO
     const connection: toss.IConnection = {

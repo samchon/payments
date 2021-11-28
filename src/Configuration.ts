@@ -12,20 +12,32 @@ import { OutOfRange } from "tstl/exception/OutOfRange";
 
 import { VolatileMap } from "./utils/VolatileMap";
 
+/**
+ * Fake 토스 페이먼츠 서버의 설정 정보.
+ * 
+ * @author Samchon
+ */
 export namespace Configuration
 {
+    /**
+     * @internal
+     */
     export const ASSETS = __dirname + "/../assets";
-    export const EXPIRATION: VolatileMap.IExpiration = {
-        time: 3 * 60 * 1000,
-        capacity: 1000
-    };
-    
-    export const API_PORT = 30771;
+
+    /**
+     * @internal
+     */
     export const ENCRYPTION_PASSWORD: Readonly<IPassword> = {
         key: "szngncCKO7wZTuayfhkRNlBfI5Nl5N88",
         iv: "M0Yvmgrk58GBvUAt"
     };
-    export const WEBHOOK_URL: string = `http://127.0.0.1:${API_PORT}/internal/webhook`;
+
+    export const EXPIRATION: VolatileMap.IExpiration = {
+        time: 3 * 60 * 1000,
+        capacity: 1000
+    };
+    export let API_PORT: number = 30771;
+    export let WEBHOOK_URL: string = `http://127.0.0.1:${API_PORT}/internal/webhook`;
 }
 
 // CUSTOM EXCEPTIION CONVERSION

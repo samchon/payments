@@ -5,12 +5,20 @@ import { NestFactory } from "@nestjs/core";
 
 import { Configuration } from "./Configuration";
 
+/**
+ * Fake 토스 페이먼츠 서버의 백엔드 프로그램.
+ * 
+ * @author Samchon
+ */
 export class Backend
 {
     private application_?: nest.INestApplication;
     private is_closing_: boolean = false;
 
-    public async open(port: number = Configuration.API_PORT): Promise<void>
+    /**
+     * 서버 개설.
+     */
+    public async open(): Promise<void>
     {
         //----
         // OPEN THE BACKEND SERVER
@@ -32,7 +40,7 @@ export class Backend
         this.application_.use(this.middleware.bind(this));
 
         // DO OPEN
-        await this.application_.listen(port);
+        await this.application_.listen(Configuration.API_PORT);
 
         //----
         // POST-PROCESSES
@@ -50,6 +58,9 @@ export class Backend
         });
     }
 
+    /**
+     * 서버 폐쇄.
+     */
     public async close(): Promise<void>
     {
         if (this.application_ === undefined)

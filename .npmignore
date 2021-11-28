@@ -1,8 +1,12 @@
 .git/
 .github/
-bin/
 node_modules/
+packages/
 src/
+
+lib/test/
+lib/executable/
+lib/ErrorUtil.**
 
 *.js.map
 *.*ignore

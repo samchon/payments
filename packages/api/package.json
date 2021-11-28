@@ -1,0 +1,27 @@
+{
+  "name": "toss-payments-server-api",
+  "version": "0.0.1",
+  "description": "Toss Payments Server API",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samchon/fake-toss-payments-server"
+  },
+  "author": "Jeongho Nam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samchon/fake-toss-payments-server/issues"
+  },
+  "homepage": "https://github.com/samchon/fake-toss-payments-server",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "keywords": [
+      "toss",
+      "payments",
+      "sdk",
+      "api"
+  ]
+}
+  

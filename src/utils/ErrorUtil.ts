@@ -1,5 +1,5 @@
 import fs from "fs";
-import serializeError = require("serialize-error");
+import { serializeError} from "serialize-error";
 import { randint } from "tstl/algorithm/random";
 import { Singleton } from "tstl/thread/Singleton";
 

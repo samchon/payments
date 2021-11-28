@@ -7,7 +7,6 @@ import { Singleton } from "tstl/thread/Singleton";
 import { randint } from "tstl/algorithm/random";
 
 import { Backend } from "../Backend";
-import { Configuration } from "../Configuration";
 import { ErrorUtil } from "../utils/ErrorUtil";
 
 const directory = new Singleton(async () =>
@@ -52,7 +51,7 @@ async function main(): Promise<void>
 {
     // BACKEND SEVER LATER
     const backend: Backend = new Backend();
-    await backend.open(Configuration.API_PORT);
+    await backend.open();
 
     // UNEXPECTED ERRORS
     global.process.on("uncaughtException", handle_error);
