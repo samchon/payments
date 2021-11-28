@@ -21,7 +21,7 @@ import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { assertType } from "typescript-is";
 
-export async function test_fake_payment_approval(): Promise<void>
+export async function test_fake_card_payment_approval(): Promise<void>
 {
     const connection: toss.IConnection = {
         host: "http://127.0.0.1:30771", // FAKE-SERVER
@@ -31,7 +31,7 @@ export async function test_fake_payment_approval(): Promise<void>
         }
     };
 
-    const payments: ITossPayment = await toss.functional.payments.key_in
+    const payment: ITossPayment = await toss.functional.payments.key_in
     (
         connection,
         {
@@ -43,10 +43,13 @@ export async function test_fake_payment_approval(): Promise<void>
 
             // ORDER INFORMATION
             orderId: "some-order-id",
-            amount: 25_000
+            amount: 25_000,
+
+            // FAKE PROPERTY
+            __approved: false
         }
     );
-    assertType<ITossPayment>(payments);
+    assertType<ITossPayment>(payment);
 
     const approved: ITossPayment = await toss.functional.payments.approve
     (
