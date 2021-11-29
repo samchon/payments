@@ -1,3 +1,4 @@
+import express from "express";
 import * as helper from "encrypted-nestjs";
 import * as nest from "@nestjs/common";
 import { assertType } from "typescript-is";
@@ -8,6 +9,7 @@ import { ITossPaymentCancel } from "../api/structures/ITossPaymentCancel";
 
 import { FakeTossPaymentProvider } from "../providers/FakeTossPaymentProvider";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
+import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 import { FakeTossWebhookProvider } from "../providers/FakeTossWebhookProvider";
 
 @nest.Controller("payments")
@@ -33,9 +35,11 @@ export class FakeTossPaymentsController
     @helper.TypedRoute.Get(":paymentKey")
     public at
         (
+            @nest.Request() request: express.Request,
             @helper.TypedParam("paymentKey", "string") paymentKey: string
         ): ITossPayment
     {
+        FakeTossUserAuth.authorize(request);
         return FakeTossStorage.payments.get(paymentKey);
     }
 
@@ -66,9 +70,11 @@ export class FakeTossPaymentsController
     @helper.TypedRoute.Post("key-in")
     public key_in
         (
+            @nest.Request() request: express.Request,
             @nest.Body() input: ITossCardPayment.IStore
         ): ITossCardPayment
     {
+        FakeTossUserAuth.authorize(request);
         assertType<typeof input>(input);
 
         const payment: ITossCardPayment = {
@@ -119,10 +125,12 @@ export class FakeTossPaymentsController
     @helper.TypedRoute.Post(":paymentKey")
     public approve
         (
+            @nest.Request() request: express.Request,
             @helper.TypedParam("paymentKey", "string") paymentKey: string,
             @nest.Body() input: ITossPayment.IApproval
         ): ITossPayment
     {
+        FakeTossUserAuth.authorize(request);
         assertType<typeof input>(input);
         
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
@@ -152,10 +160,12 @@ export class FakeTossPaymentsController
     @helper.TypedRoute.Post(":paymentKey/cancel")
     public cancel
         (
+            @nest.Request() request: express.Request,
             @helper.TypedParam("paymentKey", "string") paymentKey: string,
             @nest.Body() input: ITossPaymentCancel.IStore
         ): ITossPayment
     {
+        FakeTossUserAuth.authorize(request);
         assertType<typeof input>(input);
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);

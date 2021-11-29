@@ -11,20 +11,27 @@
 
   - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
   - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+  - 예제 코드
+    - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
+    - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
+    - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
 
 ```typescript
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { assertType } from "typescript-is";
 
-export async function test_fake_payment_approval(): Promise<void>
+export async function test_fake_card_payment_approval(): Promise<void>
 {
     const connection: toss.IConnection = {
-        host: "http://127.0.0.1:30771" // FAKE-SERVER
-        // host: "https://api.tosspayments.com/v1" // REAL-SERVER
+        host: "http://127.0.0.1:30771", // FAKE-SERVER
+        // host: "https://api.tosspayments.com/v1", // REAL-SERVER
+        headers: {
+            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
+        }
     };
 
-    const payments: ITossPayment = await toss.functional.payments.key_in
+    const payment: ITossPayment = await toss.functional.payments.key_in
     (
         connection,
         {
@@ -36,10 +43,13 @@ export async function test_fake_payment_approval(): Promise<void>
 
             // ORDER INFORMATION
             orderId: "some-order-id",
-            amount: 25_000
+            amount: 25_000,
+
+            // FAKE PROPERTY
+            __approved: false
         }
     );
-    assertType<ITossPayment>(payments);
+    assertType<ITossPayment>(payment);
 
     const approved: ITossPayment = await toss.functional.payments.approve
     (
@@ -129,6 +139,10 @@ npm install --save fake-toss-payments-server-api
 
   - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
   - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+  - 예제 코드
+    - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
+    - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
+    - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
 
 ```typescript
 import toss from "toss-payments-server-api";
@@ -139,8 +153,11 @@ import { assertType } from "typescript-is";
 export async function test_fake_payment_billing_payment(): Promise<void>
 {
     const connection: toss.IConnection = {
-        host: "http://127.0.0.1:30771" // FAKE-SERVER
-        // host: "https://api.tosspayments.com/v1" // REAL-SERVER
+        host: "http://127.0.0.1:30771", // FAKE-SERVER
+        // host: "https://api.tosspayments.com/v1", // REAL-SERVER
+        headers: {
+            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
+        }
     };
 
     const billing: ITossBilling = await toss.functional.billing.authorizations.card.store
@@ -256,5 +273,9 @@ Nesita 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수�
 >> npm run update
 >> ```
 
-### 4.3. Integrated Payment System
-토스 페이먼츠를 위시한 국내외 결제 PG 사들과 연동할 수 있는, MSA 형태의 통합 결제 시스템을 제작 중이다. 조만간 공개할 예정.
+### 4.3. Archidraw
+https://www.archisketch.com/
+
+I have special thanks to the Archidraw, where I'm working for.
+
+The Archidraw is a great IT company developing 3D interior editor and lots of solutions based on the 3D assets. Also, the Archidraw is the first company who had adopted `fake-toss-payments-server` on their commercial backend project, even `fake-toss-payments-server` was in the alpha level.

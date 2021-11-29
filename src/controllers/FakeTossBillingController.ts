@@ -1,3 +1,4 @@
+import express from "express";
 import * as helper from "encrypted-nestjs";
 import * as nest from "@nestjs/common";
 import { assertType } from "typescript-is";
@@ -9,6 +10,7 @@ import { ITossPayment } from "../api/structures/ITossPayment";
 
 import { FakeTossPaymentProvider } from "../providers/FakeTossPaymentProvider";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
+import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 
 @nest.Controller("billing")
 export class FakeTossBillingController
@@ -31,9 +33,11 @@ export class FakeTossBillingController
     @helper.TypedRoute.Post("authorizations/card")
     public store
         (
+            @nest.Request() request: express.Request,
             @nest.Body() input: ITossBilling.IStore
         ): ITossBilling
     {
+        FakeTossUserAuth.authorize(request);
         assertType<typeof input>(input);
 
         const billing: ITossBilling = {
@@ -66,10 +70,12 @@ export class FakeTossBillingController
     @helper.TypedRoute.Post("authorizations/:billingKey")
     public at
         (
+            @nest.Request() request: express.Request,
             @helper.TypedParam("billingKey", "string") billingKey: string,
             @nest.Body() input: ITossBilling.ICustomerKey
         ): ITossBilling
     {
+        FakeTossUserAuth.authorize(request);
         assertType<typeof input>(input);
 
         const tuple = FakeTossStorage.billings.get(billingKey);
@@ -103,10 +109,14 @@ export class FakeTossBillingController
     @helper.TypedRoute.Post(":billingKey")
     public pay
         (
+            @nest.Request() request: express.Request,
             @helper.TypedParam("billingKey", "string") billingKey: string,
             @nest.Body() input: ITossBilling.IPaymentStore
         ): ITossPayment
     {
+        FakeTossUserAuth.authorize(request);
+        assertType<typeof input>(input);
+
         const tuple = FakeTossStorage.billings.get(billingKey);
         const card = tuple[1];
         

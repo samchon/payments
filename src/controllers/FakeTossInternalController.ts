@@ -1,3 +1,4 @@
+import express from "express";
 import * as helper from "encrypted-nestjs";
 import * as nest from "@nestjs/common";
 import { assertType } from "typescript-is";
@@ -6,6 +7,7 @@ import { ITossPayment } from "../api/structures/ITossPayment";
 import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
 
 import { FakeTossStorage } from "../providers/FakeTossStorage";
+import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 import { FakeTossWebhookProvider } from "../providers/FakeTossWebhookProvider";
 
 @nest.Controller("internal")
@@ -56,9 +58,12 @@ export class FakeTossInternalController
     @helper.TypedRoute.Get(":paymentKey/deposit")
     public deposit
         (
+            @nest.Request() request: express.Request,
             @helper.TypedParam("paymentKey", "string") paymentKey: string
         ): ITossPayment
     {
+        FakeTossUserAuth.authorize(request);
+
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
         if (payment.method !== "가상계좌")
             throw new nest.UnprocessableEntityException("Invalid target.");
