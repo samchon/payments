@@ -17,6 +17,7 @@
     - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
 
 ```typescript
+import btoa from "btoa";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { assertType } from "typescript-is";
@@ -114,6 +115,10 @@ import FakeToss from "fake-toss-payments-server";
 async function main(): Promise<void>
 {
     FakeToss.Configuration.WEBHOOK_URL = "your-backend-webhook-api-url";
+    FakeToss.Configuration.authorize = token => 
+    {
+        return token === "test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy";
+    };
 
     const fake: FakeToss.Backend = new FakeToss.Backend();
     await fake.open();
@@ -145,6 +150,7 @@ npm install --save fake-toss-payments-server-api
     - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
 
 ```typescript
+import btoa from "btoa";
 import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
