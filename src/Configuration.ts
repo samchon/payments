@@ -10,8 +10,6 @@ import { DomainError } from "tstl/exception/DomainError";
 import { InvalidArgument } from "tstl/exception/InvalidArgument";
 import { OutOfRange } from "tstl/exception/OutOfRange";
 
-import { VolatileMap } from "./utils/VolatileMap";
-
 /**
  * Fake 토스 페이먼츠 서버의 설정 정보.
  * 
@@ -35,7 +33,7 @@ export namespace Configuration
     /**
      * 임시 저장소의 레코드 만료 기한.
      */
-    export const EXPIRATION: VolatileMap.IExpiration = {
+    export const EXPIRATION: IExpiration = {
         time: 3 * 60 * 1000,
         capacity: 1000
     };
@@ -61,6 +59,22 @@ export namespace Configuration
     {
         return token === "test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy";
     };
+
+    /**
+     * 임시 저장소의 레코드 만료 기한.
+     */
+    export interface IExpiration
+    {
+        /**
+         * 만료 시간.
+         */
+        time: number;
+
+        /**
+         * 최대 수용량.
+         */
+        capacity: number;
+    }
 }
 
 // CUSTOM EXCEPTIION CONVERSION

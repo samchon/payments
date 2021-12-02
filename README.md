@@ -58,7 +58,7 @@ export async function test_fake_card_payment_approval(): Promise<void>
         payment.paymentKey,
         {
             orderId: payment.orderId,
-            amount: payment.amount,
+            amount: payment.totalAmount,
         }
     );
     assertType<ITossPayment>(approved);
@@ -181,7 +181,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
     );
     assertType<ITossBilling>(billing);
 
-    const payment: ITossPayment = await toss.functional.billling.pay
+    const payment: ITossPayment = await toss.functional.billing.pay
     (
         connection,
         billing.billingKey,
@@ -191,7 +191,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
             customerKey: "some-consumer-key",
             orderId: "some-order-id",
             amount: 10_000
-        });
+        }
     );
     assertType<ITossPayment>(payment);
 }
