@@ -15,6 +15,7 @@
     - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
     - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
     - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
+    - 현금 영수증 발행: [src/teset/features/examples/test_fake_cash_receipt.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_cash_receipt.ts)
 
 ```typescript
 import btoa from "btoa";
@@ -148,6 +149,7 @@ npm install --save fake-toss-payments-server-api
     - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
     - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
     - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
+    - 현금 영수증 발행: [src/teset/features/examples/test_fake_cash_receipt.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_cash_receipt.ts)
 
 ```typescript
 import btoa from "btoa";
