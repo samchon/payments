@@ -2,6 +2,7 @@ import express from "express";
 import * as helper from "encrypted-nestjs";
 import * as nest from "@nestjs/common";
 import { assertType } from "typescript-is";
+import { v4 } from "uuid";
 
 import { ITossVirtualAccountPayment } from "../api/structures/ITossVirtualAccountPayment";
 
@@ -10,9 +11,8 @@ import { FakeTossPaymentProvider } from "../providers/FakeTossPaymentProvider";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 import { FakeTossWebhookProvider } from "../providers/FakeTossWebhookProvider";
-import { v4 } from "uuid";
 
-@nest.Controller("virtual-accounts")
+@nest.Controller("v1/virtual-accounts")
 export class FakeTossVirtualAccountsController
 {
     /**

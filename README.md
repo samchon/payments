@@ -26,13 +26,13 @@ export async function test_fake_card_payment_approval(): Promise<void>
 {
     const connection: toss.IConnection = {
         host: "http://127.0.0.1:30771", // FAKE-SERVER
-        // host: "https://api.tosspayments.com/v1", // REAL-SERVER
+        // host: "https://api.tosspayments.com", // REAL-SERVER
         headers: {
             Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
         }
     };
 
-    const payment: ITossPayment = await toss.functional.payments.key_in
+    const payment: ITossPayment = await toss.functional.v1.payments.key_in
     (
         connection,
         {
@@ -52,7 +52,7 @@ export async function test_fake_card_payment_approval(): Promise<void>
     );
     assertType<ITossPayment>(payment);
 
-    const approved: ITossPayment = await toss.functional.payments.approve
+    const approved: ITossPayment = await toss.functional.v1.payments.approve
     (
         connection,
         payment.paymentKey,
@@ -160,13 +160,13 @@ export async function test_fake_payment_billing_payment(): Promise<void>
 {
     const connection: toss.IConnection = {
         host: "http://127.0.0.1:30771", // FAKE-SERVER
-        // host: "https://api.tosspayments.com/v1", // REAL-SERVER
+        // host: "https://api.tosspayments.com", // REAL-SERVER
         headers: {
             Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
         }
     };
 
-    const billing: ITossBilling = await toss.functional.billing.authorizations.card.store
+    const billing: ITossBilling = await toss.functional.v1.billing.authorizations.card.store
     (
         connection,
         {
@@ -181,7 +181,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
     );
     assertType<ITossBilling>(billing);
 
-    const payment: ITossPayment = await toss.functional.billing.pay
+    const payment: ITossPayment = await toss.functional.v1.billing.pay
     (
         connection,
         billing.billingKey,

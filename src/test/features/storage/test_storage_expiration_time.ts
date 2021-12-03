@@ -21,7 +21,7 @@ export async function test_storage_expiration_time(): Promise<void>
     let previous: string | null = null;
     for (let i: number = 0; i < 10; ++i)
     {
-        const payment: ITossPayment = await toss.functional.payments.key_in
+        const payment: ITossPayment = await toss.functional.v1.payments.key_in
         (
             TestConnection.FAKE,
             {
@@ -42,9 +42,9 @@ export async function test_storage_expiration_time(): Promise<void>
             await exception_must_be_thrown
             (
                 "VirtualTossStorageProvider.payments.get() for expired record",
-                () => toss.functional.payments.at(TestConnection.FAKE, previous!)
+                () => toss.functional.v1.payments.at(TestConnection.FAKE, previous!)
             );
-        await toss.functional.payments.at(TestConnection.FAKE, payment.paymentKey);
+        await toss.functional.v1.payments.at(TestConnection.FAKE, payment.paymentKey);
         previous = payment.paymentKey;
     }
     TossFakeConfiguration.EXPIRATION.time = time;

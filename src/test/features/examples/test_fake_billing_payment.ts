@@ -11,7 +11,7 @@ import { TestConnection } from "../../internal/TestConnection";
 export async function test_fake_billing_payment(): Promise<void>
 {
     // 간편 결제 카드 등록하기
-    const billing: ITossBilling = await toss.functional.billing.authorizations.card.store
+    const billing: ITossBilling = await toss.functional.v1.billing.authorizations.card.store
     (
         TestConnection.FAKE,
         {
@@ -27,7 +27,7 @@ export async function test_fake_billing_payment(): Promise<void>
     assertType<ITossBilling>(billing);
 
     // 간편 결제 카드로 결제하기
-    const payment: ITossPayment = await toss.functional.billing.pay
+    const payment: ITossPayment = await toss.functional.v1.billing.pay
     (
         TestConnection.FAKE,
         billing.billingKey,
