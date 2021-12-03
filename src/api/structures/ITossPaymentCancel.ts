@@ -1,5 +1,7 @@
 /**
  * 결제 취소 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossPaymentCancel
 {

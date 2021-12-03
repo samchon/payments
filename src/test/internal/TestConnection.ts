@@ -1,11 +1,11 @@
 import btoa from "btoa";
 import toss from "../../api";
-import { Configuration } from "../../Configuration";
+import { TossFakeConfiguration } from "../../FakeTossConfiguration";
 
 export namespace TestConnection
 {
     export const FAKE: toss.IConnection = {
-        host: `http://127.0.0.1:${Configuration.API_PORT}`,
+        host: `http://127.0.0.1:${TossFakeConfiguration.API_PORT}`,
         headers: {
             "Authorization": `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`,
         }

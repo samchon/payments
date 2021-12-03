@@ -2,6 +2,8 @@ import { ITossPayment } from "./ITossPayment";
 
 /**
  * 상품권 결제 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossGiftCertificatePayment
     extends ITossPayment.IBase<"상품권", "NORMAL">

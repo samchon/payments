@@ -1,5 +1,5 @@
 import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
-import { Configuration } from "../Configuration";
+import { TossFakeConfiguration } from "../FakeTossConfiguration";
 
 // POLYFILL FOR NODE
 if (typeof global === "object"
@@ -12,7 +12,7 @@ export namespace FakeTossWebhookProvider
 {
     export async function webhook(input: ITossPaymentWebhook): Promise<void>
     {
-        await fetch(Configuration.WEBHOOK_URL, {
+        await fetch(TossFakeConfiguration.WEBHOOK_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

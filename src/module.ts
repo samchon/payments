@@ -1,2 +1,2 @@
-export * from "./Backend";
-export * from "./Configuration";
+export * from "./FakeTossBackend";
+export * from "./FakeTossConfiguration";

@@ -2,10 +2,17 @@ import { ITossPayment } from "./ITossPayment";
 
 /**
  * 가상 계좌 결제 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossVirtualAccountPayment
     extends ITossPayment.IBase<"가상계좌", "NORMAL">
 {
+    /**
+     * 가상 계좌로 결제할 때 전달되는 입금 콜백을 검증하기 위한 값.
+     */
+    secret: string;
+    
     /**
      * 가상 계좌 정보.
      */

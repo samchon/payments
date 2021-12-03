@@ -10,15 +10,15 @@ import { TestConnection } from "../../internal/TestConnection";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { RandomGenerator } from "../../../utils/RandomGenerator";
 import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
-import { Configuration } from "../../../Configuration";
+import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
 
 export async function test_storage_capacity(): Promise<void>
 {
-    let capacity: number = Configuration.EXPIRATION.capacity;
+    let capacity: number = TossFakeConfiguration.EXPIRATION.capacity;
     
     FakeTossStorage.payments.clear();
     FakeTossStorage.billings.clear();
-    Configuration.EXPIRATION.capacity = 1;
+    TossFakeConfiguration.EXPIRATION.capacity = 1;
 
     let previous: string | null = null;
     for (let i: number = 0; i < 10; ++i)
@@ -79,5 +79,5 @@ export async function test_storage_capacity(): Promise<void>
         previous = payment.paymentKey;
     }
 
-    Configuration.EXPIRATION.capacity = capacity;
+    TossFakeConfiguration.EXPIRATION.capacity = capacity;
 }

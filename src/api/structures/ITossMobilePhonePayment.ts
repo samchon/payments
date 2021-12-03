@@ -2,6 +2,8 @@ import { ITossPayment } from "./ITossPayment";
 
 /**
  * 휴대폰 결제 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossMobilePhonePayment
     extends ITossPayment.IBase<"휴대폰", "NORMAL">
