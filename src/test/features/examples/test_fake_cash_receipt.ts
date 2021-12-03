@@ -1,5 +1,4 @@
 import { assertType } from "typescript-is";
-import { v4 } from "uuid";
 
 import toss from "../../../api";
 import { ITossCashReceipt } from "../../../api/structures/ITossCashReceipt";
@@ -19,7 +18,7 @@ export async function test_fake_cash_receipt(): Promise<void>
             paymentKey: payment.paymentKey,
             orderId: payment.orderId,
             orderName: payment.orderName,
-            registrationNumber: v4(),
+            registrationNumber: "8803111******",
             amount: payment.totalAmount
         }
     );
