@@ -2,6 +2,8 @@ import { ITossPayment } from "./ITossPayment";
 
 /**
  * 카드 결제 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossCardPayment
     extends ITossPayment.IBase<"카드", "NORMAL"|"BILLING">
@@ -10,6 +12,11 @@ export interface ITossCardPayment
      * 카드 정보.
      */
     card: ITossCardPayment.ICard;
+
+    /**
+     * 카드사의 즉시 할인 프로모션 정보.
+     */
+    discount: ITossCardPayment.IDiscount | null;
 
     /**
      * 간편결제로 결제한 경우 간편결제 타입 정보.
@@ -78,6 +85,17 @@ export namespace ITossCardPayment
          * 영수증 URL.
          */
         receiptUrl: string;
+    }
+
+    /**
+     * 카드사의 즉시 할인 프로모션 정보.
+     */
+    export interface IDiscount
+    {
+        /**
+         * 카드사의 즉시 할인 프로모션을 적용한 금액.
+         */
+        amount: number;
     }
     
     /**

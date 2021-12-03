@@ -1,5 +1,7 @@
 /**
  * 웹훅 이벤트 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossPaymentWebhook
 {

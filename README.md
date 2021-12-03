@@ -83,7 +83,7 @@ NodeJS 의 설치가 끝났다면, 바로 (가짜) 토스 페이먼츠 서버 �
 
 마지막으로 `npm run start` 명령어를 실행해주면, (가짜) 토스 페이먼츠 서버가 구동된다. 이 가짜 서버를 통하여, 귀하가 개발하는 백엔드 서버가 결제 연동에 관련하여 제대로 구현되었는 지 충분히 검증한 후, 실 서버를 배포할 때 연동 대상 서버를 현재의 가짜 서버에서 진짜 서버로 바꾸어주도록 하자. 구동 중인 가짜 토스 페이먼츠 서버를 중단하고 싶다면, `npm run stop` 명령어를 실행해주면 된다. 
 
-참고로 가짜 토스 페이먼츠 서버가 사용하는 포트 번호나, 가짜 토스 페이먼츠 서버가 이벤트를 전달해주는 Webhook URL 등은 모두 [src/Configuration.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/Configuration.ts) 에 정의되어있으니, 이를 알맞게 수정한 후 컴파일 및 가짜 서버 재 가동을 해 주면 된다.
+참고로 가짜 토스 페이먼츠 서버가 사용하는 포트 번호나, 가짜 토스 페이먼츠 서버가 이벤트를 전달해주는 Webhook URL 등은 모두 [src/FakeTossConfiguration.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/FakeTossConfiguration.ts) 에 정의되어있으니, 이를 알맞게 수정한 후 컴파일 및 가짜 서버 재 가동을 해 주면 된다.
 
 ```bash
 # CLONE REPOSITORY
@@ -114,13 +114,13 @@ import FakeToss from "fake-toss-payments-server";
 
 async function main(): Promise<void>
 {
-    FakeToss.Configuration.WEBHOOK_URL = "your-backend-webhook-api-url";
-    FakeToss.Configuration.authorize = token => 
+    FakeToss.FakeTossConfiguration.WEBHOOK_URL = "your-backend-webhook-api-url";
+    FakeToss.FakeTossConfiguration.authorize = token => 
     {
         return token === "test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy";
     };
 
-    const fake: FakeToss.Backend = new FakeToss.Backend();
+    const fake: FakeToss.FakeTossBackend = new FakeToss.FakeTossBackend();
     await fake.open();
     await fake.close();
 }
@@ -254,9 +254,9 @@ Nesita 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수�
 
 왜냐하면 `fake-toss-payments-server` 는 토스 페이먼츠 서버의 API 를 흉내내어 만든 가짜 서버로써, 개발 단계에서 쓰이는 임시 시스템에 불과하기 때문이다. 따라서 `fake-toss-payments-server` 에 생성된 결제 내지 카드 정보들은 모두 테스트 용도로 생성된 임시 레코드가 불과하기에, 구태여 이를 DB 나 로컬 디스크에 저장하여 영구 보존할 이유가 없다.
 
-이에 `fake-toss-payments-server` 는 결제 데이터를 메모리에 임시로 기록하며, 한 편으로 그 수량 및 보존 기한에 한도를 두어, 쉬이 메모리 부족 현상이 일어나지 않도록 하고 있다. 이러한 임시 데이터 만료 정보는 [src/Configuration.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/Configuration.ts) 파일의 `EXPIRATION` 변수에 정의되어있으며, 결제 및 간편 카드 결제 등록 데이터는 모두 [src/providers/FakeTossStorage.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/providers/FakeTossStorage.ts) 에서 관리된다.
+이에 `fake-toss-payments-server` 는 결제 데이터를 메모리에 임시로 기록하며, 한 편으로 그 수량 및 보존 기한에 한도를 두어, 쉬이 메모리 부족 현상이 일어나지 않도록 하고 있다. 이러한 임시 데이터 만료 정보는 [src/FakeTossConfiguration.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/FakeTossConfiguration.ts) 파일의 `EXPIRATION` 변수에 정의되어있으며, 결제 및 간편 카드 결제 등록 데이터는 모두 [src/providers/FakeTossStorage.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/providers/FakeTossStorage.ts) 에서 관리된다.
 
-  - 임시 데이터 만료 정보: [src/Configuration.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/Configuration.ts)
+  - 임시 데이터 만료 정보: [src/FakeTossConfiguration.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/FakeTossConfiguration.ts)
   - 임시 데이터 저장소: [src/providers/FakeTossStorage.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/providers/FakeTossStorage.ts)
   - 임시 데이터 컨테이너: [src/utils/VolatileMap.ts](https://github.com/samchon/fake-toss-payments-server/blob/master/src/utils/VolatileMap.ts)
 

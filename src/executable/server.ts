@@ -6,7 +6,7 @@ import fs from "fs";
 import { Singleton } from "tstl/thread/Singleton";
 import { randint } from "tstl/algorithm/random";
 
-import { Backend } from "../Backend";
+import { FakeTossBackend } from "../FakeTossBackend";
 import { ErrorUtil } from "../utils/ErrorUtil";
 
 const directory = new Singleton(async () =>
@@ -50,7 +50,7 @@ async function handle_error(exp: any): Promise<void>
 async function main(): Promise<void>
 {
     // BACKEND SEVER LATER
-    const backend: Backend = new Backend();
+    const backend: FakeTossBackend = new FakeTossBackend();
     await backend.open();
 
     // UNEXPECTED ERRORS

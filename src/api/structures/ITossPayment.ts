@@ -1,11 +1,11 @@
+import { ITossBilling } from "./ITossBilling";
 import { ITossCardPayment } from "./ITossCardPayment";
+import { ITossCashReceipt } from "./ITossCashReceipt";
 import { ITossGiftCertificatePayment } from "./ITossGiftCertificatePayment";
 import { ITossMobilePhonePayment } from "./ITossMobilePhonePayment";
+import { ITossPaymentCancel } from "./ITossPaymentCancel";
 import { ITossTransferPayment } from "./ITossTransferPayment";
 import { ITossVirtualAccountPayment } from "./ITossVirtualAccountPayment";
-
-import { ITossPaymentCancel } from "./ITossPaymentCancel";
-import { ITossBilling } from "./ITossBilling";
 
 /**
  * 결제 정보.
@@ -18,6 +18,8 @@ import { ITossBilling } from "./ITossBilling";
  * if (payment.method === "카드")
  *     payment.card; // payment be ITossCardPayment
  * ``` 
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export type ITossPayment 
     = ITossCardPayment
@@ -99,6 +101,13 @@ export namespace ITossPayment
         orderId: string;
 
         /**
+         * 거래 건에 대한 고유한 키 값.
+         * 
+         * {@link paymentKey} 와 달리, 이를 사용할 일은 없더라.
+         */
+        transactionKey: string;
+
+        /**
          * 주문 이름.
          * 
          * 토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.
@@ -110,7 +119,7 @@ export namespace ITossPayment
          * 
          * 현재 토스 페이먼츠는 KRW 만 사용 가능.
          */
-        currency: "KRW";
+        currency: string;
 
         /**
          * 총 결제 금액.
@@ -128,9 +137,26 @@ export namespace ITossPayment
         suppliedAmount: number;
 
         /**
+         * 면세액.
+         */
+        taxFreeAmount: number;
+
+        /**
          * 부가세.
          */
         vat: number;
+
+        /**
+         * 에스크로 사용 여부.
+         */
+        useEscrow: boolean;
+
+        /**
+         * 문화비 지출 여부.
+         * 
+         * 도석입, 공연 티켓, 박물관/미술관 입장권 등.
+         */
+        cultureExpense: boolean;
 
         /**
          * 결제 요청 일시.
@@ -146,6 +172,11 @@ export namespace ITossPayment
          * 결제 취소 내역.
          */
         cancels: ITossPaymentCancel[] | null;
+
+        /**
+         * 현금 영수증 정보.
+         */
+        cashReceipt: ITossCashReceipt.ISummary | null;
     }
 
     /* ----------------------------------------------------------------

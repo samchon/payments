@@ -31,6 +31,8 @@ export class FakeTossPaymentsController
      * 
      * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
      * @returns 결제 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Get(":paymentKey")
     public at
@@ -66,6 +68,8 @@ export class FakeTossPaymentsController
      * 
      * @param input 카드 결제 입력 정보
      * @returns 카드 결제 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post("key-in")
     public key_in
@@ -87,6 +91,7 @@ export class FakeTossPaymentsController
             approvedAt: input.__approved !== false
                 ? new Date().toString()
                 : null,
+            discount: null,
             card: {
                 company: "신한카드",
                 number: input.cardNumber,
@@ -121,6 +126,8 @@ export class FakeTossPaymentsController
      * @param paymentKey 대상 결제의 {@link ITossPayment.paymentKey}
      * @param input 주문 정보 확인
      * @returns 승인된 결제 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post(":paymentKey")
     public approve
@@ -156,6 +163,8 @@ export class FakeTossPaymentsController
      * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
      * @param input 취소 입력 정보
      * @returns 취소된 결제 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post(":paymentKey/cancel")
     public cancel

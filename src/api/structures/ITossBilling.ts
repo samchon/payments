@@ -4,6 +4,8 @@
  * `ITossBilling` 은 간편 결제 등록 수단을 형상화한 자료구조 인터페이스로써, 고객이 자신의
  * 신용 카드를 서버에 등록해두고, 매번 결제가 필요할 때마다 카드 정보를 반복 입려하는 일
  * 없이 간편하게 결제를 진행하고자 할 때 사용한다.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossBilling 
     extends ITossBilling.ICustomerKey

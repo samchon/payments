@@ -13,9 +13,9 @@ import { OutOfRange } from "tstl/exception/OutOfRange";
 /**
  * Fake 토스 페이먼츠 서버의 설정 정보.
  * 
- * @author Samchon
+ * @author Jeongho Nam - https://github.com/samchon
  */
-export namespace Configuration
+export namespace TossFakeConfiguration
 {
     /**
      * @internal

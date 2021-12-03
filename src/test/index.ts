@@ -1,19 +1,19 @@
-import { Backend } from "../Backend";
+import { FakeTossBackend } from "../FakeTossBackend";
 
 import toss from "../api";
 
-import { Configuration } from "../Configuration";
+import { TossFakeConfiguration } from "../FakeTossConfiguration";
 import { DynamicImportIterator } from "./internal/DynamicImportIterator";
 
 async function main(): Promise<void>
 {
     // BACKEND SERVER
-    const backend: Backend = new Backend();
+    const backend: FakeTossBackend = new FakeTossBackend();
     await backend.open();
 
     // CONNECTION INFO
     const connection: toss.IConnection = {
-        host: `http://127.0.0.1:${Configuration.API_PORT}`,
+        host: `http://127.0.0.1:${TossFakeConfiguration.API_PORT}`,
     };
 
     // DO TEST

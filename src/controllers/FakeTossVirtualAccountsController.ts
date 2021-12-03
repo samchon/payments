@@ -10,6 +10,7 @@ import { FakeTossPaymentProvider } from "../providers/FakeTossPaymentProvider";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 import { FakeTossWebhookProvider } from "../providers/FakeTossWebhookProvider";
+import { v4 } from "uuid";
 
 @nest.Controller("virtual-accounts")
 export class FakeTossVirtualAccountsController
@@ -35,6 +36,8 @@ export class FakeTossVirtualAccountsController
      * 
      * @param input 가상 결제 신청 정보.
      * @returns 가상 계좌 결제 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post()
     public store
@@ -52,6 +55,7 @@ export class FakeTossVirtualAccountsController
             type: "NORMAL",
             status: "WAITING_FOR_DEPOSIT",
             approvedAt: null,
+            secret: v4(),
             virtualAccount: {
                 accountNumber: "110417532896",
                 accountType: "일반",

@@ -6,7 +6,7 @@ import { v4 } from "uuid";
 import toss from "../../../api";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
 
-import { Configuration } from "../../../Configuration";
+import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { TestConnection } from "../../internal/TestConnection";
 import { RandomGenerator } from "../../../utils/RandomGenerator";
@@ -14,9 +14,9 @@ import { exception_must_be_thrown } from "../../internal/exception_must_be_throw
 
 export async function test_storage_expiration_time(): Promise<void>
 {
-    let time: number = Configuration.EXPIRATION.time;
+    let time: number = TossFakeConfiguration.EXPIRATION.time;
     FakeTossStorage.payments.clear();
-    Configuration.EXPIRATION.time = 1;
+    TossFakeConfiguration.EXPIRATION.time = 1;
 
     let previous: string | null = null;
     for (let i: number = 0; i < 10; ++i)
@@ -47,5 +47,5 @@ export async function test_storage_expiration_time(): Promise<void>
         await toss.functional.payments.at(TestConnection.FAKE, payment.paymentKey);
         previous = payment.paymentKey;
     }
-    Configuration.EXPIRATION.time = time;
+    TossFakeConfiguration.EXPIRATION.time = time;
 }

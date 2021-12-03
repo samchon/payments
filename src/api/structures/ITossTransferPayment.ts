@@ -2,6 +2,8 @@ import { ITossPayment } from "./ITossPayment";
 
 /**
  * 계좌 이체 결제 정보.
+ * 
+ * @author Jeongho Nam - https://github.com/samchon
  */
 export interface ITossTransferPayment
     extends ITossPayment.IBase<"계좌이체", "NORMAL">

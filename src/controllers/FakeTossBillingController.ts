@@ -29,6 +29,8 @@ export class FakeTossBillingController
      * 
      * @param input 간편 결제 카드 등록 정보
      * @returns 간편 결제 카드 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post("authorizations/card")
     public store
@@ -66,6 +68,8 @@ export class FakeTossBillingController
      * @param billingKey 대상 정보의 {@link ITossBilling.billingKey}
      * @param input 고객 식별자 키
      * @returns 간편 결제 수단 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post("authorizations/:billingKey")
     public at
@@ -105,6 +109,8 @@ export class FakeTossBillingController
      * @param billingKey 간편 결제에 등록한 수단의 {@link ITossBilling.billingKey}
      * @param input 주문 정보
      * @returns 결제 정보
+     * 
+     * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post(":billingKey")
     public pay
@@ -126,6 +132,7 @@ export class FakeTossBillingController
             type: "NORMAL",
             status: "DONE",
             approvedAt: new Date().toString(),
+            discount: null,
             card: {
                 company: "신한카드",
                 number: card.cardNumber,

@@ -2,7 +2,7 @@ import atob from "atob";
 import express from "express";
 import * as nest from "@nestjs/common";
 
-import { Configuration } from "../Configuration";
+import { TossFakeConfiguration } from "../FakeTossConfiguration";
 
 export namespace FakeTossUserAuth
 {
@@ -17,7 +17,7 @@ export namespace FakeTossUserAuth
         token = token.substr("Basic ".length);
         token = atob(token);
         
-        if (Configuration.authorize(token) === false)
+        if (TossFakeConfiguration.authorize(token) === false)
             throw new nest.ForbiddenException("Wrong authorization token.");
     }
 }
