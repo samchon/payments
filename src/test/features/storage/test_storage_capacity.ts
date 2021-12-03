@@ -25,7 +25,7 @@ export async function test_storage_capacity(): Promise<void>
     {
         // GENERATE RANDOM BILLING
         const customerKey: string = v4();
-        const billing: ITossBilling = await toss.functional.billing.authorizations.card.store
+        const billing: ITossBilling = await toss.functional.v1.billing.authorizations.card.store
         (
             TestConnection.FAKE,
             {
@@ -43,7 +43,7 @@ export async function test_storage_capacity(): Promise<void>
         const orderId: string = v4();
         const amount: number = 100;
 
-        const payment: ITossPayment = await toss.functional.billing.pay
+        const payment: ITossPayment = await toss.functional.v1.billing.pay
         (
             TestConnection.FAKE,
             billing.billingKey,
@@ -58,7 +58,7 @@ export async function test_storage_capacity(): Promise<void>
         assertType<typeof payment>(payment);
 
         // APPROVE THE PAYMENT
-        await toss.functional.payments.approve
+        await toss.functional.v1.payments.approve
         (
             TestConnection.FAKE,
             payment.paymentKey, 
@@ -73,9 +73,9 @@ export async function test_storage_capacity(): Promise<void>
             await exception_must_be_thrown
             (
                 "VirtualTossStorage.payments.get() for expired record",
-                () => toss.functional.payments.at(TestConnection.FAKE, previous!)
+                () => toss.functional.v1.payments.at(TestConnection.FAKE, previous!)
             );
-        await toss.functional.payments.at(TestConnection.FAKE, payment.paymentKey);
+        await toss.functional.v1.payments.at(TestConnection.FAKE, payment.paymentKey);
         previous = payment.paymentKey;
     }
 

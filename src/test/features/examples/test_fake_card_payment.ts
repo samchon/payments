@@ -23,7 +23,7 @@ export async function test_fake_card_payment(): Promise<void>
     // 
     // 때문에 {@link ITossCardPayment.IStore.__approved} 값을 `false` 로 하여, 
     // 백엔드에서 해당 결제 요청 건에 대하여 별도의 승인 처리가 필요한 상황을 고의로 만듦.
-    const payment: ITossCardPayment = await toss.functional.payments.key_in
+    const payment: ITossCardPayment = await toss.functional.v1.payments.key_in
     (
         TestConnection.FAKE,
         {
@@ -46,7 +46,7 @@ export async function test_fake_card_payment(): Promise<void>
     await exception_must_be_thrown
     (
         "VirtualTossPaymentsController.approve() with wrong orderId",
-        () => toss.functional.payments.approve
+        () => toss.functional.v1.payments.approve
         (
             TestConnection.FAKE,
             payment.paymentKey,
@@ -61,7 +61,7 @@ export async function test_fake_card_payment(): Promise<void>
     await exception_must_be_thrown
     (
         "VirtualTossPaymentsController.approve() with wrong amount",
-        () => toss.functional.payments.approve
+        () => toss.functional.v1.payments.approve
         (
             TestConnection.FAKE,
             payment.paymentKey,
@@ -73,7 +73,7 @@ export async function test_fake_card_payment(): Promise<void>
     );
     
     // 정확한 `orderId` 와 주문 금액을 입력해야 비로소 승인 처리된다.
-    const approved: ITossPayment = await toss.functional.payments.approve
+    const approved: ITossPayment = await toss.functional.v1.payments.approve
     (
         TestConnection.FAKE,
         payment.paymentKey,

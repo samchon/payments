@@ -12,7 +12,7 @@ import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 import { FakeTossWebhookProvider } from "../providers/FakeTossWebhookProvider";
 
-@nest.Controller("payments")
+@nest.Controller("v1/payments")
 export class FakeTossPaymentsController
 {
     /**

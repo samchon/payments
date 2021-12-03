@@ -3,8 +3,6 @@
  * @module api.functional
  */
 //================================================================
-export * as billing from "./billing";
+export * as v1 from "./v1";
 export * as internal from "./internal";
-export * as payments from "./payments";
-export * as virtual_accounts from "./virtual_accounts";
 

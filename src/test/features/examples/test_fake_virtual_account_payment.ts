@@ -10,7 +10,7 @@ import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { RandomGenerator } from "../../../utils/RandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";
 
-export async function test_fake_virtual_account_payment(): Promise<void>
+export async function test_fake_virtual_account_payment(): Promise<ITossVirtualAccountPayment>
 {
     //----
     // 결제하기
@@ -27,7 +27,7 @@ export async function test_fake_virtual_account_payment(): Promise<void>
     // 
     // 때문에 {@link ITossVirtualAccountPayment.IStore.__approved} 값을 `false` 로 하여, 
     // 백엔드에서 해당 결제 요청 건에 대하여 별도의 승인 처리가 필요한 상황을 고의로 만듦.
-    const payment: ITossVirtualAccountPayment = await toss.functional.virtual_accounts.store
+    const payment: ITossVirtualAccountPayment = await toss.functional.v1.virtual_accounts.store
     (
         TestConnection.FAKE,
         {
@@ -50,7 +50,7 @@ export async function test_fake_virtual_account_payment(): Promise<void>
     // 결제 요청 승인하기
     //
     // 백엔드 서버에서 해당 건을 승인함으로써, 비로소 해당 결제가 완성된다.
-    const approved:  ITossPayment = await toss.functional.payments.approve
+    const approved:  ITossPayment = await toss.functional.v1.payments.approve
     (
         TestConnection.FAKE,
         payment.paymentKey,
@@ -73,7 +73,7 @@ export async function test_fake_virtual_account_payment(): Promise<void>
     );
 
     // 결제 레코드를 다시 불러보면
-    const reloaded: ITossPayment = await toss.functional.payments.at
+    const reloaded: ITossPayment = await toss.functional.v1.payments.at
     (
         TestConnection.FAKE, 
         payment.paymentKey
@@ -90,4 +90,8 @@ export async function test_fake_virtual_account_payment(): Promise<void>
     const webhook: ITossPaymentWebhook = FakeTossStorage.webhooks.get(payment.paymentKey);
     if (webhook.data.status !== "DONE")
         throw new Error("Bug on FakeTossInternalController.webhook(): failed to listen the webhook event.");
+
+    // if condition 에 의하여 자동 다운 캐스팅 됨.
+    payment.virtualAccount.accountNumber;
+    return payment;
 }

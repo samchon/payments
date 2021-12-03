@@ -10,6 +10,7 @@ import { ITossPayment } from "../api/structures/ITossPayment";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 
+@nest.Controller("v1/cash-receipts")
 export class FakeTossCashReceiptsController
 {
     /**
