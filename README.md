@@ -9,13 +9,19 @@
 
 또한, [toss-payments-server-api](https://www.npmjs.com/package/toss-payments-server-api) 는 토스 페이먼츠 서버와 연동할 수 있는 SDK 라이브러리로써, `fake-toss-payments-server` 의 소스코드를 토대로 [Nestia](https://github.com/samchon/nestia) 를 이용하여 빌드하였다. 그리고 이를 통하여 가짜 토스 페이먼츠 서버 뿐 아니라, 진짜 토스 페이먼츠 서버, 양쪽 모두와 연동할 수 있다.
 
-  - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
-  - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
-  - 예제 코드
-    - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
-    - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
-    - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
-    - 현금 영수증 발행: [src/teset/features/examples/test_fake_cash_receipt.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_cash_receipt.ts)
+  - 서버 주소: http://localhost:30771
+  - 매뉴얼
+    - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
+    - API 함수: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+    - 예제 코드
+      - 간편 결제: [test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
+      - 카드 결제: [test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
+      - 가상 계좌 결제: [test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
+      - 현금 영수증 발행: [test_fake_cash_receipt.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_cash_receipt.ts)
+  - 연관 저장소
+    - [samchon/netia](https://github.com/samchon/nestia) - Automatic SDK generator for the NestJS
+    - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server): 가짜 아임포트 서버
+    - [samchon/payments](https://github.com/samchon/payments): MSA 형태의 통합 결제 서버
 
 ```typescript
 import btoa from "btoa";
@@ -143,13 +149,19 @@ npm install --save fake-toss-payments-server-api
 
 마지막으로 실 서버를 배포하며, 연동 대상 서버를 가짜에서 진짜로 교체해주면 된다.
 
-  - 자료 구조 매뉴얼: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
-  - API 함수 매뉴얼: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
-  - 예제 코드
-    - 간편 결제: [src/test/features/examples/test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
-    - 카드 결제: [src/test/features/examples/test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
-    - 가상 계좌 결제: [src/test/features/examples/test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
-    - 현금 영수증 발행: [src/teset/features/examples/test_fake_cash_receipt.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_cash_receipt.ts)
+  - 서버 주소: http://localhost:30771
+  - 매뉴얼
+    - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
+    - API 함수: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
+    - 예제 코드
+      - 간편 결제: [test_fake_billing_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_billing_payment.ts)
+      - 카드 결제: [test_fake_card_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_card_payment.ts)
+      - 가상 계좌 결제: [test_fake_virtual_account_payment.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_virtual_account_payment.ts)
+      - 현금 영수증 발행: [test_fake_cash_receipt.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/test/features/examples/test_fake_cash_receipt.ts)
+  - 연관 저장소
+    - [samchon/netia](https://github.com/samchon/nestia) - Automatic SDK generator for the NestJS
+    - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server): 가짜 아임포트 서버
+    - [samchon/payments](https://github.com/samchon/payments): MSA 형태의 통합 결제 서버
 
 ```typescript
 import btoa from "btoa";
