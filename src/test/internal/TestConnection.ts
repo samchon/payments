@@ -12,7 +12,7 @@ export namespace TestConnection
     };
     
     export const REAL: toss.IConnection = {
-        host: `https://api.tosspayments.com/v1`,
+        host: `https://api.tosspayments.com`,
         headers: {
             "Authorization": `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy:")}`,
         }
