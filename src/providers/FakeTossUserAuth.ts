@@ -17,7 +17,7 @@ export namespace FakeTossUserAuth
         token = token.substr("Basic ".length);
         token = atob(token);
         
-        if (TossFakeConfiguration.authorize(token) === false)
+        if (TossFakeConfiguration.authorize(token.substr(0, token.length - 1)) === false)
             throw new nest.ForbiddenException("Wrong authorization token.");
     }
 }
