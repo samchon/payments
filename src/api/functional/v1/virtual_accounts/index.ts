@@ -3,13 +3,10 @@
  * @module api.functional.v1.virtual_accounts
  */
 //================================================================
-import { AesPkcs5 } from "./../../../__internal/AesPkcs5";
-import { Fetcher } from "./../../../__internal/Fetcher";
-import { Primitive } from "./../../../Primitive";
-import type { IConnection } from "./../../../IConnection";
+import { AesPkcs5, Fetcher, Primitive } from "nestia-fetcher";
+import type { IConnection } from "nestia-fetcher";
 
 import type { ITossVirtualAccountPayment } from "./../../../structures/ITossVirtualAccountPayment";
-
 
 /**
  * 가상 계좌로 결제 신청하기.
@@ -48,7 +45,7 @@ export function store
     return Fetcher.fetch
     (
         connection,
-        store.CONFIG,
+        store.ENCRYPTED,
         store.METHOD,
         store.path(),
         input
@@ -59,12 +56,11 @@ export namespace store
     export type Input = Primitive<ITossVirtualAccountPayment.IStore>;
     export type Output = Primitive<ITossVirtualAccountPayment>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/virtual-accounts";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/virtual-accounts";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(): string

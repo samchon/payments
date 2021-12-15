@@ -1,5 +1,5 @@
 import express from "express";
-import * as helper from "encrypted-nestjs";
+import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
 import { assertType } from "typescript-is";
 import { v4 } from "uuid";

@@ -3,14 +3,11 @@
  * @module api.functional.internal
  */
 //================================================================
-import { AesPkcs5 } from "./../../__internal/AesPkcs5";
-import { Fetcher } from "./../../__internal/Fetcher";
-import { Primitive } from "./../../Primitive";
-import type { IConnection } from "./../../IConnection";
+import { AesPkcs5, Fetcher, Primitive } from "nestia-fetcher";
+import type { IConnection } from "nestia-fetcher";
 
 import type { ITossPaymentWebhook } from "./../../structures/ITossPaymentWebhook";
 import type { ITossPayment } from "./../../structures/ITossPayment";
-
 
 /**
  * 웹훅 이벤트 더미 리스너.
@@ -41,7 +38,7 @@ export function webhook
     return Fetcher.fetch
     (
         connection,
-        webhook.CONFIG,
+        webhook.ENCRYPTED,
         webhook.METHOD,
         webhook.path(),
         input
@@ -51,12 +48,11 @@ export namespace webhook
 {
     export type Input = Primitive<ITossPaymentWebhook>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/internal/webhook";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/internal/webhook";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(): string
@@ -94,7 +90,7 @@ export function deposit
     return Fetcher.fetch
     (
         connection,
-        deposit.CONFIG,
+        deposit.ENCRYPTED,
         deposit.METHOD,
         deposit.path(paymentKey)
     );
@@ -103,12 +99,11 @@ export namespace deposit
 {
     export type Output = Primitive<ITossPayment>;
 
-
-    export const METHOD = "GET";
-    export const PATH = "/internal/:paymentKey/deposit";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "GET" as const;
+    export const PATH: string = "/internal/:paymentKey/deposit";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(paymentKey: string): string

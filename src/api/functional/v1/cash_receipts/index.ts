@@ -3,13 +3,10 @@
  * @module api.functional.v1.cash_receipts
  */
 //================================================================
-import { AesPkcs5 } from "./../../../__internal/AesPkcs5";
-import { Fetcher } from "./../../../__internal/Fetcher";
-import { Primitive } from "./../../../Primitive";
-import type { IConnection } from "./../../../IConnection";
+import { AesPkcs5, Fetcher, Primitive } from "nestia-fetcher";
+import type { IConnection } from "nestia-fetcher";
 
 import type { ITossCashReceipt } from "./../../../structures/ITossCashReceipt";
-
 
 /**
  * 현금 영수증 발행하기.
@@ -32,7 +29,7 @@ export function store
     return Fetcher.fetch
     (
         connection,
-        store.CONFIG,
+        store.ENCRYPTED,
         store.METHOD,
         store.path(),
         input
@@ -43,12 +40,11 @@ export namespace store
     export type Input = Primitive<ITossCashReceipt.IStore>;
     export type Output = Primitive<ITossCashReceipt>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/cash-receipts";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/cash-receipts";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(): string
@@ -80,7 +76,7 @@ export function cancel
     return Fetcher.fetch
     (
         connection,
-        cancel.CONFIG,
+        cancel.ENCRYPTED,
         cancel.METHOD,
         cancel.path(receiptKey),
         input
@@ -91,12 +87,11 @@ export namespace cancel
     export type Input = Primitive<ITossCashReceipt.ICancel>;
     export type Output = Primitive<ITossCashReceipt>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/cash-receipts/:receiptKey/cancel";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/cash-receipts/:receiptKey/cancel";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(receiptKey: string): string

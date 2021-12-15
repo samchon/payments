@@ -3,14 +3,11 @@
  * @module api.functional.v1.billing
  */
 //================================================================
-import { AesPkcs5 } from "./../../../__internal/AesPkcs5";
-import { Fetcher } from "./../../../__internal/Fetcher";
-import { Primitive } from "./../../../Primitive";
-import type { IConnection } from "./../../../IConnection";
+import { AesPkcs5, Fetcher, Primitive } from "nestia-fetcher";
+import type { IConnection } from "nestia-fetcher";
 
 import type { ITossBilling } from "./../../../structures/ITossBilling";
 import type { ITossPayment } from "./../../../structures/ITossPayment";
-
 export * as authorizations from "./authorizations";
 
 /**
@@ -50,7 +47,7 @@ export function pay
     return Fetcher.fetch
     (
         connection,
-        pay.CONFIG,
+        pay.ENCRYPTED,
         pay.METHOD,
         pay.path(billingKey),
         input
@@ -61,12 +58,11 @@ export namespace pay
     export type Input = Primitive<ITossBilling.IPaymentStore>;
     export type Output = Primitive<ITossPayment>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/billing/:billingKey";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/billing/:billingKey";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(billingKey: string): string
