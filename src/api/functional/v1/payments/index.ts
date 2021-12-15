@@ -3,15 +3,12 @@
  * @module api.functional.v1.payments
  */
 //================================================================
-import { AesPkcs5 } from "./../../../__internal/AesPkcs5";
-import { Fetcher } from "./../../../__internal/Fetcher";
-import { Primitive } from "./../../../Primitive";
-import type { IConnection } from "./../../../IConnection";
+import { AesPkcs5, Fetcher, Primitive } from "nestia-fetcher";
+import type { IConnection } from "nestia-fetcher";
 
 import type { ITossPayment } from "./../../../structures/ITossPayment";
 import type { ITossCardPayment } from "./../../../structures/ITossCardPayment";
 import type { ITossPaymentCancel } from "./../../../structures/ITossPaymentCancel";
-
 
 /**
  * 결제 정보 조회하기.
@@ -45,7 +42,7 @@ export function at
     return Fetcher.fetch
     (
         connection,
-        at.CONFIG,
+        at.ENCRYPTED,
         at.METHOD,
         at.path(paymentKey)
     );
@@ -54,12 +51,11 @@ export namespace at
 {
     export type Output = Primitive<ITossPayment>;
 
-
-    export const METHOD = "GET";
-    export const PATH = "/v1/payments/:paymentKey";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "GET" as const;
+    export const PATH: string = "/v1/payments/:paymentKey";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(paymentKey: string): string
@@ -101,7 +97,7 @@ export function approve
     return Fetcher.fetch
     (
         connection,
-        approve.CONFIG,
+        approve.ENCRYPTED,
         approve.METHOD,
         approve.path(paymentKey),
         input
@@ -112,12 +108,11 @@ export namespace approve
     export type Input = Primitive<ITossPayment.IApproval>;
     export type Output = Primitive<ITossPayment>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/payments/:paymentKey";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/payments/:paymentKey";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(paymentKey: string): string
@@ -165,7 +160,7 @@ export function key_in
     return Fetcher.fetch
     (
         connection,
-        key_in.CONFIG,
+        key_in.ENCRYPTED,
         key_in.METHOD,
         key_in.path(),
         input
@@ -176,12 +171,11 @@ export namespace key_in
     export type Input = Primitive<ITossCardPayment.IStore>;
     export type Output = Primitive<ITossCardPayment>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/payments/key-in";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/payments/key-in";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(): string
@@ -218,7 +212,7 @@ export function cancel
     return Fetcher.fetch
     (
         connection,
-        cancel.CONFIG,
+        cancel.ENCRYPTED,
         cancel.METHOD,
         cancel.path(paymentKey),
         input
@@ -229,12 +223,11 @@ export namespace cancel
     export type Input = Primitive<ITossPaymentCancel.IStore>;
     export type Output = Primitive<ITossPayment>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/payments/:paymentKey/cancel";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/payments/:paymentKey/cancel";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(paymentKey: string): string

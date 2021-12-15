@@ -3,13 +3,10 @@
  * @module api.functional.v1.billing.authorizations.card
  */
 //================================================================
-import { AesPkcs5 } from "./../../../../../__internal/AesPkcs5";
-import { Fetcher } from "./../../../../../__internal/Fetcher";
-import { Primitive } from "./../../../../../Primitive";
-import type { IConnection } from "./../../../../../IConnection";
+import { AesPkcs5, Fetcher, Primitive } from "nestia-fetcher";
+import type { IConnection } from "nestia-fetcher";
 
 import type { ITossBilling } from "./../../../../../structures/ITossBilling";
-
 
 /**
  * 간편 결제 카드 등록하기.
@@ -41,7 +38,7 @@ export function store
     return Fetcher.fetch
     (
         connection,
-        store.CONFIG,
+        store.ENCRYPTED,
         store.METHOD,
         store.path(),
         input
@@ -52,12 +49,11 @@ export namespace store
     export type Input = Primitive<ITossBilling.IStore>;
     export type Output = Primitive<ITossBilling>;
 
-
-    export const METHOD = "POST";
-    export const PATH = "/v1/billing/authorizations/card";
-    export const CONFIG = {
-        input_encrypted: false,
-        output_encrypted: false,
+    export const METHOD = "POST" as const;
+    export const PATH: string = "/v1/billing/authorizations/card";
+    export const ENCRYPTED: Fetcher.IEncrypted = {
+        request: false,
+        response: false,
     };
 
     export function path(): string

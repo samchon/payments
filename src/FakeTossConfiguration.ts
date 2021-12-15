@@ -2,9 +2,9 @@ const EXTENSION = __filename.substr(-2);
 if (EXTENSION === "js")
     require("source-map-support").install();
     
-import * as helper from "encrypted-nestjs";
+import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { IPassword } from "encrypted-nestjs";
+import { IEncryptionPassword } from "nestia-fetcher";
 
 import { DomainError } from "tstl/exception/DomainError";
 import { InvalidArgument } from "tstl/exception/InvalidArgument";
@@ -25,7 +25,7 @@ export namespace TossFakeConfiguration
     /**
      * @internal
      */
-    export const ENCRYPTION_PASSWORD: Readonly<IPassword> = {
+    export const ENCRYPTION_PASSWORD: Readonly<IEncryptionPassword> = {
         key: "szngncCKO7wZTuayfhkRNlBfI5Nl5N88",
         iv: "M0Yvmgrk58GBvUAt"
     };
