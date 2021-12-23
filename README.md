@@ -35,7 +35,7 @@ export async function test_fake_card_payment_approval(): Promise<void>
         host: "http://127.0.0.1:30771", // FAKE-SERVER
         // host: "https://api.tosspayments.com", // REAL-SERVER
         headers: {
-            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
+            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy:")}`
         }
     };
 
@@ -176,7 +176,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
         host: "http://127.0.0.1:30771", // FAKE-SERVER
         // host: "https://api.tosspayments.com", // REAL-SERVER
         headers: {
-            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy")}`
+            Authorization: `Basic ${btoa("test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy:")}`
         }
     };
 
