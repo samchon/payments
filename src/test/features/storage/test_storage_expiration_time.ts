@@ -4,6 +4,7 @@ import { assertType } from "typescript-is";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
+import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
 
 import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
@@ -35,7 +36,7 @@ export async function test_storage_expiration_time(): Promise<void>
                 amount: 1000
             }
         );
-        assertType<typeof payment>(payment);
+        assertType<ITossCardPayment>(payment);
 
         await sleep_for(1);
         if (previous !== null)
