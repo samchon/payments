@@ -45,7 +45,7 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
             __approved: false
         }
     );
-    assertType<typeof payment>(payment);
+    assertType<ITossVirtualAccountPayment>(payment);
 
     // 결제 요청 승인하기
     //
