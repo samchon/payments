@@ -1,10 +1,8 @@
 import { v4 } from "uuid";
 import { ITossPayment } from "../api/structures/ITossPayment";
 
-export namespace FakeTossPaymentProvider
-{
-    export function get_common_props(input: ITossPayment.IStore)
-    {
+export namespace FakeTossPaymentProvider {
+    export function get_common_props(input: ITossPayment.IStore) {
         return {
             mId: "tosspayments",
             version: "1.3",
@@ -22,7 +20,7 @@ export namespace FakeTossPaymentProvider
             cultureExpense: false,
             requestedAt: new Date().toString(),
             cancels: null,
-            cashReceipt: null
+            cashReceipt: null,
         };
     }
 }
