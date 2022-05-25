@@ -9,8 +9,11 @@
 
 또한, [toss-payments-server-api](https://www.npmjs.com/package/toss-payments-server-api) 는 토스 페이먼츠 서버와 연동할 수 있는 SDK 라이브러리로써, `fake-toss-payments-server` 의 소스코드를 토대로 [Nestia](https://github.com/samchon/nestia) 를 이용하여 빌드하였다. 그리고 이를 통하여 가짜 토스 페이먼츠 서버 뿐 아니라, 진짜 토스 페이먼츠 서버, 양쪽 모두와 연동할 수 있다.
 
+참고로 [Nestia](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-toss-payments-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 토스 페이먼츠가 공식 제공하는 개발자 가이드 문서보다, `fake-toss-payments-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
+
   - 서버 주소: http://localhost:30771
   - 매뉴얼
+    - **Swagger Editor**: [dist/swagger.json](https://editor.swagger.io/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsamchon%2Ffake-toss-payments-server%2Fmaster%2Fdist%2Fswagger.json)
     - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
     - API 함수: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
     - 예제 코드
@@ -149,8 +152,11 @@ npm install --save fake-toss-payments-server-api
 
 마지막으로 실 서버를 배포하며, 연동 대상 서버를 가짜에서 진짜로 교체해주면 된다.
 
+참고로 [Nestia](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-toss-payments-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 토스 페이먼츠가 공식 제공하는 개발자 가이드 문서보다, `fake-toss-payments-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
+
   - 서버 주소: http://localhost:30771
   - 매뉴얼
+    - **Swagger Editor**: [dist/swagger.json](https://editor.swagger.io/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsamchon%2Ffake-toss-payments-server%2Fmaster%2Fdist%2Fswagger.json)
     - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/structures/ITossBilling.ts)
     - API 함수: [src/api/functional/payments/index.ts](https://github.surf/samchon/fake-toss-payments-server/blob/HEAD/src/api/functional/payments/index.ts)
     - 예제 코드
@@ -263,6 +269,22 @@ Nesita 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수�
 
 때문에 만일 귀하가 토스 페이먼츠와 연동하는 백엔드 서버를 개발 중이라면, `fake-toss-payments-server` 뿐 아니라 [Nestia](https://github.com/samchon/nestia) 도 함께 사용해보는 것이 어떠한가? 귀하의 백엔드 서버 또한 `fake-toss-payments-server` 처럼 클라이언트 개발자가 사용할 수 있는 SDK 라이브러리를 자동으로 빌드하여 배포할 수 있으니, 백엔드 개발자는 API 문서를 따로 만들고 클라이언트 개발자는 중복 DTO 타입과 API 연동 함수를 개발하는 등의 번거로운 일을 일절 하지 않아도 된다.
 
+물론 Nestia 는 Swagger 또한 빌드할 수 있는데, 본 저장소 `fake-toss-payments-server` 로부터 빌드된 Swagger 가 토스 페이먼츠의 공식 개발자 가이드 문서보다 일목요연하고 체계도가 높은것도, 바로 이러한 이유 때문이다. Swagger 내지 가이드 문서를 사람이 손으로 작성하는게 아니라, Nestia 가 컴파일러 수준에서 백엔드 소스 코드와 DTO 를 분석하여 자동으로 생성해주었기 때문인 것.
+
+Components | `nestia`::SDK | `nestia`::swagger | `@nestjs/swagger`
+-----------|---|---|---
+Pure DTO interface | ✔ | ✔ | ❌
+Description comments | ✔ | ✔ | ❌
+Simple structure | ✔ | ✔ | ✔
+Generic type | ✔ | ✔ | ❌
+Union type | ✔ | ✔ | ▲
+Intersection type | ✔ | ✔ | ▲
+Conditional type | ✔ | ▲ | ❌
+Auto completion | ✔ | ❌ | ❌
+Type hints | ✔ | ❌ | ❌
+2x faster `JSON.stringify()` | ✔ | ❌ | ❌
+Ensure type safety | ✅ | ❌ | ❌
+
 ### 4.2. Expiration
 `fake-toss-payments-server` 는 결제 데이터를 메모리에 임시 기록한다.
 
@@ -299,3 +321,14 @@ https://www.archisketch.com/
 I have special thanks to the Archidraw, where I'm working for.
 
 The Archidraw is a great IT company developing 3D interior editor and lots of solutions based on the 3D assets. Also, the Archidraw is the first company who had adopted `fake-toss-payments-server` on their commercial backend project, even `fake-toss-payments-server` was in the alpha level.
+
+> 저희 회사 "아키드로우" 에서, 삼촌과 함께 일할 프론트 개발자 분들을, 최고의 대우로 모십니다.
+>
+> "아키드로우" 는 3D (인테리어) 에디터 및 이에 관한 파생 솔루션들을 만드는 회사입니다. 다만 저희 회사의 주력 제품이 3D 에디터라 하여, 반드시 3D 내지 랜더링에 능숙해야 하는 것은 아니니, 일반적인 프론트 개발자 분들도 망설임없이 지원해주십시오.
+>
+> 그리고 저희 회사는 분위기가 다들 친하고 즐겁게 지내는 분위기입니다. 더하여 위 [nestia](https://github.com/samchon/nestia) 나 [typescript-json](https://github.com/samchon/typescript-json) 및 [payments](https://github.com/archidraw/payments) 등, 제법 합리적(?)이고 재미난 프로젝트들을 다양하게 체험해보실 수 있습니다.
+>
+> - 회사소개서: [archidraw.pdf](https://github.com/archidraw/payments/files/7696710/archidraw.pdf)
+> - 기술 스택: React + TypeScript
+> - 이력서: 자유 양식
+> - 지원처: samchon@archisketch.com
