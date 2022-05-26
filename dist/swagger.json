@@ -1850,7 +1850,6 @@
           }
         },
         "nullable": false,
-        "required": [],
         "description": "현금 영수증 취소 입력 정보."
       },
       "ITossPaymentWebhook": {
