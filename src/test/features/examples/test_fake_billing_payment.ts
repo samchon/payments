@@ -24,7 +24,6 @@ export async function test_fake_billing_payment(): Promise<void> {
             },
         );
     assertType<ITossBilling>(billing);
-    console.log(TestConnection.FAKE.headers);
 
     // 간편 결제 카드로 결제하기
     const payment: ITossPayment = await toss.functional.v1.billing.pay(

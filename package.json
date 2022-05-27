@@ -11,7 +11,7 @@
     "build:swagger": "nestia swagger",
     "dev": "npm run build -- --watch",
     "package:api": "npm run build:api && cd packages/api && npm publish",
-    "start": "pm2 start lib/executable/server.js -i 1 --name fake-toss-payments-server --wait-ready --listen-timeout 120000 --kill-timeout 15000 --",
+    "start": "pm2 start lib/executable/server.js -i 1 --name fake-toss-payments-server --wait-ready --listen-timeout 120000 --kill-timeout 15000",
     "start:reload": "pm2 reload fake-toss-payments-server",
     "stop": "pm2 delete fake-toss-payments-server",
     "test": "node lib/test",
