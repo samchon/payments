@@ -10,7 +10,6 @@ lib/executable/
 lib/ErrorUtil.**
 lib/*/**/*.d.ts
 
-*.js.map
 *.*ignore
 .eslintrc.cjs
 package-lock.json

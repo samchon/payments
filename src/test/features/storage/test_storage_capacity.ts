@@ -1,5 +1,5 @@
 import { randint } from "tstl/algorithm/random";
-import { assertType } from "typescript-is";
+import { assert } from "typescript-json";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
@@ -35,7 +35,7 @@ export async function test_storage_capacity(): Promise<void> {
                     cardPassword: RandomGenerator.digit(1, 4),
                 },
             );
-        assertType<typeof billing>(billing);
+        assert<typeof billing>(billing);
 
         // GENERATE RANDOM PAYMENT BY THE BILLING
         const orderId: string = v4();
@@ -52,7 +52,7 @@ export async function test_storage_capacity(): Promise<void> {
                 amount,
             },
         );
-        assertType<typeof payment>(payment);
+        assert<typeof payment>(payment);
 
         // APPROVE THE PAYMENT
         await toss.functional.v1.payments.approve(
