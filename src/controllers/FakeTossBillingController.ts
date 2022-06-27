@@ -1,7 +1,7 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import { ITossBilling } from "../api/structures/ITossBilling";
@@ -37,7 +37,7 @@ export class FakeTossBillingController {
         @nest.Body() input: ITossBilling.IStore,
     ): ITossBilling {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const billing: ITossBilling = {
             mId: "tosspyaments",
@@ -75,7 +75,7 @@ export class FakeTossBillingController {
         @nest.Body() input: ITossBilling.ICustomerKey,
     ): ITossBilling {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const tuple = FakeTossStorage.billings.get(billingKey);
         if (tuple[0].customerKey !== input.customerKey)
@@ -114,7 +114,7 @@ export class FakeTossBillingController {
         @nest.Body() input: ITossBilling.IPaymentStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const tuple = FakeTossStorage.billings.get(billingKey);
         const card = tuple[1];

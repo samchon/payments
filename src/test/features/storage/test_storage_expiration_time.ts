@@ -1,6 +1,6 @@
 import { randint } from "tstl/algorithm/random";
 import { sleep_for } from "tstl/thread/global";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
@@ -33,7 +33,7 @@ export async function test_storage_expiration_time(): Promise<void> {
                 amount: 1000,
             },
         );
-        assert<ITossCardPayment>(payment);
+        assertType<ITossCardPayment>(payment);
 
         await sleep_for(1);
         if (previous !== null)

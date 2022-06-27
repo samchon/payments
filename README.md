@@ -30,7 +30,7 @@
 import btoa from "btoa";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 
 export async function test_fake_card_payment_approval(): Promise<void>
 {
@@ -60,7 +60,7 @@ export async function test_fake_card_payment_approval(): Promise<void>
             __approved: false
         }
     );
-    assert<ITossPayment>(payment);
+    assertType<ITossPayment>(payment);
 
     const approved: ITossPayment = await toss.functional.v1.payments.approve
     (
@@ -71,7 +71,7 @@ export async function test_fake_card_payment_approval(): Promise<void>
             amount: payment.totalAmount,
         }
     );
-    assert<ITossPayment>(approved);
+    assertType<ITossPayment>(approved);
 }
 ```
 
@@ -174,7 +174,7 @@ import btoa from "btoa";
 import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 
 export async function test_fake_payment_billing_payment(): Promise<void>
 {
@@ -199,7 +199,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
             consumerName: "남정호"
         }
     );
-    assert<ITossBilling>(billing);
+    assertType<ITossBilling>(billing);
 
     const payment: ITossPayment = await toss.functional.v1.billing.pay
     (
@@ -213,7 +213,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
             amount: 10_000
         }
     );
-    assert<ITossPayment>(payment);
+    assertType<ITossPayment>(payment);
 }
 ```
 

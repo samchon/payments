@@ -1,7 +1,7 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import { ITossCashReceipt } from "../api/structures/ITossCashReceipt";
@@ -27,7 +27,7 @@ export class FakeTossCashReceiptsController {
     ): ITossCashReceipt {
         // VALIADTE
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         // CHECK PAYMENT
         const payment: ITossPayment = FakeTossStorage.payments.get(
@@ -86,7 +86,7 @@ export class FakeTossCashReceiptsController {
     ): ITossCashReceipt {
         // VALIADTE
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         // GET RECORDS
         const receipt: ITossCashReceipt =

@@ -49,7 +49,7 @@ Note that, the special functions starting from the prefix `test_` must be `expor
 When you detect an error, then throw exception such below:
 
 ```typescript
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 import api from "../../../../../../api";
 import { IBbsCustomer } from "../../../../../../api/structures/bbs/actors/IBbsCustomer";
 import { IMember } from "../../../../../../api/structures/members/IMember";
@@ -90,7 +90,7 @@ export async function test_bbs_customer_join_after_activate
             citizen: customer.citizen
         }
     );
-    assert<typeof member>(member);
+    assertType<typeof member>(member);
 }
 ```
 

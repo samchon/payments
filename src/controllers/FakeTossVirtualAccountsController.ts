@@ -1,7 +1,7 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import { ITossVirtualAccountPayment } from "../api/structures/ITossVirtualAccountPayment";
@@ -44,7 +44,7 @@ export class FakeTossVirtualAccountsController {
         @nest.Body() input: ITossVirtualAccountPayment.IStore,
     ): ITossVirtualAccountPayment {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const payment: ITossVirtualAccountPayment = {
             ...FakeTossPaymentProvider.get_common_props(input),

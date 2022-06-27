@@ -1,7 +1,7 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 
 import { ITossCardPayment } from "../api/structures/ITossCardPayment";
 import { ITossPayment } from "../api/structures/ITossPayment";
@@ -74,7 +74,7 @@ export class FakeTossPaymentsController {
         @nest.Body() input: ITossCardPayment.IStore,
     ): ITossCardPayment {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const payment: ITossCardPayment = {
             ...FakeTossPaymentProvider.get_common_props(input),
@@ -128,7 +128,7 @@ export class FakeTossPaymentsController {
         @nest.Body() input: ITossPayment.IApproval,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
         if (payment.orderId !== input.orderId)
@@ -163,7 +163,7 @@ export class FakeTossPaymentsController {
         @nest.Body() input: ITossPaymentCancel.IStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
-        assert<typeof input>(input);
+        assertType<typeof input>(input);
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
         payment.status = "CANCELED";

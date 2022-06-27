@@ -1,4 +1,4 @@
-import { assert } from "typescript-json";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
@@ -41,7 +41,7 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
             // 고의 미승인 처리
             __approved: false,
         });
-    assert<ITossVirtualAccountPayment>(payment);
+    assertType<ITossVirtualAccountPayment>(payment);
 
     // 결제 요청 승인하기
     //
@@ -54,7 +54,9 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
             amount: payment.totalAmount,
         },
     );
-    assert<ITossVirtualAccountPayment>(approved as ITossVirtualAccountPayment);
+    assertType<ITossVirtualAccountPayment>(
+        approved as ITossVirtualAccountPayment,
+    );
 
     //----
     // 입금하기
@@ -71,7 +73,9 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
         TestConnection.FAKE,
         payment.paymentKey,
     );
-    assert<ITossVirtualAccountPayment>(reloaded as ITossVirtualAccountPayment);
+    assertType<ITossVirtualAccountPayment>(
+        reloaded as ITossVirtualAccountPayment,
+    );
 
     // 결제 완료 처리되었음을 알 수 있다
     if (reloaded.status !== "DONE")
