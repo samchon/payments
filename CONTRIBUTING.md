@@ -49,7 +49,7 @@ Note that, the special functions starting from the prefix `test_` must be `expor
 When you detect an error, then throw exception such below:
 
 ```typescript
-import { assertType } from "typescript-is";
+import { assertType } from "typescript-json";
 import api from "../../../../../../api";
 import { IBbsCustomer } from "../../../../../../api/structures/bbs/actors/IBbsCustomer";
 import { IMember } from "../../../../../../api/structures/members/IMember";

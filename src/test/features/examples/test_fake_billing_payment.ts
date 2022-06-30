@@ -1,4 +1,4 @@
-import { assertType } from "typescript-is";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
@@ -37,7 +37,7 @@ export async function test_fake_billing_payment(): Promise<void> {
             amount: 10_000,
         },
     );
-    assertType<ITossCardPayment>(payment);
+    assertType<ITossCardPayment>(payment as ITossCardPayment);
 
     // 간편 결제 카드로 결제시, 별도 승인 처리가 필요 없음
     if (payment.approvedAt === null || payment.status !== "DONE")

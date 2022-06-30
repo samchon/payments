@@ -10,9 +10,10 @@ lib/executable/
 lib/ErrorUtil.**
 lib/*/**/*.d.ts
 
-*.js.map
 *.*ignore
+.eslintrc.cjs
 package-lock.json
+prettier.config.js
 tsconfig.api.json
 tsconfig.json
 *.log

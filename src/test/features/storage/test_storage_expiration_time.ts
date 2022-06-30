@@ -1,6 +1,6 @@
 import { randint } from "tstl/algorithm/random";
 import { sleep_for } from "tstl/thread/global";
-import { assertType } from "typescript-is";
+import { assertType } from "typescript-json";
 import { v4 } from "uuid";
 
 import toss from "../../../api";

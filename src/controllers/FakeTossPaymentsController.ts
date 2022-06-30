@@ -1,7 +1,7 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assertType } from "typescript-is";
+import { assertType } from "typescript-json";
 
 import { ITossCardPayment } from "../api/structures/ITossCardPayment";
 import { ITossPayment } from "../api/structures/ITossPayment";
