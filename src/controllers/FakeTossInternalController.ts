@@ -1,7 +1,6 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assertType } from "typescript-json";
 
 import { ITossPayment } from "../api/structures/ITossPayment";
 import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
@@ -28,9 +27,7 @@ export class FakeTossInternalController {
      * @author Jeongho Nam - https://github.com/samchon
      */
     @helper.TypedRoute.Post("webhook")
-    public webhook(@nest.Body() input: ITossPaymentWebhook): void {
-        assertType<typeof input>(input);
-
+    public webhook(@helper.TypedBody() input: ITossPaymentWebhook): void {
         const payment = FakeTossStorage.payments.get(input.data.paymentKey);
         payment.status = input.data.status;
 

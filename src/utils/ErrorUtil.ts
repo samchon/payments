@@ -36,7 +36,7 @@ export namespace ErrorUtil {
                 content,
                 "utf8",
             );
-        } catch { }
+        } catch {}
     }
 }
 
@@ -48,9 +48,9 @@ function cipher(val: number): string {
 const directory = new Singleton(async () => {
     try {
         await fs.promises.mkdir(`${TossFakeConfiguration.ASSETS}/logs`);
-    } catch { }
+    } catch {}
 
     try {
         await fs.promises.mkdir(`${TossFakeConfiguration.ASSETS}/logs/errors`);
-    } catch { }
+    } catch {}
 });

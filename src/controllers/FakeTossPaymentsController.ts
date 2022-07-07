@@ -1,7 +1,6 @@
 import express from "express";
 import helper from "nestia-helper";
 import * as nest from "@nestjs/common";
-import { assertType } from "typescript-json";
 
 import { ITossCardPayment } from "../api/structures/ITossCardPayment";
 import { ITossPayment } from "../api/structures/ITossPayment";
@@ -71,10 +70,9 @@ export class FakeTossPaymentsController {
     @helper.TypedRoute.Post("key-in")
     public key_in(
         @nest.Request() request: express.Request,
-        @nest.Body() input: ITossCardPayment.IStore,
+        @helper.TypedBody() input: ITossCardPayment.IStore,
     ): ITossCardPayment {
         FakeTossUserAuth.authorize(request);
-        assertType<typeof input>(input);
 
         const payment: ITossCardPayment = {
             ...FakeTossPaymentProvider.get_common_props(input),
@@ -125,10 +123,9 @@ export class FakeTossPaymentsController {
     public approve(
         @nest.Request() request: express.Request,
         @helper.TypedParam("paymentKey", "string") paymentKey: string,
-        @nest.Body() input: ITossPayment.IApproval,
+        @helper.TypedBody() input: ITossPayment.IApproval,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
-        assertType<typeof input>(input);
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
         if (payment.orderId !== input.orderId)
@@ -160,10 +157,9 @@ export class FakeTossPaymentsController {
     public cancel(
         @nest.Request() request: express.Request,
         @helper.TypedParam("paymentKey", "string") paymentKey: string,
-        @nest.Body() input: ITossPaymentCancel.IStore,
+        @helper.TypedBody() input: ITossPaymentCancel.IStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
-        assertType<typeof input>(input);
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
         payment.status = "CANCELED";
