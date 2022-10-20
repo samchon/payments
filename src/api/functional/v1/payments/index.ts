@@ -61,7 +61,7 @@ export namespace at
 
     export function path(paymentKey: string): string
     {
-        return `/v1/payments/${paymentKey}`;
+        return `/v1/payments/${encodeURIComponent(paymentKey)}`;
     }
 }
 
@@ -118,7 +118,7 @@ export namespace approve
 
     export function path(paymentKey: string): string
     {
-        return `/v1/payments/${paymentKey}`;
+        return `/v1/payments/${encodeURIComponent(paymentKey)}`;
     }
 }
 
@@ -233,6 +233,6 @@ export namespace cancel
 
     export function path(paymentKey: string): string
     {
-        return `/v1/payments/${paymentKey}/cancel`;
+        return `/v1/payments/${encodeURIComponent(paymentKey)}/cancel`;
     }
 }
