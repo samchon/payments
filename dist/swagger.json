@@ -569,7 +569,8 @@
           "customerBirthday",
           "customerKey"
         ],
-        "description": "간편 결제 카드 등록 정보."
+        "description": "간편 결제 카드 등록 정보.",
+        "x-tson_jsDocTags": []
       },
       "__type": {
         "type": "object",
@@ -595,7 +596,8 @@
           "cavv",
           "xid",
           "eci"
-        ]
+        ],
+        "x-tson_jsDocTags": []
       },
       "ITossBilling": {
         "type": "object",
@@ -649,7 +651,18 @@
           "authenticatedAt",
           "customerKey"
         ],
-        "description": "간편 결제 등록 수단 정보.\n\n`ITossBilling` 은 간편 결제 등록 수단을 형상화한 자료구조 인터페이스로써, 고객이 자신의\n신용 카드를 서버에 등록해두고, 매번 결제가 필요할 때마다 카드 정보를 반복 입려하는 일\n없이 간편하게 결제를 진행하고자 할 때 사용한다."
+        "description": "간편 결제 등록 수단 정보.\n\n`ITossBilling` 은 간편 결제 등록 수단을 형상화한 자료구조 인터페이스로써, 고객이 자신의\n신용 카드를 서버에 등록해두고, 매번 결제가 필요할 때마다 카드 정보를 반복 입려하는 일\n없이 간편하게 결제를 진행하고자 할 때 사용한다.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossBilling.ICustomerKey": {
         "type": "object",
@@ -664,7 +677,8 @@
         "required": [
           "customerKey"
         ],
-        "description": "고객 식별자 정보."
+        "description": "고객 식별자 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossBilling.IPaymentStore": {
         "type": "object",
@@ -706,7 +720,8 @@
           "amount",
           "customerKey"
         ],
-        "description": "간편 결제를 이용한 결제 신청 정보."
+        "description": "간편 결제를 이용한 결제 신청 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossCardPayment": {
         "type": "object",
@@ -882,7 +897,18 @@
           "cancels",
           "cashReceipt"
         ],
-        "description": "카드 결제 정보."
+        "description": "카드 결제 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossCardPayment.ICard": {
         "type": "object",
@@ -970,7 +996,8 @@
           "acquireStatus",
           "receiptUrl"
         ],
-        "description": "카드 정보."
+        "description": "카드 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossCardPayment.IDiscount.Nullable": {
         "type": "object",
@@ -985,7 +1012,8 @@
         "required": [
           "amount"
         ],
-        "description": "카드사의 즉시 할인 프로모션 정보."
+        "description": "카드사의 즉시 할인 프로모션 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossPaymentCancel": {
         "type": "object",
@@ -1030,7 +1058,18 @@
           "refundableAmount",
           "canceledAt"
         ],
-        "description": "결제 취소 정보."
+        "description": "결제 취소 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossCashReceipt.ISummary.Nullable": {
         "type": "object",
@@ -1073,7 +1112,8 @@
           "issueNumber",
           "receiptUrl"
         ],
-        "description": "현금 영수증 요약 정보."
+        "description": "현금 영수증 요약 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossGiftCertificatePayment": {
         "type": "object",
@@ -1232,7 +1272,18 @@
           "cancels",
           "cashReceipt"
         ],
-        "description": "상품권 결제 정보."
+        "description": "상품권 결제 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossGiftCertificatePayment.IGiftCertificate": {
         "type": "object",
@@ -1257,7 +1308,8 @@
           "approveNo",
           "settlementStatus"
         ],
-        "description": "상품권 정보."
+        "description": "상품권 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossMobilePhonePayment": {
         "type": "object",
@@ -1416,7 +1468,18 @@
           "cancels",
           "cashReceipt"
         ],
-        "description": "휴대폰 결제 정보."
+        "description": "휴대폰 결제 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossMobilePhonePayment.IMobilePhone": {
         "type": "object",
@@ -1447,7 +1510,8 @@
           "customerMobilePhone",
           "settlementStatus"
         ],
-        "description": "휴대폰 정보."
+        "description": "휴대폰 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossTransferPayment": {
         "type": "object",
@@ -1606,7 +1670,18 @@
           "cancels",
           "cashReceipt"
         ],
-        "description": "계좌 이체 결제 정보."
+        "description": "계좌 이체 결제 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossTransferPayment.ITransfer": {
         "type": "object",
@@ -1631,7 +1706,8 @@
           "bank",
           "settlementStatus"
         ],
-        "description": "계좌 이체 정보."
+        "description": "계좌 이체 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossVirtualAccountPayment": {
         "type": "object",
@@ -1796,7 +1872,18 @@
           "cancels",
           "cashReceipt"
         ],
-        "description": "가상 계좌 결제 정보."
+        "description": "가상 계좌 결제 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossVirtualAccountPayment.IVirtualAccount": {
         "type": "object",
@@ -1868,7 +1955,8 @@
           "settlementStatus",
           "refundStatus"
         ],
-        "description": "가상 계좌 정보."
+        "description": "가상 계좌 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossCashReceipt.IStore": {
         "type": "object",
@@ -1927,7 +2015,8 @@
           "registrationNumber",
           "amount"
         ],
-        "description": "현금 영수증 입력 정보."
+        "description": "현금 영수증 입력 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossCashReceipt": {
         "type": "object",
@@ -1975,10 +2064,6 @@
             "type": "string",
             "nullable": false,
             "description": "영수증 URL."
-          },
-          "__paymentKey": {
-            "type": "string",
-            "nullable": false
           }
         },
         "nullable": false,
@@ -1990,10 +2075,20 @@
           "approvalNumber",
           "approvedAt",
           "canceledAt",
-          "receiptUrl",
-          "__paymentKey"
+          "receiptUrl"
         ],
-        "description": "현금 영수증 정보."
+        "description": "현금 영수증 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossCashReceipt.ICancel": {
         "type": "object",
@@ -2005,7 +2100,8 @@
           }
         },
         "nullable": false,
-        "description": "현금 영수증 취소 입력 정보."
+        "description": "현금 영수증 취소 입력 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossPaymentWebhook": {
         "type": "object",
@@ -2028,7 +2124,18 @@
           "eventType",
           "data"
         ],
-        "description": "웹훅 이벤트 정보."
+        "description": "웹훅 이벤트 정보.",
+        "x-tson_jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Jeongho Nam - https://github.com/samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
       },
       "ITossPaymentWebhook.IData": {
         "type": "object",
@@ -2061,7 +2168,8 @@
           "orderId",
           "status"
         ],
-        "description": "웹훅 이벤트 데이터."
+        "description": "웹훅 이벤트 데이터.",
+        "x-tson_jsDocTags": []
       },
       "ITossCardPayment.IStore": {
         "type": "object",
@@ -2148,7 +2256,8 @@
           "amount",
           "orderId"
         ],
-        "description": "신용 카드를 이용한 결제 신청 정보."
+        "description": "신용 카드를 이용한 결제 신청 정보.",
+        "x-tson_jsDocTags": []
       },
       "__type.o1": {
         "type": "object",
@@ -2174,7 +2283,8 @@
           "cavv",
           "xid",
           "eci"
-        ]
+        ],
+        "x-tson_jsDocTags": []
       },
       "ITossPayment.IApproval": {
         "type": "object",
@@ -2195,7 +2305,8 @@
           "orderId",
           "amount"
         ],
-        "description": "결제 승인 정보."
+        "description": "결제 승인 정보.",
+        "x-tson_jsDocTags": []
       },
       "ITossPaymentCancel.IStore": {
         "type": "object",
@@ -2240,7 +2351,8 @@
           "paymentKey",
           "cancelReason"
         ],
-        "description": "결제 취소 신청 정보."
+        "description": "결제 취소 신청 정보.",
+        "x-tson_jsDocTags": []
       },
       "__type.o2": {
         "type": "object",
@@ -2266,7 +2378,8 @@
           "bank",
           "accountNumber",
           "holderName"
-        ]
+        ],
+        "x-tson_jsDocTags": []
       },
       "ITossVirtualAccountPayment.IStore": {
         "type": "object",
@@ -2319,7 +2432,8 @@
           "customerName",
           "amount"
         ],
-        "description": "가상 계좌를 이용한 결제 신청 정보."
+        "description": "가상 계좌를 이용한 결제 신청 정보.",
+        "x-tson_jsDocTags": []
       }
     }
   },

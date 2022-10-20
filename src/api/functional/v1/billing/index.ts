@@ -69,6 +69,6 @@ export namespace pay
 
     export function path(billingKey: string): string
     {
-        return `/v1/billing/${billingKey}`;
+        return `/v1/billing/${encodeURIComponent(billingKey)}`;
     }
 }

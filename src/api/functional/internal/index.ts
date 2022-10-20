@@ -109,6 +109,6 @@ export namespace deposit
 
     export function path(paymentKey: string): string
     {
-        return `/internal/${paymentKey}/deposit`;
+        return `/internal/${encodeURIComponent(paymentKey)}/deposit`;
     }
 }
