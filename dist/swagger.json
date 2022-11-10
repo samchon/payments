@@ -141,7 +141,7 @@
             }
           }
         },
-        "description": "간편 결제에 등록한 수단으로 결제하기.\n\n`billing.pay` 는 간편 결제에 등록한 수단으로 결제를 진행하고자 할 때 호출하는 API\n함수이다.\n\n그리고 `billing.pay` 는 결제 수단 중 유일하게, 클라이언트 어플리케이션이 토스\n페이먼츠가 제공하는 결제 창을 사용할 수 없어, 귀하의 백엔드 서버가 토스 페이먼츠의\nAPI 함수를 직접 호출해야 하는 경우에 해당한다. 따라서 간편 결제에 관련하여 토스\n페이먼츠와 연동하는 백엔드 서버 및 프론트 어플리케이션을 개발할 때, 반드시 이 상황에\n대한 별도의 설계 및 개발이 필요하니, 이 점을 염두에 두기 바란다.\n\n더하여 `billing.pay` 는 철저히 귀사 백엔드 서버의 판단 아래 호출되는 API 함수인지라,\n이를 통하여 이루어지는 결제는 일절 {@link  payments.approve } 가 필요 없다. 다만\n`billing.pay` 는 이처럼 부차적인 승인 과정 필요없이 그 즉시로 결제가 완성되니, 이를\n호출하는 상황에 대하여 세심히 주의를 기울일 필요가 있다"
+        "description": "간편 결제에 등록한 수단으로 결제하기.\n\n`billing.pay` 는 간편 결제에 등록한 수단으로 결제를 진행하고자 할 때 호출하는 API\n함수이다.\n\n그리고 `billing.pay` 는 결제 수단 중 유일하게, 클라이언트 어플리케이션이 토스\n페이먼츠가 제공하는 결제 창을 사용할 수 없어, 귀하의 백엔드 서버가 토스 페이먼츠의\nAPI 함수를 직접 호출해야 하는 경우에 해당한다. 따라서 간편 결제에 관련하여 토스\n페이먼츠와 연동하는 백엔드 서버 및 프론트 어플리케이션을 개발할 때, 반드시 이 상황에\n대한 별도의 설계 및 개발이 필요하니, 이 점을 염두에 두기 바란다.\n\n더하여 `billing.pay` 는 철저히 귀사 백엔드 서버의 판단 아래 호출되는 API 함수인지라,\n이를 통하여 이루어지는 결제는 일절 {@link payments.approve } 가 필요 없다. 다만\n`billing.pay` 는 이처럼 부차적인 승인 과정 필요없이 그 즉시로 결제가 완성되니, 이를\n호출하는 상황에 대하여 세심히 주의를 기울일 필요가 있다"
       }
     },
     "/v1/cash-receipts": {
@@ -235,7 +235,7 @@
             "description": ""
           }
         },
-        "description": "웹훅 이벤트 더미 리스너.\n\n`internal.webhook` 은 실제 토스 페이먼츠의 결제 서버에는 존재하지 않는 API 로써,\n`fake-toss-payments-server` 의 {@link  Configuration.WEBHOOK_URL } 에 아무런 URL 을\n설정하지 않으면, `fake-toss-payments-server` 로부터 발생하는 모든 종류의 웹훅\n이벤트는 이 곳으로 전달되어 무의미하게 사라진다.\n\n따라서 `fake-toss-payments-server` 를 사용하여 토스 페이먼츠 서버와의 연동을 미리\n검증코자 할 때는, 반드시 {@link  Configuration.WEBHOOK_URL } 를 설정하여 웹훅\n이벤트가 귀하의 백엔드 서버로 제대로 전달되도록 하자."
+        "description": "웹훅 이벤트 더미 리스너.\n\n`internal.webhook` 은 실제 토스 페이먼츠의 결제 서버에는 존재하지 않는 API 로써,\n`fake-toss-payments-server` 의 {@link Configuration.WEBHOOK_URL } 에 아무런 URL 을\n설정하지 않으면, `fake-toss-payments-server` 로부터 발생하는 모든 종류의 웹훅\n이벤트는 이 곳으로 전달되어 무의미하게 사라진다.\n\n따라서 `fake-toss-payments-server` 를 사용하여 토스 페이먼츠 서버와의 연동을 미리\n검증코자 할 때는, 반드시 {@link Configuration.WEBHOOK_URL } 를 설정하여 웹훅\n이벤트가 귀하의 백엔드 서버로 제대로 전달되도록 하자."
       }
     },
     "/internal/{paymentKey}/deposit": {
@@ -382,7 +382,7 @@
             }
           }
         },
-        "description": "결제 승인하기.\n\n토스 페이먼츠는 귀사의 백엔드에서 일어난 결제가 아닌 프론트 어플리케이션의 결제 창에서\n이루어진 결제의 경우, 해당 서비스으 백엔드 서버로부터 결제를 승인받기 전까지, 이를\n확정하지 않는다. `payments.approve` 는 바로 이러한 상황에서, 해당 결제를 승인해주는\n함수이다.\n\n만일 귀하가 `fake-toss-payments-server` 를 이용하여 결제를 시뮬레이션하는 경우라면,\n결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.IStore.__approved} 내지\n{@link  ITossVirtualAccountPayment.IStore.__approved } 를 `false` 로 함으로써, 별도\n승인이 필요한 이러한 상황을 시뮬레이션 할 수 있다."
+        "description": "결제 승인하기.\n\n토스 페이먼츠는 귀사의 백엔드에서 일어난 결제가 아닌 프론트 어플리케이션의 결제 창에서\n이루어진 결제의 경우, 해당 서비스으 백엔드 서버로부터 결제를 승인받기 전까지, 이를\n확정하지 않는다. `payments.approve` 는 바로 이러한 상황에서, 해당 결제를 승인해주는\n함수이다.\n\n만일 귀하가 `fake-toss-payments-server` 를 이용하여 결제를 시뮬레이션하는 경우라면,\n결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.IStore.__approved} 내지\n{@link ITossVirtualAccountPayment.IStore.__approved } 를 `false` 로 함으로써, 별도\n승인이 필요한 이러한 상황을 시뮬레이션 할 수 있다."
       }
     },
     "/v1/payments/key-in": {
@@ -499,7 +499,7 @@
             }
           }
         },
-        "description": "가상 계좌로 결제 신청하기.\n\n`virtual_accounts.store` 는 고객이 결제 수단을 가상 계좌로 선택하는 경우에 호출되는\nAPI 함수이다. 물론 고객이 이처럼 가상 계좌를 선택한 경우, 고객이 지정된 계좌에 돈을\n입금하기 전까지는 결제가 마무리된 것이 아니기에, {@link  ITossPayment.status } 값은\n`WAITING_FOR_DEPOSIT` 이 된다.\n\n참고로 `virtual_accounts.store` 는 클라이언트 어플리케이션이 토스 페이먼츠가\n자체적으로 제공하는 결제 창을 사용하는 경우, 귀하의 백엔드 서버가 이를 실 서비스에서\n호출하는 일은 없을 것이다. 다만, 고객이 가상 계좌로 결제를 진행하는 상황을\n시뮬레이션하기 위하여, 테스트 자동화 프로그램 수준에서 사용될 수는 있다.\n\n그리고 `virtual_accounts.store` 이후에 고객이 지정된 계좌에 금액을 입금하거든, 토스\n페이먼츠 서버로부터 웹훅 이벤트가 발생되어 귀하의 백엔드 서버로 전송된다. 만약 연동\n대상 토스 페이먼츠 서버가 실제가 아닌 `fake-toss-payments-server` 라면,\n{@link  internal.virtual_accounts.deposit } 를 호출하여, 고객이 가상 계좌에 입금하는\n상황을 시뮬레이션 할 수 있다."
+        "description": "가상 계좌로 결제 신청하기.\n\n`virtual_accounts.store` 는 고객이 결제 수단을 가상 계좌로 선택하는 경우에 호출되는\nAPI 함수이다. 물론 고객이 이처럼 가상 계좌를 선택한 경우, 고객이 지정된 계좌에 돈을\n입금하기 전까지는 결제가 마무리된 것이 아니기에, {@link ITossPayment.status } 값은\n`WAITING_FOR_DEPOSIT` 이 된다.\n\n참고로 `virtual_accounts.store` 는 클라이언트 어플리케이션이 토스 페이먼츠가\n자체적으로 제공하는 결제 창을 사용하는 경우, 귀하의 백엔드 서버가 이를 실 서비스에서\n호출하는 일은 없을 것이다. 다만, 고객이 가상 계좌로 결제를 진행하는 상황을\n시뮬레이션하기 위하여, 테스트 자동화 프로그램 수준에서 사용될 수는 있다.\n\n그리고 `virtual_accounts.store` 이후에 고객이 지정된 계좌에 금액을 입금하거든, 토스\n페이먼츠 서버로부터 웹훅 이벤트가 발생되어 귀하의 백엔드 서버로 전송된다. 만약 연동\n대상 토스 페이먼츠 서버가 실제가 아닌 `fake-toss-payments-server` 라면,\n{@link internal.virtual_accounts.deposit } 를 호출하여, 고객이 가상 계좌에 입금하는\n상황을 시뮬레이션 할 수 있다."
       }
     }
   },
@@ -1973,7 +1973,7 @@
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "귀속 결제의 {@link  ITossPayment.paymentKey }."
+            "description": "귀속 결제의 {@link ITossPayment.paymentKey }."
           },
           "orderId": {
             "type": "string",
@@ -2096,7 +2096,7 @@
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "취소 금액.\n\n미 입력시 현금 영수증에 기재된 {@link  ITossCashReceipt.amount 총액}이 취소됨."
+            "description": "취소 금액.\n\n미 입력시 현금 영수증에 기재된 {@link ITossCashReceipt.amount 총액}이 취소됨."
           }
         },
         "nullable": false,
@@ -2143,7 +2143,7 @@
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "{@link  ITossPayment } 의 식별자 키."
+            "description": "{@link ITossPayment } 의 식별자 키."
           },
           "orderId": {
             "type": "string",
@@ -2244,7 +2244,7 @@
           "__approved": {
             "type": "boolean",
             "nullable": false,
-            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link  functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
+            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
           }
         },
         "nullable": false,
@@ -2314,7 +2314,7 @@
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "{@link  ITossPayment } 의 식별자 키."
+            "description": "{@link ITossPayment } 의 식별자 키."
           },
           "cancelReason": {
             "type": "string",
@@ -2420,7 +2420,7 @@
           "__approved": {
             "type": "boolean",
             "nullable": false,
-            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link  functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
+            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
           }
         },
         "nullable": false,
