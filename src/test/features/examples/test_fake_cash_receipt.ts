@@ -1,4 +1,4 @@
-import { assertType } from "typescript-json";
+import { assert } from "typescript-json";
 
 import toss from "../../../api";
 import { ITossCashReceipt } from "../../../api/structures/ITossCashReceipt";
@@ -18,7 +18,7 @@ export async function test_fake_cash_receipt(): Promise<void> {
             registrationNumber: "8803111******",
             amount: payment.totalAmount,
         });
-    assertType<ITossCashReceipt>(receipt);
+    assert<ITossCashReceipt>(receipt);
 
     const reloaded: ITossPayment = await toss.functional.v1.payments.at(
         TestConnection.FAKE,
