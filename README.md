@@ -24,13 +24,12 @@
   - 연관 저장소
     - [samchon/netia](https://github.com/samchon/nestia) - Automatic SDK generator for the NestJS
     - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server): 가짜 아임포트 서버
-    - [samchon/payments](https://github.com/samchon/payments): MSA 형태의 통합 결제 서버
 
 ```typescript
 import btoa from "btoa";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { assert } from "typescript-json";
+import { assert } from "typia";
 
 export async function test_fake_card_payment_approval(): Promise<void>
 {
@@ -167,14 +166,13 @@ npm install --save fake-toss-payments-server-api
   - 연관 저장소
     - [samchon/netia](https://github.com/samchon/nestia) - Automatic SDK generator for the NestJS
     - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server): 가짜 아임포트 서버
-    - [samchon/payments](https://github.com/samchon/payments): MSA 형태의 통합 결제 서버
 
 ```typescript
 import btoa from "btoa";
 import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { assert } from "typescript-json";
+import { assert } from "typia";
 
 export async function test_fake_payment_billing_payment(): Promise<void>
 {
@@ -260,32 +258,7 @@ npm run test
 
 
 ## 4. Appendix
-### 4.1. Nestia
-Automatic SDK generator for the NestJS.
-
-  - https://github.com/samchon/nestia
-
-Nesita 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수준에서 분석, 클라이언트가 사용할 수 있는 SDK 라이브러리를 만들어주는 프로그램이다. `fake-toss-payments-server` 가 토스 페이먼츠의 API 를 흉내내어 만든 가짜 서버인데, 뜬금 클라이언트가 진짜 토스 페이먼츠와의 연동에 사용할 수 있는 SDK 라이브러리가 함께 제공되는 이유도 바로 이 덕분이다.
-
-때문에 만일 귀하가 토스 페이먼츠와 연동하는 백엔드 서버를 개발 중이라면, `fake-toss-payments-server` 뿐 아니라 [Nestia](https://github.com/samchon/nestia) 도 함께 사용해보는 것이 어떠한가? 귀하의 백엔드 서버 또한 `fake-toss-payments-server` 처럼 클라이언트 개발자가 사용할 수 있는 SDK 라이브러리를 자동으로 빌드하여 배포할 수 있으니, 백엔드 개발자는 API 문서를 따로 만들고 클라이언트 개발자는 중복 DTO 타입과 API 연동 함수를 개발하는 등의 번거로운 일을 일절 하지 않아도 된다.
-
-물론 Nestia 는 Swagger 또한 빌드할 수 있는데, 본 저장소 `fake-toss-payments-server` 로부터 빌드된 Swagger 가 토스 페이먼츠의 공식 개발자 가이드 문서보다 일목요연하고 체계도가 높은것도, 바로 이러한 이유 때문이다. Swagger 내지 가이드 문서를 사람이 손으로 작성하는게 아니라, Nestia 가 컴파일러 수준에서 백엔드 소스 코드와 DTO 를 분석하여 자동으로 생성해주었기 때문인 것.
-
-Components | `nestia`::SDK | `nestia`::swagger | `@nestjs/swagger`
------------|---|---|---
-Pure DTO interface | ✔ | ✔ | ❌
-Description comments | ✔ | ✔ | ❌
-Simple structure | ✔ | ✔ | ✔
-Generic type | ✔ | ✔ | ❌
-Union type | ✔ | ✔ | ▲
-Intersection type | ✔ | ✔ | ▲
-Conditional type | ✔ | ▲ | ❌
-Auto completion | ✔ | ❌ | ❌
-Type hints | ✔ | ❌ | ❌
-2x faster `JSON.stringify()` | ✔ | ❌ | ❌
-Ensure type safety | ✅ | ❌ | ❌
-
-### 4.2. Expiration
+### 4.1. Expiration
 `fake-toss-payments-server` 는 결제 데이터를 메모리에 임시 기록한다.
 
 왜냐하면 `fake-toss-payments-server` 는 토스 페이먼츠 서버의 API 를 흉내내어 만든 가짜 서버로써, 개발 단계에서 쓰이는 임시 시스템에 불과하기 때문이다. 따라서 `fake-toss-payments-server` 에 생성된 결제 내지 카드 정보들은 모두 테스트 용도로 생성된 임시 레코드가 불과하기에, 구태여 이를 DB 나 로컬 디스크에 저장하여 영구 보존할 이유가 없다.
@@ -315,20 +288,51 @@ Ensure type safety | ✅ | ❌ | ❌
 >> npm run update
 >> ```
 
-### 4.3. Archidraw
-https://www.archisketch.com/
+### 4.2. Typia
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/typia/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/typia.svg)](https://www.npmjs.com/package/typia)
+[![Downloads](https://img.shields.io/npm/dm/typia.svg)](https://www.npmjs.com/package/typia)
+[![Build Status](https://github.com/samchon/typia/workflows/build/badge.svg)](https://github.com/samchon/typia/actions?query=workflow%3Abuild)
+[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/typia/wiki)
 
-I have special thanks to the Archidraw, where I'm working for.
+```typescript
+// RUNTIME VALIDATORS
+export function is<T>(input: unknown | T): input is T; // returns boolean
+export function assert<T>(input: unknown | T): T; // throws TypeGuardError
+export function validate<T>(input: unknown | T): IValidation<T>; // detailed
 
-The Archidraw is a great IT company developing 3D interior editor and lots of solutions based on the 3D assets. Also, the Archidraw is the first company who had adopted `fake-toss-payments-server` on their commercial backend project, even `fake-toss-payments-server` was in the alpha level.
+// STRICT VALIDATORS
+export function equals<T>(input: unknown | T): input is T;
+export function assertEquals<T>(input: unknown | T): T;
+export function validateEquals<T>(input: unknown | T): IValidation<T>;
 
-> 저희 회사 "아키드로우" 에서, 삼촌과 함께 일할 프론트 개발자 분들을, 최고의 대우로 모십니다.
->
-> "아키드로우" 는 3D (인테리어) 에디터 및 이에 관한 파생 솔루션들을 만드는 회사입니다. 다만 저희 회사의 주력 제품이 3D 에디터라 하여, 반드시 3D 내지 랜더링에 능숙해야 하는 것은 아니니, 일반적인 프론트 개발자 분들도 망설임없이 지원해주십시오.
->
-> 그리고 저희 회사는 분위기가 다들 친하고 즐겁게 지내는 분위기입니다. 더하여 위 [nestia](https://github.com/samchon/nestia) 나 [typescript-json](https://github.com/samchon/typescript-json) 및 [payments](https://github.com/archidraw/payments) 등, 제법 합리적(?)이고 재미난 프로젝트들을 다양하게 체험해보실 수 있습니다.
->
-> - 회사소개서: [archidraw.pdf](https://github.com/archidraw/payments/files/7696710/archidraw.pdf)
-> - 기술 스택: React + TypeScript
-> - 이력서: 자유 양식
-> - 지원처: samchon@archisketch.com
+// JSON
+export function application<T>(): IJsonApplication; // JSON schema
+export function assertParse<T>(input: string): T; // type safe parser
+export function assertStringify<T>(input: T): string; // safe and faster
+    // +) isParse, validateParse 
+    // +) stringify, isStringify, validateStringify
+```
+
+`typia` is a transformer library of TypeScript, supporting below features:
+
+  - Super-fast Runtime Validators
+  - Safe JSON parse and fast stringify functions
+  - JSON schema generator
+
+All functions in `typia` require **only one line**. You don't need any extra dedication like JSON schema definitions or decorator function calls. Just call `typia` function with only one line like `typia.assert<T>(input)`.
+
+Also, as `typia` performs AOT (Ahead of Time) compilation skill, its performance is much faster than other competitive libaries. For an example, when comparing validate function `is()` with other competitive libraries, `typia` is maximum **15,000x times faster** than `class-validator`.
+
+![Is Function Benchmark](https://github.com/samchon/typia/raw/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz/images/is.svg)
+
+> Measured on [Intel i5-1135g7, Surface Pro 8](https://github.com/samchon/typia/tree/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz#is)
+
+### 4.3. Nestia
+https://github.com/samchon/nestia
+
+`Nestia` 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수준에서 분석, 클라이언트가 사용할 수 있는 SDK 라이브러리를 만들어주는 프로그램이다. `fake-toss-payments-server` 가 토스 페이먼츠의 API 를 흉내내어 만든 가짜 서버인데, 뜬금 클라이언트가 진짜 토스 페이먼츠와의 연동에 사용할 수 있는 SDK 라이브러리가 함께 제공되는 이유도 바로 이 덕분이다.
+
+때문에 만일 귀하가 토스 페이먼츠와 연동하는 백엔드 서버를 개발 중이라면, `fake-toss-payments-server` 뿐 아니라 [Nestia](https://github.com/samchon/nestia) 도 함께 사용해보는 것이 어떠한가? 귀하의 백엔드 서버 또한 `fake-toss-payments-server` 처럼 클라이언트 개발자가 사용할 수 있는 SDK 라이브러리를 자동으로 빌드하여 배포할 수 있으니, 백엔드 개발자는 API 문서를 따로 만들고 클라이언트 개발자는 중복 DTO 타입과 API 연동 함수를 개발하는 등의 번거로운 일을 일절 하지 않아도 된다.
+
+물론 Nestia 는 Swagger 또한 빌드할 수 있는데, 본 저장소 `fake-toss-payments-server` 로부터 빌드된 Swagger 가 토스 페이먼츠의 공식 개발자 가이드 문서보다 일목요연하고 체계도가 높은것도, 바로 이러한 이유 때문이다. Swagger 내지 가이드 문서를 사람이 손으로 작성하는게 아니라, Nestia 가 컴파일러 수준에서 백엔드 소스 코드와 DTO 를 분석하여 자동으로 생성해주었기 때문인 것.

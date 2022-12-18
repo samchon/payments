@@ -518,46 +518,55 @@
           "cardNumber": {
             "type": "string",
             "nullable": false,
-            "description": "카드 번호."
+            "description": "카드 번호.",
+            "x-typia-required": true
           },
           "cardExpirationYear": {
             "type": "string",
             "nullable": false,
-            "description": "카드 만료 년도 (2 자리)."
+            "description": "카드 만료 년도 (2 자리).",
+            "x-typia-required": true
           },
           "cardExpirationMonth": {
             "type": "string",
             "nullable": false,
-            "description": "카드 만료 월 (2 자리)."
+            "description": "카드 만료 월 (2 자리).",
+            "x-typia-required": true
           },
           "cardPassword": {
             "type": "string",
             "nullable": false,
-            "description": "카드 비밀번호."
+            "description": "카드 비밀번호.",
+            "x-typia-required": true
           },
           "customerBirthday": {
             "type": "string",
             "nullable": false,
-            "description": "고객의 생년월일.\n\n표기 형식 YYMMDD."
+            "description": "고객의 생년월일.\n\n표기 형식 YYMMDD.",
+            "x-typia-required": true
           },
           "consumerName": {
             "type": "string",
             "nullable": false,
-            "description": "고객의 이름."
+            "description": "고객의 이름.",
+            "x-typia-required": false
           },
           "customerEmail": {
             "type": "string",
             "nullable": false,
-            "description": "고객의 이메일."
+            "description": "고객의 이메일.",
+            "x-typia-required": false
           },
           "vbv": {
             "$ref": "#/components/schemas/__type",
-            "description": "해외카드로 결제하는 경우 3DS 인증 적용을 위해 사용. \n\n3DS 인증 결과를 전송해야 하는 경우에만 필수."
+            "description": "해외카드로 결제하는 경우 3DS 인증 적용을 위해 사용. \n\n3DS 인증 결과를 전송해야 하는 경우에만 필수.",
+            "x-typia-required": false
           },
           "customerKey": {
             "type": "string",
             "nullable": false,
-            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -570,7 +579,7 @@
           "customerKey"
         ],
         "description": "간편 결제 카드 등록 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "__type": {
         "type": "object",
@@ -578,17 +587,20 @@
           "cavv": {
             "type": "string",
             "nullable": false,
-            "description": "3D Secure 인증 세션에 대한 인증 값."
+            "description": "3D Secure 인증 세션에 대한 인증 값.",
+            "x-typia-required": true
           },
           "xid": {
             "type": "string",
             "nullable": false,
-            "description": "트랜잭션 ID."
+            "description": "트랜잭션 ID.",
+            "x-typia-required": true
           },
           "eci": {
             "type": "string",
             "nullable": false,
-            "description": "3DS 인증 결과에 대한 코드 값."
+            "description": "3DS 인증 결과에 대한 코드 값.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -597,7 +609,7 @@
           "xid",
           "eci"
         ],
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossBilling": {
         "type": "object",
@@ -605,12 +617,14 @@
           "mId": {
             "type": "string",
             "nullable": false,
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임.",
+            "x-typia-required": true
           },
           "billingKey": {
             "type": "string",
             "nullable": false,
-            "description": "{@link ITossBilling} 의 식별자 키."
+            "description": "{@link ITossBilling} 의 식별자 키.",
+            "x-typia-required": true
           },
           "method": {
             "type": "string",
@@ -618,27 +632,32 @@
               "카드"
             ],
             "nullable": false,
-            "description": "결제 수단."
+            "description": "결제 수단.",
+            "x-typia-required": true
           },
           "cardCompany": {
             "type": "string",
             "nullable": false,
-            "description": "카드사 이름."
+            "description": "카드사 이름.",
+            "x-typia-required": true
           },
           "cardNumber": {
             "type": "string",
             "nullable": false,
-            "description": "카드 번호"
+            "description": "카드 번호",
+            "x-typia-required": true
           },
           "authenticatedAt": {
             "type": "string",
             "nullable": false,
-            "description": "인증 일시"
+            "description": "인증 일시",
+            "x-typia-required": true
           },
           "customerKey": {
             "type": "string",
             "nullable": false,
-            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -652,7 +671,7 @@
           "customerKey"
         ],
         "description": "간편 결제 등록 수단 정보.\n\n`ITossBilling` 은 간편 결제 등록 수단을 형상화한 자료구조 인터페이스로써, 고객이 자신의\n신용 카드를 서버에 등록해두고, 매번 결제가 필요할 때마다 카드 정보를 반복 입려하는 일\n없이 간편하게 결제를 진행하고자 할 때 사용한다.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -670,7 +689,8 @@
           "customerKey": {
             "type": "string",
             "nullable": false,
-            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -678,7 +698,7 @@
           "customerKey"
         ],
         "description": "고객 식별자 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossBilling.IPaymentStore": {
         "type": "object",
@@ -689,27 +709,32 @@
               "billing"
             ],
             "nullable": false,
-            "description": "결제 수단이 간편 결제임을 의미함."
+            "description": "결제 수단이 간편 결제임을 의미함.",
+            "x-typia-required": true
           },
           "billingKey": {
             "type": "string",
             "nullable": false,
-            "description": "{@link IPaymentStore} 의 식별자 키."
+            "description": "{@link IPaymentStore} 의 식별자 키.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "결제 총액."
+            "description": "결제 총액.",
+            "x-typia-required": true
           },
           "customerKey": {
             "type": "string",
             "nullable": false,
-            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -721,18 +746,20 @@
           "customerKey"
         ],
         "description": "간편 결제를 이용한 결제 신청 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossCardPayment": {
         "type": "object",
         "properties": {
           "card": {
             "$ref": "#/components/schemas/ITossCardPayment.ICard",
-            "description": "카드 정보."
+            "description": "카드 정보.",
+            "x-typia-required": true
           },
           "discount": {
             "$ref": "#/components/schemas/ITossCardPayment.IDiscount.Nullable",
-            "description": "카드사의 즉시 할인 프로모션 정보."
+            "description": "카드사의 즉시 할인 프로모션 정보.",
+            "x-typia-required": true
           },
           "easyPay": {
             "type": "string",
@@ -742,7 +769,8 @@
               "삼성페이"
             ],
             "nullable": true,
-            "description": "간편결제로 결제한 경우 간편결제 타입 정보."
+            "description": "간편결제로 결제한 경우 간편결제 타입 정보.",
+            "x-typia-required": true
           },
           "method": {
             "type": "string",
@@ -750,7 +778,8 @@
               "카드"
             ],
             "nullable": false,
-            "description": "결제 수단."
+            "description": "결제 수단.",
+            "x-typia-required": true
           },
           "type": {
             "type": "string",
@@ -759,7 +788,8 @@
               "BILLING"
             ],
             "nullable": false,
-            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
+            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제.",
+            "x-typia-required": true
           },
           "status": {
             "type": "string",
@@ -774,100 +804,120 @@
               "EXPIRED"
             ],
             "nullable": false,
-            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
+            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED",
+            "x-typia-required": true
           },
           "mId": {
             "type": "string",
             "nullable": false,
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임.",
+            "x-typia-required": true
           },
           "version": {
             "type": "string",
             "nullable": false,
-            "description": "사용 중인 토스 페이먼츠 API 의 버전."
+            "description": "사용 중인 토스 페이먼츠 API 의 버전.",
+            "x-typia-required": true
           },
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "결제 내역의 식별자 번호."
+            "description": "결제 내역의 식별자 번호.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "transactionKey": {
             "type": "string",
             "nullable": false,
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": true
           },
           "currency": {
             "type": "string",
             "nullable": false,
-            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능."
+            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능.",
+            "x-typia-required": true
           },
           "totalAmount": {
             "type": "number",
             "nullable": false,
-            "description": "총 결제 금액."
+            "description": "총 결제 금액.",
+            "x-typia-required": true
           },
           "balanceAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소할 수 있는 금액."
+            "description": "취소할 수 있는 금액.",
+            "x-typia-required": true
           },
           "suppliedAmount": {
             "type": "number",
             "nullable": false,
-            "description": "공급가액."
+            "description": "공급가액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세액."
+            "description": "면세액.",
+            "x-typia-required": true
           },
           "vat": {
             "type": "number",
             "nullable": false,
-            "description": "부가세."
+            "description": "부가세.",
+            "x-typia-required": true
           },
           "useEscrow": {
             "type": "boolean",
             "nullable": false,
-            "description": "에스크로 사용 여부."
+            "description": "에스크로 사용 여부.",
+            "x-typia-required": true
           },
           "cultureExpense": {
             "type": "boolean",
             "nullable": false,
-            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등."
+            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등.",
+            "x-typia-required": true
           },
           "requestedAt": {
             "type": "string",
             "nullable": false,
-            "description": "결제 요청 일시."
+            "description": "결제 요청 일시.",
+            "x-typia-required": true
           },
           "approvedAt": {
             "type": "string",
             "nullable": true,
-            "description": "결제 승인 일시."
+            "description": "결제 승인 일시.",
+            "x-typia-required": true
           },
           "cancels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ITossPaymentCancel",
-              "description": "결제 취소 내역."
+              "description": "결제 취소 내역.",
+              "x-typia-required": true
             },
             "nullable": true,
-            "description": "결제 취소 내역."
+            "description": "결제 취소 내역.",
+            "x-typia-required": true
           },
           "cashReceipt": {
             "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
-            "description": "현금 영수증 정보."
+            "description": "현금 영수증 정보.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -898,7 +948,7 @@
           "cashReceipt"
         ],
         "description": "카드 결제 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -916,27 +966,32 @@
           "company": {
             "type": "string",
             "nullable": false,
-            "description": "카드사 이름."
+            "description": "카드사 이름.",
+            "x-typia-required": true
           },
           "number": {
             "type": "string",
             "nullable": false,
-            "description": "카드 번호."
+            "description": "카드 번호.",
+            "x-typia-required": true
           },
           "installmentPlanMonths": {
             "type": "number",
             "nullable": false,
-            "description": "할부 개월 수."
+            "description": "할부 개월 수.",
+            "x-typia-required": true
           },
           "isInterestFree": {
             "type": "boolean",
             "nullable": false,
-            "description": "무이자 할부 적용 여부."
+            "description": "무이자 할부 적용 여부.",
+            "x-typia-required": true
           },
           "approveNo": {
             "type": "string",
             "nullable": false,
-            "description": "승인 번호."
+            "description": "승인 번호.",
+            "x-typia-required": true
           },
           "useCardPoint": {
             "type": "boolean",
@@ -944,7 +999,8 @@
               false
             ],
             "nullable": false,
-            "description": "카드 포인트 사용 여부."
+            "description": "카드 포인트 사용 여부.",
+            "x-typia-required": true
           },
           "cardType": {
             "type": "string",
@@ -954,7 +1010,8 @@
               "기프트"
             ],
             "nullable": false,
-            "description": "카드 타입."
+            "description": "카드 타입.",
+            "x-typia-required": true
           },
           "ownerType": {
             "type": "string",
@@ -963,7 +1020,8 @@
               "법인"
             ],
             "nullable": false,
-            "description": "카드의 소유자 타입."
+            "description": "카드의 소유자 타입.",
+            "x-typia-required": true
           },
           "acquireStatus": {
             "type": "string",
@@ -975,12 +1033,14 @@
               "CANCEL_REQUESTED"
             ],
             "nullable": false,
-            "description": "카드 결제의 매입 상태.\n\n - READY: 매입 대기\n - REQUESTED: 매입 요청됨\n - COMPLETED: 매입 완료\n - CANCEL_REQUESTED: 매입 취소 요청됨\n - CANCELD: 매입 취소됨"
+            "description": "카드 결제의 매입 상태.\n\n - READY: 매입 대기\n - REQUESTED: 매입 요청됨\n - COMPLETED: 매입 완료\n - CANCEL_REQUESTED: 매입 취소 요청됨\n - CANCELD: 매입 취소됨",
+            "x-typia-required": true
           },
           "receiptUrl": {
             "type": "string",
             "nullable": false,
-            "description": "영수증 URL."
+            "description": "영수증 URL.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -997,7 +1057,7 @@
           "receiptUrl"
         ],
         "description": "카드 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossCardPayment.IDiscount.Nullable": {
         "type": "object",
@@ -1005,7 +1065,8 @@
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "카드사의 즉시 할인 프로모션을 적용한 금액."
+            "description": "카드사의 즉시 할인 프로모션을 적용한 금액.",
+            "x-typia-required": true
           }
         },
         "nullable": true,
@@ -1013,7 +1074,7 @@
           "amount"
         ],
         "description": "카드사의 즉시 할인 프로모션 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossPaymentCancel": {
         "type": "object",
@@ -1021,32 +1082,38 @@
           "cancelAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소 총액."
+            "description": "취소 총액.",
+            "x-typia-required": true
           },
           "cancelReason": {
             "type": "string",
             "nullable": false,
-            "description": "취소 사유."
+            "description": "취소 사유.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세 처리된 금액."
+            "description": "면세 처리된 금액.",
+            "x-typia-required": true
           },
           "taxAmount": {
             "type": "number",
             "nullable": false,
-            "description": "과세 처리된 금액."
+            "description": "과세 처리된 금액.",
+            "x-typia-required": true
           },
           "refundableAmount": {
             "type": "number",
             "nullable": false,
-            "description": "결제 취소 후 환불 가능 잔액."
+            "description": "결제 취소 후 환불 가능 잔액.",
+            "x-typia-required": true
           },
           "canceledAt": {
             "type": "string",
             "nullable": false,
-            "description": "취소 일시."
+            "description": "취소 일시.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1059,7 +1126,7 @@
           "canceledAt"
         ],
         "description": "결제 취소 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -1081,27 +1148,32 @@
               "지출증빙"
             ],
             "nullable": false,
-            "description": "현금 영수증의 종류."
+            "description": "현금 영수증의 종류.",
+            "x-typia-required": true
           },
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "현금 영수증 처리된 금액."
+            "description": "현금 영수증 처리된 금액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세 처리된 금액."
+            "description": "면세 처리된 금액.",
+            "x-typia-required": true
           },
           "issueNumber": {
             "type": "string",
             "nullable": false,
-            "description": "현금영수증 발급번호."
+            "description": "현금영수증 발급번호.",
+            "x-typia-required": true
           },
           "receiptUrl": {
             "type": "string",
             "nullable": false,
-            "description": "현금영수증 조회 페이지 주소."
+            "description": "현금영수증 조회 페이지 주소.",
+            "x-typia-required": true
           }
         },
         "nullable": true,
@@ -1113,14 +1185,15 @@
           "receiptUrl"
         ],
         "description": "현금 영수증 요약 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossGiftCertificatePayment": {
         "type": "object",
         "properties": {
           "giftCertificate": {
             "$ref": "#/components/schemas/ITossGiftCertificatePayment.IGiftCertificate",
-            "description": "상품권 정보."
+            "description": "상품권 정보.",
+            "x-typia-required": true
           },
           "method": {
             "type": "string",
@@ -1128,7 +1201,8 @@
               "상품권"
             ],
             "nullable": false,
-            "description": "결제 수단."
+            "description": "결제 수단.",
+            "x-typia-required": true
           },
           "type": {
             "type": "string",
@@ -1136,7 +1210,8 @@
               "NORMAL"
             ],
             "nullable": false,
-            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
+            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제.",
+            "x-typia-required": true
           },
           "status": {
             "type": "string",
@@ -1151,100 +1226,120 @@
               "EXPIRED"
             ],
             "nullable": false,
-            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
+            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED",
+            "x-typia-required": true
           },
           "mId": {
             "type": "string",
             "nullable": false,
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임.",
+            "x-typia-required": true
           },
           "version": {
             "type": "string",
             "nullable": false,
-            "description": "사용 중인 토스 페이먼츠 API 의 버전."
+            "description": "사용 중인 토스 페이먼츠 API 의 버전.",
+            "x-typia-required": true
           },
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "결제 내역의 식별자 번호."
+            "description": "결제 내역의 식별자 번호.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "transactionKey": {
             "type": "string",
             "nullable": false,
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": true
           },
           "currency": {
             "type": "string",
             "nullable": false,
-            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능."
+            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능.",
+            "x-typia-required": true
           },
           "totalAmount": {
             "type": "number",
             "nullable": false,
-            "description": "총 결제 금액."
+            "description": "총 결제 금액.",
+            "x-typia-required": true
           },
           "balanceAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소할 수 있는 금액."
+            "description": "취소할 수 있는 금액.",
+            "x-typia-required": true
           },
           "suppliedAmount": {
             "type": "number",
             "nullable": false,
-            "description": "공급가액."
+            "description": "공급가액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세액."
+            "description": "면세액.",
+            "x-typia-required": true
           },
           "vat": {
             "type": "number",
             "nullable": false,
-            "description": "부가세."
+            "description": "부가세.",
+            "x-typia-required": true
           },
           "useEscrow": {
             "type": "boolean",
             "nullable": false,
-            "description": "에스크로 사용 여부."
+            "description": "에스크로 사용 여부.",
+            "x-typia-required": true
           },
           "cultureExpense": {
             "type": "boolean",
             "nullable": false,
-            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등."
+            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등.",
+            "x-typia-required": true
           },
           "requestedAt": {
             "type": "string",
             "nullable": false,
-            "description": "결제 요청 일시."
+            "description": "결제 요청 일시.",
+            "x-typia-required": true
           },
           "approvedAt": {
             "type": "string",
             "nullable": true,
-            "description": "결제 승인 일시."
+            "description": "결제 승인 일시.",
+            "x-typia-required": true
           },
           "cancels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ITossPaymentCancel",
-              "description": "결제 취소 내역."
+              "description": "결제 취소 내역.",
+              "x-typia-required": true
             },
             "nullable": true,
-            "description": "결제 취소 내역."
+            "description": "결제 취소 내역.",
+            "x-typia-required": true
           },
           "cashReceipt": {
             "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
-            "description": "현금 영수증 정보."
+            "description": "현금 영수증 정보.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1273,7 +1368,7 @@
           "cashReceipt"
         ],
         "description": "상품권 결제 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -1291,7 +1386,8 @@
           "approveNo": {
             "type": "string",
             "nullable": false,
-            "description": "승인 번호."
+            "description": "승인 번호.",
+            "x-typia-required": true
           },
           "settlementStatus": {
             "type": "string",
@@ -1300,7 +1396,8 @@
               "INCOMPLETE"
             ],
             "nullable": false,
-            "description": "정산 상태."
+            "description": "정산 상태.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1309,14 +1406,15 @@
           "settlementStatus"
         ],
         "description": "상품권 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossMobilePhonePayment": {
         "type": "object",
         "properties": {
           "mobilePhone": {
             "$ref": "#/components/schemas/ITossMobilePhonePayment.IMobilePhone",
-            "description": "휴대폰 정보."
+            "description": "휴대폰 정보.",
+            "x-typia-required": true
           },
           "method": {
             "type": "string",
@@ -1324,7 +1422,8 @@
               "휴대폰"
             ],
             "nullable": false,
-            "description": "결제 수단."
+            "description": "결제 수단.",
+            "x-typia-required": true
           },
           "type": {
             "type": "string",
@@ -1332,7 +1431,8 @@
               "NORMAL"
             ],
             "nullable": false,
-            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
+            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제.",
+            "x-typia-required": true
           },
           "status": {
             "type": "string",
@@ -1347,100 +1447,120 @@
               "EXPIRED"
             ],
             "nullable": false,
-            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
+            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED",
+            "x-typia-required": true
           },
           "mId": {
             "type": "string",
             "nullable": false,
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임.",
+            "x-typia-required": true
           },
           "version": {
             "type": "string",
             "nullable": false,
-            "description": "사용 중인 토스 페이먼츠 API 의 버전."
+            "description": "사용 중인 토스 페이먼츠 API 의 버전.",
+            "x-typia-required": true
           },
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "결제 내역의 식별자 번호."
+            "description": "결제 내역의 식별자 번호.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "transactionKey": {
             "type": "string",
             "nullable": false,
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": true
           },
           "currency": {
             "type": "string",
             "nullable": false,
-            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능."
+            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능.",
+            "x-typia-required": true
           },
           "totalAmount": {
             "type": "number",
             "nullable": false,
-            "description": "총 결제 금액."
+            "description": "총 결제 금액.",
+            "x-typia-required": true
           },
           "balanceAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소할 수 있는 금액."
+            "description": "취소할 수 있는 금액.",
+            "x-typia-required": true
           },
           "suppliedAmount": {
             "type": "number",
             "nullable": false,
-            "description": "공급가액."
+            "description": "공급가액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세액."
+            "description": "면세액.",
+            "x-typia-required": true
           },
           "vat": {
             "type": "number",
             "nullable": false,
-            "description": "부가세."
+            "description": "부가세.",
+            "x-typia-required": true
           },
           "useEscrow": {
             "type": "boolean",
             "nullable": false,
-            "description": "에스크로 사용 여부."
+            "description": "에스크로 사용 여부.",
+            "x-typia-required": true
           },
           "cultureExpense": {
             "type": "boolean",
             "nullable": false,
-            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등."
+            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등.",
+            "x-typia-required": true
           },
           "requestedAt": {
             "type": "string",
             "nullable": false,
-            "description": "결제 요청 일시."
+            "description": "결제 요청 일시.",
+            "x-typia-required": true
           },
           "approvedAt": {
             "type": "string",
             "nullable": true,
-            "description": "결제 승인 일시."
+            "description": "결제 승인 일시.",
+            "x-typia-required": true
           },
           "cancels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ITossPaymentCancel",
-              "description": "결제 취소 내역."
+              "description": "결제 취소 내역.",
+              "x-typia-required": true
             },
             "nullable": true,
-            "description": "결제 취소 내역."
+            "description": "결제 취소 내역.",
+            "x-typia-required": true
           },
           "cashReceipt": {
             "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
-            "description": "현금 영수증 정보."
+            "description": "현금 영수증 정보.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1469,7 +1589,7 @@
           "cashReceipt"
         ],
         "description": "휴대폰 결제 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -1487,12 +1607,14 @@
           "carrier": {
             "type": "string",
             "nullable": false,
-            "description": "통신사."
+            "description": "통신사.",
+            "x-typia-required": true
           },
           "customerMobilePhone": {
             "type": "string",
             "nullable": false,
-            "description": "고객 휴대폰 번호."
+            "description": "고객 휴대폰 번호.",
+            "x-typia-required": true
           },
           "settlementStatus": {
             "type": "string",
@@ -1501,7 +1623,8 @@
               "INCOMPLETED"
             ],
             "nullable": false,
-            "description": "정산 상태."
+            "description": "정산 상태.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1511,14 +1634,15 @@
           "settlementStatus"
         ],
         "description": "휴대폰 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossTransferPayment": {
         "type": "object",
         "properties": {
           "transfer": {
             "$ref": "#/components/schemas/ITossTransferPayment.ITransfer",
-            "description": "계좌 이체 정보."
+            "description": "계좌 이체 정보.",
+            "x-typia-required": true
           },
           "method": {
             "type": "string",
@@ -1526,7 +1650,8 @@
               "계좌이체"
             ],
             "nullable": false,
-            "description": "결제 수단."
+            "description": "결제 수단.",
+            "x-typia-required": true
           },
           "type": {
             "type": "string",
@@ -1534,7 +1659,8 @@
               "NORMAL"
             ],
             "nullable": false,
-            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
+            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제.",
+            "x-typia-required": true
           },
           "status": {
             "type": "string",
@@ -1549,100 +1675,120 @@
               "EXPIRED"
             ],
             "nullable": false,
-            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
+            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED",
+            "x-typia-required": true
           },
           "mId": {
             "type": "string",
             "nullable": false,
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임.",
+            "x-typia-required": true
           },
           "version": {
             "type": "string",
             "nullable": false,
-            "description": "사용 중인 토스 페이먼츠 API 의 버전."
+            "description": "사용 중인 토스 페이먼츠 API 의 버전.",
+            "x-typia-required": true
           },
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "결제 내역의 식별자 번호."
+            "description": "결제 내역의 식별자 번호.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "transactionKey": {
             "type": "string",
             "nullable": false,
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": true
           },
           "currency": {
             "type": "string",
             "nullable": false,
-            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능."
+            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능.",
+            "x-typia-required": true
           },
           "totalAmount": {
             "type": "number",
             "nullable": false,
-            "description": "총 결제 금액."
+            "description": "총 결제 금액.",
+            "x-typia-required": true
           },
           "balanceAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소할 수 있는 금액."
+            "description": "취소할 수 있는 금액.",
+            "x-typia-required": true
           },
           "suppliedAmount": {
             "type": "number",
             "nullable": false,
-            "description": "공급가액."
+            "description": "공급가액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세액."
+            "description": "면세액.",
+            "x-typia-required": true
           },
           "vat": {
             "type": "number",
             "nullable": false,
-            "description": "부가세."
+            "description": "부가세.",
+            "x-typia-required": true
           },
           "useEscrow": {
             "type": "boolean",
             "nullable": false,
-            "description": "에스크로 사용 여부."
+            "description": "에스크로 사용 여부.",
+            "x-typia-required": true
           },
           "cultureExpense": {
             "type": "boolean",
             "nullable": false,
-            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등."
+            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등.",
+            "x-typia-required": true
           },
           "requestedAt": {
             "type": "string",
             "nullable": false,
-            "description": "결제 요청 일시."
+            "description": "결제 요청 일시.",
+            "x-typia-required": true
           },
           "approvedAt": {
             "type": "string",
             "nullable": true,
-            "description": "결제 승인 일시."
+            "description": "결제 승인 일시.",
+            "x-typia-required": true
           },
           "cancels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ITossPaymentCancel",
-              "description": "결제 취소 내역."
+              "description": "결제 취소 내역.",
+              "x-typia-required": true
             },
             "nullable": true,
-            "description": "결제 취소 내역."
+            "description": "결제 취소 내역.",
+            "x-typia-required": true
           },
           "cashReceipt": {
             "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
-            "description": "현금 영수증 정보."
+            "description": "현금 영수증 정보.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1671,7 +1817,7 @@
           "cashReceipt"
         ],
         "description": "계좌 이체 결제 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -1689,7 +1835,8 @@
           "bank": {
             "type": "string",
             "nullable": false,
-            "description": "은행명."
+            "description": "은행명.",
+            "x-typia-required": true
           },
           "settlementStatus": {
             "type": "string",
@@ -1698,7 +1845,8 @@
               "INCOMPLETED"
             ],
             "nullable": false,
-            "description": "이체 상태."
+            "description": "이체 상태.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1707,7 +1855,7 @@
           "settlementStatus"
         ],
         "description": "계좌 이체 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossVirtualAccountPayment": {
         "type": "object",
@@ -1715,11 +1863,13 @@
           "secret": {
             "type": "string",
             "nullable": false,
-            "description": "가상 계좌로 결제할 때 전달되는 입금 콜백을 검증하기 위한 값."
+            "description": "가상 계좌로 결제할 때 전달되는 입금 콜백을 검증하기 위한 값.",
+            "x-typia-required": true
           },
           "virtualAccount": {
             "$ref": "#/components/schemas/ITossVirtualAccountPayment.IVirtualAccount",
-            "description": "가상 계좌 정보."
+            "description": "가상 계좌 정보.",
+            "x-typia-required": true
           },
           "method": {
             "type": "string",
@@ -1727,7 +1877,8 @@
               "가상계좌"
             ],
             "nullable": false,
-            "description": "결제 수단."
+            "description": "결제 수단.",
+            "x-typia-required": true
           },
           "type": {
             "type": "string",
@@ -1735,7 +1886,8 @@
               "NORMAL"
             ],
             "nullable": false,
-            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
+            "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제.",
+            "x-typia-required": true
           },
           "status": {
             "type": "string",
@@ -1750,100 +1902,120 @@
               "EXPIRED"
             ],
             "nullable": false,
-            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
+            "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED",
+            "x-typia-required": true
           },
           "mId": {
             "type": "string",
             "nullable": false,
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임.",
+            "x-typia-required": true
           },
           "version": {
             "type": "string",
             "nullable": false,
-            "description": "사용 중인 토스 페이먼츠 API 의 버전."
+            "description": "사용 중인 토스 페이먼츠 API 의 버전.",
+            "x-typia-required": true
           },
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "결제 내역의 식별자 번호."
+            "description": "결제 내역의 식별자 번호.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "transactionKey": {
             "type": "string",
             "nullable": false,
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": true
           },
           "currency": {
             "type": "string",
             "nullable": false,
-            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능."
+            "description": "화폐 단위.\n\n현재 토스 페이먼츠는 KRW 만 사용 가능.",
+            "x-typia-required": true
           },
           "totalAmount": {
             "type": "number",
             "nullable": false,
-            "description": "총 결제 금액."
+            "description": "총 결제 금액.",
+            "x-typia-required": true
           },
           "balanceAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소할 수 있는 금액."
+            "description": "취소할 수 있는 금액.",
+            "x-typia-required": true
           },
           "suppliedAmount": {
             "type": "number",
             "nullable": false,
-            "description": "공급가액."
+            "description": "공급가액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세액."
+            "description": "면세액.",
+            "x-typia-required": true
           },
           "vat": {
             "type": "number",
             "nullable": false,
-            "description": "부가세."
+            "description": "부가세.",
+            "x-typia-required": true
           },
           "useEscrow": {
             "type": "boolean",
             "nullable": false,
-            "description": "에스크로 사용 여부."
+            "description": "에스크로 사용 여부.",
+            "x-typia-required": true
           },
           "cultureExpense": {
             "type": "boolean",
             "nullable": false,
-            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등."
+            "description": "문화비 지출 여부.\n\n도석입, 공연 티켓, 박물관/미술관 입장권 등.",
+            "x-typia-required": true
           },
           "requestedAt": {
             "type": "string",
             "nullable": false,
-            "description": "결제 요청 일시."
+            "description": "결제 요청 일시.",
+            "x-typia-required": true
           },
           "approvedAt": {
             "type": "string",
             "nullable": true,
-            "description": "결제 승인 일시."
+            "description": "결제 승인 일시.",
+            "x-typia-required": true
           },
           "cancels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ITossPaymentCancel",
-              "description": "결제 취소 내역."
+              "description": "결제 취소 내역.",
+              "x-typia-required": true
             },
             "nullable": true,
-            "description": "결제 취소 내역."
+            "description": "결제 취소 내역.",
+            "x-typia-required": true
           },
           "cashReceipt": {
             "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
-            "description": "현금 영수증 정보."
+            "description": "현금 영수증 정보.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1873,7 +2045,7 @@
           "cashReceipt"
         ],
         "description": "가상 계좌 결제 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -1891,7 +2063,8 @@
           "accountNumber": {
             "type": "string",
             "nullable": false,
-            "description": "계좌 번호."
+            "description": "계좌 번호.",
+            "x-typia-required": true
           },
           "accountType": {
             "type": "string",
@@ -1900,27 +2073,32 @@
               "고정"
             ],
             "nullable": false,
-            "description": "가상 계좌 타입."
+            "description": "가상 계좌 타입.",
+            "x-typia-required": true
           },
           "bank": {
             "type": "string",
             "nullable": false,
-            "description": "은행명."
+            "description": "은행명.",
+            "x-typia-required": true
           },
           "customerName": {
             "type": "string",
             "nullable": false,
-            "description": "고객 이름."
+            "description": "고객 이름.",
+            "x-typia-required": true
           },
           "dueDate": {
             "type": "string",
             "nullable": false,
-            "description": "입금 기한."
+            "description": "입금 기한.",
+            "x-typia-required": true
           },
           "expired": {
             "type": "boolean",
             "nullable": false,
-            "description": "가상 계좌 만료 여부."
+            "description": "가상 계좌 만료 여부.",
+            "x-typia-required": true
           },
           "settlementStatus": {
             "type": "string",
@@ -1929,7 +2107,8 @@
               "INCOMPLETED"
             ],
             "nullable": false,
-            "description": "정산 상태."
+            "description": "정산 상태.",
+            "x-typia-required": true
           },
           "refundStatus": {
             "type": "string",
@@ -1941,7 +2120,8 @@
               "PARTIAL_FAILED"
             ],
             "nullable": false,
-            "description": "환불 처리 상태.\n\n - NONE: 해당 없음\n - FAILED: 환불 실패\n - PENDING: 환불 처리중\n - PARTIAL_FAILED: 부분 환불 실패\n - COMPLETED: 환불 완료"
+            "description": "환불 처리 상태.\n\n - NONE: 해당 없음\n - FAILED: 환불 실패\n - PENDING: 환불 처리중\n - PARTIAL_FAILED: 부분 환불 실패\n - COMPLETED: 환불 완료",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -1956,7 +2136,7 @@
           "refundStatus"
         ],
         "description": "가상 계좌 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossCashReceipt.IStore": {
         "type": "object",
@@ -1968,42 +2148,50 @@
               "지출증빙"
             ],
             "nullable": false,
-            "description": "현금 영수증의 종류."
+            "description": "현금 영수증의 종류.",
+            "x-typia-required": true
           },
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "귀속 결제의 {@link ITossPayment.paymentKey }."
+            "description": "귀속 결제의 {@link ITossPayment.paymentKey }.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문의 식별자 ID."
+            "description": "주문의 식별자 ID.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름."
+            "description": "주문 이름.",
+            "x-typia-required": true
           },
           "registrationNumber": {
             "type": "string",
             "nullable": false,
-            "description": "현금 영수증 발급을 위한 개인 식별 번호.\n\n현금 영수증의 종류에 따라 휴대폰 번호나 주민등록번호 또는 사업자등록번호 및 카드 \n번호를 입력할 수 있다."
+            "description": "현금 영수증 발급을 위한 개인 식별 번호.\n\n현금 영수증의 종류에 따라 휴대폰 번호나 주민등록번호 또는 사업자등록번호 및 카드 \n번호를 입력할 수 있다.",
+            "x-typia-required": true
           },
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "현금 영수증을 발행할 금액."
+            "description": "현금 영수증을 발행할 금액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세 금액."
+            "description": "면세 금액.",
+            "x-typia-required": false
           },
           "businessNumber": {
             "type": "string",
             "nullable": false,
-            "description": "사업자 등록번호."
+            "description": "사업자 등록번호.",
+            "x-typia-required": false
           }
         },
         "nullable": false,
@@ -2016,7 +2204,7 @@
           "amount"
         ],
         "description": "현금 영수증 입력 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossCashReceipt": {
         "type": "object",
@@ -2024,7 +2212,8 @@
           "receiptKey": {
             "type": "string",
             "nullable": false,
-            "description": "현금 영수증의 식별자 키."
+            "description": "현금 영수증의 식별자 키.",
+            "x-typia-required": true
           },
           "type": {
             "type": "string",
@@ -2033,37 +2222,44 @@
               "지출증빙"
             ],
             "nullable": false,
-            "description": "현금 영수증의 종류."
+            "description": "현금 영수증의 종류.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문의 식별자 ID."
+            "description": "주문의 식별자 ID.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름."
+            "description": "주문 이름.",
+            "x-typia-required": true
           },
           "approvalNumber": {
             "type": "string",
             "nullable": false,
-            "description": "현금 영수증 승인 번호."
+            "description": "현금 영수증 승인 번호.",
+            "x-typia-required": true
           },
           "approvedAt": {
             "type": "string",
             "nullable": false,
-            "description": "현금 영수증 승인 일시."
+            "description": "현금 영수증 승인 일시.",
+            "x-typia-required": true
           },
           "canceledAt": {
             "type": "string",
             "nullable": true,
-            "description": "현금 영수증 취소 일시."
+            "description": "현금 영수증 취소 일시.",
+            "x-typia-required": true
           },
           "receiptUrl": {
             "type": "string",
             "nullable": false,
-            "description": "영수증 URL."
+            "description": "영수증 URL.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -2078,7 +2274,7 @@
           "receiptUrl"
         ],
         "description": "현금 영수증 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -2096,12 +2292,13 @@
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "취소 금액.\n\n미 입력시 현금 영수증에 기재된 {@link ITossCashReceipt.amount 총액}이 취소됨."
+            "description": "취소 금액.\n\n미 입력시 현금 영수증에 기재된 {@link ITossCashReceipt.amount 총액}이 취소됨.",
+            "x-typia-required": false
           }
         },
         "nullable": false,
         "description": "현금 영수증 취소 입력 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossPaymentWebhook": {
         "type": "object",
@@ -2112,11 +2309,13 @@
               "PAYMENT_STATUS_CHANGED"
             ],
             "nullable": false,
-            "description": "이벤트 타입."
+            "description": "이벤트 타입.",
+            "x-typia-required": true
           },
           "data": {
             "$ref": "#/components/schemas/ITossPaymentWebhook.IData",
-            "description": "이벤트 데이터."
+            "description": "이벤트 데이터.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -2125,7 +2324,7 @@
           "data"
         ],
         "description": "웹훅 이벤트 정보.",
-        "x-tson_jsDocTags": [
+        "x-typia_jsDocTags": [
           {
             "name": "author",
             "text": [
@@ -2143,12 +2342,14 @@
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "{@link ITossPayment } 의 식별자 키."
+            "description": "{@link ITossPayment } 의 식별자 키.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "status": {
             "type": "string",
@@ -2159,7 +2360,8 @@
               "PARTIAL_CANCELED"
             ],
             "nullable": false,
-            "description": "결제 상태.\n\n - DONE: 결제 완료\n - CANCELED: 결제가 취소됨\n - PARTIAL_CANCELED: 결제가 부분 취소됨\n - WAITING_FOR_DEPOSIT: 입금 대기 중"
+            "description": "결제 상태.\n\n - DONE: 결제 완료\n - CANCELED: 결제가 취소됨\n - PARTIAL_CANCELED: 결제가 부분 취소됨\n - WAITING_FOR_DEPOSIT: 입금 대기 중",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -2169,7 +2371,7 @@
           "status"
         ],
         "description": "웹훅 이벤트 데이터.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossCardPayment.IStore": {
         "type": "object",
@@ -2180,71 +2382,85 @@
               "card"
             ],
             "nullable": false,
-            "description": "결제 수단이 신용 카드임을 의미."
+            "description": "결제 수단이 신용 카드임을 의미.",
+            "x-typia-required": true
           },
           "cardNumber": {
             "type": "string",
             "nullable": false,
-            "description": "카드 번호."
+            "description": "카드 번호.",
+            "x-typia-required": true
           },
           "cardExpirationYear": {
             "type": "string",
             "nullable": false,
-            "description": "카드 만료 년도 (2 자리)."
+            "description": "카드 만료 년도 (2 자리).",
+            "x-typia-required": true
           },
           "cardExpirationMonth": {
             "type": "string",
             "nullable": false,
-            "description": "카드 만료 월 (2 자리)."
+            "description": "카드 만료 월 (2 자리).",
+            "x-typia-required": true
           },
           "cardPassword": {
             "type": "string",
             "nullable": false,
-            "description": "카드 비밀번호."
+            "description": "카드 비밀번호.",
+            "x-typia-required": false
           },
           "cardInstallmentPlan": {
             "type": "number",
             "nullable": false,
-            "description": "할부 개월 수."
+            "description": "할부 개월 수.",
+            "x-typia-required": false
           },
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "지불 총액."
+            "description": "지불 총액.",
+            "x-typia-required": true
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세금 총액."
+            "description": "면세금 총액.",
+            "x-typia-required": false
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": false
           },
           "customerBirthday": {
             "type": "string",
             "nullable": false,
-            "description": "고객의 생년월일.\n\n표기 형식 YYMMDD."
+            "description": "고객의 생년월일.\n\n표기 형식 YYMMDD.",
+            "x-typia-required": false
           },
           "customerEmail": {
             "type": "string",
             "nullable": false,
-            "description": "고객의 이메일."
+            "description": "고객의 이메일.",
+            "x-typia-required": false
           },
           "vbv": {
             "$ref": "#/components/schemas/__type.o1",
-            "description": "해외카드로 결제하는 경우 3DS 인증 적용을 위해 사용. \n\n3DS 인증 결과를 전송해야 하는 경우에만 필수."
+            "description": "해외카드로 결제하는 경우 3DS 인증 적용을 위해 사용. \n\n3DS 인증 결과를 전송해야 하는 경우에만 필수.",
+            "x-typia-required": false
           },
           "__approved": {
             "type": "boolean",
             "nullable": false,
-            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
+            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것.",
+            "x-typia-required": false
           }
         },
         "nullable": false,
@@ -2257,7 +2473,7 @@
           "orderId"
         ],
         "description": "신용 카드를 이용한 결제 신청 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "__type.o1": {
         "type": "object",
@@ -2265,17 +2481,20 @@
           "cavv": {
             "type": "string",
             "nullable": false,
-            "description": "3D Secure 인증 세션에 대한 인증 값."
+            "description": "3D Secure 인증 세션에 대한 인증 값.",
+            "x-typia-required": true
           },
           "xid": {
             "type": "string",
             "nullable": false,
-            "description": "트랜잭션 ID."
+            "description": "트랜잭션 ID.",
+            "x-typia-required": true
           },
           "eci": {
             "type": "string",
             "nullable": false,
-            "description": "3DS 인증 결과에 대한 코드 값."
+            "description": "3DS 인증 결과에 대한 코드 값.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -2284,7 +2503,7 @@
           "xid",
           "eci"
         ],
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossPayment.IApproval": {
         "type": "object",
@@ -2292,12 +2511,14 @@
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "결제 총액."
+            "description": "결제 총액.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -2306,7 +2527,7 @@
           "amount"
         ],
         "description": "결제 승인 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossPaymentCancel.IStore": {
         "type": "object",
@@ -2314,36 +2535,43 @@
           "paymentKey": {
             "type": "string",
             "nullable": false,
-            "description": "{@link ITossPayment } 의 식별자 키."
+            "description": "{@link ITossPayment } 의 식별자 키.",
+            "x-typia-required": true
           },
           "cancelReason": {
             "type": "string",
             "nullable": false,
-            "description": "취소 사유."
+            "description": "취소 사유.",
+            "x-typia-required": true
           },
           "cancelAmount": {
             "type": "number",
             "nullable": false,
-            "description": "취소 총액."
+            "description": "취소 총액.",
+            "x-typia-required": false
           },
           "refundReceiveAccount": {
             "$ref": "#/components/schemas/__type.o2",
-            "description": "환불 계좌 정보.\n\n결제를 가상 계좌로 하였을 때에만 해당함."
+            "description": "환불 계좌 정보.\n\n결제를 가상 계좌로 하였을 때에만 해당함.",
+            "x-typia-required": false
           },
           "taxAmount": {
             "type": "number",
             "nullable": false,
-            "description": "과세 처리 금액."
+            "description": "과세 처리 금액.",
+            "x-typia-required": false
           },
           "taxFreeAmount": {
             "type": "number",
             "nullable": false,
-            "description": "면세 처리 금액."
+            "description": "면세 처리 금액.",
+            "x-typia-required": false
           },
           "refundableAmount": {
             "type": "number",
             "nullable": false,
-            "description": "결제 취소 후 환불 가능 잔액."
+            "description": "결제 취소 후 환불 가능 잔액.",
+            "x-typia-required": false
           }
         },
         "nullable": false,
@@ -2352,7 +2580,7 @@
           "cancelReason"
         ],
         "description": "결제 취소 신청 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "__type.o2": {
         "type": "object",
@@ -2360,17 +2588,20 @@
           "bank": {
             "type": "string",
             "nullable": false,
-            "description": "은행 정보."
+            "description": "은행 정보.",
+            "x-typia-required": true
           },
           "accountNumber": {
             "type": "string",
             "nullable": false,
-            "description": "계좌 번호."
+            "description": "계좌 번호.",
+            "x-typia-required": true
           },
           "holderName": {
             "type": "string",
             "nullable": false,
-            "description": "예금주."
+            "description": "예금주.",
+            "x-typia-required": true
           }
         },
         "nullable": false,
@@ -2379,7 +2610,7 @@
           "accountNumber",
           "holderName"
         ],
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       },
       "ITossVirtualAccountPayment.IStore": {
         "type": "object",
@@ -2390,37 +2621,44 @@
               "virtual-account"
             ],
             "nullable": false,
-            "description": "결제 수단이 가상 계좌임을 의미."
+            "description": "결제 수단이 가상 계좌임을 의미.",
+            "x-typia-required": true
           },
           "orderId": {
             "type": "string",
             "nullable": false,
-            "description": "주문 식별자 번호.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+            "description": "주문 식별자 번호.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true
           },
           "orderName": {
             "type": "string",
             "nullable": false,
-            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명."
+            "description": "주문 이름.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 발급한 주문명.",
+            "x-typia-required": true
           },
           "bank": {
             "type": "string",
             "nullable": false,
-            "description": "은행명."
+            "description": "은행명.",
+            "x-typia-required": true
           },
           "customerName": {
             "type": "string",
             "nullable": false,
-            "description": "고객 이름."
+            "description": "고객 이름.",
+            "x-typia-required": true
           },
           "amount": {
             "type": "number",
             "nullable": false,
-            "description": "결제 총액."
+            "description": "결제 총액.",
+            "x-typia-required": true
           },
           "__approved": {
             "type": "boolean",
             "nullable": false,
-            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
+            "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써, \n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트 \n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는 \n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우, \n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지 \n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것.",
+            "x-typia-required": false
           }
         },
         "nullable": false,
@@ -2433,7 +2671,7 @@
           "amount"
         ],
         "description": "가상 계좌를 이용한 결제 신청 정보.",
-        "x-tson_jsDocTags": []
+        "x-typia_jsDocTags": []
       }
     }
   },

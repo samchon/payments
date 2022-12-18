@@ -46,8 +46,8 @@
     "sloc": "^0.2.1",
     "ts-node": "^10.4.0",
     "tslint": "^6.1.3",
-    "ttypescript": "^1.5.12",
-    "typescript": "^4.7.4"
+    "ttypescript": "^1.5.15",
+    "typescript": "^4.9.4"
   },
   "dependencies": {
     "atob": "^2.1.2",
@@ -56,7 +56,7 @@
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^2.5.13",
-    "typescript-json": "^3.3.23",
+    "typia": "^3.4.9",
     "uuid": "^8.3.2"
   },
   "keywords": [

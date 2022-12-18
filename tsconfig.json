@@ -69,7 +69,7 @@
     "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
     "plugins": [
       { "transform": "nestia-helper/lib/transform" },
-      { "transform": "typescript-json/lib/transform" }
+      { "transform": "typia/lib/transform" }
     ]
   },
   "include": ["src"]

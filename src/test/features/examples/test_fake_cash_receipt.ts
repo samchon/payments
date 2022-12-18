@@ -1,4 +1,4 @@
-import { assert } from "typescript-json";
+import { assert } from "typia";
 
 import toss from "../../../api";
 import { ITossCashReceipt } from "../../../api/structures/ITossCashReceipt";
