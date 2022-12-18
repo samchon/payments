@@ -1,8 +1,6 @@
 import { FakeTossBackend } from "../FakeTossBackend";
-
-import toss from "../api";
-
 import { TossFakeConfiguration } from "../FakeTossConfiguration";
+import toss from "../api";
 import { DynamicImportIterator } from "./internal/DynamicImportIterator";
 
 async function main(): Promise<void> {

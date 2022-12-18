@@ -1,9 +1,8 @@
+import { TossFakeConfiguration } from "../FakeTossConfiguration";
 import { ITossBilling } from "../api/structures/ITossBilling";
 import { ITossCashReceipt } from "../api/structures/ITossCashReceipt";
 import { ITossPayment } from "../api/structures/ITossPayment";
 import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
-
-import { TossFakeConfiguration } from "../FakeTossConfiguration";
 import { VolatileMap } from "../utils/VolatileMap";
 
 export namespace FakeTossStorage {

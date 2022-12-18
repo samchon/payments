@@ -1,12 +1,12 @@
-const EXTENSION = __filename.substr(-2);
-if (EXTENSION === "js") require("source-map-support/register");
-
 import fs from "fs";
-import { Singleton } from "tstl/thread/Singleton";
 import { randint } from "tstl/algorithm/random";
+import { Singleton } from "tstl/thread/Singleton";
 
 import { FakeTossBackend } from "../FakeTossBackend";
 import { ErrorUtil } from "../utils/ErrorUtil";
+
+const EXTENSION = __filename.substr(-2);
+if (EXTENSION === "js") require("source-map-support/register");
 
 const directory = new Singleton(async () => {
     await mkdir(`${__dirname}/../../assets`);

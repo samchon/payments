@@ -1,12 +1,13 @@
-const EXTENSION = __filename.substr(-2);
-if (EXTENSION === "js") require("source-map-support").install();
-
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-
 import { DomainError } from "tstl/exception/DomainError";
 import { InvalidArgument } from "tstl/exception/InvalidArgument";
 import { OutOfRange } from "tstl/exception/OutOfRange";
+
+/* eslint-disable */
+
+const EXTENSION = __filename.substr(-2);
+if (EXTENSION === "js") require("source-map-support").install();
 
 /**
  * Fake 토스 페이먼츠 서버의 설정 정보.

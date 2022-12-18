@@ -1,25 +1,26 @@
 import { randint } from "tstl/algorithm/random";
+import { IPointer } from "tstl/functional/IPointer";
 import { sleep_for } from "tstl/thread/global";
 import { assert } from "typia";
 import { v4 } from "uuid";
 
+import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
 import toss from "../../../api";
 import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
-
-import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
-import { TestConnection } from "../../internal/TestConnection";
+import { ArrayUtil } from "../../../utils/ArrayUtil";
 import { RandomGenerator } from "../../../utils/RandomGenerator";
+import { TestConnection } from "../../internal/TestConnection";
 import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
 
 export async function test_storage_expiration_time(): Promise<void> {
-    let time: number = TossFakeConfiguration.EXPIRATION.time;
+    const time: number = TossFakeConfiguration.EXPIRATION.time;
     FakeTossStorage.payments.clear();
     TossFakeConfiguration.EXPIRATION.time = 1;
 
-    let previous: string | null = null;
-    for (let i: number = 0; i < 10; ++i) {
+    const previous: IPointer<string | null> = { value: null };
+    await ArrayUtil.asyncRepeat(10, async () => {
         const payment: ITossPayment = await toss.functional.v1.payments.key_in(
             TestConnection.FAKE,
             {
@@ -36,20 +37,20 @@ export async function test_storage_expiration_time(): Promise<void> {
         assert<ITossCardPayment>(payment);
 
         await sleep_for(1);
-        if (previous !== null)
+        if (previous.value !== null)
             await exception_must_be_thrown(
                 "VirtualTossStorageProvider.payments.get() for expired record",
                 () =>
                     toss.functional.v1.payments.at(
                         TestConnection.FAKE,
-                        previous!,
+                        previous.value!,
                     ),
             );
         await toss.functional.v1.payments.at(
             TestConnection.FAKE,
             payment.paymentKey,
         );
-        previous = payment.paymentKey;
-    }
+        previous.value = payment.paymentKey;
+    });
     TossFakeConfiguration.EXPIRATION.time = time;
 }

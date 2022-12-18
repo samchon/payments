@@ -3,7 +3,6 @@ import { assert } from "typia";
 import toss from "../../../api";
 import { ITossCashReceipt } from "../../../api/structures/ITossCashReceipt";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
-
 import { TestConnection } from "../../internal/TestConnection";
 import { test_fake_virtual_account_payment } from "./test_fake_virtual_account_payment";
 

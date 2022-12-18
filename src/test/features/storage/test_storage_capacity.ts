@@ -1,25 +1,25 @@
 import { randint } from "tstl/algorithm/random";
+import { IPointer } from "tstl/functional/IPointer";
 import { assert } from "typia";
 import { v4 } from "uuid";
 
+import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
 import toss from "../../../api";
 import { ITossBilling } from "../../../api/structures/ITossBilling";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
-
-import { TestConnection } from "../../internal/TestConnection";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { RandomGenerator } from "../../../utils/RandomGenerator";
+import { TestConnection } from "../../internal/TestConnection";
 import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
-import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
 
 export async function test_storage_capacity(): Promise<void> {
-    let capacity: number = TossFakeConfiguration.EXPIRATION.capacity;
+    const capacity: number = TossFakeConfiguration.EXPIRATION.capacity;
 
     FakeTossStorage.payments.clear();
     FakeTossStorage.billings.clear();
     TossFakeConfiguration.EXPIRATION.capacity = 1;
 
-    let previous: string | null = null;
+    const previous: IPointer<string | null> = { value: null };
     for (let i: number = 0; i < 10; ++i) {
         // GENERATE RANDOM BILLING
         const customerKey: string = v4();
@@ -65,20 +65,20 @@ export async function test_storage_capacity(): Promise<void> {
         );
 
         // TEST THE EXPIRATION
-        if (previous !== null)
+        if (previous.value !== null)
             await exception_must_be_thrown(
                 "VirtualTossStorage.payments.get() for expired record",
                 () =>
                     toss.functional.v1.payments.at(
                         TestConnection.FAKE,
-                        previous!,
+                        previous.value!,
                     ),
             );
         await toss.functional.v1.payments.at(
             TestConnection.FAKE,
             payment.paymentKey,
         );
-        previous = payment.paymentKey;
+        previous.value = payment.paymentKey;
     }
 
     TossFakeConfiguration.EXPIRATION.capacity = capacity;

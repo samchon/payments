@@ -7,28 +7,37 @@ export namespace DateUtil {
     export const MONTH = 30 * DAY;
 
     export function to_string(date: Date, hms: boolean = false): string {
-        let ret: string = `${date.getFullYear()}-${_To_cipher_string(
+        const ymd: string = [
+            date.getFullYear(),
             date.getMonth() + 1,
-        )}-${_To_cipher_string(date.getDate())}`;
-        if (hms === true)
-            ret += ` ${_To_cipher_string(date.getHours())}:${_To_cipher_string(
-                date.getMinutes(),
-            )}:${_To_cipher_string(date.getSeconds())}`;
+            date.getDate(),
+        ]
+            .map((value) => _To_cipher_string(value))
+            .join("-");
+        if (hms === false) return ymd;
 
-        return ret;
+        return (
+            `${ymd} ` +
+            [date.getHours(), date.getMinutes(), date.getSeconds()]
+                .map((value) => _To_cipher_string(value))
+                .join(":")
+        );
     }
 
     export function to_uuid(date: Date = new Date()): string {
-        let output: string = `${date.getFullYear()}${_To_cipher_string(
+        const elements: number[] = [
+            date.getFullYear(),
             date.getMonth() + 1,
-        )}${_To_cipher_string(date.getDate())}`;
-        output += `${_To_cipher_string(date.getHours())}${_To_cipher_string(
+            date.getDate(),
+            date.getHours(),
             date.getMinutes(),
-        )}${_To_cipher_string(date.getSeconds())}`;
-        output += `${_To_cipher_string(date.getMilliseconds())}`;
-        output += `-${Math.random().toString().substr(2)}`;
-
-        return output;
+            date.getSeconds(),
+        ];
+        return (
+            elements.map((value) => _To_cipher_string(value)).join("") +
+            "-" +
+            Math.random().toString().substring(4)
+        );
     }
 
     export interface IDifference {
@@ -42,7 +51,7 @@ export namespace DateUtil {
         y = _To_date(y);
 
         // FIRST DIFFERENCES
-        let ret: IDifference = {
+        const ret: IDifference = {
             year: x.getFullYear() - y.getFullYear(),
             month: x.getMonth() - y.getMonth(),
             date: x.getDate() - y.getDate(),
@@ -53,7 +62,7 @@ export namespace DateUtil {
         //----
         // DATE
         if (ret.date < 0) {
-            let last: number = last_date(y.getFullYear(), y.getMonth());
+            const last: number = last_date(y.getFullYear(), y.getMonth());
 
             --ret.month;
             ret.date = x.getDate() + (last - y.getDate());
@@ -88,10 +97,10 @@ export namespace DateUtil {
     export function add_months(date: Date, value: number): Date {
         date = new Date(date);
 
-        let newYear: number =
+        const newYear: number =
             date.getFullYear() + Math.floor((date.getMonth() + value) / 12);
-        let newMonth: number = (date.getMonth() + value) % 12;
-        let lastDate: number = last_date(newYear, newMonth - 1);
+        const newMonth: number = (date.getMonth() + value) % 12;
+        const lastDate: number = last_date(newYear, newMonth - 1);
 
         if (lastDate < date.getDate()) date.setDate(lastDate);
 

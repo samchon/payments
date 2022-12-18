@@ -2,10 +2,9 @@ import { v4 } from "uuid";
 
 import toss from "../../../api";
 import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
-
+import { ITossPayment } from "../../../api/structures/ITossPayment";
 import { TestConnection } from "../../internal/TestConnection";
 import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
-import { ITossPayment } from "../../../api/structures/ITossPayment";
 
 export async function test_fake_card_payment(): Promise<void> {
     //----

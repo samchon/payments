@@ -5,7 +5,6 @@ import toss from "../../../api";
 import { ITossBilling } from "../../../api/structures/ITossBilling";
 import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
-
 import { TestConnection } from "../../internal/TestConnection";
 
 export async function test_fake_billing_payment(): Promise<void> {

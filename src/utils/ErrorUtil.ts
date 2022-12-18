@@ -1,7 +1,7 @@
 import fs from "fs";
 import serializeError from "serialize-error";
-import { Singleton } from "tstl/thread/Singleton";
 import { randint } from "tstl/algorithm/random";
+import { Singleton } from "tstl/thread/Singleton";
 
 import { TossFakeConfiguration } from "../FakeTossConfiguration";
 

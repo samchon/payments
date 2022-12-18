@@ -1,5 +1,5 @@
-import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
 import { TossFakeConfiguration } from "../FakeTossConfiguration";
+import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
 
 // POLYFILL FOR NODE
 if (

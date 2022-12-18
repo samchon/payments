@@ -1,7 +1,7 @@
-import express from "express";
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
+import express from "express";
 
 import { TossFakeConfiguration } from "./FakeTossConfiguration";
 
@@ -63,7 +63,7 @@ export class FakeTossBackend {
     private middleware(
         _request: express.Request,
         response: express.Response,
-        next: Function,
+        next: () => any,
     ): void {
         if (this.is_closing_ === true) response.set("Connection", "close");
         next();
