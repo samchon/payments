@@ -1,5 +1,5 @@
 import express from "express";
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 import { v4 } from "uuid";
 
@@ -19,10 +19,10 @@ export class FakeTossCashReceiptsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post()
+    @core.TypedRoute.Post()
     public store(
         @nest.Request() request: express.Request,
-        @helper.TypedBody() input: ITossCashReceipt.IStore,
+        @core.TypedBody() input: ITossCashReceipt.IStore,
     ): ITossCashReceipt {
         // VALIADTE
         FakeTossUserAuth.authorize(request);
@@ -76,11 +76,11 @@ export class FakeTossCashReceiptsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post(":receiptKey/cancel")
+    @core.TypedRoute.Post(":receiptKey/cancel")
     public cancel(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("receiptKey", "string") receiptKey: string,
-        @helper.TypedBody() input: ITossCashReceipt.ICancel,
+        @core.TypedParam("receiptKey", "string") receiptKey: string,
+        @core.TypedBody() input: ITossCashReceipt.ICancel,
     ): ITossCashReceipt {
         // VALIADTE
         FakeTossUserAuth.authorize(request);

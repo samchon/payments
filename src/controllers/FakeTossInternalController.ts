@@ -1,5 +1,5 @@
 import express from "express";
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 
 import { ITossPayment } from "../api/structures/ITossPayment";
@@ -26,8 +26,8 @@ export class FakeTossInternalController {
      * @param input 웹훅 이벤트 정보
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post("webhook")
-    public webhook(@helper.TypedBody() input: ITossPaymentWebhook): void {
+    @core.TypedRoute.Post("webhook")
+    public webhook(@core.TypedBody() input: ITossPaymentWebhook): void {
         const payment = FakeTossStorage.payments.get(input.data.paymentKey);
         payment.status = input.data.status;
 
@@ -50,10 +50,10 @@ export class FakeTossInternalController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Get(":paymentKey/deposit")
+    @core.TypedRoute.Get(":paymentKey/deposit")
     public deposit(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedParam("paymentKey", "string") paymentKey: string,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
 

@@ -1,6 +1,5 @@
 bin/
 lib/
-packages/api/README.md
 node_modules/
 
 *.DS_Store

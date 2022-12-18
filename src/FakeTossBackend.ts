@@ -1,5 +1,5 @@
 import express from "express";
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
@@ -23,10 +23,7 @@ export class FakeTossBackend {
         //----
         // MOUNT CONTROLLERS
         this.application_ = await NestFactory.create(
-            await helper.EncryptedModule.dynamic(
-                __dirname + "/controllers",
-                TossFakeConfiguration.ENCRYPTION_PASSWORD,
-            ),
+            await core.DynamicModule.mount(`${__dirname}/controllers`),
             { logger: false },
         );
 

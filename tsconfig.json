@@ -68,7 +68,7 @@
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
     "plugins": [
-      { "transform": "nestia-helper/lib/transform" },
+      { "transform": "@nestia/core/lib/transform" },
       { "transform": "typia/lib/transform" }
     ]
   },

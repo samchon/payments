@@ -1,5 +1,5 @@
 import express from "express";
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 import { v4 } from "uuid";
 
@@ -37,10 +37,10 @@ export class FakeTossVirtualAccountsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post()
+    @core.TypedRoute.Post()
     public store(
         @nest.Request() request: express.Request,
-        @helper.TypedBody() input: ITossVirtualAccountPayment.IStore,
+        @core.TypedBody() input: ITossVirtualAccountPayment.IStore,
     ): ITossVirtualAccountPayment {
         FakeTossUserAuth.authorize(request);
 
