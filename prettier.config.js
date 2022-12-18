@@ -4,4 +4,11 @@ module.exports = {
     semi: true,
     tabWidth: 4,
     trailingComma: "all",
+    importOrder: [
+        "<THIRD_PARTY_MODULES>",
+        "^[./]",
+    ],
+    importOrderSeparation: true,
+    importOrderSortSpecifiers: true,
+    importOrderParserPlugins: ["decorators-legacy", "typescript"],
 };

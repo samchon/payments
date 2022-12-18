@@ -1,4 +1,4 @@
-import { assert } from "typescript-json";
+import { assert } from "typia";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
