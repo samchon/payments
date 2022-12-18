@@ -1,5 +1,5 @@
 import express from "express";
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 import { v4 } from "uuid";
 
@@ -30,10 +30,10 @@ export class FakeTossBillingController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post("authorizations/card")
+    @core.TypedRoute.Post("authorizations/card")
     public store(
         @nest.Request() request: express.Request,
-        @helper.TypedBody() input: ITossBilling.IStore,
+        @core.TypedBody() input: ITossBilling.IStore,
     ): ITossBilling {
         FakeTossUserAuth.authorize(request);
 
@@ -66,11 +66,11 @@ export class FakeTossBillingController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post("authorizations/:billingKey")
+    @core.TypedRoute.Post("authorizations/:billingKey")
     public at(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("billingKey", "string") billingKey: string,
-        @helper.TypedBody() input: ITossBilling.ICustomerKey,
+        @core.TypedParam("billingKey", "string") billingKey: string,
+        @core.TypedBody() input: ITossBilling.ICustomerKey,
     ): ITossBilling {
         FakeTossUserAuth.authorize(request);
 
@@ -104,11 +104,11 @@ export class FakeTossBillingController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post(":billingKey")
+    @core.TypedRoute.Post(":billingKey")
     public pay(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("billingKey", "string") billingKey: string,
-        @helper.TypedBody() input: ITossBilling.IPaymentStore,
+        @core.TypedParam("billingKey", "string") billingKey: string,
+        @core.TypedBody() input: ITossBilling.IPaymentStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
 

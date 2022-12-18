@@ -1,5 +1,5 @@
 import express from "express";
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 
 import { ITossCardPayment } from "../api/structures/ITossCardPayment";
@@ -32,10 +32,10 @@ export class FakeTossPaymentsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Get(":paymentKey")
+    @core.TypedRoute.Get(":paymentKey")
     public at(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedParam("paymentKey", "string") paymentKey: string,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
         return FakeTossStorage.payments.get(paymentKey);
@@ -67,10 +67,10 @@ export class FakeTossPaymentsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post("key-in")
+    @core.TypedRoute.Post("key-in")
     public key_in(
         @nest.Request() request: express.Request,
-        @helper.TypedBody() input: ITossCardPayment.IStore,
+        @core.TypedBody() input: ITossCardPayment.IStore,
     ): ITossCardPayment {
         FakeTossUserAuth.authorize(request);
 
@@ -119,11 +119,11 @@ export class FakeTossPaymentsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post(":paymentKey")
+    @core.TypedRoute.Post(":paymentKey")
     public approve(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("paymentKey", "string") paymentKey: string,
-        @helper.TypedBody() input: ITossPayment.IApproval,
+        @core.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedBody() input: ITossPayment.IApproval,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
 
@@ -153,11 +153,11 @@ export class FakeTossPaymentsController {
      *
      * @author Jeongho Nam - https://github.com/samchon
      */
-    @helper.TypedRoute.Post(":paymentKey/cancel")
+    @core.TypedRoute.Post(":paymentKey/cancel")
     public cancel(
         @nest.Request() request: express.Request,
-        @helper.TypedParam("paymentKey", "string") paymentKey: string,
-        @helper.TypedBody() input: ITossPaymentCancel.IStore,
+        @core.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedBody() input: ITossPaymentCancel.IStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
 

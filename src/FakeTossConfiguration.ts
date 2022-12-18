@@ -1,9 +1,8 @@
 const EXTENSION = __filename.substr(-2);
 if (EXTENSION === "js") require("source-map-support").install();
 
-import helper from "nestia-helper";
+import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-import { IEncryptionPassword } from "nestia-fetcher";
 
 import { DomainError } from "tstl/exception/DomainError";
 import { InvalidArgument } from "tstl/exception/InvalidArgument";
@@ -19,14 +18,6 @@ export namespace TossFakeConfiguration {
      * @internal
      */
     export const ASSETS = __dirname + "/../assets";
-
-    /**
-     * @internal
-     */
-    export const ENCRYPTION_PASSWORD: Readonly<IEncryptionPassword> = {
-        key: "szngncCKO7wZTuayfhkRNlBfI5Nl5N88",
-        iv: "M0Yvmgrk58GBvUAt",
-    };
 
     /**
      * 임시 저장소의 레코드 만료 기한.
@@ -74,21 +65,21 @@ export namespace TossFakeConfiguration {
 }
 
 // CUSTOM EXCEPTIION CONVERSION
-helper.ExceptionManager.insert(
+core.ExceptionManager.insert(
     OutOfRange,
     (exp) => new nest.NotFoundException(exp.message),
 );
-helper.ExceptionManager.insert(
+core.ExceptionManager.insert(
     InvalidArgument,
     (exp) => new nest.ConflictException(exp.message),
 );
-helper.ExceptionManager.insert(
+core.ExceptionManager.insert(
     DomainError,
     (exp) => new nest.UnprocessableEntityException(exp.message),
 );
 
 // TRACE EXACT SERVER INTERNAL ERROR
-helper.ExceptionManager.insert(
+core.ExceptionManager.insert(
     Error,
     (exp) =>
         new nest.InternalServerErrorException({
