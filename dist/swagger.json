@@ -3363,6 +3363,8 @@
     }
   },
   "security": [
-    "basic"
+    {
+      "basic": []
+    }
   ]
 }
