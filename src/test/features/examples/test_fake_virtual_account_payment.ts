@@ -6,7 +6,7 @@ import { ITossPayment } from "../../../api/structures/ITossPayment";
 import { ITossPaymentWebhook } from "../../../api/structures/ITossPaymentWebhook";
 import { ITossVirtualAccountPayment } from "../../../api/structures/ITossVirtualAccountPayment";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
-import { RandomGenerator } from "../../../utils/RandomGenerator";
+import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";
 
 export async function test_fake_virtual_account_payment(): Promise<ITossVirtualAccountPayment> {
@@ -30,11 +30,11 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
             // 가싱 계좌 정보
             method: "virtual-account",
             bank: "신한",
-            customerName: RandomGenerator.name(3),
+            customerName: AdvancedRandomGenerator.name(3),
 
             // 주문 정보
             orderId: v4(),
-            orderName: RandomGenerator.name(8),
+            orderName: AdvancedRandomGenerator.name(8),
             amount: 25_000,
 
             // 고의 미승인 처리
