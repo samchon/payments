@@ -1,6 +1,6 @@
 {
   "name": "fake-toss-payments-server",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Fake toss-payments server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "devDependencies": {
+    "@nestia/e2e": "^0.1.1",
     "@nestia/sdk": "^1.0.7",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/atob": "^2.1.2",

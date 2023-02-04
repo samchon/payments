@@ -1,10 +1,10 @@
+import { TestValidator } from "@nestia/e2e";
 import { v4 } from "uuid";
 
 import toss from "../../../api";
 import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
 import { TestConnection } from "../../internal/TestConnection";
-import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
 
 export async function test_fake_card_payment(): Promise<void> {
     //----
@@ -40,31 +40,31 @@ export async function test_fake_card_payment(): Promise<void> {
     );
 
     // 잘못된 `orderId` 로 승인 처리시, 불발됨
-    await exception_must_be_thrown(
+    await TestValidator.error(
         "VirtualTossPaymentsController.approve() with wrong orderId",
-        () =>
-            toss.functional.v1.payments.approve(
-                TestConnection.FAKE,
-                payment.paymentKey,
-                {
-                    orderId: "wrong-order-id",
-                    amount: payment.totalAmount,
-                },
-            ),
+    )(() =>
+        toss.functional.v1.payments.approve(
+            TestConnection.FAKE,
+            payment.paymentKey,
+            {
+                orderId: "wrong-order-id",
+                amount: payment.totalAmount,
+            },
+        ),
     );
 
     // 잘못된 결제 금액으로 승인 처리시, 마찬가지로 불발됨
-    await exception_must_be_thrown(
+    await TestValidator.error(
         "VirtualTossPaymentsController.approve() with wrong amount",
-        () =>
-            toss.functional.v1.payments.approve(
-                TestConnection.FAKE,
-                payment.paymentKey,
-                {
-                    orderId: payment.orderId,
-                    amount: payment.totalAmount - 100,
-                },
-            ),
+    )(() =>
+        toss.functional.v1.payments.approve(
+            TestConnection.FAKE,
+            payment.paymentKey,
+            {
+                orderId: payment.orderId,
+                amount: payment.totalAmount - 100,
+            },
+        ),
     );
 
     // 정확한 `orderId` 와 주문 금액을 입력해야 비로소 승인 처리된다.

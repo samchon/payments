@@ -1,3 +1,4 @@
+import { ArrayUtil, TestValidator } from "@nestia/e2e";
 import { randint } from "tstl/algorithm/random";
 import { IPointer } from "tstl/functional/IPointer";
 import { sleep_for } from "tstl/thread/global";
@@ -9,10 +10,8 @@ import toss from "../../../api";
 import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
 import { ITossPayment } from "../../../api/structures/ITossPayment";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
-import { ArrayUtil } from "../../../utils/ArrayUtil";
-import { RandomGenerator } from "../../../utils/RandomGenerator";
+import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";
-import { exception_must_be_thrown } from "../../internal/exception_must_be_thrown";
 
 export async function test_storage_expiration_time(): Promise<void> {
     const time: number = TossFakeConfiguration.EXPIRATION.time;
@@ -26,7 +25,7 @@ export async function test_storage_expiration_time(): Promise<void> {
             {
                 method: "card",
 
-                cardNumber: RandomGenerator.cardNumber(),
+                cardNumber: AdvancedRandomGenerator.cardNumber(),
                 cardExpirationYear: randint(2022, 2028).toString(),
                 cardExpirationMonth: randint(1, 12).toString(),
 
@@ -38,13 +37,13 @@ export async function test_storage_expiration_time(): Promise<void> {
 
         await sleep_for(1);
         if (previous.value !== null)
-            await exception_must_be_thrown(
+            await TestValidator.error(
                 "VirtualTossStorageProvider.payments.get() for expired record",
-                () =>
-                    toss.functional.v1.payments.at(
-                        TestConnection.FAKE,
-                        previous.value!,
-                    ),
+            )(() =>
+                toss.functional.v1.payments.at(
+                    TestConnection.FAKE,
+                    previous.value!,
+                ),
             );
         await toss.functional.v1.payments.at(
             TestConnection.FAKE,

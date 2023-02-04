@@ -340,33 +340,16 @@ Also, as `typia` performs AOT (Ahead of Time) compilation skill, its performance
 [![Build Status](https://github.com/samchon/typia/workflows/build/badge.svg)](https://github.com/samchon/nestia/actions?query=workflow%3Abuild)
 [![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/nestia/wiki)
 
-[Nestia](https://github.com/samchon/nestia) is a helper library set for `NestJS`, supporting below features:
+[Nestia](https://github.com/samchon/nestia) is a set of helper libraries for `NestJS`, supporting below features:
 
-  - [`@nestia/core`](https://github.com/samchon/nestia#nestiacore): **15,000x times faster** validation decorator using `typia`
-  - [`@nestia/sdk`](https://github.com/samchon/nestia#nestiasdk): evolved **SDK** and **Swagger** generator for `@nestia/core`
+  - `@nestia/core`: **15,000x times faster** validation decorators
+  - `@nestia/sdk`: evolved **SDK** and **Swagger** generators
+    - SDK (Software Development Kit)
+      - interaction library for client developers
+      - almost same with [tRPC](https://github.com/trpc/trpc)
   - `nestia`: just CLI (command line interface) tool
 
-```typescript
-import { Controller } from "@nestjs/common";
-import { TypedBody, TypedRoute } from "@nestia/core";
-
-import { IBbsArticle } from "@bbs-api/structures/IBbsArticle";
-
-@Controller("bbs/articles")
-export class BbsArticlesController {
-    /** 
-     * Store a new content.
-     * 
-     * @param inupt Content to store
-     * @returns Newly archived article
-     */
-    @TypedRoute.Post() // 10x faster and safer JSON.stringify()
-    public async store(
-        // super-fast validator
-        @TypedBody() input: IBbsArticle.IStore
-    ): Promise<IBbsArticle>;
-}
-```
+![nestia-sdk-demo](https://user-images.githubusercontent.com/13158709/215004990-368c589d-7101-404e-b81b-fbc936382f05.gif)
 
 `@nestia/core` 는 [typia](https://github.com/samchon/typia) 를 이용, NestJS 의 validation 의 속도를 최대 15,000 배 가속해주는 라이브러리이다. 
 

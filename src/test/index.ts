@@ -1,7 +1,8 @@
+import { DynamicExecutor } from "@nestia/e2e";
+
 import { FakeTossBackend } from "../FakeTossBackend";
 import { TossFakeConfiguration } from "../FakeTossConfiguration";
 import toss from "../api";
-import { DynamicImportIterator } from "./internal/DynamicImportIterator";
 
 async function main(): Promise<void> {
     // BACKEND SERVER
@@ -14,19 +15,21 @@ async function main(): Promise<void> {
     };
 
     // DO TEST
-    const exceptions: Error[] = await DynamicImportIterator.force(
-        __dirname + "/features",
-        {
-            prefix: "test",
-            parameters: [connection],
-        },
-    );
+    const report: DynamicExecutor.IReport = await DynamicExecutor.validate({
+        prefix: "test",
+        parameters: () => [connection],
+    })(__dirname + "/features");
 
     // TERMINATE
     await backend.close();
 
-    if (exceptions.length === 0) console.log("Success");
-    else {
+    const exceptions: Error[] = report.executions
+        .filter((exec) => exec.error !== null)
+        .map((exec) => exec.error!);
+    if (exceptions.length === 0) {
+        console.log(`Total elapsed time: ${report.time.toLocaleString()} ms`);
+        console.log("Success");
+    } else {
         for (const exp of exceptions) console.log(exp);
         process.exit(-1);
     }
