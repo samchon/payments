@@ -3,9 +3,10 @@ import * as nest from "@nestjs/common";
 import express from "express";
 import { v4 } from "uuid";
 
-import { ITossBilling } from "../api/structures/ITossBilling";
-import { ITossCardPayment } from "../api/structures/ITossCardPayment";
-import { ITossPayment } from "../api/structures/ITossPayment";
+import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
+import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+
 import { FakeTossPaymentProvider } from "../providers/FakeTossPaymentProvider";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";

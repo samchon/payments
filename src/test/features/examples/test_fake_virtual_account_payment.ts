@@ -1,10 +1,11 @@
 import { assert } from "typia";
 import { v4 } from "uuid";
 
-import toss from "../../../api";
-import { ITossPayment } from "../../../api/structures/ITossPayment";
-import { ITossPaymentWebhook } from "../../../api/structures/ITossPaymentWebhook";
-import { ITossVirtualAccountPayment } from "../../../api/structures/ITossVirtualAccountPayment";
+import toss from "toss-payments-server-api";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
+import { ITossVirtualAccountPayment } from "toss-payments-server-api/lib/structures/ITossVirtualAccountPayment";
+
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";

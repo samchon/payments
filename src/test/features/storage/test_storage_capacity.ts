@@ -4,10 +4,11 @@ import { IPointer } from "tstl/functional/IPointer";
 import { assert } from "typia";
 import { v4 } from "uuid";
 
+import toss from "toss-payments-server-api";
+import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+
 import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
-import toss from "../../../api";
-import { ITossBilling } from "../../../api/structures/ITossBilling";
-import { ITossPayment } from "../../../api/structures/ITossPayment";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";

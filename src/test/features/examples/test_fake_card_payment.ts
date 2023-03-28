@@ -1,9 +1,10 @@
 import { TestValidator } from "@nestia/e2e";
 import { v4 } from "uuid";
 
-import toss from "../../../api";
-import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
-import { ITossPayment } from "../../../api/structures/ITossPayment";
+import toss from "toss-payments-server-api";
+import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+
 import { TestConnection } from "../../internal/TestConnection";
 
 export async function test_fake_card_payment(): Promise<void> {

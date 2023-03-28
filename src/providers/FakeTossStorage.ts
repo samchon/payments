@@ -1,8 +1,9 @@
+import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
+import { ITossCashReceipt } from "toss-payments-server-api/lib/structures/ITossCashReceipt";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
+
 import { TossFakeConfiguration } from "../FakeTossConfiguration";
-import { ITossBilling } from "../api/structures/ITossBilling";
-import { ITossCashReceipt } from "../api/structures/ITossCashReceipt";
-import { ITossPayment } from "../api/structures/ITossPayment";
-import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
 import { VolatileMap } from "../utils/VolatileMap";
 
 export namespace FakeTossStorage {

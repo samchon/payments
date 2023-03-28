@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-import { ITossPayment } from "../api/structures/ITossPayment";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
 export namespace FakeTossPaymentProvider {
     export function get_common_props(input: ITossPayment.IStore) {
