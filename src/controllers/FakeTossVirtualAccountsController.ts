@@ -56,7 +56,10 @@ export class FakeTossVirtualAccountsController {
                 accountType: "일반",
                 bank: input.bank,
                 customerName: input.customerName,
-                dueDate: DateUtil.add_days(new Date(), 3).toString(),
+                dueDate: DateUtil.to_string(
+                    DateUtil.add_days(new Date(), 3),
+                    false,
+                ),
                 expired: false,
                 settlementStatus: "INCOMPLETED",
                 refundStatus: "NONE",

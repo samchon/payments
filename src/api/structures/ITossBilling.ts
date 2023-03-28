@@ -33,12 +33,16 @@ export interface ITossBilling
     cardCompany: string;
 
     /**
-     * 카드 번호
+     * 카드 번호.
+     * 
+     * @pattern [0-9]{16}
      */
     cardNumber: string;
 
     /**
-     * 인증 일시
+     * 인증 일시.
+     * 
+     * @format date-time
      */
     authenticatedAt: string;
 }
@@ -52,16 +56,22 @@ export namespace ITossBilling
     {
         /**
          * 카드 번호.
+         * 
+         * @pattern [0-9]{16}
          */
         cardNumber: string;
 
         /**
          * 카드 만료 년도 (2 자리).
+         * 
+         * @pattern \d{2}
          */
         cardExpirationYear: string;
 
         /**
          * 카드 만료 월 (2 자리).
+         * 
+         * @pattern ^(0[1-9]|1[012])$
          */
         cardExpirationMonth: string;
 
@@ -74,6 +84,8 @@ export namespace ITossBilling
          * 고객의 생년월일.
          * 
          * 표기 형식 YYMMDD.
+         * 
+         * @pattern ^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$
          */
         customerBirthday: string;
 
@@ -84,6 +96,8 @@ export namespace ITossBilling
 
         /**
          * 고객의 이메일.
+         * 
+         * @format email
          */
         customerEmail?: string;
 

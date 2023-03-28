@@ -32,11 +32,15 @@ export interface ITossCashReceipt
 
     /**
      * 현금 영수증 승인 일시.
+     * 
+     * @format date-time
      */
     approvedAt: string;
 
     /**
      * 현금 영수증 취소 일시.
+     * 
+     * @format date-time
      */
     canceledAt: string | null;
 
@@ -116,8 +120,8 @@ export namespace ITossCashReceipt
         /**
          * 현금 영수증 발급을 위한 개인 식별 번호.
          * 
-         * 현금 영수증의 종류에 따라 휴대폰 번호나 주민등록번호 또는 사업자등록번호 및 카드 
-         * 번호를 입력할 수 있다.
+         * 현금 영수증의 종류에 따라 휴대폰 번호나 주민등록번호 또는 사업자등록번호 및 
+         * 카드 번호를 입력할 수 있다.
          */
         registrationNumber: string;
 

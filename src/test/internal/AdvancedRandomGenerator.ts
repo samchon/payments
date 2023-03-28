@@ -11,6 +11,6 @@ export const AdvancedRandomGenerator = {
     cardNumber: () =>
         new Array(4)
             .fill("")
-            .map(() => RandomGenerator.digit(1, 4))
+            .map(() => randint(0, 9999).toString().padStart(4, "0"))
             .join(""),
 };

@@ -44,7 +44,7 @@ export class FakeTossBillingController {
             customerKey: input.customerKey,
             cardCompany: "신한",
             cardNumber: input.cardNumber,
-            authenticatedAt: new Date().toString(),
+            authenticatedAt: new Date().toISOString(),
         };
         FakeTossStorage.billings.set(billing.billingKey, [billing, input]);
         return billing;
@@ -120,7 +120,7 @@ export class FakeTossBillingController {
             method: "카드",
             type: "NORMAL",
             status: "DONE",
-            approvedAt: new Date().toString(),
+            approvedAt: new Date().toISOString(),
             discount: null,
             card: {
                 company: "신한카드",
@@ -132,7 +132,8 @@ export class FakeTossBillingController {
                 cardType: "신용",
                 ownerType: "개인",
                 acquireStatus: "READY",
-                receiptUrl: "somewhere-receipt-url",
+                receiptUrl:
+                    "https://github.com/samchon/fake-toss-payments-server",
             },
             easyPay: null,
         };

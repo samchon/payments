@@ -106,6 +106,8 @@ export namespace ITossVirtualAccountPayment
         
         /**
          * 입금 기한.
+         * 
+         * @format date
          */
         dueDate: string;
         

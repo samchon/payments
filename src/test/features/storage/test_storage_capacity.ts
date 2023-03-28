@@ -31,9 +31,11 @@ export async function test_storage_capacity(): Promise<void> {
                     customerKey,
                     customerBirthday: "880311",
                     cardNumber: AdvancedRandomGenerator.cardNumber(),
-                    cardExpirationYear: randint(2022, 2028).toString(),
-                    cardExpirationMonth: randint(1, 12).toString(),
-                    cardPassword: AdvancedRandomGenerator.digit(1, 4),
+                    cardExpirationYear: randint(22, 28).toString(),
+                    cardExpirationMonth: randint(1, 12)
+                        .toString()
+                        .padStart(2, "0"),
+                    cardPassword: randint(0, 9999).toString().padStart(4, "0"),
                 },
             );
         assert(billing);

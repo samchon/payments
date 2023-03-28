@@ -49,9 +49,9 @@ export class FakeTossCashReceiptsController {
             type: input.type,
             receiptKey: v4(),
             approvalNumber: v4(),
-            approvedAt: new Date().toString(),
+            approvedAt: new Date().toISOString(),
             canceledAt: null,
-            receiptUrl: "https://github.com/samchon/tgrid",
+            receiptUrl: "https://github.com/samchon/fake-toss-payments-server",
             __paymentKey: payment.paymentKey,
         };
         FakeTossStorage.cash_receipts.set(receipt.receiptKey, receipt);
@@ -94,7 +94,7 @@ export class FakeTossCashReceiptsController {
         );
 
         // CHANGE
-        receipt.canceledAt = new Date().toString();
+        receipt.canceledAt = new Date().toISOString();
         payment.cashReceipt = null;
 
         return receipt;
