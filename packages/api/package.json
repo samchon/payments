@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "dependencies": {
-    "@nestia/fetcher": "^1.0.0"
+    "@nestia/fetcher": "^1.0.1"
   },
   "keywords": [
     "toss",

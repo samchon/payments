@@ -1,10 +1,11 @@
 import { assert } from "typia";
 import { v4 } from "uuid";
 
-import toss from "../../../api";
-import { ITossBilling } from "../../../api/structures/ITossBilling";
-import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
-import { ITossPayment } from "../../../api/structures/ITossPayment";
+import toss from "toss-payments-server-api";
+import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
+import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+
 import { TestConnection } from "../../internal/TestConnection";
 
 export async function test_fake_billing_payment(): Promise<void> {

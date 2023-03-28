@@ -5,10 +5,11 @@ import { sleep_for } from "tstl/thread/global";
 import { assert } from "typia";
 import { v4 } from "uuid";
 
+import toss from "toss-payments-server-api";
+import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+
 import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
-import toss from "../../../api";
-import { ITossCardPayment } from "../../../api/structures/ITossCardPayment";
-import { ITossPayment } from "../../../api/structures/ITossPayment";
 import { FakeTossStorage } from "../../../providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";

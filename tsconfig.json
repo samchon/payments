@@ -44,7 +44,10 @@
     /* Module Resolution Options */
     // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
-    // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    "paths": {
+      "toss-payments-server-api": ["./src/api"],
+      "toss-payments-server-api/lib/*": ["./src/api/*"],
+    },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
     // "types": [],                           /* Type declaration files to be included in compilation. */
@@ -69,7 +72,8 @@
     "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
     "plugins": [
       { "transform": "@nestia/core/lib/transform" },
-      { "transform": "typia/lib/transform" }
+      { "transform": "typia/lib/transform" },
+      { "transform": "typescript-transform-paths" }
     ]
   },
   "include": ["src"]

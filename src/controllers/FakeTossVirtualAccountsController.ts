@@ -3,7 +3,8 @@ import * as nest from "@nestjs/common";
 import express from "express";
 import { v4 } from "uuid";
 
-import { ITossVirtualAccountPayment } from "../api/structures/ITossVirtualAccountPayment";
+import { ITossVirtualAccountPayment } from "toss-payments-server-api/lib/structures/ITossVirtualAccountPayment";
+
 import { FakeTossPaymentProvider } from "../providers/FakeTossPaymentProvider";
 import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";

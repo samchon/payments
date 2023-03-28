@@ -2,8 +2,9 @@ import core from "@nestia/core";
 import * as nest from "@nestjs/common";
 import express from "express";
 
-import { ITossPayment } from "../api/structures/ITossPayment";
-import { ITossPaymentWebhook } from "../api/structures/ITossPaymentWebhook";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
+
 import { FakeTossStorage } from "../providers/FakeTossStorage";
 import { FakeTossUserAuth } from "../providers/FakeTossUserAuth";
 import { FakeTossWebhookProvider } from "../providers/FakeTossWebhookProvider";
