@@ -144,7 +144,7 @@ async function main(): Promise<void>
 고로 토스 페이먼츠와 연동하는 TypeScript 기반 백엔드 서버를 개발함에 있어, 가짜 토스 페이먼츠 서버 `fake-toss-payments-server` 는 직접 이용치 않더라도, 실제 토스 페이먼츠 서버와의 연동을 위하여, SDK 라이브러리만큼은 반드시 설치하기를 권장하는 바이다.
 
 ```bash
-npm install --save fake-toss-payments-server-api
+npm install --save toss-payments-server-api
 ```
 
 먼저 위 명령어를 통하여, 귀하의 TypeScript 기반 백엔드 서버에, 토스 페이먼츠 서버와의 연동을 위한 SDK 라이브러리를 설치한다. 그리고 가짜 토스 페이먼츠 서버 `fake-toss-payments-server` 를 구동하여, 이 것과의 결제 연동이 제대로 이루어지는 지 충분할 만큼의 검증을 한다. 테스트 자동화 프로그램을 제작, 이 안정성이 상시 검증될 수 있다면 더더욱 좋다. 
