@@ -37,6 +37,8 @@ export namespace ITossCardPayment
 
         /**
          * 카드 번호.
+         * 
+         * @pattern [0-9]{16}
          */
         number: string;
 
@@ -83,6 +85,8 @@ export namespace ITossCardPayment
 
         /**
          * 영수증 URL.
+         * 
+         * @format url
          */
         receiptUrl: string;
     }
@@ -110,16 +114,22 @@ export namespace ITossCardPayment
         
         /**
          * 카드 번호.
+         * 
+         * @pattern [0-9]{16}
          */
         cardNumber: string;
 
         /**
          * 카드 만료 년도 (2 자리).
+         * 
+         * @pattern \d{2}
          */
         cardExpirationYear: string;
 
         /**
          * 카드 만료 월 (2 자리).
+         * 
+         * @pattern ^(0[1-9]|1[012])$
          */
         cardExpirationMonth: string;
 
@@ -161,11 +171,15 @@ export namespace ITossCardPayment
          * 고객의 생년월일.
          * 
          * 표기 형식 YYMMDD.
+         * 
+         * @pattern ^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$
          */
         customerBirthday?: string;
 
         /**
          * 고객의 이메일.
+         * 
+         * @format email
          */
         customerEmail?: string;
 

@@ -80,7 +80,7 @@ export class FakeTossPaymentsController {
             type: "NORMAL",
             status: input.__approved !== false ? "DONE" : "IN_PROGRESS",
             approvedAt:
-                input.__approved !== false ? new Date().toString() : null,
+                input.__approved !== false ? new Date().toISOString() : null,
             discount: null,
             card: {
                 company: "신한카드",
@@ -92,7 +92,8 @@ export class FakeTossPaymentsController {
                 cardType: "신용",
                 ownerType: "개인",
                 acquireStatus: "READY",
-                receiptUrl: "somewhere-receipt-url",
+                receiptUrl:
+                    "https://github.com/samchon/fake-toss-payments-server",
             },
             easyPay: null,
         };
@@ -133,7 +134,7 @@ export class FakeTossPaymentsController {
         else if (payment.totalAmount !== input.amount)
             throw new nest.UnprocessableEntityException("Wrong price.");
 
-        payment.approvedAt = new Date().toString();
+        payment.approvedAt = new Date().toISOString();
         if (payment.method !== "가상계좌" && payment.method !== "계좌이체")
             payment.status = "DONE";
         return payment;
@@ -170,7 +171,7 @@ export class FakeTossPaymentsController {
                 taxFreeAmount: input.taxFreeAmount || 0,
                 taxAmount: input.taxAmount || 0,
                 refundableAmount: input.refundableAmount || payment.totalAmount,
-                canceledAt: new Date().toString(),
+                canceledAt: new Date().toISOString(),
             },
         ];
 

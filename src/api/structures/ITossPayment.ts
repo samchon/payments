@@ -160,11 +160,15 @@ export namespace ITossPayment
 
         /**
          * 결제 요청 일시.
+         * 
+         * @format date-time
          */
         requestedAt: string;
 
         /**
          * 결제 승인 일시.
+         * 
+         * @format date-time
          */
         approvedAt: string | null;
 

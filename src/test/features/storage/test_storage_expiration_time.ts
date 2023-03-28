@@ -27,8 +27,8 @@ export async function test_storage_expiration_time(): Promise<void> {
                 method: "card",
 
                 cardNumber: AdvancedRandomGenerator.cardNumber(),
-                cardExpirationYear: randint(2022, 2028).toString(),
-                cardExpirationMonth: randint(1, 12).toString(),
+                cardExpirationYear: randint(22, 28).toString(),
+                cardExpirationMonth: randint(1, 12).toString().padStart(2, "0"),
 
                 orderId: v4(),
                 amount: 1000,

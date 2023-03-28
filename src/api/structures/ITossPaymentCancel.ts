@@ -32,6 +32,8 @@ export interface ITossPaymentCancel
 
     /**
      * 취소 일시.
+     * 
+     * @format date-time
      */
     canceledAt: string;
 }
@@ -71,6 +73,8 @@ export namespace ITossPaymentCancel
 
             /**
              * 계좌 번호.
+             * 
+             * @pattern ^[0-9]{0,20}$
              */
             accountNumber: string;
 
