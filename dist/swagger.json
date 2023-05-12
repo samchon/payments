@@ -1,10 +1,5 @@
 {
   "openapi": "3.0.1",
-  "info": {
-    "version": "1.0.2",
-    "title": "Toss Payments API",
-    "description": "Built by [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server) with [nestia](https://github.com/samchon/nestia)"
-  },
   "servers": [
     {
       "url": "http://localhost:30771",
@@ -15,6 +10,11 @@
       "description": "real"
     }
   ],
+  "info": {
+    "version": "1.2.0",
+    "title": "Toss Payments API",
+    "description": "Built by [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server) with [nestia](https://github.com/samchon/nestia)"
+  },
   "paths": {
     "/v1/billing/authorizations/card": {
       "post": {
