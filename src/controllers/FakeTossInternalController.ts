@@ -1,6 +1,6 @@
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-import express from "express";
+import * as fastify from "fastify";
 
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
@@ -52,7 +52,7 @@ export class FakeTossInternalController {
      */
     @core.TypedRoute.Get(":paymentKey/deposit")
     public deposit(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("paymentKey", "string") paymentKey: string,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);

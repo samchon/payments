@@ -8,8 +8,8 @@ import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
-import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
-import { FakeTossStorage } from "../../../providers/FakeTossStorage";
+import { TossFakeConfiguration } from "../../../src/FakeTossConfiguration";
+import { FakeTossStorage } from "../../../src/providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";
 

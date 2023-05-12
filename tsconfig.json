@@ -76,5 +76,5 @@
       { "transform": "typescript-transform-paths" }
     ]
   },
-  "include": ["src"]
+  "include": ["src", "test/features"]
 }

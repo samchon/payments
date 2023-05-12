@@ -9,8 +9,8 @@ import toss from "toss-payments-server-api";
 import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
-import { TossFakeConfiguration } from "../../../FakeTossConfiguration";
-import { FakeTossStorage } from "../../../providers/FakeTossStorage";
+import { TossFakeConfiguration } from "../../../src/FakeTossConfiguration";
+import { FakeTossStorage } from "../../../src/providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";
 
@@ -20,7 +20,7 @@ export async function test_storage_expiration_time(): Promise<void> {
     TossFakeConfiguration.EXPIRATION.time = 1;
 
     const previous: IPointer<string | null> = { value: null };
-    await ArrayUtil.asyncRepeat(10, async () => {
+    await ArrayUtil.asyncRepeat(10)(async () => {
         const payment: ITossPayment = await toss.functional.v1.payments.key_in(
             TestConnection.FAKE,
             {

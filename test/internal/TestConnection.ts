@@ -1,7 +1,7 @@
 import btoa from "btoa";
 
-import { TossFakeConfiguration } from "../../FakeTossConfiguration";
-import toss from "../../api";
+import { TossFakeConfiguration } from "../../src/FakeTossConfiguration";
+import toss from "../../src/api";
 
 export namespace TestConnection {
     export const FAKE: toss.IConnection = {

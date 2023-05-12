@@ -17,12 +17,13 @@
     - 자료 구조: [src/api/structures/ITossBilling.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/api/structures/ITossBilling.ts)
     - API 함수: [src/api/functional/payments/index.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/api/functional/payments/index.ts)
     - 예제 코드
-      - 간편 결제: [test_fake_billing_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_billing_payment.ts)
-      - 카드 결제: [test_fake_card_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_card_payment.ts)
-      - 가상 계좌 결제: [test_fake_virtual_account_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_virtual_account_payment.ts)
-      - 현금 영수증 발행: [test_fake_cash_receipt.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_cash_receipt.ts)
+      - 간편 결제: [test_fake_billing_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_billing_payment.ts)
+      - 카드 결제: [test_fake_card_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_card_payment.ts)
+      - 가상 계좌 결제: [test_fake_virtual_account_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_virtual_account_payment.ts)
+      - 현금 영수증 발행: [test_fake_cash_receipt.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_cash_receipt.ts)
   - 연관 저장소
-    - [samchon/netia](https://github.com/samchon/nestia) - Automatic SDK generator for the NestJS
+    - [samchon/typia](https://github.com/samchon/typia) - Superfast runtime validator
+    - [samchon/netia](https://github.com/samchon/nestia) - SDK generator for the NestJS
     - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server): 가짜 아임포트 서버
 
 ```typescript
@@ -159,10 +160,10 @@ npm install --save toss-payments-server-api
     - 자료 구조: [src/api/structures/ITossBilling.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/api/structures/ITossBilling.ts)
     - API 함수: [src/api/functional/payments/index.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/api/functional/payments/index.ts)
     - 예제 코드
-      - 간편 결제: [test_fake_billing_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_billing_payment.ts)
-      - 카드 결제: [test_fake_card_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_card_payment.ts)
-      - 가상 계좌 결제: [test_fake_virtual_account_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_virtual_account_payment.ts)
-      - 현금 영수증 발행: [test_fake_cash_receipt.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features/examples/test_fake_cash_receipt.ts)
+      - 간편 결제: [test_fake_billing_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_billing_payment.ts)
+      - 카드 결제: [test_fake_card_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_card_payment.ts)
+      - 가상 계좌 결제: [test_fake_virtual_account_payment.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_virtual_account_payment.ts)
+      - 현금 영수증 발행: [test_fake_cash_receipt.ts](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features/examples/test_fake_cash_receipt.ts)
   - 연관 저장소
     - [samchon/netia](https://github.com/samchon/nestia) - Automatic SDK generator for the NestJS
     - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server): 가짜 아임포트 서버
@@ -241,9 +242,9 @@ npm run test
 
 새로이 개발할 [API 인터페이스 정의](#31-api-interface-definition)를 마쳤다면, 그 다음에 할 일은 바로 해당 API 에 대한 유즈케이스 시나리오를 세우고 이를 테스트 자동화 프로그램을 만들어, 향후 [Main Program](#33-main-program) 제작시 이를 상시 검증할 수 있는 수단을 구비해두는 것이다 - TDD (Test Driven Development).
 
-그리고 본 프로젝트는 `npm run test` 라는 명령어를 통하여, 서버 프로그램의 일체 기능 및 정책 등에 대하여 검증할 수 있는, 테스트 자동화 프로그램을 구동해 볼 수 있다. 만약 새로운 테스트 로직을 추가하고 싶다면, [src/test/features](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features) 폴더의 적당한 위치에 새 `ts` 파일을 하나 만들고, `test_` 로 시작하는 함수를 하나 만들어 그 안에 테스트 로직을 작성한 후, 이를 `export` 심벌을 이용하여 배출해주면 된다. 이에 대한 자세한 내용은 [src/test/features](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features) 폴더에 들어있는 모든 `ts` 파일 하나 하나가 다 좋은 예제 격이니, 이를 참고하도록 한다.
+그리고 본 프로젝트는 `npm run test` 라는 명령어를 통하여, 서버 프로그램의 일체 기능 및 정책 등에 대하여 검증할 수 있는, 테스트 자동화 프로그램을 구동해 볼 수 있다. 만약 새로운 테스트 로직을 추가하고 싶다면, [test/features](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features) 폴더의 적당한 위치에 새 `ts` 파일을 하나 만들고, `test_` 로 시작하는 함수를 하나 만들어 그 안에 테스트 로직을 작성한 후, 이를 `export` 심벌을 이용하여 배출해주면 된다. 이에 대한 자세한 내용은 [test/features](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features) 폴더에 들어있는 모든 `ts` 파일 하나 하나가 다 좋은 예제 격이니, 이를 참고하도록 한다.
 
-참고로 `npm run test` 명령어를 실행할 때마다, [src/test/features](https://github1s.com/samchon/fake-toss-payments-server/blob/master/src/test/features) 폴더 내에 등록된 모든 프로그램을 실행하게 된다. 하지만 이런 식의 *entire level test* 가 매번 필요한 것은 아닐 것이다. 새로 개발한 기능이 극히 일부 요소에 국한되어 부분 테스트가 필요하다면, 아래 옵션값을 참조, `--include` 나 `--exclude` 태그를 사용하여 시간을 절약하도록 하자.
+참고로 `npm run test` 명령어를 실행할 때마다, [test/features](https://github1s.com/samchon/fake-toss-payments-server/blob/master/test/features) 폴더 내에 등록된 모든 프로그램을 실행하게 된다. 하지만 이런 식의 *entire level test* 가 매번 필요한 것은 아닐 것이다. 새로 개발한 기능이 극히 일부 요소에 국한되어 부분 테스트가 필요하다면, 아래 옵션값을 참조, `--include` 나 `--exclude` 태그를 사용하여 시간을 절약하도록 하자.
 
   - options
     - `include`: 특정 단어가 포함된 테스트 함수만 실행
@@ -289,22 +290,20 @@ npm run test
 >> ```
 
 ### 4.2. Typia
+![Typia Logo](https://typia.io/logo.png)
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/typia/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/typia.svg)](https://www.npmjs.com/package/typia)
 [![Downloads](https://img.shields.io/npm/dm/typia.svg)](https://www.npmjs.com/package/typia)
 [![Build Status](https://github.com/samchon/typia/workflows/build/badge.svg)](https://github.com/samchon/typia/actions?query=workflow%3Abuild)
-[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/typia/wiki)
+[![Guide Documents](https://img.shields.io/badge/guide-documents-forestgreen)](https://typia.io/docs/)
 
 ```typescript
 // RUNTIME VALIDATORS
-export function is<T>(input: unknown | T): input is T; // returns boolean
-export function assert<T>(input: unknown | T): T; // throws TypeGuardError
-export function validate<T>(input: unknown | T): IValidation<T>; // detailed
-
-// STRICT VALIDATORS
-export function equals<T>(input: unknown | T): input is T;
-export function assertEquals<T>(input: unknown | T): T;
-export function validateEquals<T>(input: unknown | T): IValidation<T>;
+export function is<T>(input: unknown): input is T; // returns boolean
+export function assert<T>(input: unknown): T; // throws TypeGuardError
+export function validate<T>(input: unknown): IValidation<T>; // detailed
+export const customValidators: CustomValidatorMap; // can add custom validators
 
 // JSON
 export function application<T>(): IJsonApplication; // JSON schema
@@ -312,49 +311,45 @@ export function assertParse<T>(input: string): T; // type safe parser
 export function assertStringify<T>(input: T): string; // safe and faster
     // +) isParse, validateParse 
     // +) stringify, isStringify, validateStringify
+
+// MISC
+export function random<T>(g?: Partial<IRandomGenerator>): Primitive<T>;
 ```
 
-[typia](https://github.com/samchon/typia) is a transformer library of TypeScript, supporting below features:
+Typia is a transformer library supporting below features:
 
   - Super-fast Runtime Validators
   - Safe JSON parse and fast stringify functions
   - JSON schema generator
+  - Random data generator
 
-All functions in `typia` require **only one line**. You don't need any extra dedication like JSON schema definitions or decorator function calls. Just call `typia` function with only one line like `typia.assert<T>(input)`.
-
-Also, as `typia` performs AOT (Ahead of Time) compilation skill, its performance is much faster than other competitive libaries. For an example, when comparing validate function `is()` with other competitive libraries, `typia` is maximum **15,000x times faster** than `class-validator`.
-
-[typia](https://github.com/samchon/typia) 는 AOT 컴파일을 이용, (NestJS 가 사용하는 `class-validator` 대비) 최대 15,000 배 빠른 runtime validation 을 행할 수 있는 라이브러리이다. 
-아래 [@nestia/core](https://github.com/samchon/nestia) 와 함께 결합하여 사용하면, 귀하의 NestJS 백엔드 서버의 퍼포먼스, 특히 최대 동시 접속 가능자 수를 크게 향상시킬 수 있다.
-
-그리고 [typia](https://github.com/samchon/typia) 는 종래의 NestJS 및 `class-validator` 처럼 TypeScript 타입과 별도로 JSON 스키마 정의해야 한다거나, 별도의 DTO 클래스를 만들며 decorator 함수들을 호출해야 하는 등의 부가 작업이 일절 필요없다. 때문에 퍼포먼스 향상 외에도, 작업 효율 또한 크게 진전을 이룰 수 있다.
-
-![Is Function Benchmark](https://github.com/samchon/typia/raw/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz/images/is.svg)
-
-> Measured on [Intel i5-1135g7, Surface Pro 8](https://github.com/samchon/typia/tree/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz#is)
+> **Note**
+> 
+> - **Only one line** required, with pure TypeScript type
+> - Runtime validator is **20,000x faster** than `class-validator`
+> - JSON serialization is **200x faster** than `class-transformer`
 
 ### 4.3. Nestia
+![Nestia Logo](https://nestia.io/logo.png)
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/nestia/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/@nestia/core.svg)](https://www.npmjs.com/package/@nestia/core)
-[![Downloads](https://img.shields.io/npm/dm/@nestia/core.svg)](https://www.npmjs.com/package/@nestia/core)
-[![Build Status](https://github.com/samchon/typia/workflows/build/badge.svg)](https://github.com/samchon/nestia/actions?query=workflow%3Abuild)
-[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/nestia/wiki)
+[![Downloads](https://img.shields.io/npm/dm/nestia.svg)](https://www.npmjs.com/package/nestia)
+[![Build Status](https://github.com/samchon/nestia/workflows/build/badge.svg)](https://github.com/samchon/nestia/actions?query=workflow%3Abuild)
+[![Guide Documents](https://img.shields.io/badge/guide-documents-forestgreen)](https://nestia.io/docs/)
 
-[Nestia](https://github.com/samchon/nestia) is a set of helper libraries for `NestJS`, supporting below features:
+Nestia is a set of helper libraries for NestJS, supporting below features:
 
-  - `@nestia/core`: **15,000x times faster** validation decorators
-  - `@nestia/sdk`: evolved **SDK** and **Swagger** generators
-    - SDK (Software Development Kit)
-      - interaction library for client developers
-      - almost same with [tRPC](https://github.com/trpc/trpc)
+  - `@nestia/core`: super-fast decorators
+  - `@nestia/sdk`:
+    - SDK generator for clients
+    - Swagger generator evolved than ever
+    - Automatic E2E test functions generator
   - `nestia`: just CLI (command line interface) tool
 
-![nestia-sdk-demo](https://user-images.githubusercontent.com/13158709/215004990-368c589d-7101-404e-b81b-fbc936382f05.gif)
-
-`@nestia/core` 는 [typia](https://github.com/samchon/typia) 를 이용, NestJS 의 validation 의 속도를 최대 15,000 배 가속해주는 라이브러리이다. 
-
-그리고 `@nestia/sdk` 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수준에서 분석, 클라이언트가 사용할 수 있는 SDK 라이브러리를 빌드해주는 프로그램이다. `fake-toss-payments-server` 가 토스 페이먼츠의 API 를 흉내내어 만든 가짜 서버인데, 뜬금 클라이언트가 진짜 토스 페이먼츠와의 연동에 사용할 수 있는 SDK 라이브러리가 함께 제공되는 이유도 바로 이 덕분이다.
-
-때문에 만일 귀하가 토스 페이먼츠와 연동하는 백엔드 서버를 개발 중이라면, `fake-toss-payments-server` 뿐 아니라 [Nestia](https://github.com/samchon/nestia) 도 함께 사용해보는 것이 어떠한가? 첫째로 validation 속도를 가속하여 동시 접속자 수를 크게 늘릴 수 있다. 그리고 귀하의 백엔드 서버 또한 `fake-toss-payments-server` 처럼 클라이언트 개발자가 사용할 수 있는 SDK 라이브러리를 자동으로 빌드하여 배포할 수 있으니, 백엔드 개발자와 프론트 개발자가 보다 편하게 연동 작업을 행할 수 있다.
-
-물론 `@nestia/sdk` 는 Swagger 또한 빌드할 수 있는데, 본 저장소 `fake-toss-payments-server` 로부터 빌드된 Swagger 가 토스 페이먼츠의 공식 개발자 가이드 문서보다 일목요연하고 체계도가 높은것도, 바로 이러한 이유 때문이다. Swagger 내지 가이드 문서를 사람이 손으로 작성하는게 아니라, `@nestia/sdk` 가 컴파일러 수준에서 백엔드 소스 코드와 DTO 를 분석하여 자동으로 생성해주었기 때문인 것.
+> **Note**
+> 
+> - **Only one line** required, with pure TypeScript type
+> - Runtime validator is **20,000x faster** than `class-validator`
+> - JSON serialization is **200x faster** than `class-transformer`
+> - SDK is similar with [tRPC](https://trpc.io), but much advanced

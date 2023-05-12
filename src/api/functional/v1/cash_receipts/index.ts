@@ -97,6 +97,6 @@ export namespace cancel
 
     export function path(receiptKey: string): string
     {
-        return `/v1/cash-receipts/${encodeURIComponent(receiptKey)}/cancel`;
+        return `/v1/cash-receipts/${encodeURIComponent(receiptKey ?? "null")}/cancel`;
     }
 }

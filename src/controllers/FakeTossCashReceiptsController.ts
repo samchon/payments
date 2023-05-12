@@ -1,6 +1,6 @@
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-import express from "express";
+import * as fastify from "fastify";
 import { v4 } from "uuid";
 
 import { ITossCashReceipt } from "toss-payments-server-api/lib/structures/ITossCashReceipt";
@@ -21,7 +21,7 @@ export class FakeTossCashReceiptsController {
      */
     @core.TypedRoute.Post()
     public store(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedBody() input: ITossCashReceipt.IStore,
     ): ITossCashReceipt {
         // VALIADTE
@@ -78,7 +78,7 @@ export class FakeTossCashReceiptsController {
      */
     @core.TypedRoute.Post(":receiptKey/cancel")
     public cancel(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("receiptKey", "string") receiptKey: string,
         @core.TypedBody() input: ITossCashReceipt.ICancel,
     ): ITossCashReceipt {

@@ -1,6 +1,6 @@
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-import express from "express";
+import * as fastify from "fastify";
 import { v4 } from "uuid";
 
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
@@ -32,7 +32,7 @@ export class FakeTossBillingController {
      */
     @core.TypedRoute.Post("authorizations/card")
     public store(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedBody() input: ITossBilling.IStore,
     ): ITossBilling {
         FakeTossUserAuth.authorize(request);
@@ -68,7 +68,7 @@ export class FakeTossBillingController {
      */
     @core.TypedRoute.Post("authorizations/:billingKey")
     public at(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("billingKey", "string") billingKey: string,
         @core.TypedBody() input: ITossBilling.ICustomerKey,
     ): ITossBilling {
@@ -106,7 +106,7 @@ export class FakeTossBillingController {
      */
     @core.TypedRoute.Post(":billingKey")
     public pay(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("billingKey", "string") billingKey: string,
         @core.TypedBody() input: ITossBilling.IPaymentStore,
     ): ITossPayment {

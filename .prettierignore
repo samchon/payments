@@ -4,3 +4,4 @@ node_modules
 packages
 src/api
 README.md
+tsconfig.json

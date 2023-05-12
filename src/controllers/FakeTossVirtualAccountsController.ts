@@ -1,6 +1,6 @@
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-import express from "express";
+import * as fastify from "fastify";
 import { v4 } from "uuid";
 
 import { ITossVirtualAccountPayment } from "toss-payments-server-api/lib/structures/ITossVirtualAccountPayment";
@@ -39,7 +39,7 @@ export class FakeTossVirtualAccountsController {
      */
     @core.TypedRoute.Post()
     public store(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedBody() input: ITossVirtualAccountPayment.IStore,
     ): ITossVirtualAccountPayment {
         FakeTossUserAuth.authorize(request);

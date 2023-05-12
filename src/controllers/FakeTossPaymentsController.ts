@@ -1,6 +1,6 @@
 import core from "@nestia/core";
 import * as nest from "@nestjs/common";
-import express from "express";
+import * as fastify from "fastify";
 
 import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
@@ -34,7 +34,7 @@ export class FakeTossPaymentsController {
      */
     @core.TypedRoute.Get(":paymentKey")
     public at(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("paymentKey", "string") paymentKey: string,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
@@ -69,7 +69,7 @@ export class FakeTossPaymentsController {
      */
     @core.TypedRoute.Post("key-in")
     public key_in(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedBody() input: ITossCardPayment.IStore,
     ): ITossCardPayment {
         FakeTossUserAuth.authorize(request);
@@ -122,7 +122,7 @@ export class FakeTossPaymentsController {
      */
     @core.TypedRoute.Post(":paymentKey")
     public approve(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("paymentKey", "string") paymentKey: string,
         @core.TypedBody() input: ITossPayment.IApproval,
     ): ITossPayment {
@@ -156,7 +156,7 @@ export class FakeTossPaymentsController {
      */
     @core.TypedRoute.Post(":paymentKey/cancel")
     public cancel(
-        @nest.Request() request: express.Request,
+        @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("paymentKey", "string") paymentKey: string,
         @core.TypedBody() input: ITossPaymentCancel.IStore,
     ): ITossPayment {
