@@ -1,8 +1,8 @@
 import { DynamicExecutor } from "@nestia/e2e";
 
-import { FakeTossBackend } from "../FakeTossBackend";
-import { TossFakeConfiguration } from "../FakeTossConfiguration";
-import toss from "../api";
+import { FakeTossBackend } from "../src/FakeTossBackend";
+import { TossFakeConfiguration } from "../src/FakeTossConfiguration";
+import toss from "../src/api";
 
 async function main(): Promise<void> {
     // BACKEND SERVER

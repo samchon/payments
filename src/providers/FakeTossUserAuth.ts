@@ -1,11 +1,11 @@
 import * as nest from "@nestjs/common";
 import atob from "atob";
-import express from "express";
+import * as fastify from "fastify";
 
 import { TossFakeConfiguration } from "../FakeTossConfiguration";
 
 export namespace FakeTossUserAuth {
-    export function authorize(request: express.Request): void {
+    export function authorize(request: fastify.FastifyRequest): void {
         let token: string | undefined = request.headers.authorization;
         if (token === undefined)
             throw new nest.ForbiddenException("No authorization token exists.");

@@ -61,6 +61,6 @@ export namespace at
 
     export function path(billingKey: string): string
     {
-        return `/v1/billing/authorizations/${encodeURIComponent(billingKey)}`;
+        return `/v1/billing/authorizations/${encodeURIComponent(billingKey ?? "null")}`;
     }
 }

@@ -6,7 +6,7 @@ import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayme
 import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
 import { ITossVirtualAccountPayment } from "toss-payments-server-api/lib/structures/ITossVirtualAccountPayment";
 
-import { FakeTossStorage } from "../../../providers/FakeTossStorage";
+import { FakeTossStorage } from "../../../src/providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../../internal/TestConnection";
 
