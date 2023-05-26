@@ -12,9 +12,9 @@ import type { ITossCashReceipt } from "./../../../structures/ITossCashReceipt";
 /**
  * 현금 영수증 발행하기.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param input 입력 정보
  * @returns 현금 영수증 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossCashReceiptsController.store()
@@ -57,10 +57,10 @@ export namespace store
 /**
  * 현금 영수증 취소하기.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param receiptKey 현금 영수증의 {@link ITossCashReceipt.receiptKey}
  * @param input 취소 입력 정보
  * @returns 취소된 현금 영수증 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossCashReceiptsController.cancel()

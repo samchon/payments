@@ -14,15 +14,14 @@ import type { ITossPayment } from "./../../structures/ITossPayment";
  * 웹훅 이벤트 더미 리스너.
  * 
  * `internal.webhook` 은 실제 토스 페이먼츠의 결제 서버에는 존재하지 않는 API 로써,
- * `fake-toss-payments-server` 의 {@link  Configuration.WEBHOOK_URL } 에 아무런 URL 을
+ * `fake-toss-payments-server` 의 {@link Configuration.WEBHOOK_URL} 에 아무런 URL 을
  * 설정하지 않으면, `fake-toss-payments-server` 로부터 발생하는 모든 종류의 웹훅
  * 이벤트는 이 곳으로 전달되어 무의미하게 사라진다.
  * 
  * 따라서 `fake-toss-payments-server` 를 사용하여 토스 페이먼츠 서버와의 연동을 미리
- * 검증코자 할 때는, 반드시 {@link  Configuration.WEBHOOK_URL } 를 설정하여 웹훅
+ * 검증코자 할 때는, 반드시 {@link Configuration.WEBHOOK_URL} 를 설정하여 웹훅
  * 이벤트가 귀하의 백엔드 서버로 제대로 전달되도록 하자.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param input 웹훅 이벤트 정보
  * @author Jeongho Nam - https://github.com/samchon
  * 
@@ -73,9 +72,9 @@ export namespace webhook
  * 입금을 하고, 그에 따라 토스 페이먼츠 서버에서 webhook 이벤트가 발생하여 이를 귀하의
  * 백엔드 서버로 전송하는 일련의 상황을 테스트하기 위한 함수인 셈이다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param paymentKey 대상 가상 계좌 결제 정보의 {@link ITossPayment.paymentKey}
  * @returns 입금 완료된 가상 꼐좌 결제 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossInternalController.deposit()

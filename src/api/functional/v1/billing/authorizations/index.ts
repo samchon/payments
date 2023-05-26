@@ -21,10 +21,10 @@ export * as card from "./card";
  * 경우, 그래서 프론트 어플리케이션이 귀하의 백엔드 서버에 `billingKey` 와` customerKey`
  * 만을 전달해주어, 상세 간편 결제 수단 정보가 필요할 때 사용한다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param billingKey 대상 정보의 {@link ITossBilling.billingKey}
  * @param input 고객 식별자 키
  * @returns 간편 결제 수단 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossBillingController.at()
