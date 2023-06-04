@@ -16,6 +16,7 @@ async function main(): Promise<void> {
 
     // DO TEST
     const report: DynamicExecutor.IReport = await DynamicExecutor.validate({
+        extension: __filename.substr(-2),
         prefix: "test",
         parameters: () => [connection],
     })(__dirname + "/features");

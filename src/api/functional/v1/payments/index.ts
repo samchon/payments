@@ -25,9 +25,9 @@ import type { ITossPaymentCancel } from "./../../../structures/ITossPaymentCance
  * 서버가 현재의 `payments.at` 을 통하여 해당 결제 정보를 확인하고, {@link approve} 를
  * 호출하여 직접 승인하기 전까지, 해당 결제는 확정되지 않으니, 이 점에 유의하기 바란다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
  * @returns 결제 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossPaymentsController.at()
@@ -75,13 +75,13 @@ export namespace at
  * 
  * 만일 귀하가 `fake-toss-payments-server` 를 이용하여 결제를 시뮬레이션하는 경우라면,
  * 결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.IStore.__approved} 내지
- * {@link  ITossVirtualAccountPayment.IStore.__approved } 를 `false` 로 함으로써, 별도
+ * {@link ITossVirtualAccountPayment.IStore.__approved} 를 `false` 로 함으로써, 별도
  * 승인이 필요한 이러한 상황을 시뮬레이션 할 수 있다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param paymentKey 대상 결제의 {@link ITossPayment.paymentKey}
  * @param input 주문 정보 확인
  * @returns 승인된 결제 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossPaymentsController.approve()
@@ -143,9 +143,9 @@ export namespace approve
  * 페이먼츠의 결제 창을 이용한 카드 결제의 경우, 별도의 {@link approve} 가 필요한
  * 상황을 시뮬레이션 할 수 있다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param input 카드 결제 입력 정보
  * @returns 카드 결제 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossPaymentsController.key_in()
@@ -193,10 +193,10 @@ export namespace key_in
  * 결제 취소 입력 정보 {@link ITossPaymentCancel.IStore} 에는 취소 사유를 비롯하여,
  * 고객에게 환불해 줄 금액과 부가세 및 필요시 환불 계좌 정보 등을 입력하게 되어있다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
  * @param input 취소 입력 정보
  * @returns 취소된 결제 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossPaymentsController.cancel()

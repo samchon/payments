@@ -21,9 +21,9 @@ import type { ITossBilling } from "./../../../../../structures/ITossBilling";
  * 실 서비스에서 호출하는 일은 없을 것이다. 다만, 고객이 간편 결제 카드를 등록하는
  * 상황을 시뮬레이션하기 위하여, 테스트 자동화 프로그램 수준에서 사용될 수는 있다.
  * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
  * @param input 간편 결제 카드 등록 정보
  * @returns 간편 결제 카드 정보
+ * 
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossBillingController.store()
