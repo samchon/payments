@@ -11,11 +11,8 @@ jobs:
       - name: Install Backend-Server
         run: npm install
 
-      - name: Compile Backend-Server
+      - name: Compile Program
         run: npm run build
-
-      - name: Compile Test Program
-        run: npm run build:test
       
       - name: Test Backend-Server
         run: npm run test -- --include=fake
