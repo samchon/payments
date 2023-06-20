@@ -68,7 +68,7 @@
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^2.5.13",
-    "typia": "^4.0.9",
+    "typia": "^4.1.0",
     "uuid": "^9.0.0"
   },
   "keywords": [
