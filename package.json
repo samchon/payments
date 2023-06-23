@@ -40,7 +40,7 @@
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "devDependencies": {
     "@nestia/e2e": "^0.3.4",
-    "@nestia/sdk": "^1.4.0",
+    "@nestia/sdk": "^1.4.3",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/atob": "^2.1.2",
     "@types/btoa": "^1.2.3",
