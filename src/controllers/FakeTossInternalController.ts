@@ -48,6 +48,7 @@ export class FakeTossInternalController {
      * @param paymentKey 대상 가상 계좌 결제 정보의 {@link ITossPayment.paymentKey}
      * @returns 입금 완료된 가상 꼐좌 결제 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Get(":paymentKey/deposit")

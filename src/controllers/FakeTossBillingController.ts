@@ -28,6 +28,7 @@ export class FakeTossBillingController {
      * @param input 간편 결제 카드 등록 정보
      * @returns 간편 결제 카드 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post("authorizations/card")
@@ -64,6 +65,7 @@ export class FakeTossBillingController {
      * @param input 고객 식별자 키
      * @returns 간편 결제 수단 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post("authorizations/:billingKey")
@@ -102,6 +104,7 @@ export class FakeTossBillingController {
      * @param input 주문 정보
      * @returns 결제 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post(":billingKey")
