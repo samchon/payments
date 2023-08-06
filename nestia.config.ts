@@ -5,7 +5,7 @@ const NESTIA_CONFIG: INestiaConfig = {
     output: "src/api",
     simulate: true,
     swagger: {
-        output: "dist/swagger.json",
+        output: "packages/api/swagger.json",
         info: {
             title: "Toss Payments API",
             description:

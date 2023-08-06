@@ -65,6 +65,7 @@ export class FakeTossPaymentsController {
      * @param input 카드 결제 입력 정보
      * @returns 카드 결제 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post("key-in")
@@ -118,6 +119,7 @@ export class FakeTossPaymentsController {
      * @param input 주문 정보 확인
      * @returns 승인된 결제 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post(":paymentKey")
@@ -152,6 +154,7 @@ export class FakeTossPaymentsController {
      * @param input 취소 입력 정보
      * @returns 취소된 결제 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post(":paymentKey/cancel")

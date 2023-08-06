@@ -16,7 +16,7 @@ import type { ITossCashReceipt } from "./../../../structures/ITossCashReceipt";
  * 
  * @param input 입력 정보
  * @returns 현금 영수증 정보
- * 
+ * @security basic
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossCashReceiptsController.store()
@@ -27,13 +27,19 @@ export async function store(
     connection: IConnection,
     input: store.Input,
 ): Promise<store.Output> {
-    return !!(connection.simulate ?? (connection as any).random)
+    return !!connection.simulate
         ? store.simulate(
               connection,
               input,
           )
         : Fetcher.fetch(
-              connection,
+              {
+                  ...connection,
+                  headers: {
+                      ...(connection.headers ?? {}),
+                      "Content-Type": "application/json",
+                  },
+              },
               store.ENCRYPTED,
               store.METHOD,
               store.path(),
@@ -67,9 +73,9 @@ export namespace store {
         });
         assert.body(() => typia.assert(input));
         return random(
-            typeof (connection.simulate ?? (connection as any).random) === 'object'
-            && (connection.simulate ?? (connection as any).random) !== null
-                ? (connection.simulate ?? (connection as any).random)
+            typeof connection.simulate === 'object' &&
+                connection.simulate !== null
+                ? connection.simulate
                 : undefined
         );
     }
@@ -81,7 +87,7 @@ export namespace store {
  * @param receiptKey 현금 영수증의 {@link ITossCashReceipt.receiptKey}
  * @param input 취소 입력 정보
  * @returns 취소된 현금 영수증 정보
- * 
+ * @security basic
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossCashReceiptsController.cancel()
@@ -93,14 +99,20 @@ export async function cancel(
     receiptKey: string,
     input: cancel.Input,
 ): Promise<cancel.Output> {
-    return !!(connection.simulate ?? (connection as any).random)
+    return !!connection.simulate
         ? cancel.simulate(
               connection,
               receiptKey,
               input,
           )
         : Fetcher.fetch(
-              connection,
+              {
+                  ...connection,
+                  headers: {
+                      ...(connection.headers ?? {}),
+                      "Content-Type": "application/json",
+                  },
+              },
               cancel.ENCRYPTED,
               cancel.METHOD,
               cancel.path(receiptKey),
@@ -136,9 +148,9 @@ export namespace cancel {
         assert.param("receiptKey")("string")(() => typia.assert(receiptKey));
         assert.body(() => typia.assert(input));
         return random(
-            typeof (connection.simulate ?? (connection as any).random) === 'object'
-            && (connection.simulate ?? (connection as any).random) !== null
-                ? (connection.simulate ?? (connection as any).random)
+            typeof connection.simulate === 'object' &&
+                connection.simulate !== null
+                ? connection.simulate
                 : undefined
         );
     }

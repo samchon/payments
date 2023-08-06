@@ -17,6 +17,7 @@ export class FakeTossCashReceiptsController {
      * @param input 입력 정보
      * @returns 현금 영수증 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post()
@@ -74,6 +75,7 @@ export class FakeTossCashReceiptsController {
      * @param input 취소 입력 정보
      * @returns 취소된 현금 영수증 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post(":receiptKey/cancel")
