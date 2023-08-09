@@ -27,14 +27,14 @@ export * as authorizations from "./authorizations";
  * 대한 별도의 설계 및 개발이 필요하니, 이 점을 염두에 두기 바란다.
  * 
  * 더하여 `billing.pay` 는 철저히 귀사 백엔드 서버의 판단 아래 호출되는 API 함수인지라,
- * 이를 통하여 이루어지는 결제는 일절 {@link payments.approve} 가 필요 없다. 다만
+ * 이를 통하여 이루어지는 결제는 일절 {@link payments.approve } 가 필요 없다. 다만
  * `billing.pay` 는 이처럼 부차적인 승인 과정 필요없이 그 즉시로 결제가 완성되니, 이를
  * 호출하는 상황에 대하여 세심히 주의를 기울일 필요가 있다
  * 
  * @param billingKey 간편 결제에 등록한 수단의 {@link ITossBilling.billingKey}
  * @param input 주문 정보
  * @returns 결제 정보
- * 
+ * @security basic
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossBillingController.pay()
@@ -46,14 +46,20 @@ export async function pay(
     billingKey: string,
     input: pay.Input,
 ): Promise<pay.Output> {
-    return !!(connection.simulate ?? (connection as any).random)
+    return !!connection.simulate
         ? pay.simulate(
               connection,
               billingKey,
               input,
           )
         : Fetcher.fetch(
-              connection,
+              {
+                  ...connection,
+                  headers: {
+                      ...(connection.headers ?? {}),
+                      "Content-Type": "application/json",
+                  },
+              },
               pay.ENCRYPTED,
               pay.METHOD,
               pay.path(billingKey),
@@ -89,9 +95,9 @@ export namespace pay {
         assert.param("billingKey")("string")(() => typia.assert(billingKey));
         assert.body(() => typia.assert(input));
         return random(
-            typeof (connection.simulate ?? (connection as any).random) === 'object'
-            && (connection.simulate ?? (connection as any).random) !== null
-                ? (connection.simulate ?? (connection as any).random)
+            typeof connection.simulate === 'object' &&
+                connection.simulate !== null
+                ? connection.simulate
                 : undefined
         );
     }

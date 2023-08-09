@@ -26,7 +26,7 @@ export * as card from "./card";
  * @param billingKey 대상 정보의 {@link ITossBilling.billingKey}
  * @param input 고객 식별자 키
  * @returns 간편 결제 수단 정보
- * 
+ * @security basic
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossBillingController.at()
@@ -38,14 +38,20 @@ export async function at(
     billingKey: string,
     input: at.Input,
 ): Promise<at.Output> {
-    return !!(connection.simulate ?? (connection as any).random)
+    return !!connection.simulate
         ? at.simulate(
               connection,
               billingKey,
               input,
           )
         : Fetcher.fetch(
-              connection,
+              {
+                  ...connection,
+                  headers: {
+                      ...(connection.headers ?? {}),
+                      "Content-Type": "application/json",
+                  },
+              },
               at.ENCRYPTED,
               at.METHOD,
               at.path(billingKey),
@@ -81,9 +87,9 @@ export namespace at {
         assert.param("billingKey")("string")(() => typia.assert(billingKey));
         assert.body(() => typia.assert(input));
         return random(
-            typeof (connection.simulate ?? (connection as any).random) === 'object'
-            && (connection.simulate ?? (connection as any).random) !== null
-                ? (connection.simulate ?? (connection as any).random)
+            typeof connection.simulate === 'object' &&
+                connection.simulate !== null
+                ? connection.simulate
                 : undefined
         );
     }

@@ -35,6 +35,7 @@ export class FakeTossVirtualAccountsController {
      * @param input 가상 결제 신청 정보.
      * @returns 가상 계좌 결제 정보
      *
+     * @security basic
      * @author Jeongho Nam - https://github.com/samchon
      */
     @core.TypedRoute.Post()

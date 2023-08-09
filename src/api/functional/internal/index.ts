@@ -16,12 +16,12 @@ import type { ITossPayment } from "./../../structures/ITossPayment";
  * 웹훅 이벤트 더미 리스너.
  * 
  * `internal.webhook` 은 실제 토스 페이먼츠의 결제 서버에는 존재하지 않는 API 로써,
- * `fake-toss-payments-server` 의 {@link Configuration.WEBHOOK_URL} 에 아무런 URL 을
+ * `fake-toss-payments-server` 의 {@link Configuration.WEBHOOK_URL } 에 아무런 URL 을
  * 설정하지 않으면, `fake-toss-payments-server` 로부터 발생하는 모든 종류의 웹훅
  * 이벤트는 이 곳으로 전달되어 무의미하게 사라진다.
  * 
  * 따라서 `fake-toss-payments-server` 를 사용하여 토스 페이먼츠 서버와의 연동을 미리
- * 검증코자 할 때는, 반드시 {@link Configuration.WEBHOOK_URL} 를 설정하여 웹훅
+ * 검증코자 할 때는, 반드시 {@link Configuration.WEBHOOK_URL } 를 설정하여 웹훅
  * 이벤트가 귀하의 백엔드 서버로 제대로 전달되도록 하자.
  * 
  * @param input 웹훅 이벤트 정보
@@ -35,13 +35,19 @@ export async function webhook(
     connection: IConnection,
     input: webhook.Input,
 ): Promise<void> {
-    return !!(connection.simulate ?? (connection as any).random)
+    return !!connection.simulate
         ? webhook.simulate(
               connection,
               input,
           )
         : Fetcher.fetch(
-              connection,
+              {
+                  ...connection,
+                  headers: {
+                      ...(connection.headers ?? {}),
+                      "Content-Type": "application/json",
+                  },
+              },
               webhook.ENCRYPTED,
               webhook.METHOD,
               webhook.path(),
@@ -87,7 +93,7 @@ export namespace webhook {
  * 
  * @param paymentKey 대상 가상 계좌 결제 정보의 {@link ITossPayment.paymentKey}
  * @returns 입금 완료된 가상 꼐좌 결제 정보
- * 
+ * @security basic
  * @author Jeongho Nam - https://github.com/samchon
  * 
  * @controller FakeTossInternalController.deposit()
@@ -98,7 +104,7 @@ export async function deposit(
     connection: IConnection,
     paymentKey: string,
 ): Promise<deposit.Output> {
-    return !!(connection.simulate ?? (connection as any).random)
+    return !!connection.simulate
         ? deposit.simulate(
               connection,
               paymentKey,
@@ -136,9 +142,9 @@ export namespace deposit {
         });
         assert.param("paymentKey")("string")(() => typia.assert(paymentKey));
         return random(
-            typeof (connection.simulate ?? (connection as any).random) === 'object'
-            && (connection.simulate ?? (connection as any).random) !== null
-                ? (connection.simulate ?? (connection as any).random)
+            typeof connection.simulate === 'object' &&
+                connection.simulate !== null
+                ? connection.simulate
                 : undefined
         );
     }
