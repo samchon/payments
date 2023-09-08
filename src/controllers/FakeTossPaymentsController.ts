@@ -35,7 +35,7 @@ export class FakeTossPaymentsController {
     @core.TypedRoute.Get(":paymentKey")
     public at(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedParam("paymentKey") paymentKey: string,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
         return FakeTossStorage.payments.get(paymentKey);
@@ -125,7 +125,7 @@ export class FakeTossPaymentsController {
     @core.TypedRoute.Post(":paymentKey")
     public approve(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedParam("paymentKey") paymentKey: string,
         @core.TypedBody() input: ITossPayment.IApproval,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
@@ -160,7 +160,7 @@ export class FakeTossPaymentsController {
     @core.TypedRoute.Post(":paymentKey/cancel")
     public cancel(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedParam("paymentKey") paymentKey: string,
         @core.TypedBody() input: ITossPaymentCancel.IStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);

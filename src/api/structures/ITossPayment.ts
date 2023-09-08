@@ -1,3 +1,4 @@
+import { tags } from "typia";
 import { ITossBilling } from "./ITossBilling";
 import { ITossCardPayment } from "./ITossCardPayment";
 import { ITossCashReceipt } from "./ITossCashReceipt";
@@ -160,17 +161,13 @@ export namespace ITossPayment
 
         /**
          * 결제 요청 일시.
-         * 
-         * @format date-time
          */
-        requestedAt: string;
+        requestedAt: string & tags.Format<"date-time">;
 
         /**
          * 결제 승인 일시.
-         * 
-         * @format date-time
          */
-        approvedAt: string | null;
+        approvedAt: null | (string & tags.Format<"date-time">);
 
         /**
          * 결제 취소 내역.

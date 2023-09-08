@@ -71,7 +71,7 @@ export class FakeTossBillingController {
     @core.TypedRoute.Post("authorizations/:billingKey")
     public at(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("billingKey", "string") billingKey: string,
+        @core.TypedParam("billingKey") billingKey: string,
         @core.TypedBody() input: ITossBilling.ICustomerKey,
     ): ITossBilling {
         FakeTossUserAuth.authorize(request);
@@ -110,7 +110,7 @@ export class FakeTossBillingController {
     @core.TypedRoute.Post(":billingKey")
     public pay(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("billingKey", "string") billingKey: string,
+        @core.TypedParam("billingKey") billingKey: string,
         @core.TypedBody() input: ITossBilling.IPaymentStore,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);

@@ -1,3 +1,5 @@
+import { tags } from "typia";
+
 /**
  * 현금 영수증 정보.
  * 
@@ -32,17 +34,13 @@ export interface ITossCashReceipt
 
     /**
      * 현금 영수증 승인 일시.
-     * 
-     * @format date-time
      */
-    approvedAt: string;
+    approvedAt: string & tags.Format<"date-time">;
 
     /**
      * 현금 영수증 취소 일시.
-     * 
-     * @format date-time
      */
-    canceledAt: string | null;
+    canceledAt: null | (string & tags.Format<"date-time">);
 
     /**
      * 영수증 URL.

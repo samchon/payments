@@ -1,6 +1,6 @@
 {
   "name": "toss-payments-server-api",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Toss Payments Server API",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -15,8 +15,8 @@
   },
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "dependencies": {
-    "@nestia/fetcher": "^1.6.5",
-    "typia": "^4.2.3"
+    "@nestia/fetcher": "^2.0.1",
+    "typia": "^5.0.2"
   },
   "keywords": [
     "toss",

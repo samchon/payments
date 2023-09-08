@@ -1,3 +1,5 @@
+import { tags } from "typia";
+
 /**
  * 결제 취소 정보.
  * 
@@ -32,10 +34,8 @@ export interface ITossPaymentCancel
 
     /**
      * 취소 일시.
-     * 
-     * @format date-time
      */
-    canceledAt: string;
+    canceledAt: string & tags.Format<"date-time">;
 }
 export namespace ITossPaymentCancel
 {
@@ -73,10 +73,8 @@ export namespace ITossPaymentCancel
 
             /**
              * 계좌 번호.
-             * 
-             * @pattern ^[0-9]{0,20}$
              */
-            accountNumber: string;
+            accountNumber: string & tags.Pattern<"^[0-9]{0,20}$">;
 
             /**
              * 예금주.
