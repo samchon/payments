@@ -1,3 +1,4 @@
+import { tags } from "typia";
 import { ITossPayment } from "./ITossPayment";
 
 /**
@@ -106,10 +107,8 @@ export namespace ITossVirtualAccountPayment
         
         /**
          * 입금 기한.
-         * 
-         * @format date
          */
-        dueDate: string;
+        dueDate: string & tags.Format<"date">;
         
         /**
          * 가상 계좌 만료 여부.

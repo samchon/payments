@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "1.4.0",
+    "version": "2.0.0",
     "license": {
       "name": "MIT"
     }
@@ -112,10 +112,10 @@
           {
             "name": "billingKey",
             "in": "path",
-            "description": "대상 정보의 ",
             "schema": {
               "type": "string"
             },
+            "description": "대상 정보의 ",
             "required": true
           }
         ],
@@ -176,9 +176,9 @@
                 "text": "ITossBilling.billingKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
                   "textSpan": {
-                    "start": 467,
+                    "start": 500,
                     "length": 19
                   }
                 }
@@ -244,10 +244,10 @@
           {
             "name": "billingKey",
             "in": "path",
-            "description": "간편 결제에 등록한 수단의 ",
             "schema": {
               "type": "string"
             },
+            "description": "간편 결제에 등록한 수단의 ",
             "required": true
           }
         ],
@@ -308,9 +308,9 @@
                 "text": "ITossBilling.billingKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
                   "textSpan": {
-                    "start": 467,
+                    "start": 500,
                     "length": 19
                   }
                 }
@@ -462,10 +462,10 @@
           {
             "name": "receiptKey",
             "in": "path",
-            "description": "현금 영수증의 ",
             "schema": {
               "type": "string"
             },
+            "description": "현금 영수증의 ",
             "required": true
           }
         ],
@@ -526,9 +526,9 @@
                 "text": "ITossCashReceipt.receiptKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossCashReceipt.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossCashReceipt.ts",
                   "textSpan": {
-                    "start": 166,
+                    "start": 199,
                     "length": 19
                   }
                 }
@@ -650,10 +650,10 @@
           {
             "name": "paymentKey",
             "in": "path",
-            "description": "대상 가상 계좌 결제 정보의 ",
             "schema": {
               "type": "string"
             },
+            "description": "대상 가상 계좌 결제 정보의 ",
             "required": true
           }
         ],
@@ -702,9 +702,9 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2449,
+                    "start": 2480,
                     "length": 19
                   }
                 }
@@ -753,10 +753,10 @@
           {
             "name": "paymentKey",
             "in": "path",
-            "description": "결제 정보의 ",
             "schema": {
               "type": "string"
             },
+            "description": "결제 정보의 ",
             "required": true
           }
         ],
@@ -800,9 +800,9 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2449,
+                    "start": 2480,
                     "length": 19
                   }
                 }
@@ -840,10 +840,10 @@
           {
             "name": "paymentKey",
             "in": "path",
-            "description": "대상 결제의 ",
             "schema": {
               "type": "string"
             },
+            "description": "대상 결제의 ",
             "required": true
           }
         ],
@@ -904,9 +904,9 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2449,
+                    "start": 2480,
                     "length": 19
                   }
                 }
@@ -1058,10 +1058,10 @@
           {
             "name": "paymentKey",
             "in": "path",
-            "description": "결제 정보의 ",
             "schema": {
               "type": "string"
             },
+            "description": "결제 정보의 ",
             "required": true
           }
         ],
@@ -1122,9 +1122,9 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2449,
+                    "start": 2480,
                     "length": 19
                   }
                 }
@@ -1277,23 +1277,6 @@
         "properties": {
           "cardNumber": {
             "description": "카드 번호.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "[0-9]{16}"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "[0-9]{16}",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1301,23 +1284,6 @@
           },
           "cardExpirationYear": {
             "description": "카드 만료 년도 (2 자리).",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "\\d{2}"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "\\d{2}",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1325,23 +1291,6 @@
           },
           "cardExpirationMonth": {
             "description": "카드 만료 월 (2 자리).",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "^(0[1-9]|1[012])$"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "^(0[1-9]|1[012])$",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1355,23 +1304,6 @@
           },
           "customerBirthday": {
             "description": "고객의 생년월일.\n\n표기 형식 YYMMDD.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1385,23 +1317,6 @@
           },
           "customerEmail": {
             "description": "고객의 이메일.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "email"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "email",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string",
@@ -1491,23 +1406,6 @@
           },
           "cardNumber": {
             "description": "카드 번호.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "[0-9]{16}"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "[0-9]{16}",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1515,23 +1413,6 @@
           },
           "authenticatedAt": {
             "description": "인증 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1805,23 +1686,6 @@
           },
           "requestedAt": {
             "description": "결제 요청 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1829,23 +1693,6 @@
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -1917,23 +1764,6 @@
           },
           "number": {
             "description": "카드 번호.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "[0-9]{16}"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "[0-9]{16}",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2002,23 +1832,6 @@
           },
           "receiptUrl": {
             "description": "영수증 URL.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "url"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "url",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2093,23 +1906,6 @@
           },
           "canceledAt": {
             "description": "취소 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2314,23 +2110,6 @@
           },
           "requestedAt": {
             "description": "결제 요청 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2338,23 +2117,6 @@
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2567,23 +2329,6 @@
           },
           "requestedAt": {
             "description": "결제 요청 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2591,23 +2336,6 @@
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2827,23 +2555,6 @@
           },
           "requestedAt": {
             "description": "결제 요청 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -2851,23 +2562,6 @@
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3086,23 +2780,6 @@
           },
           "requestedAt": {
             "description": "결제 요청 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3110,23 +2787,6 @@
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3219,23 +2879,6 @@
           },
           "dueDate": {
             "description": "입금 기한.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "date"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3289,7 +2932,14 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ITossCashReceipt.Type"
+            "description": "현금 영수증의 종류.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "enum": [
+              "소득공제",
+              "지출증빙"
+            ]
           },
           "paymentKey": {
             "description": "귀속 결제의 {@link ITossPayment.paymentKey }.",
@@ -3378,23 +3028,6 @@
           },
           "approvedAt": {
             "description": "현금 영수증 승인 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3402,23 +3035,6 @@
           },
           "canceledAt": {
             "description": "현금 영수증 취소 일시.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "datetime"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "date-time",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3555,23 +3171,6 @@
           },
           "cardNumber": {
             "description": "카드 번호.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "[0-9]{16}"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "[0-9]{16}",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3579,23 +3178,6 @@
           },
           "cardExpirationYear": {
             "description": "카드 만료 년도 (2 자리).",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "\\d{2}"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "\\d{2}",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3603,23 +3185,6 @@
           },
           "cardExpirationMonth": {
             "description": "카드 만료 월 (2 자리).",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "^(0[1-9]|1[012])$"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "^(0[1-9]|1[012])$",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
@@ -3663,23 +3228,6 @@
           },
           "customerBirthday": {
             "description": "고객의 생년월일.\n\n표기 형식 YYMMDD.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string",
@@ -3687,23 +3235,6 @@
           },
           "customerEmail": {
             "description": "고객의 이메일.",
-            "x-typia-metaTags": [
-              {
-                "kind": "format",
-                "value": "email"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "format",
-                "text": [
-                  {
-                    "text": "email",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string",
@@ -3847,23 +3378,6 @@
           },
           "accountNumber": {
             "description": "계좌 번호.",
-            "x-typia-metaTags": [
-              {
-                "kind": "pattern",
-                "value": "^[0-9]{0,20}$"
-              }
-            ],
-            "x-typia-jsDocTags": [
-              {
-                "name": "pattern",
-                "text": [
-                  {
-                    "text": "^[0-9]{0,20}$",
-                    "kind": "text"
-                  }
-                ]
-              }
-            ],
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",

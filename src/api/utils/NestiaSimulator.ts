@@ -7,6 +7,7 @@ export namespace NestiaSimulator {
         host: string;
         path: string;
         method: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
+        contentType: string;
     }
 
     export const assert = (props: IProps) => {
@@ -19,17 +20,10 @@ export namespace NestiaSimulator {
     const param =
         (props: IProps) =>
         (name: string) =>
-        (type: string) =>
         <T>(task: () => T): void => {
             validate(
                 (exp) => `URL parameter "${name}" is not ${exp.expected} type.`,
-            )(props)(
-                type === "uuid"
-                    ? uuid(task)
-                    : type === "date"
-                    ? date(task)
-                    : task,
-            );
+            )(props)(task);
         };
 
     const query =
@@ -47,20 +41,6 @@ export namespace NestiaSimulator {
                 props,
             )(task);
 
-    const uuid =
-        <T>(task: () => T) =>
-        () => {
-            const value = task();
-            return typia.assert<IUuid>({ value }).value as T;
-        };
-
-    const date =
-        <T>(task: () => T) =>
-        () => {
-            const value = task();
-            return typia.assert<IDate>({ value }).value as T;
-        };
-
     const validate =
         (message: (exp: typia.TypeGuardError) => string, path?: string) =>
         (props: IProps) =>
@@ -73,6 +53,9 @@ export namespace NestiaSimulator {
                         props.method,
                         props.host + props.path,
                         400,
+                        {
+                            "Content-Type": props.contentType,
+                        },
                         JSON.stringify({
                             method: exp.method,
                             path: path ?? exp.path,
@@ -84,18 +67,4 @@ export namespace NestiaSimulator {
                 throw exp;
             }
         };
-}
-
-interface IUuid {
-    /**
-     * @format uuid
-     */
-    value: string | null;
-}
-
-interface IDate {
-    /**
-     * @format date
-     */
-    value: string | null;
 }

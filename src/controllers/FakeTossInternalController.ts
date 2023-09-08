@@ -54,7 +54,7 @@ export class FakeTossInternalController {
     @core.TypedRoute.Get(":paymentKey/deposit")
     public deposit(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("paymentKey", "string") paymentKey: string,
+        @core.TypedParam("paymentKey") paymentKey: string,
     ): ITossPayment {
         FakeTossUserAuth.authorize(request);
 

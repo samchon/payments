@@ -1,3 +1,5 @@
+import { tags } from "typia";
+
 /**
  * 간편 결제 등록 수단 정보.
  * 
@@ -34,17 +36,13 @@ export interface ITossBilling
 
     /**
      * 카드 번호.
-     * 
-     * @pattern [0-9]{16}
      */
-    cardNumber: string;
+    cardNumber: string & tags.Pattern<"[0-9]{16}">;
 
     /**
      * 인증 일시.
-     * 
-     * @format date-time
      */
-    authenticatedAt: string;
+    authenticatedAt: string & tags.Format<"date-time">;
 }
 export namespace ITossBilling
 {
@@ -56,24 +54,18 @@ export namespace ITossBilling
     {
         /**
          * 카드 번호.
-         * 
-         * @pattern [0-9]{16}
          */
-        cardNumber: string;
+        cardNumber: string & tags.Pattern<"[0-9]{16}">;
 
         /**
          * 카드 만료 년도 (2 자리).
-         * 
-         * @pattern \d{2}
          */
-        cardExpirationYear: string;
+        cardExpirationYear: string & tags.Pattern<"\\d{2}">;
 
         /**
          * 카드 만료 월 (2 자리).
-         * 
-         * @pattern ^(0[1-9]|1[012])$
          */
-        cardExpirationMonth: string;
+        cardExpirationMonth: string & tags.Pattern<"^(0[1-9]|1[012])$">; 
 
         /**
          * 카드 비밀번호.
@@ -84,10 +76,8 @@ export namespace ITossBilling
          * 고객의 생년월일.
          * 
          * 표기 형식 YYMMDD.
-         * 
-         * @pattern ^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$
          */
-        customerBirthday: string;
+        customerBirthday: string & tags.Pattern<"^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$">;
 
         /**
          * 고객의 이름.
@@ -96,10 +86,8 @@ export namespace ITossBilling
 
         /**
          * 고객의 이메일.
-         * 
-         * @format email
          */
-        customerEmail?: string;
+        customerEmail?: string & tags.Format<"email">;
 
         /**
          * 해외카드로 결제하는 경우 3DS 인증 적용을 위해 사용. 

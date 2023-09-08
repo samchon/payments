@@ -81,7 +81,7 @@ export class FakeTossCashReceiptsController {
     @core.TypedRoute.Post(":receiptKey/cancel")
     public cancel(
         @nest.Request() request: fastify.FastifyRequest,
-        @core.TypedParam("receiptKey", "string") receiptKey: string,
+        @core.TypedParam("receiptKey") receiptKey: string,
         @core.TypedBody() input: ITossCashReceipt.ICancel,
     ): ITossCashReceipt {
         // VALIADTE
