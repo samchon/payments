@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "license": {
       "name": "MIT"
     }
@@ -176,7 +176,7 @@
                 "text": "ITossBilling.billingKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
                   "textSpan": {
                     "start": 500,
                     "length": 19
@@ -308,7 +308,7 @@
                 "text": "ITossBilling.billingKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
                   "textSpan": {
                     "start": 500,
                     "length": 19
@@ -526,7 +526,7 @@
                 "text": "ITossCashReceipt.receiptKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossCashReceipt.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossCashReceipt.ts",
                   "textSpan": {
                     "start": 199,
                     "length": 19
@@ -702,7 +702,7 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
                     "start": 2480,
                     "length": 19
@@ -800,7 +800,7 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
                     "start": 2480,
                     "length": 19
@@ -904,7 +904,7 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
                     "start": 2480,
                     "length": 19
@@ -1122,7 +1122,7 @@
                 "text": "ITossPayment.paymentKey",
                 "kind": "linkName",
                 "target": {
-                  "fileName": "C:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
+                  "fileName": "D:/github/samchon/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
                     "start": 2480,
                     "length": 19
@@ -1280,21 +1280,51 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "[0-9]{16}"
+            "pattern": "[0-9]{16}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"[0-9]{16}\">",
+                "kind": "pattern",
+                "value": "[0-9]{16}",
+                "validate": "/[0-9]{16}/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "cardExpirationYear": {
             "description": "카드 만료 년도 (2 자리).",
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "\\d{2}"
+            "pattern": "\\d{2}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{2}\">",
+                "kind": "pattern",
+                "value": "\\d{2}",
+                "validate": "/\\d{2}/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "cardExpirationMonth": {
             "description": "카드 만료 월 (2 자리).",
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "^(0[1-9]|1[012])$"
+            "pattern": "^(0[1-9]|1[012])$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^(0[1-9]|1[012])$\">",
+                "kind": "pattern",
+                "value": "^(0[1-9]|1[012])$",
+                "validate": "/^(0[1-9]|1[012])$/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "cardPassword": {
             "description": "카드 비밀번호.",
@@ -1307,7 +1337,17 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$"
+            "pattern": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$\">",
+                "kind": "pattern",
+                "value": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
+                "validate": "/^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "consumerName": {
             "description": "고객의 이름.",
@@ -1320,7 +1360,19 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "vbv": {
             "$ref": "#/components/schemas/__type"
@@ -1409,14 +1461,36 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "[0-9]{16}"
+            "pattern": "[0-9]{16}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"[0-9]{16}\">",
+                "kind": "pattern",
+                "value": "[0-9]{16}",
+                "validate": "/[0-9]{16}/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "authenticatedAt": {
             "description": "인증 일시.",
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "customerKey": {
             "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
@@ -1689,7 +1763,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
@@ -1697,6 +1783,18 @@
             "x-typia-optional": false,
             "type": "string",
             "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ],
             "nullable": true
           },
           "cancels": {
@@ -1767,7 +1865,17 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "[0-9]{16}"
+            "pattern": "[0-9]{16}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"[0-9]{16}\">",
+                "kind": "pattern",
+                "value": "[0-9]{16}",
+                "validate": "/[0-9]{16}/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "installmentPlanMonths": {
             "description": "할부 개월 수.",
@@ -1835,7 +1943,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "url"
+            "format": "url",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"url\">",
+                "kind": "format",
+                "value": "url",
+                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           }
         },
         "nullable": false,
@@ -1909,7 +2029,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           }
         },
         "nullable": false,
@@ -2113,7 +2245,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
@@ -2121,6 +2265,18 @@
             "x-typia-optional": false,
             "type": "string",
             "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ],
             "nullable": true
           },
           "cancels": {
@@ -2332,7 +2488,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
@@ -2340,6 +2508,18 @@
             "x-typia-optional": false,
             "type": "string",
             "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ],
             "nullable": true
           },
           "cancels": {
@@ -2558,7 +2738,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
@@ -2566,6 +2758,18 @@
             "x-typia-optional": false,
             "type": "string",
             "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ],
             "nullable": true
           },
           "cancels": {
@@ -2783,7 +2987,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "approvedAt": {
             "description": "결제 승인 일시.",
@@ -2791,6 +3007,18 @@
             "x-typia-optional": false,
             "type": "string",
             "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ],
             "nullable": true
           },
           "cancels": {
@@ -2882,7 +3110,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date\">",
+                "kind": "format",
+                "value": "date",
+                "validate": "/^(\\d{4})-(\\d{2})-(\\d{2})$/.test($input)",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "expired": {
             "description": "가상 계좌 만료 여부.",
@@ -3031,7 +3271,19 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "canceledAt": {
             "description": "현금 영수증 취소 일시.",
@@ -3039,6 +3291,18 @@
             "x-typia-optional": false,
             "type": "string",
             "format": "date-time",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"date-time\">",
+                "kind": "format",
+                "value": "date-time",
+                "validate": "!isNaN(new Date($input).getTime())",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ],
             "nullable": true
           },
           "receiptUrl": {
@@ -3174,21 +3438,51 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "[0-9]{16}"
+            "pattern": "[0-9]{16}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"[0-9]{16}\">",
+                "kind": "pattern",
+                "value": "[0-9]{16}",
+                "validate": "/[0-9]{16}/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "cardExpirationYear": {
             "description": "카드 만료 년도 (2 자리).",
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "\\d{2}"
+            "pattern": "\\d{2}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{2}\">",
+                "kind": "pattern",
+                "value": "\\d{2}",
+                "validate": "/\\d{2}/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "cardExpirationMonth": {
             "description": "카드 만료 월 (2 자리).",
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "^(0[1-9]|1[012])$"
+            "pattern": "^(0[1-9]|1[012])$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^(0[1-9]|1[012])$\">",
+                "kind": "pattern",
+                "value": "^(0[1-9]|1[012])$",
+                "validate": "/^(0[1-9]|1[012])$/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "cardPassword": {
             "description": "카드 비밀번호.",
@@ -3231,14 +3525,36 @@
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string",
-            "pattern": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$"
+            "pattern": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$\">",
+                "kind": "pattern",
+                "value": "^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
+                "validate": "/^([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "customerEmail": {
             "description": "고객의 이메일.",
             "x-typia-required": false,
             "x-typia-optional": true,
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "pattern"
+                ]
+              }
+            ]
           },
           "vbv": {
             "$ref": "#/components/schemas/__type.o1"
@@ -3381,7 +3697,17 @@
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string",
-            "pattern": "^[0-9]{0,20}$"
+            "pattern": "^[0-9]{0,20}$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^[0-9]{0,20}$\">",
+                "kind": "pattern",
+                "value": "^[0-9]{0,20}$",
+                "validate": "/^[0-9]{0,20}$/.test($input)",
+                "exclusive": false
+              }
+            ]
           },
           "holderName": {
             "description": "예금주.",
