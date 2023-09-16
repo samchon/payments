@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: 'daily'
     versioning-strategy: increase
-    open-pull-requests-limit: 25
+    # open-pull-requests-limit: 25
     allow:
       - dependency-name: "@nestia/core"
       - dependency-name: "@nestia/e2e"
@@ -17,5 +17,5 @@ updates:
     directory: '/packages/api'
     schedule:
       interval: 'daily'
-    versioning-strategy: increase
+    # versioning-strategy: increase
     open-pull-requests-limit: 25
