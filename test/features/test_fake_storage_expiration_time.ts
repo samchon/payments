@@ -9,12 +9,12 @@ import toss from "toss-payments-server-api";
 import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
-import { TossFakeConfiguration } from "../../../src/FakeTossConfiguration";
-import { FakeTossStorage } from "../../../src/providers/FakeTossStorage";
-import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
-import { TestConnection } from "../../internal/TestConnection";
+import { TossFakeConfiguration } from "../../src/FakeTossConfiguration";
+import { FakeTossStorage } from "../../src/providers/FakeTossStorage";
+import { AdvancedRandomGenerator } from "../internal/AdvancedRandomGenerator";
+import { TestConnection } from "../internal/TestConnection";
 
-export async function test_storage_expiration_time(): Promise<void> {
+export async function test_fake_storage_expiration_time(): Promise<void> {
     const time: number = TossFakeConfiguration.EXPIRATION.time;
     FakeTossStorage.payments.clear();
     TossFakeConfiguration.EXPIRATION.time = 1;

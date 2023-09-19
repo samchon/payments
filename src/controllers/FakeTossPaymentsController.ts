@@ -166,23 +166,34 @@ export class FakeTossPaymentsController {
         FakeTossUserAuth.authorize(request);
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
+        const amount: number = input.cancelAmount ?? payment.totalAmount;
+
+        if (payment.balanceAmount < amount)
+            throw new nest.UnprocessableEntityException(
+                "Balance amount is not enough.",
+            );
+
         payment.status = "CANCELED";
         payment.cancels ??= [];
         payment.cancels.push({
-            cancelAmount: input.cancelAmount || payment.totalAmount,
+            cancelAmount: amount,
             cancelReason: input.cancelReason,
-            taxFreeAmount: input.taxFreeAmount || 0,
-            taxAmount: input.taxAmount || 0,
-            refundableAmount: input.refundableAmount || payment.totalAmount,
+            taxFreeAmount: input.taxFreeAmount ?? 0,
+            taxAmount: input.taxAmount ?? 0,
+            refundableAmount: input.refundableAmount ?? payment.totalAmount,
             canceledAt: new Date().toISOString(),
         });
+        payment.balanceAmount -= amount;
 
         FakeTossWebhookProvider.webhook({
             eventType: "PAYMENT_STATUS_CHANGED",
             data: {
                 paymentKey: payment.paymentKey,
                 orderId: payment.orderId,
-                status: "CANCELED",
+                status:
+                    payment.balanceAmount === 0
+                        ? "CANCELED"
+                        : "PARTIAL_CANCELED",
             },
         }).catch(() => {});
 

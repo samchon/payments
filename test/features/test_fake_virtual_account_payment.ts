@@ -1,4 +1,5 @@
-import { assert } from "typia";
+import { TestValidator } from "@nestia/e2e";
+import typia from "typia";
 import { v4 } from "uuid";
 
 import toss from "toss-payments-server-api";
@@ -6,9 +7,9 @@ import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayme
 import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
 import { ITossVirtualAccountPayment } from "toss-payments-server-api/lib/structures/ITossVirtualAccountPayment";
 
-import { FakeTossStorage } from "../../../src/providers/FakeTossStorage";
-import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
-import { TestConnection } from "../../internal/TestConnection";
+import { FakeTossStorage } from "../../src/providers/FakeTossStorage";
+import { AdvancedRandomGenerator } from "../internal/AdvancedRandomGenerator";
+import { TestConnection } from "../internal/TestConnection";
 
 export async function test_fake_virtual_account_payment(): Promise<ITossVirtualAccountPayment> {
     //----
@@ -41,7 +42,7 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
             // 고의 미승인 처리
             __approved: false,
         });
-    assert<ITossVirtualAccountPayment>(payment);
+    typia.assert(payment);
 
     // 결제 요청 승인하기
     //
@@ -54,7 +55,7 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
             amount: payment.totalAmount,
         },
     );
-    assert<ITossVirtualAccountPayment>(approved);
+    typia.assert<ITossVirtualAccountPayment>(approved);
 
     //----
     // 입금하기
@@ -71,13 +72,10 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
         TestConnection.FAKE,
         payment.paymentKey,
     );
-    assert<ITossVirtualAccountPayment>(reloaded);
+    typia.assert<ITossVirtualAccountPayment>(reloaded);
 
     // 결제 완료 처리되었음을 알 수 있다
-    if (reloaded.status !== "DONE")
-        throw new Error(
-            "Bug on FakeTossWebhookProvider.webhook(): failed to generate the exact webhook event.",
-        );
+    TestValidator.equals("status")(reloaded.status)("DONE");
 
     // 실제로 웹훅 이벤트 발생 내역을 보면,
     // 고객이 가상 계좌에 결제 금액을 입금하였을 때,
@@ -85,10 +83,7 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
     const webhook: ITossPaymentWebhook = FakeTossStorage.webhooks.get(
         payment.paymentKey,
     );
-    if (webhook.data.status !== "DONE")
-        throw new Error(
-            "Bug on FakeTossInternalController.webhook(): failed to listen the webhook event.",
-        );
+    TestValidator.equals("status")(webhook.data.status)("DONE");
 
     // if condition 에 의하여 자동 다운 캐스팅 됨.
     payment.virtualAccount.accountNumber;

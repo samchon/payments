@@ -8,12 +8,12 @@ import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
-import { TossFakeConfiguration } from "../../../src/FakeTossConfiguration";
-import { FakeTossStorage } from "../../../src/providers/FakeTossStorage";
-import { AdvancedRandomGenerator } from "../../internal/AdvancedRandomGenerator";
-import { TestConnection } from "../../internal/TestConnection";
+import { TossFakeConfiguration } from "../../src/FakeTossConfiguration";
+import { FakeTossStorage } from "../../src/providers/FakeTossStorage";
+import { AdvancedRandomGenerator } from "../internal/AdvancedRandomGenerator";
+import { TestConnection } from "../internal/TestConnection";
 
-export async function test_storage_capacity(): Promise<void> {
+export async function test_fake_storage_capacity(): Promise<void> {
     const capacity: number = TossFakeConfiguration.EXPIRATION.capacity;
 
     FakeTossStorage.payments.clear();
