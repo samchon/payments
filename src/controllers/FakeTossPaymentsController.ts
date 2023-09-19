@@ -167,16 +167,15 @@ export class FakeTossPaymentsController {
 
         const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
         payment.status = "CANCELED";
-        payment.cancels = [
-            {
-                cancelAmount: input.cancelAmount || payment.totalAmount,
-                cancelReason: input.cancelReason,
-                taxFreeAmount: input.taxFreeAmount || 0,
-                taxAmount: input.taxAmount || 0,
-                refundableAmount: input.refundableAmount || payment.totalAmount,
-                canceledAt: new Date().toISOString(),
-            },
-        ];
+        payment.cancels ??= [];
+        payment.cancels.push({
+            cancelAmount: input.cancelAmount || payment.totalAmount,
+            cancelReason: input.cancelReason,
+            taxFreeAmount: input.taxFreeAmount || 0,
+            taxAmount: input.taxAmount || 0,
+            refundableAmount: input.refundableAmount || payment.totalAmount,
+            canceledAt: new Date().toISOString(),
+        });
 
         FakeTossWebhookProvider.webhook({
             eventType: "PAYMENT_STATUS_CHANGED",
