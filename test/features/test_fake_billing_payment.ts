@@ -1,4 +1,5 @@
-import { assert } from "typia";
+import { TestValidator } from "@nestia/e2e";
+import typia from "typia";
 import { v4 } from "uuid";
 
 import toss from "toss-payments-server-api";
@@ -6,9 +7,9 @@ import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilli
 import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
-import { TestConnection } from "../../internal/TestConnection";
+import { TestConnection } from "../internal/TestConnection";
 
-export async function test_fake_billing_payment(): Promise<void> {
+export async function test_fake_billing_payment(): Promise<ITossPayment> {
     // 간편 결제 카드 등록하기
     const billing: ITossBilling =
         await toss.functional.v1.billing.authorizations.card.store(
@@ -23,7 +24,7 @@ export async function test_fake_billing_payment(): Promise<void> {
                 consumerName: "남정호",
             },
         );
-    assert<ITossBilling>(billing);
+    typia.assert<ITossBilling>(billing);
 
     // 간편 결제 카드로 결제하기
     const payment: ITossPayment = await toss.functional.v1.billing.pay(
@@ -37,11 +38,10 @@ export async function test_fake_billing_payment(): Promise<void> {
             amount: 10_000,
         },
     );
-    assert<ITossCardPayment>(payment);
+    typia.assert<ITossCardPayment>(payment);
 
     // 간편 결제 카드로 결제시, 별도 승인 처리가 필요 없음
-    if (payment.approvedAt === null || payment.status !== "DONE")
-        throw new Error(
-            "Bug on TossBillingController.pay(): failed to billing pay.",
-        );
+    TestValidator.equals("approvedAt")(!!payment.approvedAt)(true);
+    TestValidator.equals("status")(payment.status)("DONE");
+    return payment;
 }

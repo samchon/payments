@@ -1,13 +1,14 @@
 import { TestValidator } from "@nestia/e2e";
+import typia from "typia";
 import { v4 } from "uuid";
 
 import toss from "toss-payments-server-api";
 import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossCardPayment";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 
-import { TestConnection } from "../../internal/TestConnection";
+import { TestConnection } from "../internal/TestConnection";
 
-export async function test_fake_card_payment(): Promise<void> {
+export async function test_fake_card_payment(): Promise<ITossCardPayment> {
     //----
     // 결제하기
     //----
@@ -39,6 +40,7 @@ export async function test_fake_card_payment(): Promise<void> {
             __approved: false,
         },
     );
+    typia.assert(payment);
 
     // 잘못된 `orderId` 로 승인 처리시, 불발됨
     await TestValidator.error(
@@ -77,8 +79,9 @@ export async function test_fake_card_payment(): Promise<void> {
             amount: payment.totalAmount,
         },
     );
-    if (approved.approvedAt === null || approved.status !== "DONE")
-        throw new Error(
-            "Bug on FakeTossPaymentsController.approve(): failed to approve.",
-        );
+    const card: ITossCardPayment = typia.assert<ITossCardPayment>(approved);
+    TestValidator.equals("approvedAt")(!!card.approvedAt)(true);
+    TestValidator.equals("status")(card.status)("DONE");
+
+    return card;
 }
