@@ -2,7 +2,7 @@ import PaymentAPI from "payment-api/lib/index";
 import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
 
 import { validate_payment_cancel_partial } from "../internal/validate_payment_cancel_partial";
-import { test_api_iamport_vbank_payment } from "./test_api_iamport_vbank_payment";
+import { test_api_iamport_vbank_payment } from "./test_api_iamport_vbank_payment.1";
 
 export async function test_api_iamport_vbank_payment_cancel_partial(
     connection: PaymentAPI.IConnection,

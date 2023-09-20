@@ -1,4 +1,3 @@
-import { TestValidator } from "@nestia/e2e";
 import imp from "iamport-server-api";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
@@ -27,7 +26,7 @@ export async function test_api_iamport_vbank_payment(
     /**
      * 주문 금액.
      */
-    const yourOrderPrice: number = 19_900;
+    const yourOrderPrice: number = 19900;
 
     /* -----------------------------------------------------------
         결제 내역 등록
@@ -50,7 +49,7 @@ export async function test_api_iamport_vbank_payment(
                 merchant_uid: yourOrderId,
                 amount: yourOrderPrice,
                 vbank_code: "SHINHAN",
-                vbank_due: Date.now() / 1_000 + 7 * 24 * 60 * 60,
+                vbank_due: Date.now() / 1000 + 7 * 24 * 60 * 60,
                 vbank_holder: "Samchon",
             },
         );
@@ -89,7 +88,7 @@ export async function test_api_iamport_vbank_payment(
                 table: "some-table",
                 id: yourOrderId,
             },
-            webhook_url, // 테스트용 웹훅 URL
+            webhook_url,
             price: yourOrderPrice,
             password: "some-password",
         });
@@ -109,7 +108,7 @@ export async function test_api_iamport_vbank_payment(
     );
 
     // 웹훅 이벤트가 귀하의 백엔드 서버로 전달되기를 기다림.
-    await sleep_for(1_000);
+    await sleep_for(1000);
 
     /**
      * 웹흑 리스닝 시뮬레이션.

@@ -5,7 +5,7 @@ Thanks for your advise. Before publishing an issue, please check some components
 ### 1. Search for duplicates
 Before publishing an issue, please check whether the duplicated issue exists or not.
 
-  - [Ordinary Issues](https://github.com/samchon/toss-payments-server/issues)
+  - [Ordinary Issues](https://github.com/samchon/payments/issues)
 
 ### 2. Did you find a bug?
 When you reporting a bug, then please write about those items:
@@ -27,13 +27,10 @@ I always welcome your suggestion. When you publishing a suggestion, then please 
 
 ## Contributing Code
 ### Test your code
-Before sending a pull request, please test your new code. You type the command `npm run build &&& npm run test`, then compiling your code and test-automation will be all processed.
+Before sending a pull request, please test your new code. You type the command `npm npm run test`, then compiling your code and test-automation will be all processed.
 
 ```bash
-# COMPILE
-npm run build
-
-# DO TEST
+npm install
 npm run test
 ```
 
@@ -116,4 +113,4 @@ If there're some specific reasons that could not pass the test-automation (not e
 
 ## References
 I've referenced contribution guidance of the TypeScript.
-  - https://github.com/Microsoft/TypeScript/blob/master/CONTRIBUTING.md
+  - https://github.com/Microsoft/TypeScript/tree/master/CONTRIBUTING.md

@@ -1,3 +1,4 @@
+import { TestValidator } from "@nestia/e2e";
 import api from "payment-api";
 import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
 import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
@@ -123,22 +124,12 @@ export async function test_api_toss_vbank_payment(
      */
     const webhook: IPaymentWebhookHistory | undefined =
         FakePaymentStorage.webhooks.back();
-    if (webhook === undefined)
-        throw new Error(
-            "Bug on PaymentWebhooksController.iamport(): failed to get the webhook event.",
-        );
-    else if (webhook.current.id !== history.id)
-        throw new Error(
-            "Bug on PaymentWebhooksController.iamport(): failed to deliver the webhook event.",
-        );
-    else if (webhook.previous.paid_at !== null)
-        throw new Error(
-            "Bug on PaymentWebhookProvider.process(): failed to delivery the exact previous data.",
-        );
-    else if (webhook.current.paid_at === null)
-        throw new Error(
-            "Bug on PaymentWebhookProvider.process(): failed to delivery the exact current data.",
-        );
+
+    // 이하 웹훅 데이터를 통한 입금 여부 검증
+    TestValidator.equals("webhook")(!!webhook)(true);
+    TestValidator.equals("history.id")(history.id)(webhook?.current.id);
+    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
 
     // 웹훅 데이터 삭제
     FakePaymentStorage.webhooks.pop_back();

@@ -1,22 +1,22 @@
-# Payments Server
+# Payment Backend
 ## 1. Outline
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/blob/master/LICENSE)
-[![npm version](https://badge.fury.io/js/payment-api.svg)](https://www.npmjs.com/package/payment-api)
-[![Downloads](https://img.shields.io/npm/dm/payment-api.svg)](https://www.npmjs.com/package/payment-api)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
+[![npm version](https://badge.fury.io/js/payment-backend.svg)](https://www.npmjs.com/package/payment-backend)
+[![Downloads](https://img.shields.io/npm/dm/payment-backend.svg)](https://www.npmjs.com/package/payment-backend)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
 `payment-backend` 는 통합 결제 서버를 구현한 프로젝트이다. 
 
-여기서 말하는 통합 결제란, [아임포트](https://github.com/samchon/fake-iamport-server)나 [토스 페이먼츠](https://github.com/samchon/fake-toss-payments-server) 등, 여러 PG 사들을 일괄 관리할 수 있다는 뜻이다. 더하여 `payment-backend` 는 MSA (Micro Service Architecture) 를 고려하여 설계된 프로젝트로써, 귀하의 서비스 중 결제 부문만을 따로이 분리하여 관리할 수 있다.
+여기서 말하는 통합 결제란, [아임포트](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server)나 [토스 페이먼츠](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server) 등, 여러 PG 사들을 일괄 관리할 수 있다는 뜻이다. 더하여 `payment-backend` 는 MSA (Micro Service Architecture) 를 고려하여 설계된 프로젝트로써, 귀하의 서비스 중 결제 부문만을 따로이 분리하여 관리할 수 있다.
 
 또한 `payment-backend` 가 연동하게 되는 결제 PG 사들은 본디 프론트 어플리케이션과 연동한 수기 테스트가 필요하다. 이 때문에 이들 결제 PG 사들과 연동해야 하는 결제 서버들은, 테스트 자동화 프로그램을 작성할 수 없기에, 필연적으로 테스트 커버리지가 낮아 매우 불안정해진다. 하지만 `payment-backend` 는 결제 PG 사들의 API 를 흉내낸 가짜 PG 서버들을 구현, 이들을 통하여 테스트 자동화 프로그램을 구성함으로써 안정성을 담보한다.
 
-  - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server)
-  - [samchon/fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server)
+  - [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server)
+  - [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server)
 
-더불어 `payment-backend` 는 `payments-api` 라 하여, 통합 결제 서버와 연동할 수 있는 SDK 라이브러리를 제공한다. 귀하는 이 `payments-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다.
+더불어 `payment-backend` 는 `payment-api` 라 하여, 통합 결제 서버와 연동할 수 있는 SDK 라이브러리를 제공한다. 귀하는 이 `payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다.
 
-그리고 만일 귀하가 `payment-backend` 와의 연동을, 제공되는 SDK 를 활용하는 것이 아닌 API 스펙을 보고 직접 구현하고자 한다면, 반드시 알아두어야 할 것이 하나 있다. 그것은 바로 `payment-backend` 가 모든 request 및 response body 에 적재하는 JSON 데이터를, 보안 강화를 위하여, AES 알고리즘으로 암호화한다는 것이다.
+그리고 만일 귀하가 `payment-backend` 와의 연동을, 제공되는 SDK 를 활용하는 것이 아닌 API 스펙을 보고 직접 구현하고자 한다면, 반드시 알아두어야 할 것이 하나 있다. 그것은 바로 `payment-backend` 가 모든 request 및 response body 에 적재하는 JSON 데이터를, 보안 강화를 위하여 AES 알고리즘으로 암호화한다는 것이다.
 
   - 서버 접속 정보
     - Host 주소
@@ -26,93 +26,163 @@
     - 프로토콜: HTTP/S
       - Request/Response Body: Encrypted JSON
       - AES-128/256
-        - key: `8zXaXlMEP23fGcDZigh3524gxTr1IAuD`
-        - iv: `9pMoEdAjHusokpUg`
+        - key: `MCKOxv9B23r7EatArCFcBP03nfaS03T8`
+        - iv: `9haeYD1tIf4v8xs7`
       - CBC mode
       - PKCS #5 Padding
       - Base64 Encoding
   - 매뉴얼
-    - 자료구조 매뉴얼: [src/api/structures/IPaymentHistory.ts](https://github.com/samchon/payments/blob/HEAD/src/api/structures/IPaymentHistory.ts)
-    - API 함수 매뉴얼: [src/api/functional/histories/index.ts](https://github.com/samchon/payments/blob/HEAD/src/api/functional/histories/index.ts)
+    - 자료구조 매뉴얼: [src/api/structures/payments/IPaymentHistory.ts](https://github.com/samchon/payments/tree/master/packages/payment-backend/src/api/structures/payments/IPaymentHistory.ts)
+    - API 함수 매뉴얼: [src/api/functional/payments/histories/index.ts](https://github.com/samchon/payments/tree/master/packages/payment-backend/src/api/functional/payments/histories/index.ts)
     - 예제 코드
       - 아임포트
-        - 결제 기록하기: [test_fake_iamport_payment_history.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_history.ts)
-        - 간편 결제 등록하기: [test_fake_iamport_payment_reservation.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_reservation.ts)
-        - 웹훅 이벤트 리스닝: [test_fake_iamport_payment_webhook.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_webhook.ts)
+        - 간편 결제 등록: [test_api_iamport_subscription_payment.ts](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/iamport/test_api_iamport_subscription_payment.ts)
+        - 신용카드 결제: [test_api_iamport_card_payment.ts](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/iamport/test_api_iamport_card_payment.ts)
+        - 가상 계좌 결제: [test_api_iamport_vbank_payment.ts](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/iamport/test_api_iamport_vbank_payment.ts)
       - 토스 페이먼츠
-        - 결제 기록하기: [test_fake_toss_payment_history.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_history.ts)
-        - 간편 결제 등록하기: [test_fake_toss_payment_reservation.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_reservation.ts)
-        - 웹훅 이벤트 리스닝: [test_fake_toss_payment_webhook.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_webhook.ts)
+        - 간편 결제 등록: [test_api_toss_vbank_payment.ts](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/toss/test_api_toss_vbank_payment.ts)
+        - 신용 카드: [test_api_toss_card_payment.ts](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/toss/test_api_toss_card_payment.ts)
+        - 가상 계좌 결제: [test_api_toss_vbank_payment.ts](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/toss/test_api_toss_vbank_payment.ts)
+      - 공통: [부분 환불 검증](https://github.com/samchon/payments/blob/master/packages/payment-backend/test/features/internal/validate_payment_cancel_partial.ts)
 
 ```typescript
+import { TestValidator } from "@nestia/e2e";
+import api from "payment-api";
+import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import toss from "toss-payments-server-api";
+import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
+import { sleep_for } from "tstl/thread/global";
+import typia from "typia";
 import { v4 } from "uuid";
 
-import imp from "iamport-server-api";
-import payments from "payment-api";
-import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
-import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
-import { IPaymentHistory } from "payment-api/lib/structures/IPaymentHistory";
+import { PaymentConfiguration } from "../../../src";
+import { FakePaymentStorage } from "../../../src/providers/payments/FakePaymentStorage";
+import { TossAsset } from "../../../src/services/toss/TossAsset";
 
-import { IamportAsset } from "../../../../services/iamport/IamportAsset";
+export async function test_api_toss_vbank_payment(
+    connection: api.IConnection,
+): Promise<IPaymentHistory> {
+    //----
+    // 결제의 원천이 되는 주문 정보
+    //----
+    /**
+     * 귀하의 백엔드 서버가 발행한 주문 ID.
+     */
+    const yourOrderId: string = v4();
 
-export async function test_fake_iamport_payment_history
-    (connection: payments.IConnection): Promise<IIamportPayment>
-{
-    // 주문 정보
-    const yourOrderId: string = v4(); // 귀하의 백엔드 서버가 발행한 주문 ID
-    const yourOrderPrice: number = 12_000; // 주문 금액
+    /**
+     * 주문 금액.
+     */
+    const yourOrderPrice: number = 19_900;
 
-    // 아임포트 카드 결제 시뮬레이션
-    const payment: IIamportResponse<IIamportPayment> = 
-        await imp.functional.subscribe.payments.onetime
-        (
-            await IamportAsset.connection("test-iamport-store-id"),
+    /* -----------------------------------------------------------
+        결제 내역 등록
+    ----------------------------------------------------------- */
+    /**
+     * 토스 페이먼츠 시뮬레이션
+     *
+     * 고객이 프론트 어플리케이션에서, 토스 페이먼츠가 제공하는 팝업 창을 이용, 카드 결제를
+     * 하는 상황을 시뮬레이션 한다. 고객이 카드 결제를 마치거든, 프론트 어플리케이션에
+     * {@link ITossPayment.paymentKey} 가 전달된다.
+     *
+     * 이 {@link ITossPayment.paymentKey} 와 귀하의 백엔드에서 직접 생성한
+     * {@link ITossPayment.orderId yourOrderId} 를 잘 기억해두었다가, 이를 다음 단계인
+     * {@link IPaymentHistory} 등록에 사용하도록 하자.
+     */
+    const payment: ITossPayment =
+        await toss.functional.v1.virtual_accounts.store(
+            await TossAsset.connection("test-toss-payments-store-id"),
             {
-                card_number: "1234-1234-1234-1234",
-                expiry: "2028-12",
-                birth: "880311",
+                // 가상 계좌 정보
+                method: "virtual-account",
+                bank: "신한",
+                customerName: "Samchon",
 
-                merchant_uid: yourOrderId,
+                // 주문 정보
+                orderId: yourOrderId,
+                orderName: "something",
                 amount: yourOrderPrice,
-                name: "Fake 주문"
-            }
+
+                // 고의 미승인 처리
+                __approved: false,
+            },
         );
-    
-    // 결제 이력 등록하기
-    const history: IPaymentHistory = await payments.functional.histories.store
-    (
-        connection,
-        {
+    typia.assert(payment);
+
+    /**
+     * 웹훅 URL 설정하기.
+     *
+     * 웹훅 URL 을 테스트용 API 주소, internal.webhook 으로 설정.
+     */
+    const webhook_url: string = `http://127.0.0.1:${PaymentConfiguration.API_PORT()}${
+        api.functional.payments.internal.webhook.METADATA.path
+    }`;
+
+    /**
+     * 결제 이력 등록하기.
+     *
+     * 앞서 토스 페이먼츠의 팝업 창을 이용하여 가상 계좌 결제를 진행하고 발급받은
+     * {@link ITossPayment.paymentKey}, 그리고 귀하의 백엔드에서 직접 생성한
+     * {@link ITossPayment.orderId yourOrderId} 를 각각 {@link IPaymentVendor.uid} 와
+     * {@link IPaymentSource.id} 로 할당하여 {@link IPaymentReservation} 레코드를
+     * 발행한다.
+     *
+     * 참고로 결제 이력을 등록할 때 반드시 비밀번호를 설정해야 하는데, 향후 결제 이력을
+     * 조회할 때 필요하니, 이를 반드시 귀하의 백엔드 서버에 저장해두도록 한다.
+     */
+    const history: IPaymentHistory =
+        await api.functional.payments.histories.store(connection, {
             vendor: {
-                code: "iamport",
-                store_id: "test-iamport-store-id",
-                uid: payment.response.imp_uid,
+                code: "toss.payments",
+                store_id: "test-toss-payments-store-id",
+                uid: payment.paymentKey,
             },
             source: {
                 schema: "some-schema",
                 table: "some-table",
-                id: yourOrderId
+                id: yourOrderId,
             },
-            webhook_url: "https://github.com/samchon",
+            webhook_url, // 테스트용 웹훅 URL
             price: yourOrderPrice,
             password: "some-password",
-        }
+        });
+    typia.assert(history);
+
+    /* -----------------------------------------------------------
+        웹훅 이벤트 리스닝
+    ----------------------------------------------------------- */
+    /**
+     * 입금 시뮬레이션하기.
+     *
+     * 고객이 자신 앞을 발급된 계좌에, 결제 금액을 입금하는 상황 시뮬레이션.
+     */
+    await toss.functional.internal.deposit(
+        await TossAsset.connection("test-toss-payments-store-id"),
+        payment.paymentKey,
     );
 
-    // 결제 내역 조회하기
-    const read: IPaymentHistory = await payments.functional.histories.at
-    (
-        connection,
-        history.id,
-        {
-            password: "some-password"
-        }
-    );
+    // 웹훅 이벤트가 귀하의 백엔드 서버로 전달되기를 기다림.
+    await sleep_for(1_000);
 
-    // if condition 을 이용한 자동 다운 캐스팅
-    if (read.vendor_code === "iamport")
-        read.data.imp_uid;
-    return read.data;
+    /**
+     * 웹흑 리스닝 시뮬레이션.
+     *
+     * 귀하의 백엔드 서버가 웹훅 이벤트를 수신한 상황을 가정한다.
+     */
+    const webhook: IPaymentWebhookHistory | undefined =
+        FakePaymentStorage.webhooks.back();
+
+    // 이하 웹훅 데이터를 통한 입금 여부 검증
+    TestValidator.equals("webhook")(!!webhook)(true);
+    TestValidator.equals("history.id")(history.id)(webhook?.current.id);
+    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
+
+    // 웹훅 데이터 삭제
+    FakePaymentStorage.webhooks.pop_back();
+
+    return history;
 }
 ```
 
@@ -141,7 +211,7 @@ export async function test_fake_iamport_payment_history
 
 그리고 만일 개발 환경이 윈도우라면, 환경변수 PATH 에 PostgreSQL 이 설치된 경로의 `bin` 폴더를 추가해준다. 아마도 그 경로는 `C:\Program Files\PostgreSQL\14\bin` 일 것이다. 맥북의 경우에는 `/Applications/Postgres.app/Contents/MacOS/bin` 이다.
 
-이후 PostgreSQL 터미널로 접속, `samchon_test` 와 `payments` 스키마를 각각 생성해준다. 그리고 `samchon_w` 와 `samchon_r` 계정을 생성하여, 각각 쓰기 및 읽기 권한을 부여한다.
+이후 PostgreSQL 터미널로 접속, `samchon` DB 와 `payments` 스키마를 각각 생성해준다. 그리고 `samchon` 과 `samchon_r` 계정을 생성하여, 각각 쓰기 및 읽기 권한을 부여한다.
 
 만일 로컬 PostgreSQL 의 계정을 `postgres`, 그리고 비밀번호를 `root` 로 설정하였다면, `npm run schema` 명령어로 아래 SQL 스크립트를 대체할 수 있다.
 
@@ -151,14 +221,13 @@ CREATE ROLE samchon_w WITH ENCRYPTED PASSWORD 'https://github.com/samchon';
 GRANT samchon_w TO postgres;
 
 -- CREATE DB & SCHEMA
-CREATE DATABASE samchon_test OWNER samchon_w;
-\connect samchon_test;
+CREATE DATABASE samchon OWNER samchon_w;
 CREATE SCHEMA payments AUTHORIZATION samchon_w;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA payments TO samchon_w;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA payments TO samchon;
 
 -- READABLE ACCOUNT
 CREATE USER samchon_r WITH ENCRYPTED PASSWORD 'https://github.com/samchon';
-GRANT CONNECT ON DATABASE samchon_test TO samchon_r;
+GRANT CONNECT ON DATABASE samchon TO samchon_r;
 GRANT USAGE ON SCHEMA payments TO samchon_r;
 GRANT SELECT ON ALL TABLES IN SCHEMA payments TO samchon_r;
 ```
@@ -168,16 +237,17 @@ NodeJS 및 PostgreSQL 의 설치가 끝났다면, 바로 `payment-backend` 구�
 
 제일 먼저 `git clone` 을 통하여, 결제 서버 프로젝트를 로컬 저장소에 복사하도록 한다. 그리고 해당 폴더로 이동하여 `npm install` 명령어를 실행함으로써, 통합 결제 서버를 구동하는 데 필요한 라이브러리들을 다운로드 한다. 그리고 `npm run build` 명령어를 입력하여, 결제 서버의 소스 코드를 컴파일한다. 마지막으로 `npm run start` 명령어를 실행해주면, 결제 서버가 구동된다. 
 
-다만 `payment-backend` 를 구동하기 전, 각각 [PaymentConfiguration](https://github.com/samchon/payments/blob/HEAD/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/blob/HEAD/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
+다만 `payment-backend` 를 구동하기 전, 각각 [PaymentConfiguration](https://github.com/samchon/payments/tree/master/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/tree/master/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
 
 ```bash
 # CLONE REPOSITORY
 git clone https://github.com/samchon/payments
-cd payments
+cd packages/payment-backend/payments
 
 # INSTALLATION & COMPILATION
 npm install
 npm run build
+npm run schema
 
 # START SERVER & STOP SERVER
 npm run start
@@ -193,7 +263,7 @@ npm run stop
 
 따라서 귀하의 백엔드 서버가 TypeScript 내지 JavaScript 를 사용한다면, 테스트 자동화 프로그램을 구성함에 있어 github 저장소를 clone 하고 `payment-backend` 를 별도 구동하기보다, 귀하의 백엔드 서버 테스트 프로그램에서 `payment-backend` 모듈을 `import` 후 그것의 개설과 폐쇄를 직접 통제하는 것을 권장한다.
 
-그리고 이렇게 테스트 자동화 프로그램으로 `payment-backend` 를 `import` 하여 사용할 때 역시, 각각 [PaymentConfiguration](https://github.com/samchon/payments/blob/HEAD/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/blob/HEAD/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
+그리고 이렇게 테스트 자동화 프로그램으로 `payment-backend` 를 `import` 하여 사용할 때 역시, 각각 [PaymentConfiguration](https://github.com/samchon/payments/tree/master/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/tree/master/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
 
 ```typescript
 // npm install --save-dev payment-backend
@@ -214,7 +284,7 @@ async function main(): Promise<void>
 }
 ```
 
-### 2.4. SDK
+### 2.4. Software Development Kit
 [![npm version](https://badge.fury.io/js/payment-api.svg)](https://www.npmjs.com/package/payment-api)
 [![Downloads](https://img.shields.io/npm/dm/payment-api.svg)](https://www.npmjs.com/package/payment-api)
 
@@ -236,84 +306,150 @@ async function main(): Promise<void>
       - PKCS #5 Padding
       - Base64 Encoding
   - 매뉴얼
-    - 자료구조 매뉴얼: [src/api/structures/IPaymentHistory.ts](https://github.com/samchon/payments/blob/HEAD/src/api/structures/IPaymentHistory.ts)
-    - API 함수 매뉴얼: [src/api/functional/histories/index.ts](https://github.com/samchon/payments/blob/HEAD/src/api/functional/histories/index.ts)
+    - 자료구조 매뉴얼: [src/api/structures/IPaymentHistory.ts](https://github.com/samchon/payments/tree/master/src/api/structures/IPaymentHistory.ts)
+    - API 함수 매뉴얼: [src/api/functional/histories/index.ts](https://github.com/samchon/payments/tree/master/src/api/functional/histories/index.ts)
     - 예제 코드
       - 아임포트
-        - 결제 기록하기: [test_fake_iamport_payment_history.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_history.ts)
-        - 간편 결제 등록하기: [test_fake_iamport_payment_reservation.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_reservation.ts)
-        - 웹훅 이벤트 리스닝: [test_fake_iamport_payment_webhook.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_webhook.ts)
+        - 결제 기록하기: [test_fake_iamport_payment_history.ts](https://github.com/samchon/payments/tree/master/src/test/features/fake/examples/test_fake_iamport_payment_history.ts)
+        - 간편 결제 등록하기: [test_fake_iamport_payment_reservation.ts](https://github.com/samchon/payments/tree/master/src/test/features/fake/examples/test_fake_iamport_payment_reservation.ts)
+        - 웹훅 이벤트 리스닝: [test_fake_iamport_payment_webhook.ts](https://github.com/samchon/payments/tree/master/src/test/features/fake/examples/test_fake_iamport_payment_webhook.ts)
       - 토스 페이먼츠
-        - 결제 기록하기: [test_fake_toss_payment_history.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_history.ts)
-        - 간편 결제 등록하기: [test_fake_toss_payment_reservation.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_reservation.ts)
-        - 웹훅 이벤트 리스닝: [test_fake_toss_payment_webhook.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_webhook.ts)
+        - 결제 기록하기: [test_fake_toss_payment_history.ts](https://github.com/samchon/payments/tree/master/src/test/features/fake/examples/test_fake_toss_payment_history.ts)
+        - 간편 결제 등록하기: [test_fake_toss_payment_reservation.ts](https://github.com/samchon/payments/tree/master/src/test/features/fake/examples/test_fake_toss_payment_reservation.ts)
+        - 웹훅 이벤트 리스닝: [test_fake_toss_payment_webhook.ts](https://github.com/samchon/payments/tree/master/src/test/features/fake/examples/test_fake_toss_payment_webhook.ts)
 
 ```typescript
+import { TestValidator } from "@nestia/e2e";
+import imp from "iamport-server-api";
+import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
+import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
+import PaymentAPI from "payment-api";
+import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import { sleep_for } from "tstl/thread/global";
+import typia from "typia";
 import { v4 } from "uuid";
 
-import payments from "payment-api";
-import toss from "toss-payments-server-api";
-import { IPaymentReservation } from "payment-api/lib/structures/IPaymentReservation";
-import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
+import { PaymentConfiguration } from "../../../src";
+import { FakePaymentStorage } from "../../../src/providers/payments/FakePaymentStorage";
+import { IamportAsset } from "../../../src/services/iamport/IamportAsset";
 
-import { TossAsset } from "../../../../services/toss/TossAsset";
+export async function test_api_iamport_vbank_payment(
+    connection: PaymentAPI.IConnection,
+): Promise<IPaymentHistory> {
+    //----
+    // 결제의 원천이 되는 주문 정보
+    //----
+    /**
+     * 귀하의 백엔드 서버가 발행한 주문 ID.
+     */
+    const yourOrderId: string = v4();
 
-export async function test_fake_toss_payment_reservation
-    (connection: payments.IConnection): Promise<ITossBilling>
-{
-    const yourSourceId: string = v4(); // 귀하의 백엔드 서버가 발행한 식별자 ID.
+    /**
+     * 주문 금액.
+     */
+    const yourOrderPrice: number = 19_900;
 
-    // 토스 페이먼츠 간편 결제 카드 등록 시뮬레이션
-    const billing: ITossBilling = 
-        await toss.functional.v1.billing.authorizations.card.store
-        (
-            TossAsset.connection("test-iamport-store-id"),
+    /* -----------------------------------------------------------
+        결제 내역 등록
+    ----------------------------------------------------------- */
+    /**
+     * 아임포트 시뮬레이션.
+     *
+     * 고객이 프론트 어플리케이션에서, 아임포트가 제공하는 팝업 창을 이용, 가상 계좌
+     * 결제를 하는 상황을 시뮬레이션 한다. 고객이 가상 계좌 발급을 마치거든, 프론트
+     * 어플리케이션에 {@link IIamportPayment.imp_uid} 가 전달된다.
+     *
+     * 이 {@link IIamportPayment.imp_uid} 와 귀하의 백엔드에서 직접 생성한
+     * {@link IIamportPayment.merchant_uid yourOrderId} 를 잘 기억해두었다가, 이를
+     * 다음 단계인 {@link IPaymentHistory} 등록에 사용하도록 하자.
+     */
+    const payment: IIamportResponse<IIamportPayment> =
+        await imp.functional.vbanks.store(
+            await IamportAsset.connection("test-iamport-store-id"),
             {
-                customerKey: yourSourceId,
-                cardNumber: "1111222233334444",
-                cardExpirationYear: "28",
-                cardExpirationMonth: "03",
-                cardPassword: "99",
-                customerBirthday: "880311",
-                consumerName: "남정호"
-            }
+                merchant_uid: yourOrderId,
+                amount: yourOrderPrice,
+                vbank_code: "SHINHAN",
+                vbank_due: Date.now() / 1_000 + 7 * 24 * 60 * 60,
+                vbank_holder: "Samchon",
+            },
         );
+    typia.assert(payment);
 
-    // 간편 결제 수단 등록하기
-    const reservation: IPaymentReservation = 
-        await payments.functional.reservations.store
-        (
-            connection,
-            {
-                vendor: {
-                    code: "toss.payments",
-                    store_id: "test-iamport-store-id",
-                    uid: billing.billingKey,
-                },
-                source: {
-                    schema: "some-schema",
-                    table: "some-table",
-                    id: yourSourceId,
-                },
-                title: "some-title",
-                password: "some-password"
-            }
-        );
+    /**
+     * 웹훅 URL 설정하기.
+     *
+     * 웹훅 URL 을 테스트용 API 주소, internal.webhook 으로 설정.
+     */
+    const webhook_url: string = `http://127.0.0.1:${PaymentConfiguration.API_PORT()}${
+        PaymentAPI.functional.payments.internal.webhook.METADATA.path
+    }`;
 
-    // 간편 결제 등록 수단 조회하기
-    const read: IPaymentReservation = await payments.functional.reservations.at
-    (
-        connection,
-        reservation.id,
-        {
-            password: "some-password"
-        }
+    /**
+     * 결제 이력 등록하기.
+     *
+     * 앞서 아임포트의 팝업 창을 이용하여 가상 계좌 결제를 진행하고 발급받은
+     * {@link IIamportPayment.imp_uid}, 그리고 귀하의 백엔드에서 직접 생성한
+     * {@link IIamportPayment.merchant_uid yourOrderId} 를 각각
+     * {@link IPaymentVendor.uid} 와 {@link IPaymentSource.id} 로 할당하여
+     * {@link IPaymentReservation} 레코드를 발행한다.
+     *
+     * 참고로 결제 이력을 등록할 때 반드시 비밀번호를 설정해야 하는데, 향후 결제 이력을
+     * 조회할 때 필요하니, 이를 반드시 귀하의 백엔드 서버에 저장해두도록 한다.
+     */
+    const history: IPaymentHistory =
+        await PaymentAPI.functional.payments.histories.store(connection, {
+            vendor: {
+                code: "iamport",
+                store_id: "test-iamport-store-id",
+                uid: payment.response.imp_uid,
+            },
+            source: {
+                schema: "some-schema",
+                table: "some-table",
+                id: yourOrderId,
+            },
+            webhook_url, // 테스트용 웹훅 URL
+            price: yourOrderPrice,
+            password: "some-password",
+        });
+    typia.assert(history);
+
+    /* -----------------------------------------------------------
+        웹훅 이벤트 리스닝
+    ----------------------------------------------------------- */
+    /**
+     * 입금 시뮬레이션하기.
+     *
+     * 고객이 자신 앞을 발급된 계좌에, 결제 금액을 입금하는 상황 시뮬레이션.
+     */
+    await imp.functional.internal.deposit(
+        await IamportAsset.connection("test-iamport-store-id"),
+        payment.response.imp_uid,
     );
 
-    // if condition 을 이용한 자동 다운 캐스팅
-    if (read.vendor_code === "toss.payments")
-        read.data.billingKey;
-    return read.data;
+    // 웹훅 이벤트가 귀하의 백엔드 서버로 전달되기를 기다림.
+    await sleep_for(1_000);
+
+    /**
+     * 웹흑 리스닝 시뮬레이션.
+     *
+     * 귀하의 백엔드 서버가 웹훅 이벤트를 수신한 상황을 가정한다.
+     */
+    const webhook: IPaymentWebhookHistory | undefined =
+        FakePaymentStorage.webhooks.back();
+
+    // 이하 웹훅 데이터를 통한 입금 여부 검증
+    TestValidator.equals("webhook")(!!webhook)(true);
+    TestValidator.equals("history.id")(history.id)(webhook?.current.id);
+    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
+
+    // 웹훅 데이터 삭제
+    FakePaymentStorage.webhooks.pop_back();
+
+    return history;
 }
 ```
 
@@ -563,326 +699,4 @@ npm run update real
 
 ```bash
 npm run monitor master
-```
-
-
-
-
-## 5. Appendix
-### 5.1. API Documents
-본 통합 결제 서버 `payment-backend` 는 TypeScript 로 제작되었으며, 이를 이용하는 클라이언트 서버 또한 TypeScript 내지 JavaScript 로 개발하는 것을 가정하였기에, SDK 연동 라이브러리 `payment-api` 를 제공하는 것으로 연동 가이드를 마치고 있다.
-
-하지만 `payment-backend` 를 사용하는 클라이언트 서버가 반드시 TypeScript 내지 JavaScript 만으로 개발한다는 보장은 없는 법, 이러한 경우를 위해 별도의 대책을 마련해두었다. 그것은 바로 연동 라이브러리 `payment-api` 의 명세를 직접 읽어보는 것이다. 
-
-`payment-api` 의 제작에 쓰인 [nestia](https://github.com/samchon/nestia) 는 SDK 연동 라이브러리를 빌드하면서, 해당 SDK 라이브러리 코드가 상당 수준의 API 문서 역할을 할 수 있도록, API 명세 및 상세 설명 내역을 깔끔하게 정리하여 보여준다. 아래 예제 코드는 그러한 예시 중 하나이다.
-
-이외에 `payment-backend` 는 앞서 [3.4. Encryption](#34-encryption) 단원에서 설명했듯, http(s) 프로토콜을 사용하되 요청 및 응답 `body` 를 `AES-PKCS-5` 알고리즘으로 한 번 더 암호화한다. 아래는 암호화 알고리즘의 상세 정보이니, 이 또한 참고하기 바란다.
-
-  - 서버 접속 정보
-    - Host 주소
-      - 로컬 서버: http://localhost:37821
-      - Dev 서버: https://YOUR-DEV-SERVER
-      - Real 서버: https://YOUR-REAL-SERVER
-    - 프로토콜: HTTP/S
-      - Request/Response Body: Encrypted JSON
-      - AES-128/256
-        - key: `GwRKWmITTfWQVzyOJNXUzXflhOa4EWaS`
-        - iv: `2gbpEmFga729nqo2`
-      - CBC mode
-      - PKCS #5 Padding
-      - Base64 Encoding
-  - 매뉴얼
-    - 자료구조 매뉴얼: [src/api/structures/IPaymentHistory.ts](https://github.com/samchon/payments/blob/HEAD/src/api/structures/IPaymentHistory.ts)
-    - API 함수 매뉴얼: [src/api/functional/histories/index.ts](https://github.com/samchon/payments/blob/HEAD/src/api/functional/histories/index.ts)
-    - 예제 코드
-      - 아임포트
-        - 결제 기록하기: [test_fake_iamport_payment_history.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_history.ts)
-        - 간편 결제 등록하기: [test_fake_iamport_payment_reservation.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_reservation.ts)
-        - 웹훅 이벤트 리스닝: [test_fake_iamport_payment_webhook.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_iamport_payment_webhook.ts)
-      - 토스 페이먼츠
-        - 결제 기록하기: [test_fake_toss_payment_history.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_history.ts)
-        - 간편 결제 등록하기: [test_fake_toss_payment_reservation.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_reservation.ts)
-        - 웹훅 이벤트 리스닝: [test_fake_toss_payment_webhook.ts](https://github.com/samchon/payments/blob/HEAD/src/test/features/fake/examples/test_fake_toss_payment_webhook.ts)
-
-```typescript
-/**
- * 결제 내역 상세 조회하기.
- * 
- * @param connection connection Information of the remote HTTP(s) server with headers (+encryption password)
- * @param id Primary Key
- * @param input 결제 내역의 비밀번호
- * @returns 결제 내역
- * 
- * @nestia Generated by Nestia - https://github.com/samchon/nestia
- * @controller PaymentHistoriesController.at()
- * @path PATCH /histories/:id
- */
-export function at
-    (
-        connection: IConnection,
-        id: string,
-        input: Primitive<at.Input>
-    ): Promise<at.Output>
-{
-    return Fetcher.fetch(connection, at.CONFIG, at.METHOD, at.path(id), input);
-}
-export namespace at
-{
-    export type Input = Primitive<IPaymentSource.IPassword>;
-    export type Output = Primitive<IPaymentHistory>;
-
-    export const METHOD = "PATCH";
-    export const PATH = "/histories/:id";
-    export const CONFIG = {
-        input_encrypted: true,
-        output_encrypted: true,
-    };
-
-    export function path(id: string): string
-    {
-        return `/histories/${id}`;
-    }
-}
-```
-
-### 5.2. NPM Run Commands
-현재 package.json 에 정의된 run command 의 역할은 다음과 같다.
-
-  - `build`: 통합 결제 서버 소스 컴파일
-  - `build:api`: SDK 연동 라이브러리 컴파일
-  - `dev`: 소스 incremental 컴파일
-  - `monitor`: 서버의 정보 취득 (`npm run monitor dev`, `npm run monitor real`)
-  - `package:api`: SDK 연동 라이브러리 배포
-  - `reset:local`: 로컬 DB 리셋
-  - `reset:dev`: Dev 서버 종료 후 DB 리셋하여 재시작
-  - `ssh:dev`: Dev 서버 터미널 접속
-  - `ssh:real`: Real 서버 터미널 접속
-  - `start`: 백엔드 서버 가동 (`npm run start dev`, `npm run start real`)
-  - `start:updator:master`: 무중단 업데이트 시스템 master 버전 실행
-  - `start:updator:slave`: 무중단 업데이트 시스템 slave 버전 실행
-  - `start:reload`: 백엔드 서버 재시작, 주로 무중단 업데이트 프로그램에서 사용됨
-  - `stop`: 백엔드 서버 중단
-  - `stop:updator:master`: 무중단 업데이트 시스템 master 버전 중단
-  - `stop:updator:slave`: 무중단 업데이트 시스템 slave 버전 중단
-  - `update`: 무중단 업데이트 실행 (`npm run update dev`, `npm run update real`)
-  - `test`: 테스트 자동화 프로그램 가동
-  - `test:update`: 무중단 업데이트 시스템이 잘 구현되었는 지 검증해 봄
-
-### 5.3. Dependencies
-#### 5.3.1. Typia
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/typia/blob/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/typia.svg)](https://www.npmjs.com/package/typia)
-[![Downloads](https://img.shields.io/npm/dm/typia.svg)](https://www.npmjs.com/package/typia)
-[![Build Status](https://github.com/samchon/typia/workflows/build/badge.svg)](https://github.com/samchon/typia/actions?query=workflow%3Abuild)
-[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/typia/wiki)
-
-```typescript
-// RUNTIME VALIDATORS
-export function is<T>(input: unknown | T): input is T; // returns boolean
-export function assert<T>(input: unknown | T): T; // throws TypeGuardError
-export function validate<T>(input: unknown | T): IValidation<T>; // detailed
-
-// STRICT VALIDATORS
-export function equals<T>(input: unknown | T): input is T;
-export function assertEquals<T>(input: unknown | T): T;
-export function validateEquals<T>(input: unknown | T): IValidation<T>;
-
-// JSON
-export function application<T>(): IJsonApplication; // JSON schema
-export function assertParse<T>(input: string): T; // type safe parser
-export function assertStringify<T>(input: T): string; // safe and faster
-    // +) isParse, validateParse 
-    // +) stringify, isStringify, validateStringify
-```
-
-[typia](https://github.com/samchon/typia) is a transformer library of TypeScript, supporting below features:
-
-  - Super-fast Runtime Validators
-  - Safe JSON parse and fast stringify functions
-  - JSON schema generator
-
-All functions in `typia` require **only one line**. You don't need any extra dedication like JSON schema definitions or decorator function calls. Just call `typia` function with only one line like `typia.assert<T>(input)`.
-
-Also, as `typia` performs AOT (Ahead of Time) compilation skill, its performance is much faster than other competitive libaries. For an example, when comparing validate function `is()` with other competitive libraries, `typia` is maximum **15,000x times faster** than `class-validator`.
-
-[typia](https://github.com/samchon/typia) 는 AOT 컴파일을 이용, (NestJS 가 사용하는 `class-validator` 대비) 최대 15,000 배 빠른 runtime validation 을 행할 수 있는 라이브러리이다. 
-아래 [@nestia/core](https://github.com/samchon/nestia) 와 함께 결합하여 사용하면, 귀하의 NestJS 백엔드 서버의 퍼포먼스, 특히 최대 동시 접속 가능자 수를 크게 향상시킬 수 있다.
-
-그리고 [typia](https://github.com/samchon/typia) 는 종래의 NestJS 및 `class-validator` 처럼 TypeScript 타입과 별도로 JSON 스키마 정의해야 한다거나, 별도의 DTO 클래스를 만들며 decorator 함수들을 호출해야 하는 등의 부가 작업이 일절 필요없다. 때문에 퍼포먼스 향상 외에도, 작업 효율 또한 크게 진전을 이룰 수 있다.
-
-![Is Function Benchmark](https://github.com/samchon/typia/raw/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz/images/is.svg)
-
-> Measured on [Intel i5-1135g7, Surface Pro 8](https://github.com/samchon/typia/tree/master/benchmark/results/11th%20Gen%20Intel(R)%20Core(TM)%20i5-1135G7%20%40%202.40GHz#is)
-
-#### 5.3.2. Nestia
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/nestia/blob/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/@nestia/core.svg)](https://www.npmjs.com/package/@nestia/core)
-[![Downloads](https://img.shields.io/npm/dm/@nestia/core.svg)](https://www.npmjs.com/package/@nestia/core)
-[![Build Status](https://github.com/samchon/typia/workflows/build/badge.svg)](https://github.com/samchon/nestia/actions?query=workflow%3Abuild)
-[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/samchon/nestia/wiki)
-
-[Nestia](https://github.com/samchon/nestia) is a helper library set for `NestJS`, supporting below features:
-
-  - [`@nestia/core`](https://github.com/samchon/nestia#nestiacore): **15,000x times faster** validation decorator using `typia`
-  - [`@nestia/sdk`](https://github.com/samchon/nestia#nestiasdk): evolved **SDK** and **Swagger** generator for `@nestia/core`
-  - `nestia`: just CLI (command line interface) tool
-
-```typescript
-import { Controller } from "@nestjs/common";
-import { TypedBody, TypedRoute } from "@nestia/core";
-
-import { IBbsArticle } from "@bbs-api/structures/IBbsArticle";
-
-@Controller("bbs/articles")
-export class BbsArticlesController {
-    /** 
-     * Store a new content.
-     * 
-     * @param inupt Content to store
-     * @returns Newly archived article
-     */
-    @TypedRoute.Post() // 10x faster and safer JSON.stringify()
-    public async store(
-        // super-fast validator
-        @TypedBody() input: IBbsArticle.IStore
-    ): Promise<IBbsArticle>;
-        // do not need DTO class definition, 
-        // just fine with interface
-}
-```
-
-`@nestia/core` 는 [typia](https://github.com/samchon/typia) 를 이용, NestJS 의 validation 의 속도를 최대 15,000 배 가속해주는 라이브러리이다. 
-
-그리고 `@nestia/sdk` 는 NestJS 로 만든 백엔드 서버 프로그램을 컴파일러 수준에서 분석, 클라이언트가 사용할 수 있는 SDK 라이브러리를 빌드해주는 프로그램이다. 본 저장소에서 사용하는 [fake-iamport-server](https://github.com/samchon/fake-iamport-server) 나 [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server) 가 결제 PG 서버의 API 를 흉내내어 만든 가짜 서버인데, 뜬금 클라이언트가 이들 PG 서버와의 연동에 실제로 사용할 수 있는 SDK 라이브러리가 함께 제공되는 이유도 바로 이 덕분이다.
-
-때문에 만일 귀하가 결제를 사용하는 모종의 백엔드 서버를 개발 중이라면, `payment-backend` 뿐 아니라 [Nestia](https://github.com/samchon/nestia) 도 함께 사용해보는 것이 어떠한가? 첫째로 validation 속도를 가속하여 동시 접속자 수를 크게 늘릴 수 있다. 그리고 귀하의 백엔드 서버 또한 `payment-backend` 처럼 클라이언트 개발자가 사용할 수 있는 SDK 라이브러리를 자동으로 빌드하여 배포할 수 있으니, 백엔드 개발자와 프론트 개발자가 보다 편하게 연동 작업을 행할 수 있다.
-
-물론 `@nestia/sdk` 는 Swagger 또한 빌드할 수 있는데, 본 저장소가 사용하는 [fake-iamport-server](https://github.com/samchon/fake-iamport-server) 및 [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server) 로부터 빌드된 Swagger 문서들이 각각 아임포트와 토스 페이먼츠의 공식 개발자 가이드 문서보다 일목요연하고 체계도가 높은것도, 바로 이러한 이유 때문이다. Swagger 내지 가이드 문서를 사람이 손으로 작성하는게 아니라, `@nestia/sdk` 가 컴파일러 수준에서 백엔드 소스 코드와 DTO 를 분석하여 자동으로 생성해주었기 때문인 것.
-
-#### 5.3.3. Safe-TypeORM
-Enhance TypeORM in the compilation level.
-
-  - https://github.com/samchon/safe-typeorm
-
-`safe-typeorm` 은 `typeorm` 을 컴파일 수준에서 강화해주는 헬퍼 라이브러리이다.
-
-이를 사용하면 컴파일 및 단계에서 잘못된 SQL 쿼리문을 바로잡거나, 앱조인을 통하여 퍼포먼스 튜닝을 자동으로 할 수 있고 JSON 변환을 제로 코스트로 할 수 있는 등, 아래와 같은 이점이 있다.
-
-  - When writing [**SQL query**](https://github.com/samchon/safe-typeorm#safe-query-builder),
-    - Errors would be detected in the **compilation** level
-    - **Auto Completion** would be provided
-    - **Type Hint** would be supported
-  - You can implement [**App-join**](https://github.com/samchon/safe-typeorm#app-join-builder) very conveniently
-  - When [**SELECT**ing for **JSON** conversion](https://github.com/samchon/safe-typeorm#json-select-builder)
-    - [**App-Join**](https://github.com/samchon/safe-typeorm#app-join-builder) with the related entities would be automatically done
-    - Exact JSON **type** would be automatically **deduced**
-    - The **performance** would be **automatically tuned**
-  - When [**INSERT**](https://github.com/samchon/safe-typeorm#insert-collection)ing records
-    - Sequence of tables would be automatically sorted by analyzing dependencies
-    - The **performance** would be **automatically tuned**
-
-![Safe-TypeORM Demo](https://raw.githubusercontent.com/samchon/safe-typeorm/master/assets/demonstrations/safe-query-builder.gif)
-
-#### 5.3.3. Fake Payment Servers
-본 통합 결제 서버 `payment-backend` 가 연동하게 되는 결제 PG 사들은 본디 프론트 어플리케이션과 연동한 수기 테스트가 필요하다. 이 때문에 이들 결제 PG 사들과 연동해야 하는 결제 서버들은, 테스트 자동화 프로그램을 작성할 수 없기에, 필연적으로 테스트 커버리지가 낮아 매우 불안정해진다.
-
-이에 `payment-backend` 는 결제 PG 사들의 API 를 모방한 가짜 PG 서버들을 구현, 이들을 통하여 테스트 자동화 프로그램을 구현함으로써, 테스트 커버리지를 높이고 안정성을 담보하였다. 그리고 이들 가짜 결제 PG 사 서버들을 별도 프로젝트로 분리하여 오픈소스로 공개하니, `payment-backend` 와 연동하는 귀사의 서비스 백엔드 서버를 개발할 때 (특히 테스트 자동화 프로그램을 개발할 때), 이를 적극 활용하기 바란다.
-
-  - [samchon/fake-iamport-server](https://github.com/samchon/fake-iamport-server)
-  - [samchon/fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server)
-
-```typescript
-import { sleep_for } from "tstl/thread/global";
-import { v4 } from "uuid";
-
-import toss from "toss-payments-server-api";
-import payments from "payment-api";
-import { IPaymentHistory } from "payment-api/lib/structures/IPaymentHistory";
-import { IPaymentWebhook } from "payment-api/lib/structures/IPaymentWebhook";
-import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-
-import { FakePaymentStorage } from "../../../../providers/FakePaymentStorage";
-import { PaymentConfiguration } from "../../../../PaymentConfiguration";
-import { TossAsset } from "../../../../services/toss/TossAsset";
-
-export async function test_fake_toss_payment_webhook
-    (connection: payments.IConnection): Promise<void>
-{
-    const yourOrderId: string = v4(); // 귀하의 서비스가 발행한 주문 ID
-    const yourOrderPrice: number = 25_000; // 주문 금액
-
-    //----
-    // 결제 내역 등록
-    //----
-    // 토스 페이먼츠 가상 결제 시뮬레이션
-    const payment: ITossPayment = await toss.functional.v1.virtual_accounts.store
-    (
-        TossAsset.connection("test-iamport-store-id"),
-        {
-            // 가싱 계좌 정보
-            method: "virtual-account",
-            bank: "신한",
-            customerName: "남정호",
-
-            // 주문 정보
-            orderId: yourOrderId,
-            orderName: "some-order-name",
-            amount: 25_000,
-
-            // 고의 미승인 처리
-            __approved: false
-        }
-    );
-
-    // 웹훅 URL 설정하기.
-    const webhook_url: string = "http://127.0.0.1:"
-        + PaymentConfiguration.API_PORT
-        + payments.functional.internal.webhook.PATH;
-    
-    // 결제 이력 등록하기
-    const history: IPaymentHistory = await payments.functional.histories.store
-    (
-        connection,
-        {
-            vendor: {
-                code: "toss.payments",
-                store_id: "test-iamport-store-id",
-                uid: payment.paymentKey,
-            },
-            source: {
-                schema: "some-schema",
-                table: "some-table",
-                id: yourOrderId
-            },
-            webhook_url, // 테스트용 웹훅 URL
-            price: yourOrderPrice,
-            password: "some-password",
-        }
-    );
-
-    //----
-    // 웹훅 이벤트 리스닝
-    //----
-    // 입금 시뮬레이션
-    await toss.functional.internal.deposit
-    (
-        TossAsset.connection("test-iamport-store-id"),
-        payment.paymentKey
-    );
-
-    // 웹훅 이벤트가 귀하의 백엔드 서버로 전달되기를 기다림.
-    await sleep_for(100);
-
-    // 웹흑 이벤트 리스닝 시뮬레이션.
-    const webhook: IPaymentWebhook = FakePaymentStorage.webhooks.back();    
-    if (webhook.current.id !== history.id)
-        throw new Error("Bug on PaymentWebhooksController.toss(): failed to deliver the webhook event.");
-    else if (webhook.previous.paid_at !== null)
-        throw new Error("Bug on PaymentWebhookProvider.process(): failed to delivery the exact previous data.");
-    else if (webhook.current.paid_at === null)
-        throw new Error("Bug on PaymentWebhookProvider.process(): failed to delivery the exact current data.");
-
-    // 웹훅 데이터 삭제
-    FakePaymentStorage.webhooks.pop_back();
-}
 ```
