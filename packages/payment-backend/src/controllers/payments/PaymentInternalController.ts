@@ -1,6 +1,6 @@
 import nest from "@modules/nestjs";
 import core from "@nestia/core";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 
 import { FakePaymentStorage } from "../../providers/payments/FakePaymentStorage";
 

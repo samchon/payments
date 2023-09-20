@@ -1,6 +1,6 @@
+import api from "@samchon/payment-api";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
-import api from "payment-api";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import typia from "typia";

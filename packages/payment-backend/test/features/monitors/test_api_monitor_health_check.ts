@@ -1,4 +1,4 @@
-import PaymentAPI from "payment-api";
+import PaymentAPI from "@samchon/payment-api";
 
 export async function test_api_monitor_health_check(
     connection: PaymentAPI.IConnection,

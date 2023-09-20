@@ -1,10 +1,10 @@
 import { TestValidator } from "@nestia/e2e";
+import PaymentAPI from "@samchon/payment-api";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import imp from "iamport-server-api";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
-import PaymentAPI from "payment-api";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import { sleep_for } from "tstl/thread/global";
 import typia from "typia";
 import { v4 } from "uuid";
@@ -122,7 +122,7 @@ export async function test_api_iamport_vbank_payment(
     // 이하 웹훅 데이터를 통한 입금 여부 검증
     TestValidator.equals("webhook")(!!webhook)(true);
     TestValidator.equals("history.id")(history.id)(webhook?.current.id);
-    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.previous.paid_at)(false);
     TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
 
     // 웹훅 데이터 삭제

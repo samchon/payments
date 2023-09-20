@@ -10,7 +10,7 @@ const NESTIA_CONFIG: INestiaConfig = {
         info: {
             title: "Iamport API",
             description:
-                "Built by [fake-iamport-server](https://github.com/samchon/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
+                "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
         },
         servers: [
             {

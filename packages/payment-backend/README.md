@@ -1,22 +1,22 @@
 # Payment Backend
 ## 1. Outline
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
-[![npm version](https://badge.fury.io/js/payment-backend.svg)](https://www.npmjs.com/package/payment-backend)
-[![Downloads](https://img.shields.io/npm/dm/payment-backend.svg)](https://www.npmjs.com/package/payment-backend)
+[![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/@samchon/payment-backend)
+[![Downloads](https://img.shields.io/npm/dm/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/@samchon/payment-backend)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
 `payment-backend` 는 통합 결제 서버를 구현한 프로젝트이다. 
 
-여기서 말하는 통합 결제란, [아임포트](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server)나 [토스 페이먼츠](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server) 등, 여러 PG 사들을 일괄 관리할 수 있다는 뜻이다. 더하여 `payment-backend` 는 MSA (Micro Service Architecture) 를 고려하여 설계된 프로젝트로써, 귀하의 서비스 중 결제 부문만을 따로이 분리하여 관리할 수 있다.
+여기서 말하는 통합 결제란, [아임포트](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server)나 [토스 페이먼츠](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server) 등, 여러 PG 사들을 일괄 관리할 수 있다는 뜻이다. 더하여 `@samchon/payment-backend` 는 MSA (Micro Service Architecture) 를 고려하여 설계된 프로젝트로써, 귀하의 서비스 중 결제 부문만을 따로이 분리하여 관리할 수 있다.
 
-또한 `payment-backend` 가 연동하게 되는 결제 PG 사들은 본디 프론트 어플리케이션과 연동한 수기 테스트가 필요하다. 이 때문에 이들 결제 PG 사들과 연동해야 하는 결제 서버들은, 테스트 자동화 프로그램을 작성할 수 없기에, 필연적으로 테스트 커버리지가 낮아 매우 불안정해진다. 하지만 `payment-backend` 는 결제 PG 사들의 API 를 흉내낸 가짜 PG 서버들을 구현, 이들을 통하여 테스트 자동화 프로그램을 구성함으로써 안정성을 담보한다.
+또한 `@samchon/payment-backend` 가 연동하게 되는 결제 PG 사들은 본디 프론트 어플리케이션과 연동한 수기 테스트가 필요하다. 이 때문에 이들 결제 PG 사들과 연동해야 하는 결제 서버들은, 테스트 자동화 프로그램을 작성할 수 없기에, 필연적으로 테스트 커버리지가 낮아 매우 불안정해진다. 하지만 `@samchon/payment-backend` 는 결제 PG 사들의 API 를 흉내낸 가짜 PG 서버들을 구현, 이들을 통하여 테스트 자동화 프로그램을 구성함으로써 안정성을 담보한다.
 
   - [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server)
   - [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server)
 
-더불어 `payment-backend` 는 `payment-api` 라 하여, 통합 결제 서버와 연동할 수 있는 SDK 라이브러리를 제공한다. 귀하는 이 `payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다.
+더불어 `@samchon/payment-backend` 는 `@samchon/payment-api` 라 하여, 통합 결제 서버와 연동할 수 있는 SDK 라이브러리를 제공한다. 귀하는 이 `@samchon/payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다.
 
-그리고 만일 귀하가 `payment-backend` 와의 연동을, 제공되는 SDK 를 활용하는 것이 아닌 API 스펙을 보고 직접 구현하고자 한다면, 반드시 알아두어야 할 것이 하나 있다. 그것은 바로 `payment-backend` 가 모든 request 및 response body 에 적재하는 JSON 데이터를, 보안 강화를 위하여 AES 알고리즘으로 암호화한다는 것이다.
+그리고 만일 귀하가 `@samchon/payment-backend` 와의 연동을, 제공되는 SDK 를 활용하는 것이 아닌 API 스펙을 보고 직접 구현하고자 한다면, 반드시 알아두어야 할 것이 하나 있다. 그것은 바로 `@samchon/payment-backend` 가 모든 request 및 response body 에 적재하는 JSON 데이터를, 보안 강화를 위하여 AES 알고리즘으로 암호화한다는 것이다.
 
   - 서버 접속 정보
     - Host 주소
@@ -47,9 +47,9 @@
 
 ```typescript
 import { TestValidator } from "@nestia/e2e";
-import api from "payment-api";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import api from "@samchon/payment-api";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { sleep_for } from "tstl/thread/global";
@@ -176,7 +176,7 @@ export async function test_api_toss_vbank_payment(
     // 이하 웹훅 데이터를 통한 입금 여부 검증
     TestValidator.equals("webhook")(!!webhook)(true);
     TestValidator.equals("history.id")(history.id)(webhook?.current.id);
-    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.previous.paid_at)(false);
     TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
 
     // 웹훅 데이터 삭제
@@ -254,20 +254,20 @@ npm run start
 npm run stop
 ```
 
-[![npm version](https://badge.fury.io/js/payment-backend.svg)](https://www.npmjs.com/package/payment-backend)
-[![Downloads](https://img.shields.io/npm/dm/payment-backend.svg)](https://www.npmjs.com/package/payment-backend)
+[![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
+[![Downloads](https://img.shields.io/npm/dm/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
 
-더하여 `payment-backend` 는 npm 모듈로 설치하여 `import` 할 수 있다.
+더하여 `@samchon/payment-backend` 는 npm 모듈로 설치하여 `import` 할 수 있다.
 
-이러한 방식은 `payment-backend` 와 연동하는 백엔드 서버를 개발할 때 특히 유용하다. 해당 백엔드 서버의 안정성을 상시 보증하기 위하여 테스트 자동화 프로그램을 개발할 때, 테스트 자동화 프로그램에서 `paments-server` 의 설정과 개설 및 폐쇄를 완전히 통제할 수 있기 때문이다.
+이러한 방식은 `@samchon/payment-backend` 와 연동하는 백엔드 서버를 개발할 때 특히 유용하다. 해당 백엔드 서버의 안정성을 상시 보증하기 위하여 테스트 자동화 프로그램을 개발할 때, 테스트 자동화 프로그램에서 `@samchon/payment-backend` 의 설정과 개설 및 폐쇄를 완전히 통제할 수 있기 때문이다.
 
-따라서 귀하의 백엔드 서버가 TypeScript 내지 JavaScript 를 사용한다면, 테스트 자동화 프로그램을 구성함에 있어 github 저장소를 clone 하고 `payment-backend` 를 별도 구동하기보다, 귀하의 백엔드 서버 테스트 프로그램에서 `payment-backend` 모듈을 `import` 후 그것의 개설과 폐쇄를 직접 통제하는 것을 권장한다.
+따라서 귀하의 백엔드 서버가 TypeScript 내지 JavaScript 를 사용한다면, 테스트 자동화 프로그램을 구성함에 있어 github 저장소를 clone 하고 `@samchon/payment-backend` 를 별도 구동하기보다, 귀하의 백엔드 서버 테스트 프로그램에서 `@samchon/payment-backend` 모듈을 `import` 후 그것의 개설과 폐쇄를 직접 통제하는 것을 권장한다.
 
-그리고 이렇게 테스트 자동화 프로그램으로 `payment-backend` 를 `import` 하여 사용할 때 역시, 각각 [PaymentConfiguration](https://github.com/samchon/payments/tree/master/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/tree/master/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
+그리고 이렇게 테스트 자동화 프로그램으로 `@samchon/payment-backend` 를 `import` 하여 사용할 때 역시, 각각 [PaymentConfiguration](https://github.com/samchon/payments/tree/master/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/tree/master/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
 
 ```typescript
-// npm install --save-dev payment-backend
-import payments from "payment-backend";
+// npm install --save-dev @samchon/payment-backend
+import payments from "@samchon/payment-backend";
 
 async function main(): Promise<void>
 {
@@ -285,14 +285,14 @@ async function main(): Promise<void>
 ```
 
 ### 2.4. Software Development Kit
-[![npm version](https://badge.fury.io/js/payment-api.svg)](https://www.npmjs.com/package/payment-api)
-[![Downloads](https://img.shields.io/npm/dm/payment-api.svg)](https://www.npmjs.com/package/payment-api)
+[![npm version](https://badge.fury.io/js/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
+[![Downloads](https://img.shields.io/npm/dm/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
 
-본 프로젝트 `payment-backend` 는 연동을 위한 SDK 라이브러리를 제공한다.
+본 프로젝트 `@samchon/payment-backend` 는 연동을 위한 SDK 라이브러리를 제공한다.
 
-귀하는 이 `payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다. 
+귀하는 이 `@samchon/payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다. 
 
-`npm install --save payment-api` 명령어를 통하여 통합 결제와의 연동을 위한 SDK 라이브러리를 설치한 후, 아래 매뉴얼 및 예제 코드를 참고하여 귀하의 백엔드 서비스가 필요로 하는 결제 기능을 개발하도록 한다.
+`npm install --save @samchon/payment-api` 명령어를 통하여 통합 결제와의 연동을 위한 SDK 라이브러리를 설치한 후, 아래 매뉴얼 및 예제 코드를 참고하여 귀하의 백엔드 서비스가 필요로 하는 결제 기능을 개발하도록 한다.
 
   - 서버 접속 정보
     - Host 주소
@@ -323,9 +323,9 @@ import { TestValidator } from "@nestia/e2e";
 import imp from "iamport-server-api";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
-import PaymentAPI from "payment-api";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import PaymentAPI from "@samchon/payment-api";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import { sleep_for } from "tstl/thread/global";
 import typia from "typia";
 import { v4 } from "uuid";
@@ -443,7 +443,7 @@ export async function test_api_iamport_vbank_payment(
     // 이하 웹훅 데이터를 통한 입금 여부 검증
     TestValidator.equals("webhook")(!!webhook)(true);
     TestValidator.equals("history.id")(history.id)(webhook?.current.id);
-    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.previous.paid_at)(false);
     TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
 
     // 웹훅 데이터 삭제
@@ -458,13 +458,13 @@ export async function test_api_iamport_vbank_payment(
 
 ## 3. Development
 ### 3.1. Definition
-백엔드 서버에 새 API 를 추가하고 기능을 변경하는 일 따위는 물론, API 컨트롤러, 즉 [src/controllers](src/controllers) 의 코드를 수정함으로써 이루어진다. 하지만 `payment-backend` 는 신규 API 가 필요하거나 혹은 기존 API 의 변경 필요할 때, 대뜸 [Main Program](#33-main-program) 의 코드부터 작성하고 보는 것을 매우 지양한다. 그 대신 `payment-backend` 는 API 의 인터페이스만을 먼저 정의하고, [Main Program](#33-main-program) 의 구현은 나중으로 미루는 것을 지향한다.
+백엔드 서버에 새 API 를 추가하고 기능을 변경하는 일 따위는 물론, API 컨트롤러, 즉 [src/controllers](src/controllers) 의 코드를 수정함으로써 이루어진다. 하지만 `@samchon/payment-backend` 는 신규 API 가 필요하거나 혹은 기존 API 의 변경 필요할 때, 대뜸 [Main Program](#33-main-program) 의 코드부터 작성하고 보는 것을 매우 지양한다. 그 대신 `@samchon/payment-backend` 는 API 의 인터페이스만을 먼저 정의하고, [Main Program](#33-main-program) 의 구현은 나중으로 미루는 것을 지향한다.
 
-따라서 `payment-backend` 에 새 API 를 추가하려거든, [src/controllers](src/controllers) 에 새 API 의 인터페이스만을 먼저 정의해준다. 곧이어 `npm run build:api` 명령어를 통하여, API Library 를 빌드한다. 경우에 따라서는 서비스 서버와의 동시 개발을 위하여, 새로이 빌드된 SDK 를 그대로 `npm run package:api` 해 버려도 좋다. 
+따라서 `@samchon/payment-backend` 에 새 API 를 추가하려거든, [src/controllers](src/controllers) 에 새 API 의 인터페이스만을 먼저 정의해준다. 곧이어 `npm run build:api` 명령어를 통하여, API Library 를 빌드한다. 경우에 따라서는 서비스 서버와의 동시 개발을 위하여, 새로이 빌드된 SDK 를 그대로 `npm run package:api` 해 버려도 좋다. 
 
 이후 로컬에서 새로이 생성된 SDK 와 해당 API 를 이용, 유즈케이스 시나리오를 테스트 자동화 프로그램으로 작성한다. 이후 Main Program 을 제작하며, 앞서 작성해 둔 테스트 자동화 프로그램으로 상시 검증한다. 마지막으로 Main Program 까지 완성되면 이를 배포하면 된다.
 
-이하 `payment-backend` 의 개략적인 개발 순서를 요약하면 아래와 같다.
+이하 `@samchon/payment-backend` 의 개략적인 개발 순서를 요약하면 아래와 같다.
 
   - API Interface Definition
   - API Library (SDK) 빌드
@@ -481,7 +481,7 @@ npm run test
 
 새로이 개발할 [API 인터페이스 정의](#31-api-interface-definition)를 마쳤다면, 그 다음에 할 일은 바로 해당 API 에 대한 유즈케이스 시나리오를 세우고 이를 테스트 자동화 프로그램을 만들어, 향후 [Main Program](#33-main-program) 제작시 이를 상시 검증할 수 있는 수단을 구비해두는 것이다 - TDD (Test Driven Development).
 
-그리고 본 프로젝트는 `npm run test` 라는 명령어를 통하여, 서버 프로그램의 일체 기능 및 정책 등에 대하여 검증할 수 있는, 테스트 자동화 프로그램을 구동해 볼 수 있다. 더불어 테스트 자동화 프로그램은 순수하게 `payment-backend` 의 메인 서버 프로그램 뿐 아니라, 통합 결제 서버와 연동하는 다양한 외부 PG 사 시스템들도, 가상으로 구동하게 된다.
+그리고 본 프로젝트는 `npm run test` 라는 명령어를 통하여, 서버 프로그램의 일체 기능 및 정책 등에 대하여 검증할 수 있는, 테스트 자동화 프로그램을 구동해 볼 수 있다. 더불어 테스트 자동화 프로그램은 순수하게 `@samchon/payment-backend` 의 메인 서버 프로그램 뿐 아니라, 통합 결제 서버와 연동하는 다양한 외부 PG 사 시스템들도, 가상으로 구동하게 된다.
 
   - [fake-iamport-payments-server](https://github.com/samchon/fake-iamport-payments-server)
   - [fake-toss-payments-server](https://github.com/samchon/fake-toss-payments-server)
@@ -589,18 +589,18 @@ export async function test_fake_iamport_payment_webhook
     - PKCS #5 Padding
     - Base64 Encoding
 
-본 통합 결제 서버 `payment-backend` 는 보안을 강화하기 위하여, http 프로토콜로 전송되는 모든 `body` 데이터를 암호화한다 이는 `request body` 와 `response body` 양쪽 모두 해당되는 이야기이며, 설사 http 대신 https 프로토콜을 사용한다 하더라도 예외는 없다.
+본 통합 결제 서버 `@samchon/payment-backend` 는 보안을 강화하기 위하여, http 프로토콜로 전송되는 모든 `body` 데이터를 암호화한다 이는 `request body` 와 `response body` 양쪽 모두 해당되는 이야기이며, 설사 http 대신 https 프로토콜을 사용한다 하더라도 예외는 없다.
 
-더하여 `payment-backend` 는 결제를 비롯한 모든 민감 데이터들을 암호화하여 저장하고 있다. 또한, 각 암호화 항목마다 각기 다른 secret key 및 initialization vector 를 사용함으로써, 보안을 한층 더 강화하고 있다. 그리고 이러한 민감 데이터들은 일괄 조회가 불가능하며, 오직 개별 단위의 조회만 가능하다. 이 개별 단위의 조회조차, 해당 레코드의 비밀번호를 모르면 일절 조회할 수 없다.
+더하여 `@samchon/payment-backend` 는 결제를 비롯한 모든 민감 데이터들을 암호화하여 저장하고 있다. 또한, 각 암호화 항목마다 각기 다른 secret key 및 initialization vector 를 사용함으로써, 보안을 한층 더 강화하고 있다. 그리고 이러한 민감 데이터들은 일괄 조회가 불가능하며, 오직 개별 단위의 조회만 가능하다. 이 개별 단위의 조회조차, 해당 레코드의 비밀번호를 모르면 일절 조회할 수 없다.
 
-`payment-backend` 에는 이처럼 보안 강화를 위한 강력한 암호화 정책들이 존재한다. 혹여 귀하가 본 `payment-backend` 를 확장하여 몇 가지 기능을 더 개발한다 하더라도, 이러한 암호화 원칙들은 부디 지켜주었으면 한다.
+`@samchon/payment-backend` 에는 이처럼 보안 강화를 위한 강력한 암호화 정책들이 존재한다. 혹여 귀하가 본 `@samchon/payment-backend` 를 확장하여 몇 가지 기능을 더 개발한다 하더라도, 이러한 암호화 원칙들은 부디 지켜주었으면 한다.
 
 
 
 
 ## 4. Deploy
 ### 4.1. Non-distruptive Update System
-만일 귀하가 통합 결제 서버 `payment-backend` 의 코드를 수정하고 이를 커밋하였다면, 귀하는 이를 기존의 서버 인스턴스를 종료하는 일 없이, 무중단 업데이트를 수행할 수 있다. `npm run update` 명령어를 입력함으로써, 이러한 무중단 업데이트는 실행된다.
+만일 귀하가 통합 결제 서버 `@samchon/payment-backend` 의 코드를 수정하고 이를 커밋하였다면, 귀하는 이를 기존의 서버 인스턴스를 종료하는 일 없이, 무중단 업데이트를 수행할 수 있다. `npm run update` 명령어를 입력함으로써, 이러한 무중단 업데이트는 실행된다.
 
   - Pull new commit
   - Build the new soure code
@@ -627,14 +627,14 @@ npm run start real
 ```
 
 ### 4.2. Local Server
-간혹 로컬에, [테스트 자동화 프로그램](#33-test-automation-program)이 아닌, `payment-backend` 그 자체를 구동해야 할 때가 있다. 이럴 때는 아래와 같이 `npm run start local` 명령어를 입력해주면, 로컬에 `payment-backend` 서버를 개설할 수 있다. 그리고 실행된 서버를 종료하려거든, `npm run stop` 명령어를 입력해주면 된다.
+간혹 로컬에, [테스트 자동화 프로그램](#33-test-automation-program)이 아닌, `@samchon/payment-backend` 그 자체를 구동해야 할 때가 있다. 이럴 때는 아래와 같이 `npm run start local` 명령어를 입력해주면, 로컬에 `@samchon/payment-backend` 서버를 개설할 수 있다. 그리고 실행된 서버를 종료하려거든, `npm run stop` 명령어를 입력해주면 된다.
 
 ```bash
 npm run start local
 npm run stop
 ```
 
-또한, 로컬 개발 환경에서의 무중단 업데이트가 얼마나 의미가 있겠냐만은, 어쨋든 `payment-backend` 는 로컬 환경에서도 무중단 업데이트라는 것을 할 수 있다. 아래와 같이 로컬 서버를 구동하기 전 `npm run start updator:master` 명령어를 통하여 업데이트 관리자 프로그램을 구동하고, 향후 무중단 업데이트가 필요할 때마다 `npm run update local` 명령어를 입력해주면 된다.
+또한, 로컬 개발 환경에서의 무중단 업데이트가 얼마나 의미가 있겠냐만은, 어쨋든 `@samchon/payment-backend` 는 로컬 환경에서도 무중단 업데이트라는 것을 할 수 있다. 아래와 같이 로컬 서버를 구동하기 전 `npm run start updator:master` 명령어를 통하여 업데이트 관리자 프로그램을 구동하고, 향후 무중단 업데이트가 필요할 때마다 `npm run update local` 명령어를 입력해주면 된다.
 
 ```bash
 # START THE LOCAL BACKEND SERVER WITH UPDATOR PROGRAM
@@ -652,9 +652,9 @@ Dev 서버를 업데이트하는 것은 매우 간단하다. 그저 소스 코�
 npm run update dev
 ```
 
-다만 dev 서버의 경우, PostgreSQL 이 별도의 RDS 로 구성된 게 아닌, `payment-backend` 가 설치되고 가동되는 EC2 인스턴스에 함께 설치되기도 한다. 그리고 dev 서버는 로컬 서버와 마찬가지로 테스트 용도를 위하여 개설된 목적인 바, 경우에 따라 DB 를 초기화하고 재 구성해야 하는 경우 또한 생기기 마련이다.
+다만 dev 서버의 경우, PostgreSQL 이 별도의 RDS 로 구성된 게 아닌, `@samchon/payment-backend` 가 설치되고 가동되는 EC2 인스턴스에 함께 설치되기도 한다. 그리고 dev 서버는 로컬 서버와 마찬가지로 테스트 용도를 위하여 개설된 목적인 바, 경우에 따라 DB 를 초기화하고 재 구성해야 하는 경우 또한 생기기 마련이다.
 
-이 경우, 아래와 같이 `npm run ssh:dev` 명령어를 입력하여 dev 서버로 접속한 후, `npm run reset:dev` 명령어를 입력해주면 된다. 이 명령어는 dev 서버의 소스코드를 가장 최신의 것으로 변경한 후, `payment-backend` 의 백엔드 및 업데이트 서버를 종료하고, 테스트 프로그램을 가동함으로써 DB 를 초기화하고 필수 및 샘플 데이터를 재 구성한 후, 종료된 `payment-backend` 의 백엔드와 업데이트 서버를 재 시작해주는 역할을 한다.
+이 경우, 아래와 같이 `npm run ssh:dev` 명령어를 입력하여 dev 서버로 접속한 후, `npm run reset:dev` 명령어를 입력해주면 된다. 이 명령어는 dev 서버의 소스코드를 가장 최신의 것으로 변경한 후, `@samchon/payment-backend` 의 백엔드 및 업데이트 서버를 종료하고, 테스트 프로그램을 가동함으로써 DB 를 초기화하고 필수 및 샘플 데이터를 재 구성한 후, 종료된 `@samchon/payment-backend` 의 백엔드와 업데이트 서버를 재 시작해주는 역할을 한다.
 
 ```bash
 # 다음 두 명령어로 리셋 가능
@@ -671,7 +671,7 @@ npm run start:updator:master
 npm run start dev
 ```
 
-더하여 `payment-backend` 를 개발하다보면, 문득 현재 가동 중인 `payment-backend` 서버의 정보가 이리저리 궁금해질 수 있다. 가령 현재 가동 중인 dev 서버가 사용 중인 소스 코드가 무엇인지 알고 싶어, 해당 서버가 사용 중인 소스 코드의 commit 에 대한 hash code 를 알고싶을 수도 있는 법이다. 
+더하여 `@samchon/payment-backend` 를 개발하다보면, 문득 현재 가동 중인 `@samchon/payment-backend` 서버의 정보가 이리저리 궁금해질 수 있다. 가령 현재 가동 중인 dev 서버가 사용 중인 소스 코드가 무엇인지 알고 싶어, 해당 서버가 사용 중인 소스 코드의 commit 에 대한 hash code 를 알고싶을 수도 있는 법이다. 
 
 이 때는 망설이지 말고 바로 아래와 같이, `npm run monitor dev` 명령을 수행해주면, 바로 현재의 dev 서버에 대한 각종 정보를 취득할 수 있다. 취득할 수 있는 정보는 아래와 같이 대분류 주제로는 두 가지, 그리고 소분류로는 다섯 가지가 있다.
 

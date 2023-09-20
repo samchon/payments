@@ -1,8 +1,8 @@
 import nest from "@modules/nestjs";
 import core from "@nestia/core";
-import { IPaymentCancelHistory } from "payment-api/lib/structures/payments/IPaymentCancelHistory";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentSource } from "payment-api/lib/structures/payments/IPaymentSource";
+import { IPaymentCancelHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentCancelHistory";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentSource } from "@samchon/payment-api/lib/structures/payments/IPaymentSource";
 import { tags } from "typia";
 
 import { PaymentCancelHistoryProvider } from "../../providers/payments/PaymentCancelHistoryProvider";

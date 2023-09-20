@@ -1,7 +1,7 @@
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import imp from "iamport-server-api";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { IIamportPaymentCancel } from "iamport-server-api/lib/structures/IIamportPaymentCancel";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
 import { DomainError } from "tstl/exception/DomainError";
 
 import { ErrorUtil } from "../../utils/ErrorUtil";

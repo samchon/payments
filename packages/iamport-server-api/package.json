@@ -1,6 +1,6 @@
 {
   "name": "iamport-server-api",
-  "version": "4.0.0-dev.20230920-2",
+  "version": "4.0.0",
   "description": "API for Iamport Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",

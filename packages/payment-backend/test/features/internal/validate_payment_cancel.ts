@@ -1,8 +1,8 @@
 import { TestValidator } from "@nestia/e2e";
-import PaymentAPI from "payment-api/lib/index";
-import { IPaymentCancelHistory } from "payment-api/lib/structures/payments/IPaymentCancelHistory";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import PaymentAPI from "@samchon/payment-api/lib/index";
+import { IPaymentCancelHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentCancelHistory";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import { sleep_for } from "tstl";
 
 import { FakePaymentStorage } from "../../../src/providers/payments/FakePaymentStorage";

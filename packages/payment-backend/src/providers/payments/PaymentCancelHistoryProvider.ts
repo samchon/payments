@@ -1,10 +1,10 @@
 import nest from "@modules/nestjs";
 import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
 import { Prisma } from "@prisma/client";
+import { IEntity } from "@samchon/payment-api/lib/structures/common/IEntity";
+import { IPaymentCancelHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentCancelHistory";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
-import { IEntity } from "payment-api/lib/structures/common/IEntity";
-import { IPaymentCancelHistory } from "payment-api/lib/structures/payments/IPaymentCancelHistory";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { sleep_for } from "tstl";
 import { v4 } from "uuid";
