@@ -1,7 +1,12 @@
+bin
 dist
 lib
 node_modules
-packages
-src/api
+
+packages/*/src/api/functional
+packages/*/src/api/typings
+packages/*/src/api/utils
+packages/*/src/api/*.ts
+
 README.md
-tsconfig.json
+packages/*/tsconfig.json
