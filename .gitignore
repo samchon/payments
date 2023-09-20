@@ -2,7 +2,7 @@ bin/
 lib/
 node_modules/
 
-*.DS_Store
 package-lock.json
-.npmrc
-*.sh
+*.DS_Store
+*.log
+*.tgz
