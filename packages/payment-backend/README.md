@@ -1,8 +1,8 @@
 # Payment Backend
 ## 1. Outline
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
-[![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/@samchon/payment-backend)
-[![Downloads](https://img.shields.io/npm/dm/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/@samchon/payment-backend)
+[![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
+[![Downloads](https://img.shields.io/npm/dm/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
 `payment-backend` 는 통합 결제 서버를 구현한 프로젝트이다. 
