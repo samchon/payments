@@ -1,4 +1,4 @@
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import { Vector } from "tstl/container/Vector";
 
 export namespace FakePaymentStorage {

@@ -1,5 +1,5 @@
-import PaymentAPI from "payment-api/lib/index";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
+import PaymentAPI from "@samchon/payment-api/lib/index";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 
 import { validate_payment_cancel_partial } from "../internal/validate_payment_cancel_partial";
 import { test_api_iamport_card_payment } from "./test_api_iamport_card_payment";

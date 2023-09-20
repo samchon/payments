@@ -7,8 +7,8 @@
     }
   ],
   "info": {
-    "version": "4.0.0-dev.20230920",
-    "title": "payment-backend",
+    "version": "4.0.0",
+    "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
       "name": "MIT"

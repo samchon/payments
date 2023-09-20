@@ -2,11 +2,11 @@ import nest from "@modules/nestjs";
 import "@nestia/fetcher";
 import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
 import { Prisma } from "@prisma/client";
+import { IEntity } from "@samchon/payment-api/lib/structures/common/IEntity";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import { HttpError } from "iamport-server-api";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
-import { IEntity } from "payment-api/lib/structures/common/IEntity";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { v4 } from "uuid";
 

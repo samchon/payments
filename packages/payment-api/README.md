@@ -1,18 +1,18 @@
 # Payment API
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
-[![npm version](https://badge.fury.io/js/payment-api.svg)](https://www.npmjs.com/package/payment-api)
-[![Downloads](https://img.shields.io/npm/dm/payment-api.svg)](https://www.npmjs.com/package/payment-api)
+[![npm version](https://badge.fury.io/js/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
+[![Downloads](https://img.shields.io/npm/dm/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
 ```bash
-npm install --save payment-api
+npm install --save @samchon/payment-api
 ```
 
-Software Development Kit of [`payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend).
+Software Development Kit of [`@samchon/payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend).
 
-`payment-api` 는 통합 결제 시스템 [`payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend) 와 연동할 수 있는 SDK 라이브러리이다. 귀하는 이 `payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다.
+`@samchon/payment-api` 는 통합 결제 시스템 [`@samchon/payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend) 와 연동할 수 있는 SDK 라이브러리이다. 귀하는 이 `@samchon/payment-api` 를 통하여, 통합 결제 서버와 매우 손쉽게 연동할 수 있고, 이를 통하여 결제 부문에 관련된 MSA (Micro Service Architecture) 를 매우 안전하게 구성할 수 있다.
 
-다만 귀하가 [`payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend) 와의 연동을, 제공되는 SDK 를 활용하는 것이 아닌 API 스펙을 보고 직접 구현하고자 한다면, 반드시 알아두어야 할 것이 하나 있다. 그것은 바로 [`payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend) 가 모든 request 및 response body 에 적재하는 JSON 데이터를, 보안 강화를 위하여 AES 알고리즘으로 암호화한다는 것이다.
+다만 귀하가 [`@samchon/payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend) 와의 연동을, 제공되는 SDK 를 활용하는 것이 아닌 API 스펙을 보고 직접 구현하고자 한다면, 반드시 알아두어야 할 것이 하나 있다. 그것은 바로 [`@samchon/payment-backend`](https://github.com/samchon/payments/tree/master/packages/payment-backend) 가 모든 request 및 response body 에 적재하는 JSON 데이터를, 보안 강화를 위하여 AES 알고리즘으로 암호화한다는 것이다.
 
   - 서버 접속 정보
     - Host 주소
@@ -43,9 +43,9 @@ Software Development Kit of [`payment-backend`](https://github.com/samchon/payme
 
 ```typescript
 import { TestValidator } from "@nestia/e2e";
-import api from "payment-api";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
-import { IPaymentWebhookHistory } from "payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import api from "@samchon/payment-api";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { sleep_for } from "tstl/thread/global";
@@ -172,7 +172,7 @@ export async function test_api_toss_vbank_payment(
     // 이하 웹훅 데이터를 통한 입금 여부 검증
     TestValidator.equals("webhook")(!!webhook)(true);
     TestValidator.equals("history.id")(history.id)(webhook?.current.id);
-    TestValidator.equals("paid_at")(!webhook?.previous.paid_at)(false);
+    TestValidator.equals("paid_at")(!!webhook?.previous.paid_at)(false);
     TestValidator.equals("paid_at")(!!webhook?.current.paid_at)(true);
 
     // 웹훅 데이터 삭제

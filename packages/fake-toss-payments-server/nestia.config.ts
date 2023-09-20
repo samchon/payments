@@ -10,7 +10,7 @@ const NESTIA_CONFIG: INestiaConfig = {
         info: {
             title: "Toss Payments API",
             description:
-                "Built by [fake-toss-payments-server](https://github.com/samchon/payments) with [nestia](https://github.com/samchon/nestia)",
+                "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
         },
         servers: [
             {

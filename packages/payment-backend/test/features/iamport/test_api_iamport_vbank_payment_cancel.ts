@@ -1,8 +1,8 @@
-import PaymentAPI from "payment-api/lib/index";
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
+import PaymentAPI from "@samchon/payment-api/lib/index";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 
 import { validate_payment_cancel } from "../internal/validate_payment_cancel";
-import { test_api_iamport_vbank_payment } from "./test_api_iamport_vbank_payment.1";
+import { test_api_iamport_vbank_payment } from "./test_api_iamport_vbank_payment";
 
 export async function test_api_iamport_vbank_payment_cancel(
     connection: PaymentAPI.IConnection,

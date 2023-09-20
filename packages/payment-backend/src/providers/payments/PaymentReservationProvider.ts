@@ -1,9 +1,9 @@
 import nest from "@modules/nestjs";
 import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
 import { Prisma } from "@prisma/client";
+import { IPaymentReservation } from "@samchon/payment-api/lib/structures/payments/IPaymentReservation";
 import imp from "iamport-server-api";
 import { IIamportSubscription } from "iamport-server-api/lib/structures/IIamportSubscription";
-import { IPaymentReservation } from "payment-api/lib/structures/payments/IPaymentReservation";
 import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { v4 } from "uuid";

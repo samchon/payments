@@ -4,10 +4,12 @@ const path = require("path");
 
 const packages = fs.readdirSync(`${__dirname}/../packages`);
 
-const execute = (cwd, stdio = "ignore") => (command) => {
-    console.log(command);
-    cp.execSync(command, { cwd, stdio });
-};
+const execute =
+    (cwd, stdio = "ignore") =>
+    (command) => {
+        console.log(command);
+        cp.execSync(command, { cwd, stdio });
+    };
 
 const deploy = (tag) => (version) => (name) => {
     console.log("-----------------------------------------");
@@ -22,7 +24,7 @@ const deploy = (tag) => (version) => (name) => {
 
     for (const record of [info.dependencies ?? {}, info.devDependencies ?? {}])
         for (const key of Object.keys(record))
-            if (packages.includes(key)) {
+            if (packages.includes(key.replace("@samchon/", ""))) {
                 if (
                     tag === "tgz" &&
                     fs.existsSync(`${directory}/node_modules/${key}`)
@@ -31,7 +33,10 @@ const deploy = (tag) => (version) => (name) => {
                 record[key] =
                     tag === "tgz"
                         ? path.resolve(
-                              `${__dirname}/../packages/${key}/${key}-${version}.tgz`,
+                              `${__dirname}/../packages/${key.replace(
+                                  "@samchon/",
+                                  "",
+                              )}/${key}-${version}.tgz`,
                           )
                         : `^${version}`;
             }
@@ -47,20 +52,20 @@ const deploy = (tag) => (version) => (name) => {
         execute(directory, "inherit")(`npm run test -- --reset true`);
     } else if (fs.existsSync(`${directory}/test`))
         execute(directory, "inherit")(`npm run test`);
-    
+
     // BUILD SWAGGER FILE
     if (name.includes("api") === false)
         execute(directory)(`npm run build:swagger`);
 
     // PUBLISH (OR PACK)
     if (tag === "tgz") execute(directory)(`npm pack`);
-    else execute(directory)(`npm publish --tag ${tag}`);
+    else execute(directory)(`npm publish --tag ${tag} --access public`);
     console.log("");
 };
 
 const publish = (tag) => (version) => {
     // VALIDATE TAG
-    const dev = version.includes("--dev.") === false;
+    const dev = version.includes("-dev.") === true;
     if (tag !== "latest" && dev === false)
         throw new Error(`${tag} tag can only be used for dev versions.`);
     else if (tag === "latest" && dev === true)

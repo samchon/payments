@@ -12,8 +12,8 @@
   ],
   "info": {
     "title": "Toss Payments API",
-    "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments) with [nestia](https://github.com/samchon/nestia)",
-    "version": "4.0.0-dev.20230920-2",
+    "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
+    "version": "4.0.0",
     "license": {
       "name": "MIT"
     }

@@ -1,6 +1,6 @@
 {
-  "name": "payment-api",
-  "version": "4.0.0-dev.20230920",
+  "name": "@samchon/payment-api",
+  "version": "4.0.0",
   "description": "API for Payment Backend",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@nestia/fetcher": "^2.0.4",
-    "iamport-server-api": "^4.0.0-dev.20230920",
-    "toss-payments-server-api": "^4.0.0-dev.20230920",
+    "iamport-server-api": "^4.0.0",
+    "toss-payments-server-api": "^4.0.0",
     "typia": "^5.0.4"
   }
 }

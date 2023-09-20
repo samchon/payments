@@ -1,7 +1,7 @@
 import nest from "@modules/nestjs";
 import core from "@nestia/core";
-import { IPaymentReservation } from "payment-api/lib/structures/payments/IPaymentReservation";
-import { IPaymentSource } from "payment-api/lib/structures/payments/IPaymentSource";
+import { IPaymentReservation } from "@samchon/payment-api/lib/structures/payments/IPaymentReservation";
+import { IPaymentSource } from "@samchon/payment-api/lib/structures/payments/IPaymentSource";
 import { tags } from "typia";
 
 import { PaymentReservationProvider } from "../../providers/payments/PaymentReservationProvider";

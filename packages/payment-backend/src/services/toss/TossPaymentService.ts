@@ -1,4 +1,4 @@
-import { IPaymentHistory } from "payment-api/lib/structures/payments/IPaymentHistory";
+import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
 import { ITossPaymentCancel } from "toss-payments-server-api/lib/structures/ITossPaymentCancel";

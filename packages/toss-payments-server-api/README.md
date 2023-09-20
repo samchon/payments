@@ -12,7 +12,7 @@ npm install --save toss-payments-server-api
 
 고로 아임포트와 연동하는 TypeScript 기반 백엔드 서버를 개발함에 있어, 가짜 토스 페이먼츠 서버 [`fake-toss-payments-server`](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server) 는 직접 이용치 않더라도, 실제 토스 페이먼츠 서버와의 연동을 위하여, 본 SDK 라이브러리만큼은 반드시 설치하기를 권장하는 바이다
 
-  - **Swagger Editor**: [toss-payments-server-api/swagger.json](https://editor.swagger.io/?url=https%3A%2F%2Fgithub.com%2Fsamchon%2Fpayments%2Fblob%2Fmaster%2Fpackages%2Ftoss-payments-server-api%2Fswagger.json)
+  - **Swagger Editor**: [toss-payments-server-api/swagger.json](https://editor.swagger.io/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsamchon%2Fpayments%2Fmaster%2Fpackages%2Ftoss-payments-server-api%2Fswagger.json)
   - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts)
   - API 함수: [src/api/functional/v1/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/functional/v1/payments/index.ts)
   - 예제 코드
