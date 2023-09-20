@@ -47,6 +47,10 @@ const deploy = (tag) => (version) => (name) => {
         execute(directory, "inherit")(`npm run test -- --reset true`);
     } else if (fs.existsSync(`${directory}/test`))
         execute(directory, "inherit")(`npm run test`);
+    
+    // BUILD SWAGGER FILE
+    if (name.includes("api") === false)
+        execute(directory)(`npm run build:swagger`);
 
     // PUBLISH (OR PACK)
     if (tag === "tgz") execute(directory)(`npm pack`);

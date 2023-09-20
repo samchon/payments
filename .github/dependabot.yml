@@ -1,10 +1,9 @@
 version: 2
 updates:
   - package-ecosystem: 'npm'
-    directory: '/'
+    directory: '/packages/fake-iamport-server'
     schedule:
       interval: 'daily'
-    # versioning-strategy: increase
     open-pull-requests-limit: 25
     allow:
       - dependency-name: "@nestia/core"
@@ -14,8 +13,51 @@ updates:
       - dependency-name: "tstl"
       - dependency-name: "typia"
   - package-ecosystem: 'npm'
-    directory: '/packages/api'
+    directory: '/packages/fake-toss-payments-server'
     schedule:
       interval: 'daily'
-    # versioning-strategy: increase
     open-pull-requests-limit: 25
+    allow:
+      - dependency-name: "@nestia/core"
+      - dependency-name: "@nestia/e2e"
+      - dependency-name: "@nestia/sdk"
+      - dependency-name: "nestia"
+      - dependency-name: "tstl"
+      - dependency-name: "typia"
+  - package-ecosystem: 'npm'
+    directory: '/packages/payment-backend'
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 25
+    allow:
+      - dependency-name: "@nestia/core"
+      - dependency-name: "@nestia/e2e"
+      - dependency-name: "@nestia/sdk"
+      - dependency-name: "nestia"
+      - dependency-name: "tstl"
+      - dependency-name: "typia"
+
+  - package-ecosystem: 'npm'
+    directory: '/packages/iamport-server-api'
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 25
+    allow:
+      - dependency-name: "@nestia/fetcher"
+      - dependency-name: "typia"
+  - package-ecosystem: 'npm'
+    directory: '/packages/toss-payments-server-api'
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 25
+    allow:
+      - dependency-name: "@nestia/fetcher"
+      - dependency-name: "typia"
+  - package-ecosystem: 'npm'
+    directory: '/packages/payment-api'
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 25
+    allow:
+      - dependency-name: "@nestia/fetcher"
+      - dependency-name: "typia"

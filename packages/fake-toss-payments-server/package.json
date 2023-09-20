@@ -1,6 +1,6 @@
 {
   "name": "fake-toss-payments-server",
-  "version": "4.0.0-dev.20230920",
+  "version": "4.0.0-dev.20230920-2",
   "description": "Fake toss-payments server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -84,8 +84,6 @@
     "README.md",
     "LICENSE",
     "lib",
-    "src",
-    "!lib/test",
-    "!src/test"
+    "src"
   ]
 }
