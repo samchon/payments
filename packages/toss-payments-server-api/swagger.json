@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "license": {
       "name": "MIT"
     }
@@ -178,7 +178,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
                   "textSpan": {
-                    "start": 435,
+                    "start": 457,
                     "length": 19
                   }
                 }
@@ -310,7 +310,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts",
                   "textSpan": {
-                    "start": 435,
+                    "start": 457,
                     "length": 19
                   }
                 }
@@ -528,7 +528,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossCashReceipt.ts",
                   "textSpan": {
-                    "start": 153,
+                    "start": 164,
                     "length": 19
                   }
                 }
@@ -704,7 +704,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2305,
+                    "start": 2399,
                     "length": 19
                   }
                 }
@@ -802,7 +802,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2305,
+                    "start": 2399,
                     "length": 19
                   }
                 }
@@ -906,7 +906,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2305,
+                    "start": 2399,
                     "length": 19
                   }
                 }
@@ -1124,7 +1124,7 @@
                 "target": {
                   "fileName": "D:/github/samchon/payments/packages/fake-toss-payments-server/src/api/structures/ITossPayment.ts",
                   "textSpan": {
-                    "start": 2305,
+                    "start": 2399,
                     "length": 19
                   }
                 }
