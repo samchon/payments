@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "4.0.1",
+    "version": "4.0.2",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -164,6 +164,7 @@
                   "value": "uuid",
                   "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                   "exclusive": [
+                    "format",
                     "pattern"
                   ]
                 }
@@ -474,6 +475,7 @@
                   "value": "uuid",
                   "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                   "exclusive": [
+                    "format",
                     "pattern"
                   ]
                 }
@@ -659,13 +661,13 @@
         "type": "object",
         "properties": {
           "cpu": {
-            "$ref": "#/components/schemas/_singlequote_process_singlequote_.global.NodeJS.CpuUsage"
+            "$ref": "#/components/schemas/process.global.NodeJS.CpuUsage"
           },
           "memory": {
-            "$ref": "#/components/schemas/_singlequote_process_singlequote_.global.NodeJS.MemoryUsage"
+            "$ref": "#/components/schemas/process.global.NodeJS.MemoryUsage"
           },
           "resource": {
-            "$ref": "#/components/schemas/_singlequote_process_singlequote_.global.NodeJS.ResourceUsage"
+            "$ref": "#/components/schemas/process.global.NodeJS.ResourceUsage"
           }
         },
         "nullable": false,
@@ -676,7 +678,7 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "_singlequote_process_singlequote_.global.NodeJS.CpuUsage": {
+      "process.global.NodeJS.CpuUsage": {
         "type": "object",
         "properties": {
           "user": {
@@ -697,7 +699,7 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "_singlequote_process_singlequote_.global.NodeJS.MemoryUsage": {
+      "process.global.NodeJS.MemoryUsage": {
         "type": "object",
         "properties": {
           "rss": {
@@ -736,7 +738,7 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "_singlequote_process_singlequote_.global.NodeJS.ResourceUsage": {
+      "process.global.NodeJS.ResourceUsage": {
         "type": "object",
         "properties": {
           "fsRead": {
@@ -1008,7 +1010,7 @@
             "type": "string"
           },
           "scripts": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_string_gt_"
+            "$ref": "#/components/schemas/Recordstringstring"
           },
           "repository": {
             "$ref": "#/components/schemas/__type"
@@ -1032,10 +1034,10 @@
             "type": "string"
           },
           "devDependencies": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_string_gt_"
+            "$ref": "#/components/schemas/Recordstringstring"
           },
           "dependencies": {
-            "$ref": "#/components/schemas/Record_lt_string_comma__space_string_gt_"
+            "$ref": "#/components/schemas/Recordstringstring"
           },
           "publishConfig": {
             "$ref": "#/components/schemas/__type.o2"
@@ -1078,7 +1080,7 @@
         "description": "NPM package information.",
         "x-typia-jsDocTags": []
       },
-      "Record_lt_string_comma__space_string_gt_": {
+      "Recordstringstring": {
         "type": "object",
         "properties": {},
         "nullable": false,
@@ -1177,6 +1179,7 @@
                 "value": "uuid",
                 "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1238,6 +1241,7 @@
                 "value": "uuid",
                 "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1253,7 +1257,7 @@
             ]
           },
           "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendor_lt__doublequote_iamport_doublequote__gt_"
+            "$ref": "#/components/schemas/IPaymentVendoriamport"
           },
           "source": {
             "$ref": "#/components/schemas/IPaymentSource"
@@ -1322,6 +1326,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1342,6 +1347,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1361,6 +1367,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1381,6 +1388,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1416,7 +1424,7 @@
         "description": "결제 내역의 기본 정보.",
         "x-typia-jsDocTags": []
       },
-      "IPaymentVendor_lt__doublequote_iamport_doublequote__gt_": {
+      "IPaymentVendoriamport": {
         "type": "object",
         "properties": {
           "code": {
@@ -1489,6 +1497,7 @@
                 "value": "uuid",
                 "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1526,7 +1535,7 @@
             "$ref": "#/components/schemas/IIamportVBankPayment"
           },
           {
-            "$ref": "#/components/schemas/IIamportPayment.IBase_lt__doublequote_phone_doublequote__space__or__space__doublequote_kpay_doublequote__space__or__space__doublequote_kakaopay_doublequote__space__or__space__doublequote_payco_doublequote__space__or__space__doublequote_lpay_doublequote__space__or__space__doublequote_ssgpay_doublequote__space__or__space__doublequote_tosspay_doublequote__space__or__space__doublequote_cultureland_doublequote__space__or__space__doublequote_smartculture_doublequote__space__or__space__doublequote_happymoney_doublequote__space__or__space__doublequote_booknlife_doublequote__space__or__space__doublequote_point_doublequote__gt_"
+            "$ref": "#/components/schemas/IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint"
           }
         ],
         "description": "결제 정보.\n\n`IIamportPayment` 는 아임포트의 결제 정보를 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 method 값을 특정하면, 파생 타입이 자동으로\n지정된다.\n\n```typescript\nif (payment.pay_method === \"card\")\n   payment.card_number; // payment be IIamportCardPayment\n```",
@@ -1570,7 +1579,10 @@
                 "kind": "pattern",
                 "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
                 "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -1653,6 +1665,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1714,6 +1727,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -1922,6 +1936,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2021,6 +2036,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2082,6 +2098,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2323,6 +2340,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2384,6 +2402,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2534,7 +2553,7 @@
           }
         ]
       },
-      "IIamportPayment.IBase_lt__doublequote_phone_doublequote__space__or__space__doublequote_kpay_doublequote__space__or__space__doublequote_kakaopay_doublequote__space__or__space__doublequote_payco_doublequote__space__or__space__doublequote_lpay_doublequote__space__or__space__doublequote_ssgpay_doublequote__space__or__space__doublequote_tosspay_doublequote__space__or__space__doublequote_cultureland_doublequote__space__or__space__doublequote_smartculture_doublequote__space__or__space__doublequote_happymoney_doublequote__space__or__space__doublequote_booknlife_doublequote__space__or__space__doublequote_point_doublequote__gt_": {
+      "IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint": {
         "type": "object",
         "properties": {
           "pay_method": {
@@ -2604,6 +2623,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2665,6 +2685,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2842,6 +2863,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2884,6 +2906,7 @@
                 "value": "uuid",
                 "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2899,7 +2922,7 @@
             ]
           },
           "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendor_lt__doublequote_toss.payments_doublequote__gt_"
+            "$ref": "#/components/schemas/IPaymentVendortoss.payments"
           },
           "source": {
             "$ref": "#/components/schemas/IPaymentSource"
@@ -2968,6 +2991,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2988,6 +3012,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3007,6 +3032,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3027,6 +3053,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3062,7 +3089,7 @@
         "description": "결제 내역의 기본 정보.",
         "x-typia-jsDocTags": []
       },
-      "IPaymentVendor_lt__doublequote_toss.payments_doublequote__gt_": {
+      "IPaymentVendortoss.payments": {
         "type": "object",
         "properties": {
           "code": {
@@ -3291,6 +3318,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3310,6 +3338,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3392,7 +3421,10 @@
                 "kind": "pattern",
                 "value": "[0-9]{16}",
                 "validate": "/[0-9]{16}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -3471,6 +3503,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3557,6 +3590,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3773,6 +3807,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3792,6 +3827,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4016,6 +4052,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4035,6 +4072,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4266,6 +4304,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4285,6 +4324,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4515,6 +4555,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4534,6 +4575,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4638,6 +4680,7 @@
                 "value": "date",
                 "validate": "/^(\\d{4})-(\\d{2})-(\\d{2})$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4708,7 +4751,7 @@
         "type": "object",
         "properties": {
           "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendor_lt__doublequote_iamport_doublequote__space__or__space__doublequote_toss.payments_doublequote__gt_"
+            "$ref": "#/components/schemas/IPaymentVendoriamporttoss.payments"
           },
           "source": {
             "$ref": "#/components/schemas/IPaymentSource"
@@ -4753,6 +4796,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4770,7 +4814,7 @@
         "description": "결제 입력 정보.\n\nSDK 에서 받은 데이터를 취합하여 결제 진행 상황을 서버에 알려준다.",
         "x-typia-jsDocTags": []
       },
-      "IPaymentVendor_lt__doublequote_iamport_doublequote__space__or__space__doublequote_toss.payments_doublequote__gt_": {
+      "IPaymentVendoriamporttoss.payments": {
         "type": "object",
         "properties": {
           "code": {
@@ -4945,6 +4989,7 @@
                 "value": "uuid",
                 "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4960,7 +5005,7 @@
             ]
           },
           "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendor_lt__doublequote_iamport_doublequote__gt_"
+            "$ref": "#/components/schemas/IPaymentVendoriamport"
           },
           "source": {
             "$ref": "#/components/schemas/IPaymentSource"
@@ -4988,6 +5033,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -5134,6 +5180,7 @@
                 "value": "uuid",
                 "validate": "/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -5149,7 +5196,7 @@
             ]
           },
           "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendor_lt__doublequote_toss.payments_doublequote__gt_"
+            "$ref": "#/components/schemas/IPaymentVendortoss.payments"
           },
           "source": {
             "$ref": "#/components/schemas/IPaymentSource"
@@ -5177,6 +5224,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -5239,7 +5287,10 @@
                 "kind": "pattern",
                 "value": "[0-9]{16}",
                 "validate": "/[0-9]{16}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -5257,6 +5308,7 @@
                 "value": "date-time",
                 "validate": "!isNaN(new Date($input).getTime())",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -5296,7 +5348,7 @@
         "type": "object",
         "properties": {
           "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendor_lt_IPaymentVendor.Code_gt_"
+            "$ref": "#/components/schemas/IPaymentVendorIPaymentVendor.Code"
           },
           "source": {
             "$ref": "#/components/schemas/IPaymentSource"
@@ -5324,7 +5376,7 @@
         "description": "간편 결제 수단 등록 정보.\n\n결제사의 팝업 창로부터 전달받은 식별자 정보를 취합하여 전달한다.\n\n참고로 아임포트의 경우 간편 결제로 등록한 카드에 자체 식별자 번호를 부여하지 않는다.\n따라서 귀하의 서비스가 발행한 식별자 ID 가 곧, 해당 간편 결제 수단의 유일무이한\n식별자ㅏ 되니, 이를 {@link IPaymentVendor.uid } 와 {@link IPaymentSource.id } 에\n모두 동일하게 할당해주면 된다.",
         "x-typia-jsDocTags": []
       },
-      "IPaymentVendor_lt_IPaymentVendor.Code_gt_": {
+      "IPaymentVendorIPaymentVendor.Code": {
         "type": "object",
         "properties": {
           "code": {
