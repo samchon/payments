@@ -13,7 +13,7 @@
   "info": {
     "title": "Iamport API",
     "description": "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "license": {
       "name": "MIT"
     }
@@ -39,7 +39,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportCertification_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
                 }
               }
             },
@@ -140,7 +140,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportCertification_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
                 }
               }
             },
@@ -245,7 +245,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportCertification.IAccessor_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification.IAccessor"
                 }
               }
             },
@@ -341,7 +341,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportCertification_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
                 }
               }
             },
@@ -606,7 +606,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportPayment_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportPayment"
                 }
               }
             },
@@ -728,7 +728,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportPayment_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportPayment"
                 }
               }
             },
@@ -812,7 +812,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportReceipt_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
                 }
               }
             },
@@ -925,7 +925,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportReceipt_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
                 }
               }
             },
@@ -1043,7 +1043,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportReceipt_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
                 }
               }
             },
@@ -1148,7 +1148,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportUser_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportUser"
                 }
               }
             },
@@ -1220,7 +1220,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportVBankPayment_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportVBankPayment"
                 }
               }
             },
@@ -1304,7 +1304,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportVBankPayment_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportVBankPayment"
                 }
               }
             },
@@ -1388,7 +1388,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportSubscription_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportSubscription"
                 }
               }
             },
@@ -1482,7 +1482,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportSubscription_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportSubscription"
                 }
               }
             },
@@ -1581,7 +1581,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportSubscription_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportSubscription"
                 }
               }
             },
@@ -1667,7 +1667,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportCardPayment_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCardPayment"
                 }
               }
             },
@@ -1753,7 +1753,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IIamportResponse_lt_IIamportCardPayment_gt_"
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCardPayment"
                 }
               }
             },
@@ -1820,7 +1820,7 @@
   },
   "components": {
     "schemas": {
-      "IIamportResponse_lt_IIamportCertification_gt_": {
+      "IIamportResponseIIamportCertification": {
         "type": "object",
         "properties": {
           "code": {
@@ -1905,7 +1905,10 @@
                 "kind": "pattern",
                 "value": "^([0-9]{4})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
                 "validate": "/^([0-9]{4})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -2041,7 +2044,10 @@
                 "kind": "pattern",
                 "value": "^([0-9]{4})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$",
                 "validate": "/^([0-9]{4})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -2098,7 +2104,7 @@
         "description": "본인 인증 입력 정보.",
         "x-typia-jsDocTags": []
       },
-      "IIamportResponse_lt_IIamportCertification.IAccessor_gt_": {
+      "IIamportResponseIIamportCertification.IAccessor": {
         "type": "object",
         "properties": {
           "code": {
@@ -2240,7 +2246,7 @@
           }
         ]
       },
-      "IIamportResponse_lt_IIamportPayment_gt_": {
+      "IIamportResponseIIamportPayment": {
         "type": "object",
         "properties": {
           "code": {
@@ -2290,7 +2296,7 @@
             "$ref": "#/components/schemas/IIamportVBankPayment"
           },
           {
-            "$ref": "#/components/schemas/IIamportPayment.IBase_lt__doublequote_phone_doublequote__space__or__space__doublequote_kpay_doublequote__space__or__space__doublequote_kakaopay_doublequote__space__or__space__doublequote_payco_doublequote__space__or__space__doublequote_lpay_doublequote__space__or__space__doublequote_ssgpay_doublequote__space__or__space__doublequote_tosspay_doublequote__space__or__space__doublequote_cultureland_doublequote__space__or__space__doublequote_smartculture_doublequote__space__or__space__doublequote_happymoney_doublequote__space__or__space__doublequote_booknlife_doublequote__space__or__space__doublequote_point_doublequote__gt_"
+            "$ref": "#/components/schemas/IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint"
           }
         ],
         "description": "결제 정보.\n\n`IIamportPayment` 는 아임포트의 결제 정보를 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 method 값을 특정하면, 파생 타입이 자동으로\n지정된다.\n\n```typescript\nif (payment.pay_method === \"card\")\n   payment.card_number; // payment be IIamportCardPayment\n```",
@@ -2334,7 +2340,10 @@
                 "kind": "pattern",
                 "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
                 "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -2417,6 +2426,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2478,6 +2488,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2686,6 +2697,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2785,6 +2797,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -2846,6 +2859,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3087,6 +3101,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3148,6 +3163,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3298,7 +3314,7 @@
           }
         ]
       },
-      "IIamportPayment.IBase_lt__doublequote_phone_doublequote__space__or__space__doublequote_kpay_doublequote__space__or__space__doublequote_kakaopay_doublequote__space__or__space__doublequote_payco_doublequote__space__or__space__doublequote_lpay_doublequote__space__or__space__doublequote_ssgpay_doublequote__space__or__space__doublequote_tosspay_doublequote__space__or__space__doublequote_cultureland_doublequote__space__or__space__doublequote_smartculture_doublequote__space__or__space__doublequote_happymoney_doublequote__space__or__space__doublequote_booknlife_doublequote__space__or__space__doublequote_point_doublequote__gt_": {
+      "IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint": {
         "type": "object",
         "properties": {
           "pay_method": {
@@ -3368,6 +3384,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3429,6 +3446,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3664,7 +3682,7 @@
         "description": "결제 취소 입력 정보.",
         "x-typia-jsDocTags": []
       },
-      "IIamportResponse_lt_IIamportReceipt_gt_": {
+      "IIamportResponseIIamportReceipt": {
         "type": "object",
         "properties": {
           "code": {
@@ -3752,6 +3770,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -3897,7 +3916,7 @@
         "description": "아임포트에서 부여해 준 API 및 secret 키.",
         "x-typia-jsDocTags": []
       },
-      "IIamportResponse_lt_IIamportUser_gt_": {
+      "IIamportResponseIIamportUser": {
         "type": "object",
         "properties": {
           "code": {
@@ -4074,7 +4093,7 @@
         "description": "가상 계좌 결제 입력 정보.\n\n가상 계좌를 임의 생성할 수 있다.\n\n단, 일부 PG 사 혹은 `fake-iamport-server` 만 가능.\n\n  - 세틀뱅크\n  - 나이스페이먼츠\n  - KG이니시스",
         "x-typia-jsDocTags": []
       },
-      "IIamportResponse_lt_IIamportVBankPayment_gt_": {
+      "IIamportResponseIIamportVBankPayment": {
         "type": "object",
         "properties": {
           "code": {
@@ -4141,7 +4160,7 @@
         "description": "가상 계좌 결제의 수정 입력 정보.\n\n아직 입금되지 않은 가상계좌의 입금기한 또는 입금금액을 수정할 수 있다.\n\n다만, 세틀뱅크 혹은 `fake-iamport-server` 만 가능.",
         "x-typia-jsDocTags": []
       },
-      "IIamportResponse_lt_IIamportSubscription_gt_": {
+      "IIamportResponseIIamportSubscription": {
         "type": "object",
         "properties": {
           "code": {
@@ -4305,7 +4324,10 @@
                 "kind": "pattern",
                 "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
                 "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4322,7 +4344,10 @@
                 "kind": "pattern",
                 "value": "^([0-9]{4})-(0[1-9]|1[012])$",
                 "validate": "/^([0-9]{4})-(0[1-9]|1[012])$/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4339,7 +4364,10 @@
                 "kind": "pattern",
                 "value": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
                 "validate": "/^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4356,7 +4384,10 @@
                 "kind": "pattern",
                 "value": "\\d{2}",
                 "validate": "/\\d{2}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4373,7 +4404,10 @@
                 "kind": "pattern",
                 "value": "\\d{2}",
                 "validate": "/\\d{2}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4400,6 +4434,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4454,7 +4489,10 @@
                 "kind": "pattern",
                 "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
                 "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4471,7 +4509,10 @@
                 "kind": "pattern",
                 "value": "^([0-9]{4})-(0[1-9]|1[012])$",
                 "validate": "/^([0-9]{4})-(0[1-9]|1[012])$/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4488,7 +4529,10 @@
                 "kind": "pattern",
                 "value": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
                 "validate": "/^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4505,7 +4549,10 @@
                 "kind": "pattern",
                 "value": "\\d{2}",
                 "validate": "/\\d{2}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4522,7 +4569,10 @@
                 "kind": "pattern",
                 "value": "\\d{2}",
                 "validate": "/\\d{2}/.test($input)",
-                "exclusive": false
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
               }
             ]
           },
@@ -4549,6 +4599,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4624,6 +4675,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4676,6 +4728,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4694,7 +4747,7 @@
         "description": "결제 신청 입력 정보.",
         "x-typia-jsDocTags": []
       },
-      "IIamportResponse_lt_IIamportCardPayment_gt_": {
+      "IIamportResponseIIamportCardPayment": {
         "type": "object",
         "properties": {
           "code": {
@@ -4795,6 +4848,7 @@
                 "value": "email",
                 "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
@@ -4847,6 +4901,7 @@
                 "value": "url",
                 "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
                 "exclusive": [
+                  "format",
                   "pattern"
                 ]
               }
