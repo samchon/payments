@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "4.0.2",
+    "version": "4.0.3",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -1084,6 +1084,7 @@
         "type": "object",
         "properties": {},
         "nullable": false,
+        "description": "Construct a type with a set of properties K of type T",
         "x-typia-jsDocTags": [],
         "x-typia-additionalProperties": {
           "x-typia-required": true,
@@ -1421,7 +1422,7 @@
           "cancelled_at",
           "cancels"
         ],
-        "description": "결제 내역의 기본 정보.",
+        "description": "아임포트로부터의 결제 내역.",
         "x-typia-jsDocTags": []
       },
       "IPaymentVendoriamport": {
@@ -3086,7 +3087,7 @@
           "cancelled_at",
           "cancels"
         ],
-        "description": "결제 내역의 기본 정보.",
+        "description": "토스 페이먼츠로부터의 결제 내역.",
         "x-typia-jsDocTags": []
       },
       "IPaymentVendortoss.payments": {
@@ -5050,7 +5051,7 @@
           "data",
           "created_at"
         ],
-        "description": "간편 결제 수단의 기본 정보.",
+        "description": "아임 포트의 간편 결제 카드 정보.",
         "x-typia-jsDocTags": []
       },
       "IIamportSubscription": {
@@ -5241,7 +5242,7 @@
           "data",
           "created_at"
         ],
-        "description": "간편 결제 수단의 기본 정보.",
+        "description": "토스의 간편 결제 수단 정보.",
         "x-typia-jsDocTags": []
       },
       "ITossBilling": {
