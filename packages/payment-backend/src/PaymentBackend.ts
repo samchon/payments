@@ -1,5 +1,4 @@
 import nest from "@modules/nestjs";
-import core from "@nestia/core";
 import { NestFactory } from "@nestjs/core";
 import express from "express";
 import FakeIamport from "fake-iamport-server";
@@ -7,6 +6,7 @@ import FakeToss from "fake-toss-payments-server";
 
 import { PaymentConfiguration } from "./PaymentConfiguration";
 import { PaymentGlobal } from "./PaymentGlobal";
+import { PaymentModule } from "./PaymentModule";
 import PaymentAPI from "./api";
 
 /**
@@ -33,13 +33,9 @@ export class PaymentBackend {
         // OPEN THE BACKEND SERVER
         //----
         // MOUNT CONTROLLERS
-        this.application_ = await NestFactory.create(
-            await core.EncryptedModule.dynamic(
-                __dirname + "/controllers",
-                PaymentConfiguration.ENCRYPTION_PASSWORD(),
-            ),
-            { logger: false },
-        );
+        this.application_ = await NestFactory.create(await PaymentModule(), {
+            logger: false,
+        });
 
         // CONFIGURATIONS
         this.is_closing_ = false;
@@ -63,7 +59,7 @@ export class PaymentBackend {
             // CONFIGURE WEBHOOK URLS
             const host: string = `http://127.0.0.1:${PaymentConfiguration.API_PORT()}`;
             FakeIamport.FakeIamportConfiguration.WEBHOOK_URL = `${host}${PaymentAPI.functional.payments.webhooks.iamport.METADATA.path}`;
-            FakeToss.TossFakeConfiguration.WEBHOOK_URL = `${host}${PaymentAPI.functional.payments.webhooks.toss.METADATA.path}`;
+            FakeToss.FakeTossConfiguration.WEBHOOK_URL = `${host}${PaymentAPI.functional.payments.webhooks.toss.METADATA.path}`;
         }
 
         //----

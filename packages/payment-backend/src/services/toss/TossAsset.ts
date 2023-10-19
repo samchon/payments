@@ -11,7 +11,7 @@ export namespace TossAsset {
     ): Promise<toss.IConnection> {
         const host: string =
             PaymentGlobal.testing === true
-                ? `http://127.0.0.1:${fake.TossFakeConfiguration.API_PORT}`
+                ? `http://127.0.0.1:${fake.FakeTossConfiguration.API_PORT}`
                 : "https://api.tosspayments.com";
         const token: string = btoa(
             PaymentConfiguration.TOSS_SECRET_KEY(storeId) + ":",

@@ -2,7 +2,7 @@ import * as nest from "@nestjs/common";
 import atob from "atob";
 import * as fastify from "fastify";
 
-import { TossFakeConfiguration } from "../FakeTossConfiguration";
+import { FakeTossConfiguration } from "../FakeTossConfiguration";
 
 export namespace FakeTossUserAuth {
     export function authorize(request: fastify.FastifyRequest): void {
@@ -16,7 +16,7 @@ export namespace FakeTossUserAuth {
         token = atob(token);
 
         if (
-            TossFakeConfiguration.authorize(
+            FakeTossConfiguration.authorize(
                 token.substr(0, token.length - 1),
             ) === false
         )

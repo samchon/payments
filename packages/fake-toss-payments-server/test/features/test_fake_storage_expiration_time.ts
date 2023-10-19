@@ -8,15 +8,15 @@ import { sleep_for } from "tstl/thread/global";
 import { assert } from "typia";
 import { v4 } from "uuid";
 
-import { TossFakeConfiguration } from "../../src/FakeTossConfiguration";
+import { FakeTossConfiguration } from "../../src/FakeTossConfiguration";
 import { FakeTossStorage } from "../../src/providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../internal/TestConnection";
 
 export async function test_fake_storage_expiration_time(): Promise<void> {
-    const time: number = TossFakeConfiguration.EXPIRATION.time;
+    const time: number = FakeTossConfiguration.EXPIRATION.time;
     FakeTossStorage.payments.clear();
-    TossFakeConfiguration.EXPIRATION.time = 1;
+    FakeTossConfiguration.EXPIRATION.time = 1;
 
     const previous: IPointer<string | null> = { value: null };
     await ArrayUtil.asyncRepeat(10)(async () => {
@@ -51,5 +51,5 @@ export async function test_fake_storage_expiration_time(): Promise<void> {
         );
         previous.value = payment.paymentKey;
     });
-    TossFakeConfiguration.EXPIRATION.time = time;
+    FakeTossConfiguration.EXPIRATION.time = time;
 }
