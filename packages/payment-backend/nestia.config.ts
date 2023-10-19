@@ -1,8 +1,11 @@
-import type nestia from "@nestia/sdk";
+import type { INestiaConfig } from "@nestia/sdk";
+import { NestFactory } from "@nestjs/core";
 
-const NESTIA_CONFIG: nestia.INestiaConfig = {
+import { PaymentModule } from "./src/PaymentModule";
+
+const NESTIA_CONFIG: INestiaConfig = {
     simulate: true,
-    input: "src/controllers",
+    input: async () => NestFactory.create(await PaymentModule()),
     output: "src/api",
     distribute: "../payment-api",
     swagger: {

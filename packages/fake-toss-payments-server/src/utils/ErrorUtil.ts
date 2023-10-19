@@ -3,7 +3,7 @@ import serializeError from "serialize-error";
 import { randint } from "tstl/algorithm/random";
 import { Singleton } from "tstl/thread/Singleton";
 
-import { TossFakeConfiguration } from "../FakeTossConfiguration";
+import { FakeTossConfiguration } from "../FakeTossConfiguration";
 
 export namespace ErrorUtil {
     export function toJSON(err: any): object {
@@ -32,7 +32,7 @@ export namespace ErrorUtil {
 
             await directory.get();
             await fs.promises.writeFile(
-                `${TossFakeConfiguration.ASSETS}/logs/errors/${prefix}_${fileName}.log`,
+                `${FakeTossConfiguration.ASSETS}/logs/errors/${prefix}_${fileName}.log`,
                 content,
                 "utf8",
             );
@@ -47,10 +47,10 @@ function cipher(val: number): string {
 
 const directory = new Singleton(async () => {
     try {
-        await fs.promises.mkdir(`${TossFakeConfiguration.ASSETS}/logs`);
+        await fs.promises.mkdir(`${FakeTossConfiguration.ASSETS}/logs`);
     } catch {}
 
     try {
-        await fs.promises.mkdir(`${TossFakeConfiguration.ASSETS}/logs/errors`);
+        await fs.promises.mkdir(`${FakeTossConfiguration.ASSETS}/logs/errors`);
     } catch {}
 });

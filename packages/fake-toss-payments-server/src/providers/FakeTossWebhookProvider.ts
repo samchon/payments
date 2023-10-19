@@ -1,6 +1,6 @@
 import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
 
-import { TossFakeConfiguration } from "../FakeTossConfiguration";
+import { FakeTossConfiguration } from "../FakeTossConfiguration";
 
 // POLYFILL FOR NODE
 if (
@@ -13,7 +13,7 @@ if (
 
 export namespace FakeTossWebhookProvider {
     export async function webhook(input: ITossPaymentWebhook): Promise<void> {
-        await fetch(TossFakeConfiguration.WEBHOOK_URL, {
+        await fetch(FakeTossConfiguration.WEBHOOK_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

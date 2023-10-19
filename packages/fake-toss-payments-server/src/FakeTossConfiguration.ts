@@ -14,7 +14,7 @@ if (EXTENSION === "js") require("source-map-support").install();
  *
  * @author Samchon
  */
-export namespace TossFakeConfiguration {
+export namespace FakeTossConfiguration {
     /**
      * @internal
      */

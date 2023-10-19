@@ -1,11 +1,11 @@
-import core from "@nestia/core";
 import { NestFactory } from "@nestjs/core";
 import {
     FastifyAdapter,
     NestFastifyApplication,
 } from "@nestjs/platform-fastify";
 
-import { TossFakeConfiguration } from "./FakeTossConfiguration";
+import { FakeTossConfiguration } from "./FakeTossConfiguration";
+import { FakeTossModule } from "./FakeTossModule";
 
 /**
  * Fake 토스 페이먼츠 서버의 백엔드 프로그램.
@@ -24,14 +24,14 @@ export class FakeTossBackend {
         //----
         // MOUNT CONTROLLERS
         this.application_ = await NestFactory.create(
-            await core.DynamicModule.mount(`${__dirname}/controllers`),
+            await FakeTossModule(),
             new FastifyAdapter(),
             { logger: false },
         );
 
         // DO OPEN
         this.application_.enableCors();
-        await this.application_.listen(TossFakeConfiguration.API_PORT);
+        await this.application_.listen(FakeTossConfiguration.API_PORT);
 
         //----
         // POST-PROCESSES

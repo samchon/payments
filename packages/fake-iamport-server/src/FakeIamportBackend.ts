@@ -1,4 +1,3 @@
-import core from "@nestia/core";
 import { NestFactory } from "@nestjs/core";
 import {
     FastifyAdapter,
@@ -6,6 +5,7 @@ import {
 } from "@nestjs/platform-fastify";
 
 import { FakeIamportConfiguration } from "./FakeIamportConfiguration";
+import { FakeIamportModule } from "./FakeIamportModule";
 
 /**
  * Fake 아임포트 서버의 백엔드 프로그램.
@@ -24,7 +24,7 @@ export class FakeIamportBackend {
         //----
         // MOUNT CONTROLLERS
         this.application_ = await NestFactory.create(
-            await core.DynamicModule.mount(`${__dirname}/controllers`),
+            await FakeIamportModule(),
             new FastifyAdapter(),
             { logger: false },
         );

@@ -1,8 +1,11 @@
 import type { INestiaConfig } from "@nestia/sdk";
+import { NestFactory } from "@nestjs/core";
+
+import { FakeTossModule } from "./src/FakeTossModule";
 
 const NESTIA_CONFIG: INestiaConfig = {
     simulate: true,
-    input: "src/controllers",
+    input: async () => NestFactory.create(await FakeTossModule()),
     output: "src/api",
     distribute: "../toss-payments-server-api",
     swagger: {

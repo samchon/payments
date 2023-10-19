@@ -1,7 +1,7 @@
 import { DynamicExecutor } from "@nestia/e2e";
 
 import { FakeTossBackend } from "../src/FakeTossBackend";
-import { TossFakeConfiguration } from "../src/FakeTossConfiguration";
+import { FakeTossConfiguration } from "../src/FakeTossConfiguration";
 import toss from "../src/api";
 
 async function main(): Promise<void> {
@@ -11,7 +11,7 @@ async function main(): Promise<void> {
 
     // CONNECTION INFO
     const connection: toss.IConnection = {
-        host: `http://127.0.0.1:${TossFakeConfiguration.API_PORT}`,
+        host: `http://127.0.0.1:${FakeTossConfiguration.API_PORT}`,
     };
 
     // DO TEST

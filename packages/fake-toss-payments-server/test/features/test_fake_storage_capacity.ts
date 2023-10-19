@@ -7,17 +7,17 @@ import { IPointer } from "tstl/functional/IPointer";
 import { assert } from "typia";
 import { v4 } from "uuid";
 
-import { TossFakeConfiguration } from "../../src/FakeTossConfiguration";
+import { FakeTossConfiguration } from "../../src/FakeTossConfiguration";
 import { FakeTossStorage } from "../../src/providers/FakeTossStorage";
 import { AdvancedRandomGenerator } from "../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../internal/TestConnection";
 
 export async function test_fake_storage_capacity(): Promise<void> {
-    const capacity: number = TossFakeConfiguration.EXPIRATION.capacity;
+    const capacity: number = FakeTossConfiguration.EXPIRATION.capacity;
 
     FakeTossStorage.payments.clear();
     FakeTossStorage.billings.clear();
-    TossFakeConfiguration.EXPIRATION.capacity = 1;
+    FakeTossConfiguration.EXPIRATION.capacity = 1;
 
     const previous: IPointer<string | null> = { value: null };
     for (let i: number = 0; i < 10; ++i) {
@@ -83,5 +83,5 @@ export async function test_fake_storage_capacity(): Promise<void> {
         previous.value = payment.paymentKey;
     }
 
-    TossFakeConfiguration.EXPIRATION.capacity = capacity;
+    FakeTossConfiguration.EXPIRATION.capacity = capacity;
 }
