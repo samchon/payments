@@ -18,8 +18,9 @@ export namespace PaymentConfiguration {
     /* -----------------------------------------------------------
         CONNECTIONS
     ----------------------------------------------------------- */
-    export const API_PORT = () => Number(PaymentGlobal.env.API_PORT);
-    export const UPDATOR_PORT = () => Number(PaymentGlobal.env.UPDATOR_PORT);
+    export const API_PORT = () => Number(PaymentGlobal.env.PAYMENT_API_PORT);
+    export const UPDATOR_PORT = () =>
+        Number(PaymentGlobal.env.PAYMENT_UPDATOR_PORT);
     export const MASTER_IP = () =>
         PaymentGlobal.mode === "local"
             ? "127.0.0.1"
@@ -28,10 +29,11 @@ export namespace PaymentConfiguration {
             : "your-real-server-master-ip";
 
     export const ENCRYPTION_PASSWORD = (): Readonly<IEncryptionPassword> => ({
-        key: PaymentGlobal.env.API_ENCRYPTION_KEY ?? "",
-        iv: PaymentGlobal.env.API_ENCRYPTION_IV ?? "",
+        key: PaymentGlobal.env.PAYMENT_CONNECTION_ENCRYPTION_KEY ?? "",
+        iv: PaymentGlobal.env.PAYMENT_CONNECTION_ENCRYPTION_IV ?? "",
     });
-    export const SYSTEM_PASSWORD = () => PaymentGlobal.env.SYSTEM_PASSWORD;
+    export const SYSTEM_PASSWORD = () =>
+        PaymentGlobal.env.PAYMENT_SYSTEM_PASSWORD;
 
     /* -----------------------------------------------------------
         VENDORS
@@ -56,8 +58,8 @@ export namespace PaymentConfiguration {
     ): IIamportUser.IAccessor => {
         storeId;
         return {
-            imp_key: PaymentGlobal.env.IAMPORT_KEY,
-            imp_secret: PaymentGlobal.env.IAMPORT_SECRET,
+            imp_key: PaymentGlobal.env.PAYMENT_IAMPORT_KEY,
+            imp_secret: PaymentGlobal.env.PAYMENT_IAMPORT_SECRET,
         };
     };
 
@@ -77,7 +79,7 @@ export namespace PaymentConfiguration {
      */
     export const TOSS_SECRET_KEY = (storeId: string): string => {
         storeId;
-        return PaymentGlobal.env.TOSS_PAYMENTS_SECRET;
+        return PaymentGlobal.env.PAYMENT_TOSS_PAYMENTS_SECRET;
     };
 
     /**

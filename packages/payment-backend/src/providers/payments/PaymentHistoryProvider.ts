@@ -201,5 +201,5 @@ export namespace PaymentHistoryProvider {
 
 const encrypt = (value: string) => AesPkcs5.encrypt(value, KEY(), IV());
 const decrypt = (value: string) => AesPkcs5.decrypt(value, KEY(), IV());
-const KEY = () => PaymentGlobal.env.DB_HISTORY_ENCRYPTION_KEY ?? "";
-const IV = () => PaymentGlobal.env.DB_HISTORY_ENCRYPTION_IV ?? "";
+const KEY = () => PaymentGlobal.env.PAYMENT_HISTORY_ENCRYPTION_KEY ?? "";
+const IV = () => PaymentGlobal.env.PAYMENT_HISTORY_ENCRYPTION_IV ?? "";
