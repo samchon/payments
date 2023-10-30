@@ -18,7 +18,7 @@ export namespace PaymentSetupWizard {
         execute("dev")("--name init");
 
         await client.$executeRawUnsafe(
-            `GRANT SELECT ON ALL TABLES IN SCHEMA ${PaymentGlobal.env.POSTGRES_SCHEMA} TO ${PaymentGlobal.env.POSTGRES_USERNAME_READONLY}`,
+            `GRANT SELECT ON ALL TABLES IN SCHEMA ${PaymentGlobal.env.PAYMENT_POSTGRES_SCHEMA} TO ${PaymentGlobal.env.PAYMENT_POSTGRES_USERNAME_READONLY}`,
         );
     }
 

@@ -12,7 +12,7 @@ async function execute(
         const prisma = new PrismaClient({
             datasources: {
                 db: {
-                    url: `postgresql://${username}:${password}@${PaymentGlobal.env.POSTGRES_HOST}:${PaymentGlobal.env.POSTGRES_PORT}/${database}`,
+                    url: `postgresql://${username}:${password}@${PaymentGlobal.env.PAYMENT_POSTGRES_HOST}:${PaymentGlobal.env.PAYMENT_POSTGRES_PORT}/${database}`,
                 },
             },
         });
@@ -34,11 +34,11 @@ async function execute(
 
 async function main(): Promise<void> {
     const config = {
-        database: PaymentGlobal.env.POSTGRES_DATABASE,
-        schema: PaymentGlobal.env.POSTGRES_SCHEMA,
-        username: PaymentGlobal.env.POSTGRES_USERNAME,
-        readonlyUsername: PaymentGlobal.env.POSTGRES_USERNAME_READONLY,
-        password: PaymentGlobal.env.POSTGRES_PASSWORD,
+        database: PaymentGlobal.env.PAYMENT_POSTGRES_DATABASE,
+        schema: PaymentGlobal.env.PAYMENT_POSTGRES_SCHEMA,
+        username: PaymentGlobal.env.PAYMENT_POSTGRES_USERNAME,
+        readonlyUsername: PaymentGlobal.env.PAYMENT_POSTGRES_USERNAME_READONLY,
+        password: PaymentGlobal.env.PAYMENT_POSTGRES_PASSWORD,
     };
     const root = {
         account: process.argv[2] ?? "postgres",

@@ -23,7 +23,7 @@ export class PaymentGlobal {
      *  - real: 실제 서버
      */
     public static get mode(): "local" | "dev" | "real" {
-        return (modeWrapper.value ??= environments.get().MODE);
+        return (modeWrapper.value ??= environments.get().PAYMENT_MODE);
     }
 
     public static setMode(mode: typeof PaymentGlobal.mode): void {
@@ -79,35 +79,35 @@ const modeWrapper: IMode = {};
 
 interface IEnvironments {
     // DEFAULT CONFIGURATIONS
-    MODE: "local" | "dev" | "real";
-    API_PORT: `${number}`;
-    UPDATOR_PORT: `${number}`;
-    SYSTEM_PASSWORD: string;
+    PAYMENT_MODE: "local" | "dev" | "real";
+    PAYMENT_API_PORT: `${number}`;
+    PAYMENT_UPDATOR_PORT: `${number}`;
+    PAYMENT_SYSTEM_PASSWORD: string;
 
     // POSTGRES CONNECTION INFO
-    POSTGRES_URL: string;
-    POSTGRES_HOST: string;
-    POSTGRES_PORT: `${number}`;
-    POSTGRES_DATABASE: string;
-    POSTGRES_SCHEMA: string;
-    POSTGRES_USERNAME: string;
-    POSTGRES_USERNAME_READONLY: string;
-    POSTGRES_PASSWORD: string;
+    PAYMENT_POSTGRES_HOST: string;
+    PAYMENT_POSTGRES_PORT: `${number}`;
+    PAYMENT_POSTGRES_DATABASE: string;
+    PAYMENT_POSTGRES_SCHEMA: string;
+    PAYMENT_POSTGRES_USERNAME: string;
+    PAYMENT_POSTGRES_USERNAME_READONLY: string;
+    PAYMENT_POSTGRES_PASSWORD: string;
+    PAYMENT_POSTGRES_URL: string;
 
     // ENCRYPTION KEYS
-    API_ENCRYPTION_KEY: string;
-    API_ENCRYPTION_IV: string;
-    DB_HISTORY_ENCRYPTION_KEY: string;
-    DB_HISTORY_ENCRYPTION_IV: string;
-    DB_RESERVATION_ENCRYPTION_KEY: string;
-    DB_RESERVATION_ENCRYPTION_IV: string;
-    DB_CANCEL_HISTORY_ENCRYPTION_KEY: string;
-    DB_CANCEL_HISTORY_ENCRYPTION_IV: string;
+    PAYMENT_CONNECTION_ENCRYPTION_KEY: string;
+    PAYMENT_CONNECTION_ENCRYPTION_IV: string;
+    PAYMENT_HISTORY_ENCRYPTION_KEY: string;
+    PAYMENT_HISTORY_ENCRYPTION_IV: string;
+    PAYMENT_RESERVATION_ENCRYPTION_KEY: string;
+    PAYMENT_RESERVATION_ENCRYPTION_IV: string;
+    PAYMENT_CANCEL_HISTORY_ENCRYPTION_KEY: string;
+    PAYMENT_CANCEL_HISTORY_ENCRYPTION_IV: string;
 
     // VENDOR'S SECRETS
-    IAMPORT_KEY: string;
-    IAMPORT_SECRET: string;
-    TOSS_PAYMENTS_SECRET: string;
+    PAYMENT_IAMPORT_KEY: string;
+    PAYMENT_IAMPORT_SECRET: string;
+    PAYMENT_TOSS_PAYMENTS_SECRET: string;
 }
 
 const environments: Singleton<IEnvironments> = new Singleton(() => {
@@ -121,7 +121,7 @@ const prismaClient = new Singleton(
         new PrismaClient({
             datasources: {
                 db: {
-                    url: PaymentGlobal.env.POSTGRES_URL,
+                    url: PaymentGlobal.env.PAYMENT_POSTGRES_URL,
                 },
             },
         }),
