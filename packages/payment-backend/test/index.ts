@@ -9,6 +9,7 @@ import {
     PaymentConfiguration,
     PaymentGlobal,
     PaymentSetupWizard,
+    PaymentUpdator,
 } from "../src";
 import { ArgumentParser } from "../src/utils/ArgumentParser";
 import { ErrorUtil } from "../src/utils/ErrorUtil";
@@ -77,6 +78,7 @@ async function main(): Promise<void> {
     }
 
     // OPEN SERVER
+    const updator = await PaymentUpdator.master();
     const backend: PaymentBackend = new PaymentBackend();
     await backend.open();
 
@@ -106,6 +108,7 @@ async function main(): Promise<void> {
     // TERMINATE
     await sleep_for(2500); // WAIT FOR BACKGROUND EVENTS
     await backend.close();
+    await updator.close();
 
     const exceptions: Error[] = report.executions
         .filter((exec) => exec.error !== null)

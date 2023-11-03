@@ -6,7 +6,6 @@ import { IPaymentCancelHistory } from "@samchon/payment-api/lib/structures/payme
 import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { sleep_for } from "tstl";
 import { v4 } from "uuid";
 
 import { PaymentGlobal } from "../../PaymentGlobal";
@@ -42,7 +41,6 @@ export namespace PaymentCancelHistoryProvider {
             source_id: input.source.id,
         })(input.password);
         const props: IPaymentHistory.IProps = await request(history)(input);
-        await sleep_for(50);
         return PaymentHistoryProvider.update(history)(props);
     };
 

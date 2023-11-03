@@ -148,17 +148,15 @@ export namespace PaymentHistoryProvider {
         (history: IEntity) =>
         async (input: IPaymentHistory.IProps): Promise<IPaymentHistory> => {
             // RE-CONSTRUCT CANCEL HISTORIES
-            await PaymentGlobal.prisma.payment_history_cancels.deleteMany({
-                where: { payment_history_id: history.id },
-            });
             await PaymentGlobal.prisma.payment_history_cancels.createMany({
                 data: input.cancels.map(
                     PaymentCancelHistoryProvider.collect(history),
                 ),
+                skipDuplicates: true,
             });
 
             // UPDATE HISTORY
-            const record = await PaymentGlobal.prisma.payment_histories.update({
+            await PaymentGlobal.prisma.payment_histories.update({
                 where: { id: history.id },
                 data: {
                     currency: input.currency,
@@ -170,6 +168,11 @@ export namespace PaymentHistoryProvider {
                 },
                 ...json.select(),
             });
+            const record =
+                await PaymentGlobal.prisma.payment_histories.findFirstOrThrow({
+                    where: { id: history.id },
+                    ...json.select(),
+                });
             return json.transform(record);
         };
 

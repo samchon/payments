@@ -4,6 +4,7 @@ import { Singleton } from "tstl/thread/Singleton";
 
 import { PaymentBackend } from "../PaymentBackend";
 import { PaymentGlobal } from "../PaymentGlobal";
+import { PaymentUpdator } from "../PaymentUpdator";
 import { Scheduler } from "../schedulers/Scheduler";
 import { ErrorUtil } from "../utils/ErrorUtil";
 
@@ -59,8 +60,13 @@ async function main(): Promise<void> {
     global.process.on("unhandledRejection", handle_error);
 
     // SCHEDULER ONLY WHEN MASTER
-    if (PaymentGlobal.mode !== "real" || process.argv[3] === "master")
+    if (PaymentGlobal.mode !== "real" || process.argv[3] === "master") {
+        if (PaymentGlobal.mode === "local")
+            try {
+                await PaymentUpdator.master();
+            } catch {}
         await Scheduler.repeat();
+    }
 }
 main().catch((exp) => {
     console.log(exp);
