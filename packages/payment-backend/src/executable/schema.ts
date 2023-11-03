@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 import { PaymentGlobal } from "../PaymentGlobal";
+import { PaymentSetupWizard } from "../PaymentSetupWizard";
 
 async function execute(
     database: string,
@@ -77,6 +78,9 @@ async function main(): Promise<void> {
         GRANT SELECT ON ALL TABLES IN SCHEMA ${config.schema} TO ${config.readonlyUsername};
     `,
     );
+
+    PaymentGlobal.testing = true;
+    await PaymentSetupWizard.schema();
 }
 main().catch((exp) => {
     console.log(exp);
