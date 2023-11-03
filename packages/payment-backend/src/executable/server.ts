@@ -48,6 +48,12 @@ async function handle_error(exp: any): Promise<void> {
 }
 
 async function main(): Promise<void> {
+    if (
+        PaymentGlobal.mode === "local" &&
+        process.argv.some((str) => str === "testing")
+    )
+        PaymentGlobal.testing = true;
+
     // BACKEND SEVER LATER
     const backend: PaymentBackend = new PaymentBackend();
     await backend.open();
