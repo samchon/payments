@@ -71,9 +71,7 @@ async function main(): Promise<void> {
     PaymentGlobal.testing = true;
 
     if (options.reset) {
-        await StopWatch.trace("Reset DB")(() =>
-            PaymentSetupWizard.schema(PaymentGlobal.prisma),
-        );
+        await StopWatch.trace("Reset DB")(PaymentSetupWizard.schema);
         await StopWatch.trace("Seed Data")(PaymentSetupWizard.seed);
     }
 
