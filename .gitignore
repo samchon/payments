@@ -1,5 +1,6 @@
 bin/
 lib/
+migrations/
 node_modules/
 
 package-lock.json

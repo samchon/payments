@@ -226,7 +226,7 @@ model payment_history_cancels {
     /// 귀속 결제 이력.
     history payment_histories @relation(fields: [payment_history_id], references: [id], onDelete: Cascade)
 
-    @@index([payment_history_id])
+    @@unique([payment_history_id, amount, reason, created_at])
 }
 
 /// 웹훅 이벤트 레코드.

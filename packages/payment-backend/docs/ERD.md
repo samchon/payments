@@ -6,7 +6,7 @@
 ## Payments
 ```mermaid
 erDiagram
-payment_reservations {
+"payment_reservations" {
     String id PK
     String source_schema
     String source_table
@@ -19,7 +19,7 @@ payment_reservations {
     String password
     DateTime created_at
 }
-payment_histories {
+"payment_histories" {
     String id PK
     String source_schema
     String source_table
@@ -37,7 +37,7 @@ payment_histories {
     DateTime paid_at "nullable"
     DateTime cancelled_at "nullable"
 }
-payment_history_cancels {
+"payment_history_cancels" {
     String id PK
     String payment_history_id FK
     Float amount
@@ -45,7 +45,7 @@ payment_history_cancels {
     String data
     DateTime created_at
 }
-payment_history_webhooks {
+"payment_history_webhooks" {
     String id PK
     String payment_history_id FK
     String previous
@@ -53,16 +53,16 @@ payment_history_webhooks {
     String data
     DateTime created_at
 }
-payment_history_webhook_responses {
+"payment_history_webhook_responses" {
     String id PK
     String payment_history_webhook_id FK
     Int status "nullable"
     String body "nullable"
     DateTime created_at
 }
-payment_history_cancels }|--|| payment_histories : history
-payment_history_webhooks }|--|| payment_histories : history
-payment_history_webhook_responses }|--|| payment_history_webhooks : webhook
+"payment_history_cancels" }|--|| "payment_histories" : history
+"payment_history_webhooks" }|--|| "payment_histories" : history
+"payment_history_webhook_responses" }|--|| "payment_history_webhooks" : webhook
 ```
 
 ### `payment_reservations`

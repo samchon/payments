@@ -1,6 +1,6 @@
 {
   "name": "toss-payments-server-api",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "API for Toss Payments Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",

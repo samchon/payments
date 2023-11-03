@@ -3,6 +3,7 @@ import PaymentAPI from "@samchon/payment-api/lib/index";
 import { IPaymentCancelHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentCancelHistory";
 import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
+import { sleep_for } from "tstl";
 
 import { FakePaymentStorage } from "../../../src/providers/payments/FakePaymentStorage";
 
@@ -18,29 +19,9 @@ export const validate_payment_cancel_partial = async (
                 TestValidator.equals("cancelled_at")(!!count)(
                     !!record.cancelled_at,
                 );
-
-                if (count !== record.cancels.length)
-                    console.log("cancels.length", count, record.cancels.length);
                 TestValidator.equals("cancels.length")(count)(
                     record.cancels.length,
                 );
-                if (
-                    (history.price / 5) * count !==
-                    record.cancels
-                        .map((c) => c.price)
-                        .reduce((a, b) => a + b, 0)
-                )
-                    console.log(
-                        "cancels[].amount",
-                        (history.price / 5) * count,
-                        record.cancels
-                            .map((c) => c.price)
-                            .reduce((a, b) => a + b, 0),
-                        (history.price / 5) * count -
-                            record.cancels
-                                .map((c) => c.price)
-                                .reduce((a, b) => a + b, 0),
-                    );
                 TestValidator.equals("cancels[].amount")(
                     (history.price / 5) * count,
                 )(
@@ -55,6 +36,7 @@ export const validate_payment_cancel_partial = async (
             check(record);
 
             if (count !== 0) {
+                await sleep_for(1_000);
                 check(FakePaymentStorage.webhooks.back().current);
                 FakePaymentStorage.webhooks.pop_back();
             }
