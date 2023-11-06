@@ -1,6 +1,6 @@
 {
   "name": "fake-toss-payments-server",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "Fake toss-payments server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
