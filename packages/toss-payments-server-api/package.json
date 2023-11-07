@@ -1,6 +1,6 @@
 {
   "name": "toss-payments-server-api",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "API for Toss Payments Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -9,7 +9,7 @@
     "build:sdk": "rimraf ../fake-toss-payments-server/src/api/functional && cd ../fake-toss-payments-server && npx nestia sdk && cd ../toss-payments-server-api",
     "compile": "rimraf lib && tsc",
     "deploy": "npm run build && npm publish",
-    "postinstall": "ts-patch install"
+    "prepare": "ts-patch install"
   },
   "repository": {
     "type": "git",
