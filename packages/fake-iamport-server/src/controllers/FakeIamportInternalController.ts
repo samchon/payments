@@ -46,7 +46,7 @@ export class FakeIamportInternalController {
      * @security bearer
      * @author Samchon
      */
-    @core.TypedRoute.Get("deposit/:imp_uid")
+    @core.TypedRoute.Put("deposit/:imp_uid")
     public deposit(
         @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("imp_uid") imp_uid: string,

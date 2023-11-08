@@ -50,7 +50,7 @@ export class FakeTossInternalController {
      * @security basic
      * @author Samchon
      */
-    @core.TypedRoute.Get(":paymentKey/deposit")
+    @core.TypedRoute.Put(":paymentKey/deposit")
     public deposit(
         @nest.Request() request: fastify.FastifyRequest,
         @core.TypedParam("paymentKey") paymentKey: string,

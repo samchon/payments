@@ -13,7 +13,7 @@
   "info": {
     "title": "Iamport API",
     "description": "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "5.0.5",
+    "version": "5.0.6",
     "license": {
       "name": "MIT"
     }
@@ -498,7 +498,7 @@
       }
     },
     "/internal/deposit/{imp_uid}": {
-      "get": {
+      "put": {
         "tags": [],
         "parameters": [
           {
@@ -512,7 +512,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "x-nestia-encrypted": false
           }
@@ -574,7 +574,7 @@
             ]
           }
         ],
-        "x-nestia-method": "GET"
+        "x-nestia-method": "PUT"
       }
     },
     "/payments/{imp_uid}": {
