@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
-    "version": "5.0.5",
+    "version": "5.0.6",
     "license": {
       "name": "MIT"
     }
@@ -644,7 +644,7 @@
       }
     },
     "/internal/{paymentKey}/deposit": {
-      "get": {
+      "put": {
         "tags": [],
         "parameters": [
           {
@@ -658,7 +658,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "입금 완료된 가상 꼐좌 결제 정보",
             "content": {
               "application/json": {
@@ -743,7 +743,7 @@
             ]
           }
         ],
-        "x-nestia-method": "GET"
+        "x-nestia-method": "PUT"
       }
     },
     "/v1/payments/{paymentKey}": {

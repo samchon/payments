@@ -21,7 +21,6 @@ export namespace TossAsset {
             host,
             headers: {
                 Authorization: `Basic ${token}`,
-                "Content-Type": "application/json",
             },
         };
     }
