@@ -7,15 +7,15 @@ import { FakeTossConfiguration } from "../FakeTossConfiguration";
 import { VolatileMap } from "../utils/VolatileMap";
 
 export namespace FakeTossStorage {
-    export const payments: VolatileMap<string, ITossPayment> = new VolatileMap(
-        FakeTossConfiguration.EXPIRATION,
-    );
-    export const billings: VolatileMap<
-        string,
-        [ITossBilling, ITossBilling.IStore]
-    > = new VolatileMap(FakeTossConfiguration.EXPIRATION);
-    export const cash_receipts: VolatileMap<string, ITossCashReceipt> =
-        new VolatileMap(FakeTossConfiguration.EXPIRATION);
-    export const webhooks: VolatileMap<string, ITossPaymentWebhook> =
-        new VolatileMap(FakeTossConfiguration.EXPIRATION);
+  export const payments: VolatileMap<string, ITossPayment> = new VolatileMap(
+    FakeTossConfiguration.EXPIRATION,
+  );
+  export const billings: VolatileMap<
+    string,
+    [ITossBilling, ITossBilling.IStore]
+  > = new VolatileMap(FakeTossConfiguration.EXPIRATION);
+  export const cash_receipts: VolatileMap<string, ITossCashReceipt> =
+    new VolatileMap(FakeTossConfiguration.EXPIRATION);
+  export const webhooks: VolatileMap<string, ITossPaymentWebhook> =
+    new VolatileMap(FakeTossConfiguration.EXPIRATION);
 }

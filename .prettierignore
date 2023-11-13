@@ -9,4 +9,4 @@ packages/*/src/api/utils
 packages/*/src/api/*.ts
 
 README.md
-packages/*/tsconfig.json
+tsconfig.json

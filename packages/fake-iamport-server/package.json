@@ -1,6 +1,6 @@
 {
   "name": "fake-iamport-server",
-  "version": "5.0.6",
+  "version": "5.1.0",
   "description": "Fake iamport server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -15,7 +15,6 @@
     "dev": "npm run build:test -- --watch",
     "eslint": "eslint src && eslint --config .eslintrc.test.cjs test",
     "eslint:fix": "eslint --fix src && eslint --fix --config .eslintrc.test.cjs test",
-    "prettier": "prettier src --write && prettier test --write",
     "------------------------------------------------": "",
     "package:api": "npm run build:swagger && npm run build:api && cd packages/api && npm publish",
     "package:latest": "npm run build && npm run test && npm publish",
@@ -39,8 +38,7 @@
   },
   "homepage": "https://github.com/samchon/fake-iamport-server",
   "devDependencies": {
-    "@nestia/sdk": "^2.3.4",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@nestia/sdk": "^2.3.9",
     "@types/atob": "^2.1.2",
     "@types/btoa": "^1.2.3",
     "@types/cli": "^0.11.19",
@@ -52,7 +50,6 @@
     "copyfiles": "^2.4.1",
     "nestia": "^5.0.1",
     "pm2": "^4.5.6",
-    "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "sloc": "^0.2.1",
     "ts-node": "^10.9.1",
@@ -60,14 +57,18 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@nestia/core": "^2.3.4",
+    "@nestia/core": "^2.3.9",
     "@nestia/e2e": "^0.3.6",
-    "@nestia/fetcher": "^2.3.4",
+    "@nestia/fetcher": "^2.3.9",
+    "@nestjs/common": "^10.2.8",
+    "@nestjs/core": "^10.2.8",
+    "@nestjs/platform-fastify": "^10.2.8",
+    "fastify": "^4.24.3",
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^2.5.13",
     "typescript-transform-paths": "^3.4.6",
-    "typia": "^5.2.4",
+    "typia": "^5.2.6",
     "uuid": "^9.0.0"
   },
   "keywords": [

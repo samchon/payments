@@ -14,42 +14,39 @@ import { AdvancedRandomGenerator } from "../internal/AdvancedRandomGenerator";
 import { TestConnection } from "../internal/TestConnection";
 
 export async function test_fake_storage_expiration_time(): Promise<void> {
-    const time: number = FakeTossConfiguration.EXPIRATION.time;
-    FakeTossStorage.payments.clear();
-    FakeTossConfiguration.EXPIRATION.time = 1;
+  const time: number = FakeTossConfiguration.EXPIRATION.time;
+  FakeTossStorage.payments.clear();
+  FakeTossConfiguration.EXPIRATION.time = 1;
 
-    const previous: IPointer<string | null> = { value: null };
-    await ArrayUtil.asyncRepeat(10)(async () => {
-        const payment: ITossPayment = await toss.functional.v1.payments.key_in(
-            TestConnection.FAKE,
-            {
-                method: "card",
+  const previous: IPointer<string | null> = { value: null };
+  await ArrayUtil.asyncRepeat(10)(async () => {
+    const payment: ITossPayment = await toss.functional.v1.payments.key_in(
+      TestConnection.FAKE,
+      {
+        method: "card",
 
-                cardNumber: AdvancedRandomGenerator.cardNumber(),
-                cardExpirationYear: randint(22, 28).toString(),
-                cardExpirationMonth: randint(1, 12).toString().padStart(2, "0"),
+        cardNumber: AdvancedRandomGenerator.cardNumber(),
+        cardExpirationYear: randint(22, 28).toString(),
+        cardExpirationMonth: randint(1, 12).toString().padStart(2, "0"),
 
-                orderId: v4(),
-                amount: 1000,
-            },
-        );
-        assert<ITossCardPayment>(payment);
+        orderId: v4(),
+        amount: 1000,
+      },
+    );
+    assert<ITossCardPayment>(payment);
 
-        await sleep_for(1);
-        if (previous.value !== null)
-            await TestValidator.error(
-                "VirtualTossStorageProvider.payments.get() for expired record",
-            )(() =>
-                toss.functional.v1.payments.at(
-                    TestConnection.FAKE,
-                    previous.value!,
-                ),
-            );
-        await toss.functional.v1.payments.at(
-            TestConnection.FAKE,
-            payment.paymentKey,
-        );
-        previous.value = payment.paymentKey;
-    });
-    FakeTossConfiguration.EXPIRATION.time = time;
+    await sleep_for(1);
+    if (previous.value !== null)
+      await TestValidator.error(
+        "VirtualTossStorageProvider.payments.get() for expired record",
+      )(() =>
+        toss.functional.v1.payments.at(TestConnection.FAKE, previous.value!),
+      );
+    await toss.functional.v1.payments.at(
+      TestConnection.FAKE,
+      payment.paymentKey,
+    );
+    previous.value = payment.paymentKey;
+  });
+  FakeTossConfiguration.EXPIRATION.time = time;
 }

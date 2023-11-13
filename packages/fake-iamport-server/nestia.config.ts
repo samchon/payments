@@ -4,7 +4,7 @@ import { NestFactory } from "@nestjs/core";
 import { FakeIamportModule } from "./src/FakeIamportModule";
 
 const NESTIA_CONFIG: INestiaConfig = {
-    input: async () => NestFactory.create(await FakeIamportModule()),
+    input: () => NestFactory.create(FakeIamportModule),
     output: "src/api",
     simulate: true,
     distribute: "../iamport-server-api",

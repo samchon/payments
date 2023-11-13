@@ -6,10 +6,10 @@
  * @author Samchon
  */
 export interface IEntity {
-    /**
-     * Primary Key
-     *
-     * @format uuid
-     */
-    id: string;
+  /**
+   * Primary Key
+   *
+   * @format uuid
+   */
+  id: string;
 }

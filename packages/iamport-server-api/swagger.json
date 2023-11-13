@@ -13,1361 +13,12 @@
   "info": {
     "title": "Iamport API",
     "description": "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "5.0.6",
+    "version": "5.1.0",
     "license": {
       "name": "MIT"
     }
   },
   "paths": {
-    "/certifications/{imp_uid}": {
-      "get": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "대상 본인인증 정보의 ",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "본인인증 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "본인인증 정보 열람하기",
-        "description": "본인인증 정보 열람하기.\n\n`certiciations.at` 은 본인인증 정보를 열람할 때 사용하는 API 함수이다.\n\n다만 이 API 함수를 통하여 열람한 본인인증 정보 {@link IIamportCertification } 이\n곧 OTP 인증까지 마쳐 본인인증을 모두 마친 레코드라는 보장은 없다. 본인인증의 완결\n여부는 오직, {@link IIamportCertification.certified } 값을 직접 검사해봐야만 알\n수 있기 때문이다.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "certifications.at",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "대상 본인인증 정보의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportCertification.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportCertification.ts",
-                  "textSpan": {
-                    "start": 455,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "본인인증 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "GET"
-      },
-      "delete": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "대상 본인인증 정보의 ",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "삭제된 본인인증 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "본인인증 정보 삭제하기",
-        "description": "본인인증 정보 삭제하기.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "certifications.erase",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "대상 본인인증 정보의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportCertification.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportCertification.ts",
-                  "textSpan": {
-                    "start": 455,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "삭제된 본인인증 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "DELETE"
-      }
-    },
-    "/certifications/otp/request": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "본인인증 요청 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportCertification.IStore"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "진행 중인 본인인증의 식별자 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification.IAccessor"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "본인인증 요청하기",
-        "description": "본인인증 요청하기.\n\n`certifications.otp.request` 는 아임포트 서버에 본인인증을 요청하는 API 함수이다.\n이 API 를 호출하면 본인인증 대상자의 핸드폰으로 OTP 문자가 전송되며, 본인인증\n대상자가 {@link certifications.otp.confirm } 을 통하여 이 OTP 번호를 정확히\n입력함으로써, 본인인증이 완결된다.\n\n또한 본인인증 대상자가 자신의 핸드폰으로 전송된 OTP 문자를 입력하기 전에도,\n여전히해당 본인인증 내역은 {@link certifications.at } 함수를 통하여 조회할 수 있다.\n다만, 이 때 리턴되는 {@link IIamportCertification } 에서 인증의 완결 여부를\n지칭하는 {@link IIamportCertification.certified } 값은 `false` 이다.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "certifications.otp.request.request",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "본인인증 요청 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "진행 중인 본인인증의 식별자 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      }
-    },
-    "/certifications/otp/confirm/{imp_uid}": {
-      "post": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "대상 본인인증 정보의 ",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "description": "OTP 코드",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportCertification.IConfirm"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "인증 완료된 본인인증 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "본인인증 시 발급된 OTP 코드 입력하기",
-        "description": "본인인증 시 발급된 OTP 코드 입력하기.\n\n`certifications.otp.confirm` 는 {@link certifications.otp.request } 를 통하여\n발급된 본인인증 건에 대하여, 본인인증 대상자의 휴대폰으로 전송된 OTP 번호를\n검증하고, 입력한 OTP 번호가 맞거든 해당 본인인증 건을 승인하여 완료 처리해주는\nAPI 함수이다.\n\n이처럼 본인인증을 완료하거든, 해당 본인인증 건 {@link IIamportCertification } 의\n{@link IIamportCertification.certified } 값이 비로소 `true` 로 변경되어,\n비로소 완결된다.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "certifications.otp.confirm.confirm",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "대상 본인인증 정보의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportCertification.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportCertification.ts",
-                  "textSpan": {
-                    "start": 455,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "OTP 코드",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "인증 완료된 본인인증 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      }
-    },
-    "/internal/webhook": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "웹훅 이벤트 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportPayment.IWebhook"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "웹훅 이벤트 더미 리스너",
-        "description": "웹훅 이벤트 더미 리스너.\n\n`internal.webhook` 은 실제 아임포트의 서버에는 존재하지 않는 API 로써,\n`fake-impoart-server` 의 {@link Configuration.WEBHOOK_URL } 에 아무런 URL 을 설정하지\n않으면, `fake-iamport-server` 로부터 발생하는 모든 종류의 웹훅 이벤트는 이 곳으로 전달되어\n무의미하게 사라진다.\n\n따라서 `fake-iamport-server` 를 사용하여 아임포트 서버와의 연동을 미리 검증코자 할 때는,\n반드시 {@link Configuration.WEBHOOK_URL } 를 설정하여 웹훅 이벤트가 귀하의 백엔드 서버로\n제대로 전달되도록 하자.",
-        "x-nestia-namespace": "internal.webhook.webhook",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "웹훅 이벤트 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      }
-    },
-    "/internal/deposit/{imp_uid}": {
-      "put": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "대상 결제의 ",
-            "required": true
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "가상 계좌에 입금하기",
-        "description": "가상 계좌에 입금하기.\n\n`internal.deposit` 은 실제 아임포트 결제 서버에는 존재하지 않는 API 로써, 가상 계좌\n결제를 신청한 고객이, 이후 가상 계좌에 목표 금액을 입금하는 상황을 시뮬레이션 할 수 있는\n함수이다.\n\n즉, `internal.deposit` 는 고객이 스스로에게 가상으로 발급된 계좌에 입금을 하고, 그에 따라\n아임포트 서버에서 webhook 이벤트가 발생, 이를 귀하의 백엔드 서버로 전송하는 일련의 상황을\n시뮬레이션하기 위하여 설계된 테스트 함수다.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "internal.deposit.deposit",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "대상 결제의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportVBankPayment.imp_uid ",
-                "kind": "linkText"
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "PUT"
-      }
-    },
-    "/payments/{imp_uid}": {
-      "get": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "대상 결제 기록의 ",
-            "required": true
-          },
-          {
-            "name": "query",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/IIamportPayment.IQuery"
-            },
-            "description": "결제 수단이 페이팔인 경우에 사용",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "결제 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportPayment"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "결제 기록 열람하기",
-        "description": "결제 기록 열람하기.\n\n아임포트를 통하여 발생한 결제 기록을 열람한다.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "payments.at",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "대상 결제 기록의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportPayment.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
-                  "textSpan": {
-                    "start": 2306,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "query",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "결제 수단이 페이팔인 경우에 사용",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "결제 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "GET"
-      }
-    },
-    "/payments/cancel": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "결제 취소 입력 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportPaymentCancel.IStore"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "취소된 결제 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportPayment"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "결제 취소하기",
-        "description": "결제 취소하기.\n\n만약 가상 계좌를 통한 결제였다면, 반드시 환불 계좌 정보를 입력해줘야 한다.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "payments.cancel.cancel",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "결제 취소 입력 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "취소된 결제 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      }
-    },
-    "/receipts/{imp_uid}": {
-      "get": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "귀속 결제의 ",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "현금 영수증 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "현금 영수증 조회하기",
-        "description": "현금 영수증 조회하기.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "receipts.at",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "귀속 결제의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportPayment.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
-                  "textSpan": {
-                    "start": 2306,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "현금 영수증 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "GET"
-      },
-      "post": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "귀속 결제의 ",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "description": "현금 영수증 입력 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportReceipt.IStore"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "현금 영수증 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "현금 영수증 발행하기",
-        "description": "현금 영수증 발행하기.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "receipts.store",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "귀속 결제의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportPayment.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
-                  "textSpan": {
-                    "start": 2306,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "현금 영수증 입력 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "현금 영수증 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      },
-      "delete": {
-        "tags": [],
-        "parameters": [
-          {
-            "name": "imp_uid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": "귀속 결제의 ",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "취소된 현금 영수증 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "현금 영수증 취소하기",
-        "description": "현금 영수증 취소하기.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "receipts.erase",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "imp_uid",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "귀속 결제의 ",
-                "kind": "text"
-              },
-              {
-                "text": "{@link ",
-                "kind": "link"
-              },
-              {
-                "text": "IIamportPayment.imp_uid",
-                "kind": "linkName",
-                "target": {
-                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
-                  "textSpan": {
-                    "start": 2306,
-                    "length": 16
-                  }
-                }
-              },
-              {
-                "text": "}",
-                "kind": "link"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "취소된 현금 영수증 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "DELETE"
-      }
-    },
-    "/users/getToken": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "아임포트의 API 및 secret 키 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportUser.IAccessor"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "유저 인증 토큰 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportUser"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "유저 인증 토큰 발행하기",
-        "description": "유저 인증 토큰 발행하기.\n\n아임포트에 가입하여 부여받은 API 및 secret 키를 토대로, 유저 인증 토큰을 발행한다.\n\n단, 아임포트가 발급해주는 유저 인증 토큰에는 유효 시간 {@link IIamportUser.expired_at }\n이 있어, 해당 시간이 지나거든 기 발급 토큰이 만료되어 더 이상 쓸 수 없게 된다. 때문에\n아임포트의 이러한 시간 제한에 구애받지 않고 자유로이 아임포트의 API 를 이용하고 싶다면,\n`iamport-server-api` 에서 제공해주는 {@link IamportConnector } 를 활용하도록 하자.",
-        "x-nestia-namespace": "users.getToken.getToken",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "아임포트의 API 및 secret 키 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "유저 인증 토큰 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      }
-    },
-    "/vbanks": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "가상 계좌 입력 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportVBankPayment.IStore"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "가상 계좌 결제 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportVBankPayment"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "가상 계좌 발급하기",
-        "description": "가상 계좌 발급하기.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "vbanks.store",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "가상 계좌 입력 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "가상 계좌 결제 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "POST"
-      },
-      "put": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "가상 계좌 편집 입력 정보",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IIamportVBankPayment.IUpdate"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": false
-        },
-        "responses": {
-          "201": {
-            "description": "편집된 가상 계좌 결제 정보",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IIamportResponseIIamportVBankPayment"
-                }
-              }
-            },
-            "x-nestia-encrypted": false
-          }
-        },
-        "summary": "가상 계좌 편집하기",
-        "description": "가상 계좌 편집하기.",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-nestia-namespace": "vbanks.update",
-        "x-nestia-jsDocTags": [
-          {
-            "name": "param",
-            "text": [
-              {
-                "text": "input",
-                "kind": "parameterName"
-              },
-              {
-                "text": " ",
-                "kind": "space"
-              },
-              {
-                "text": "가상 계좌 편집 입력 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "returns",
-            "text": [
-              {
-                "text": "편집된 가상 계좌 결제 정보",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "security",
-            "text": [
-              {
-                "text": "bearer",
-                "kind": "text"
-              }
-            ]
-          },
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ],
-        "x-nestia-method": "PUT"
-      }
-    },
     "/subscribe/customers/{customer_uid}": {
       "get": {
         "tags": [],
@@ -1816,10 +467,2537 @@
         ],
         "x-nestia-method": "POST"
       }
+    },
+    "/certifications/{imp_uid}": {
+      "get": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "대상 본인인증 정보의 ",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "본인인증 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "본인인증 정보 열람하기",
+        "description": "본인인증 정보 열람하기.\n\n`certiciations.at` 은 본인인증 정보를 열람할 때 사용하는 API 함수이다.\n\n다만 이 API 함수를 통하여 열람한 본인인증 정보 {@link IIamportCertification } 이\n곧 OTP 인증까지 마쳐 본인인증을 모두 마친 레코드라는 보장은 없다. 본인인증의 완결\n여부는 오직, {@link IIamportCertification.certified } 값을 직접 검사해봐야만 알\n수 있기 때문이다.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "certifications.at",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "대상 본인인증 정보의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportCertification.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportCertification.ts",
+                  "textSpan": {
+                    "start": 429,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "본인인증 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "GET"
+      },
+      "delete": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "대상 본인인증 정보의 ",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "삭제된 본인인증 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "본인인증 정보 삭제하기",
+        "description": "본인인증 정보 삭제하기.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "certifications.erase",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "대상 본인인증 정보의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportCertification.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportCertification.ts",
+                  "textSpan": {
+                    "start": 429,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "삭제된 본인인증 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "DELETE"
+      }
+    },
+    "/certifications/otp/request": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "본인인증 요청 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportCertification.IStore"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "진행 중인 본인인증의 식별자 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification.IAccessor"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "본인인증 요청하기",
+        "description": "본인인증 요청하기.\n\n`certifications.otp.request` 는 아임포트 서버에 본인인증을 요청하는 API 함수이다.\n이 API 를 호출하면 본인인증 대상자의 핸드폰으로 OTP 문자가 전송되며, 본인인증\n대상자가 {@link certifications.otp.confirm } 을 통하여 이 OTP 번호를 정확히\n입력함으로써, 본인인증이 완결된다.\n\n또한 본인인증 대상자가 자신의 핸드폰으로 전송된 OTP 문자를 입력하기 전에도,\n여전히해당 본인인증 내역은 {@link certifications.at } 함수를 통하여 조회할 수 있다.\n다만, 이 때 리턴되는 {@link IIamportCertification } 에서 인증의 완결 여부를\n지칭하는 {@link IIamportCertification.certified } 값은 `false` 이다.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "certifications.otp.request.request",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "본인인증 요청 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "진행 중인 본인인증의 식별자 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      }
+    },
+    "/certifications/otp/confirm/{imp_uid}": {
+      "post": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "대상 본인인증 정보의 ",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "OTP 코드",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportCertification.IConfirm"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "인증 완료된 본인인증 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportCertification"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "본인인증 시 발급된 OTP 코드 입력하기",
+        "description": "본인인증 시 발급된 OTP 코드 입력하기.\n\n`certifications.otp.confirm` 는 {@link certifications.otp.request } 를 통하여\n발급된 본인인증 건에 대하여, 본인인증 대상자의 휴대폰으로 전송된 OTP 번호를\n검증하고, 입력한 OTP 번호가 맞거든 해당 본인인증 건을 승인하여 완료 처리해주는\nAPI 함수이다.\n\n이처럼 본인인증을 완료하거든, 해당 본인인증 건 {@link IIamportCertification } 의\n{@link IIamportCertification.certified } 값이 비로소 `true` 로 변경되어,\n비로소 완결된다.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "certifications.otp.confirm.confirm",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "대상 본인인증 정보의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportCertification.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportCertification.ts",
+                  "textSpan": {
+                    "start": 429,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "OTP 코드",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "인증 완료된 본인인증 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      }
+    },
+    "/internal/webhook": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "웹훅 이벤트 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportPayment.IWebhook"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "웹훅 이벤트 더미 리스너",
+        "description": "웹훅 이벤트 더미 리스너.\n\n`internal.webhook` 은 실제 아임포트의 서버에는 존재하지 않는 API 로써,\n`fake-impoart-server` 의 {@link Configuration.WEBHOOK_URL } 에 아무런 URL 을 설정하지\n않으면, `fake-iamport-server` 로부터 발생하는 모든 종류의 웹훅 이벤트는 이 곳으로 전달되어\n무의미하게 사라진다.\n\n따라서 `fake-iamport-server` 를 사용하여 아임포트 서버와의 연동을 미리 검증코자 할 때는,\n반드시 {@link Configuration.WEBHOOK_URL } 를 설정하여 웹훅 이벤트가 귀하의 백엔드 서버로\n제대로 전달되도록 하자.",
+        "x-nestia-namespace": "internal.webhook.webhook",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "웹훅 이벤트 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      }
+    },
+    "/internal/deposit/{imp_uid}": {
+      "put": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "대상 결제의 ",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "가상 계좌에 입금하기",
+        "description": "가상 계좌에 입금하기.\n\n`internal.deposit` 은 실제 아임포트 결제 서버에는 존재하지 않는 API 로써, 가상 계좌\n결제를 신청한 고객이, 이후 가상 계좌에 목표 금액을 입금하는 상황을 시뮬레이션 할 수 있는\n함수이다.\n\n즉, `internal.deposit` 는 고객이 스스로에게 가상으로 발급된 계좌에 입금을 하고, 그에 따라\n아임포트 서버에서 webhook 이벤트가 발생, 이를 귀하의 백엔드 서버로 전송하는 일련의 상황을\n시뮬레이션하기 위하여 설계된 테스트 함수다.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "internal.deposit.deposit",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "대상 결제의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportVBankPayment.imp_uid ",
+                "kind": "linkText"
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "PUT"
+      }
+    },
+    "/payments/{imp_uid}": {
+      "get": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "대상 결제 기록의 ",
+            "required": true
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/IIamportPayment.IQuery"
+            },
+            "description": "결제 수단이 페이팔인 경우에 사용",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "결제 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportPayment"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "결제 기록 열람하기",
+        "description": "결제 기록 열람하기.\n\n아임포트를 통하여 발생한 결제 기록을 열람한다.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "payments.at",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "대상 결제 기록의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportPayment.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
+                  "textSpan": {
+                    "start": 2017,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "query",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "결제 수단이 페이팔인 경우에 사용",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "결제 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "GET"
+      }
+    },
+    "/payments/cancel": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "결제 취소 입력 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportPaymentCancel.IStore"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "취소된 결제 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportPayment"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "결제 취소하기",
+        "description": "결제 취소하기.\n\n만약 가상 계좌를 통한 결제였다면, 반드시 환불 계좌 정보를 입력해줘야 한다.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "payments.cancel.cancel",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "결제 취소 입력 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "취소된 결제 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      }
+    },
+    "/receipts/{imp_uid}": {
+      "get": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "귀속 결제의 ",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "현금 영수증 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "현금 영수증 조회하기",
+        "description": "현금 영수증 조회하기.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "receipts.at",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "귀속 결제의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportPayment.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
+                  "textSpan": {
+                    "start": 2017,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "현금 영수증 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "GET"
+      },
+      "post": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "귀속 결제의 ",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "현금 영수증 입력 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportReceipt.IStore"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "현금 영수증 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "현금 영수증 발행하기",
+        "description": "현금 영수증 발행하기.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "receipts.store",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "귀속 결제의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportPayment.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
+                  "textSpan": {
+                    "start": 2017,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "현금 영수증 입력 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "현금 영수증 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      },
+      "delete": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "imp_uid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "귀속 결제의 ",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "취소된 현금 영수증 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportReceipt"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "현금 영수증 취소하기",
+        "description": "현금 영수증 취소하기.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "receipts.erase",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "imp_uid",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "귀속 결제의 ",
+                "kind": "text"
+              },
+              {
+                "text": "{@link ",
+                "kind": "link"
+              },
+              {
+                "text": "IIamportPayment.imp_uid",
+                "kind": "linkName",
+                "target": {
+                  "fileName": "D:/github/samchon/payments/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts",
+                  "textSpan": {
+                    "start": 2017,
+                    "length": 16
+                  }
+                }
+              },
+              {
+                "text": "}",
+                "kind": "link"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "취소된 현금 영수증 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "DELETE"
+      }
+    },
+    "/users/getToken": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "아임포트의 API 및 secret 키 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportUser.IAccessor"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "유저 인증 토큰 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportUser"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "유저 인증 토큰 발행하기",
+        "description": "유저 인증 토큰 발행하기.\n\n아임포트에 가입하여 부여받은 API 및 secret 키를 토대로, 유저 인증 토큰을 발행한다.\n\n단, 아임포트가 발급해주는 유저 인증 토큰에는 유효 시간 {@link IIamportUser.expired_at }\n이 있어, 해당 시간이 지나거든 기 발급 토큰이 만료되어 더 이상 쓸 수 없게 된다. 때문에\n아임포트의 이러한 시간 제한에 구애받지 않고 자유로이 아임포트의 API 를 이용하고 싶다면,\n`iamport-server-api` 에서 제공해주는 {@link IamportConnector } 를 활용하도록 하자.",
+        "x-nestia-namespace": "users.getToken.getToken",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "아임포트의 API 및 secret 키 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "유저 인증 토큰 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      }
+    },
+    "/vbanks": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "가상 계좌 입력 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportVBankPayment.IStore"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "가상 계좌 결제 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportVBankPayment"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "가상 계좌 발급하기",
+        "description": "가상 계좌 발급하기.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "vbanks.store",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "가상 계좌 입력 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "가상 계좌 결제 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "POST"
+      },
+      "put": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "가상 계좌 편집 입력 정보",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IIamportVBankPayment.IUpdate"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "편집된 가상 계좌 결제 정보",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IIamportResponseIIamportVBankPayment"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "summary": "가상 계좌 편집하기",
+        "description": "가상 계좌 편집하기.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-nestia-namespace": "vbanks.update",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "input",
+                "kind": "parameterName"
+              },
+              {
+                "text": " ",
+                "kind": "space"
+              },
+              {
+                "text": "가상 계좌 편집 입력 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns",
+            "text": [
+              {
+                "text": "편집된 가상 계좌 결제 정보",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "security",
+            "text": [
+              {
+                "text": "bearer",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ],
+        "x-nestia-method": "PUT"
+      }
     }
   },
   "components": {
     "schemas": {
+      "IIamportResponseIIamportSubscription": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "에러 코드.\n\n값이 0 이면 오류가 없다는 뜻.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "message": {
+            "description": "성공 또는 오류 메시지.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "response": {
+            "$ref": "#/components/schemas/IIamportSubscription"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "code",
+          "message",
+          "response"
+        ],
+        "description": "아임포트 고유의 응답 데이터.",
+        "x-typia-jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "IIamportSubscription": {
+        "type": "object",
+        "properties": {
+          "pg_provider": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "pg_id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "card_name": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "card_code": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "card_number": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "card_type": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "customer_name": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "customer_tel": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "customer_email": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "customer_addr": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "customer_postcode": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "inserted": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "updated": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "customer_uid": {
+            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "pg_provider",
+          "pg_id",
+          "card_name",
+          "card_code",
+          "card_number",
+          "card_type",
+          "customer_name",
+          "customer_tel",
+          "customer_email",
+          "customer_addr",
+          "customer_postcode",
+          "inserted",
+          "updated",
+          "customer_uid"
+        ],
+        "description": "간편 결제 카드 정보.",
+        "x-typia-jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "IIamportSubscription.IStore": {
+        "type": "object",
+        "properties": {
+          "card_number": {
+            "description": "카드 번호.\n\n형식: XXXX-XXXX-XXXX-XXXX",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{4}-\\\\d{4}-\\\\d{4}-\\\\d{4}\">",
+                "kind": "pattern",
+                "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+                "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "expiry": {
+            "description": "카드 유효기간.\n\n형식: YYYY-MM",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "^([0-9]{4})-(0[1-9]|1[012])$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^([0-9]{4})-(0[1-9]|1[012])$\">",
+                "kind": "pattern",
+                "value": "^([0-9]{4})-(0[1-9]|1[012])$",
+                "validate": "/^([0-9]{4})-(0[1-9]|1[012])$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "birth": {
+            "description": "생년월일 YYMMDD 또는 사업자등록번호 10자리.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\\\d{10})$\">",
+                "kind": "pattern",
+                "value": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
+                "validate": "/^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "pwd_2digit": {
+            "description": "카드 비밀번호 앞 두 자리.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "pattern": "\\d{2}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{2}\">",
+                "kind": "pattern",
+                "value": "\\d{2}",
+                "validate": "/\\d{2}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "cvc": {
+            "description": "카드 인증번호 (카드 뒷면 3 자리).",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "pattern": "\\d{2}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{2}\">",
+                "kind": "pattern",
+                "value": "\\d{2}",
+                "validate": "/\\d{2}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "customer_name": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_tel": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_email": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "customr_addr": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_postcode": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_uid": {
+            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "card_number",
+          "expiry",
+          "birth",
+          "customer_uid"
+        ],
+        "description": "간편 결제 카드 입력 정보.",
+        "x-typia-jsDocTags": []
+      },
+      "IIamportSubscription.IOnetime": {
+        "type": "object",
+        "properties": {
+          "customer_uid": {
+            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.\n\n이를 생략시 단순 결제로만 그치며, 카드 정보가 간편 결제용으로 등록되지 아니함.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "card_number": {
+            "description": "카드 번호.\n\n형식: XXXX-XXXX-XXXX-XXXX",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{4}-\\\\d{4}-\\\\d{4}-\\\\d{4}\">",
+                "kind": "pattern",
+                "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+                "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "expiry": {
+            "description": "카드 유효기간.\n\n형식: YYYY-MM",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "^([0-9]{4})-(0[1-9]|1[012])$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^([0-9]{4})-(0[1-9]|1[012])$\">",
+                "kind": "pattern",
+                "value": "^([0-9]{4})-(0[1-9]|1[012])$",
+                "validate": "/^([0-9]{4})-(0[1-9]|1[012])$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "birth": {
+            "description": "생년월일 YYMMDD 또는 사업자등록번호 10자리.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\\\d{10})$\">",
+                "kind": "pattern",
+                "value": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
+                "validate": "/^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "pwd_2digit": {
+            "description": "카드 비밀번호 앞 두 자리.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "pattern": "\\d{2}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{2}\">",
+                "kind": "pattern",
+                "value": "\\d{2}",
+                "validate": "/\\d{2}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "cvc": {
+            "description": "카드 인증번호 (카드 뒷면 3 자리).",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "pattern": "\\d{2}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{2}\">",
+                "kind": "pattern",
+                "value": "\\d{2}",
+                "validate": "/\\d{2}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "customer_name": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_tel": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_email": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "customr_addr": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "customer_postcode": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "merchant_uid": {
+            "description": "주문 식별자 키.\n\n아임포트가 아닌 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "amount": {
+            "description": "결제 총액.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "name": {
+            "description": "주문 이름.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "currency": {
+            "description": "통화 정보.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "enum": [
+              "KRW",
+              "USD",
+              "EUR",
+              "JPY"
+            ]
+          },
+          "tax_free": {
+            "description": "면세 공급가액.\n\n기본값은 0 로써, 알아서 amount 의 1/11 로써 부가세 처리됨.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "number"
+          },
+          "card_quota": {
+            "description": "할부 개월 수.\n\n일시불은 0.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "number"
+          },
+          "buyer_name": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "buyer_email": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "buyer_tel": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "buyer_addr": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "buyer_postcode": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "interest_free_by_merchant": {
+            "description": "카드할부처리할 때, 할부이자가 발생하는 경우 (카드사 무이자 프로모션 제외).\n\n부과되는 할부이자를 고객대신 가맹점이 지불하고자 PG사와 계약된 경우(현재, 나이스페이먼츠만 지원됨)",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "boolean"
+          },
+          "use_card_point": {
+            "description": "승인요청시 카드사 포인트 차감하며 결제승인처리할지 flag.\n\nPG사 영업담당자와 계약 당시 사전 협의 필요(현재, 나이스페이먼츠만 지원됨)",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "boolean"
+          },
+          "custom_data": {
+            "description": "임의 정보를 기재할 수 있다.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "notice_url": {
+            "description": "결제 성공시 통지될 Notification, 웹훅 URL.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "format": "url",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"url\">",
+                "kind": "format",
+                "value": "url",
+                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          }
+        },
+        "nullable": false,
+        "required": [
+          "card_number",
+          "expiry",
+          "birth",
+          "merchant_uid",
+          "amount",
+          "name"
+        ],
+        "description": "결제 신청 입력 정보.",
+        "x-typia-jsDocTags": []
+      },
+      "IIamportResponseIIamportCardPayment": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "에러 코드.\n\n값이 0 이면 오류가 없다는 뜻.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "message": {
+            "description": "성공 또는 오류 메시지.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "response": {
+            "$ref": "#/components/schemas/IIamportCardPayment"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "code",
+          "message",
+          "response"
+        ],
+        "description": "아임포트 고유의 응답 데이터.",
+        "x-typia-jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "IIamportCardPayment": {
+        "type": "object",
+        "properties": {
+          "card_code": {
+            "description": "카드 식별자 코드.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "card_name": {
+            "description": "카드 이름.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "card_number": {
+            "description": "카드 번호.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Pattern<\"\\\\d{4}-\\\\d{4}-\\\\d{4}-\\\\d{4}\">",
+                "kind": "pattern",
+                "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+                "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "card_quota": {
+            "description": "할부 개월 수.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "integer",
+            "x-typia-typeTags": [
+              {
+                "target": "number",
+                "name": "Type<\"uint32\">",
+                "kind": "type",
+                "value": "uint32",
+                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
+                "exclusive": true
+              }
+            ]
+          },
+          "apply_num": {
+            "description": "카드사 승인번호.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "pay_method": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "enum": [
+              "card",
+              "samsung"
+            ]
+          },
+          "imp_uid": {
+            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "merchant_uid": {
+            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "name": {
+            "description": "주문명, 누락 가능.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "description": "결제 총액.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "cancel_amount": {
+            "description": "결제 취소, 환불 총액.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/IIamportPayment.Currency"
+          },
+          "receipt_url": {
+            "description": "영수증 URL.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "format": "url",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"url\">",
+                "kind": "format",
+                "value": "url",
+                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "cash_receipt_issue": {
+            "description": "현금 영수증 발행 여부.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "channel": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "pg_provider": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "emb_pg_provider": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "pg_id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "pg_tid": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "escrow": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "buyer_name": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "buyer_email": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ],
+            "nullable": true
+          },
+          "buyer_tel": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "buyer_addr": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "buyer_postcode": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "customer_uid": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "customer_uid_usage": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "custom_data": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "user_agent": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/IIamportPayment.Status"
+          },
+          "started_at": {
+            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "paid_at": {
+            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "failed_at": {
+            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "cancelled_at": {
+            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "fail_reason": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "cancel_reason": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "nullable": true
+          },
+          "cancel_history": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IIamportPaymentCancel"
+            }
+          }
+        },
+        "nullable": false,
+        "required": [
+          "card_code",
+          "card_name",
+          "card_number",
+          "card_quota",
+          "apply_num",
+          "pay_method",
+          "imp_uid",
+          "merchant_uid",
+          "name",
+          "amount",
+          "cancel_amount",
+          "currency",
+          "receipt_url",
+          "cash_receipt_issue",
+          "channel",
+          "pg_provider",
+          "emb_pg_provider",
+          "pg_id",
+          "pg_tid",
+          "escrow",
+          "buyer_name",
+          "buyer_email",
+          "buyer_tel",
+          "buyer_addr",
+          "buyer_postcode",
+          "customer_uid",
+          "customer_uid_usage",
+          "custom_data",
+          "user_agent",
+          "status",
+          "started_at",
+          "paid_at",
+          "failed_at",
+          "cancelled_at",
+          "fail_reason",
+          "cancel_reason",
+          "cancel_history"
+        ],
+        "description": "카드 결제 정보.",
+        "x-typia-jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "IIamportPayment.Currency": {
+        "type": "string",
+        "enum": [
+          "KRW",
+          "USD",
+          "EUR",
+          "JPY"
+        ]
+      },
+      "IIamportPayment.Status": {
+        "type": "string",
+        "enum": [
+          "paid",
+          "ready",
+          "failed",
+          "cancelled"
+        ]
+      },
+      "IIamportPaymentCancel": {
+        "type": "object",
+        "properties": {
+          "pg_id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "pg_tid": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "amount": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "cancelled_at": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "reason": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "receipt_url": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "format": "url",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"url\">",
+                "kind": "format",
+                "value": "url",
+                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          }
+        },
+        "nullable": false,
+        "required": [
+          "pg_id",
+          "pg_tid",
+          "amount",
+          "cancelled_at",
+          "reason",
+          "receipt_url"
+        ],
+        "description": "결제 취소 정보.",
+        "x-typia-jsDocTags": [
+          {
+            "name": "author",
+            "text": [
+              {
+                "text": "Samchon",
+                "kind": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "IIamportSubscription.IAgain": {
+        "type": "object",
+        "properties": {
+          "merchant_uid": {
+            "description": "주문 식별자 키.\n\n아임포트가 아닌 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "amount": {
+            "description": "결제 총액.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "name": {
+            "description": "주문 이름.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "currency": {
+            "description": "통화 정보.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "enum": [
+              "KRW",
+              "USD",
+              "EUR",
+              "JPY"
+            ]
+          },
+          "tax_free": {
+            "description": "면세 공급가액.\n\n기본값은 0 로써, 알아서 amount 의 1/11 로써 부가세 처리됨.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "number"
+          },
+          "card_quota": {
+            "description": "할부 개월 수.\n\n일시불은 0.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "number"
+          },
+          "buyer_name": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "buyer_email": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "format": "email",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"email\">",
+                "kind": "format",
+                "value": "email",
+                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "buyer_tel": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "buyer_addr": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "buyer_postcode": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "interest_free_by_merchant": {
+            "description": "카드할부처리할 때, 할부이자가 발생하는 경우 (카드사 무이자 프로모션 제외).\n\n부과되는 할부이자를 고객대신 가맹점이 지불하고자 PG사와 계약된 경우(현재, 나이스페이먼츠만 지원됨)",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "boolean"
+          },
+          "use_card_point": {
+            "description": "승인요청시 카드사 포인트 차감하며 결제승인처리할지 flag.\n\nPG사 영업담당자와 계약 당시 사전 협의 필요(현재, 나이스페이먼츠만 지원됨)",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "boolean"
+          },
+          "custom_data": {
+            "description": "임의 정보를 기재할 수 있다.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "notice_url": {
+            "description": "결제 성공시 통지될 Notification, 웹훅 URL.",
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string",
+            "format": "url",
+            "x-typia-typeTags": [
+              {
+                "target": "string",
+                "name": "Format<\"url\">",
+                "kind": "format",
+                "value": "url",
+                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
+                "exclusive": [
+                  "format",
+                  "pattern"
+                ]
+              }
+            ]
+          },
+          "customer_uid": {
+            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "merchant_uid",
+          "amount",
+          "name",
+          "customer_uid"
+        ],
+        "description": "간편 결제 카드로 결제 신청 입력 정보.",
+        "x-typia-jsDocTags": []
+      },
       "IIamportResponseIIamportCertification": {
         "type": "object",
         "properties": {
@@ -2300,420 +3478,6 @@
           }
         ],
         "description": "결제 정보.\n\n`IIamportPayment` 는 아임포트의 결제 정보를 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 method 값을 특정하면, 파생 타입이 자동으로\n지정된다.\n\n```typescript\nif (payment.pay_method === \"card\")\n   payment.card_number; // payment be IIamportCardPayment\n```",
-        "x-typia-jsDocTags": [
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ]
-      },
-      "IIamportCardPayment": {
-        "type": "object",
-        "properties": {
-          "card_code": {
-            "description": "카드 식별자 코드.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "card_name": {
-            "description": "카드 이름.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "card_number": {
-            "description": "카드 번호.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{4}-\\\\d{4}-\\\\d{4}-\\\\d{4}\">",
-                "kind": "pattern",
-                "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-                "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "card_quota": {
-            "description": "할부 개월 수.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "integer",
-            "x-typia-typeTags": [
-              {
-                "target": "number",
-                "name": "Type<\"uint32\">",
-                "kind": "type",
-                "value": "uint32",
-                "validate": "Math.floor($input) === $input && 0 <= $input && $input <= 4294967295",
-                "exclusive": true
-              }
-            ]
-          },
-          "apply_num": {
-            "description": "카드사 승인번호.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "pay_method": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "enum": [
-              "card",
-              "samsung"
-            ]
-          },
-          "imp_uid": {
-            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "merchant_uid": {
-            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "name": {
-            "description": "주문명, 누락 가능.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "amount": {
-            "description": "결제 총액.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "cancel_amount": {
-            "description": "결제 취소, 환불 총액.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "currency": {
-            "$ref": "#/components/schemas/IIamportPayment.Currency"
-          },
-          "receipt_url": {
-            "description": "영수증 URL.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "format": "url",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"url\">",
-                "kind": "format",
-                "value": "url",
-                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "cash_receipt_issue": {
-            "description": "현금 영수증 발행 여부.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "boolean"
-          },
-          "channel": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "pg_provider": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "emb_pg_provider": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "pg_id": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "pg_tid": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "escrow": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "boolean"
-          },
-          "buyer_name": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "buyer_email": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "format": "email",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"email\">",
-                "kind": "format",
-                "value": "email",
-                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ],
-            "nullable": true
-          },
-          "buyer_tel": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "buyer_addr": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "buyer_postcode": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "customer_uid": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "customer_uid_usage": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "custom_data": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "user_agent": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/IIamportPayment.Status"
-          },
-          "started_at": {
-            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "paid_at": {
-            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "failed_at": {
-            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "cancelled_at": {
-            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "fail_reason": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "cancel_reason": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "cancel_history": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IIamportPaymentCancel"
-            }
-          }
-        },
-        "nullable": false,
-        "required": [
-          "card_code",
-          "card_name",
-          "card_number",
-          "card_quota",
-          "apply_num",
-          "pay_method",
-          "imp_uid",
-          "merchant_uid",
-          "name",
-          "amount",
-          "cancel_amount",
-          "currency",
-          "receipt_url",
-          "cash_receipt_issue",
-          "channel",
-          "pg_provider",
-          "emb_pg_provider",
-          "pg_id",
-          "pg_tid",
-          "escrow",
-          "buyer_name",
-          "buyer_email",
-          "buyer_tel",
-          "buyer_addr",
-          "buyer_postcode",
-          "customer_uid",
-          "customer_uid_usage",
-          "custom_data",
-          "user_agent",
-          "status",
-          "started_at",
-          "paid_at",
-          "failed_at",
-          "cancelled_at",
-          "fail_reason",
-          "cancel_reason",
-          "cancel_history"
-        ],
-        "description": "카드 결제 정보.",
-        "x-typia-jsDocTags": [
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ]
-      },
-      "IIamportPayment.Currency": {
-        "type": "string",
-        "enum": [
-          "KRW",
-          "USD",
-          "EUR",
-          "JPY"
-        ]
-      },
-      "IIamportPayment.Status": {
-        "type": "string",
-        "enum": [
-          "paid",
-          "ready",
-          "failed",
-          "cancelled"
-        ]
-      },
-      "IIamportPaymentCancel": {
-        "type": "object",
-        "properties": {
-          "pg_id": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "pg_tid": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "amount": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "cancelled_at": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "reason": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "receipt_url": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "format": "url",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"url\">",
-                "kind": "format",
-                "value": "url",
-                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          }
-        },
-        "nullable": false,
-        "required": [
-          "pg_id",
-          "pg_tid",
-          "amount",
-          "cancelled_at",
-          "reason",
-          "receipt_url"
-        ],
-        "description": "결제 취소 정보.",
         "x-typia-jsDocTags": [
           {
             "name": "author",
@@ -4158,770 +4922,6 @@
           "imp_uid"
         ],
         "description": "가상 계좌 결제의 수정 입력 정보.\n\n아직 입금되지 않은 가상계좌의 입금기한 또는 입금금액을 수정할 수 있다.\n\n다만, 세틀뱅크 혹은 `fake-iamport-server` 만 가능.",
-        "x-typia-jsDocTags": []
-      },
-      "IIamportResponseIIamportSubscription": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "description": "에러 코드.\n\n값이 0 이면 오류가 없다는 뜻.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "message": {
-            "description": "성공 또는 오류 메시지.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "response": {
-            "$ref": "#/components/schemas/IIamportSubscription"
-          }
-        },
-        "nullable": false,
-        "required": [
-          "code",
-          "message",
-          "response"
-        ],
-        "description": "아임포트 고유의 응답 데이터.",
-        "x-typia-jsDocTags": [
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ]
-      },
-      "IIamportSubscription": {
-        "type": "object",
-        "properties": {
-          "pg_provider": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "pg_id": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "card_name": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "card_code": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "card_number": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "card_type": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "customer_name": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "customer_tel": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "customer_email": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "customer_addr": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "customer_postcode": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "nullable": true
-          },
-          "inserted": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "updated": {
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "customer_uid": {
-            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          }
-        },
-        "nullable": false,
-        "required": [
-          "pg_provider",
-          "pg_id",
-          "card_name",
-          "card_code",
-          "card_number",
-          "card_type",
-          "customer_name",
-          "customer_tel",
-          "customer_email",
-          "customer_addr",
-          "customer_postcode",
-          "inserted",
-          "updated",
-          "customer_uid"
-        ],
-        "description": "간편 결제 카드 정보.",
-        "x-typia-jsDocTags": [
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ]
-      },
-      "IIamportSubscription.IStore": {
-        "type": "object",
-        "properties": {
-          "card_number": {
-            "description": "카드 번호.\n\n형식: XXXX-XXXX-XXXX-XXXX",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{4}-\\\\d{4}-\\\\d{4}-\\\\d{4}\">",
-                "kind": "pattern",
-                "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-                "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "expiry": {
-            "description": "카드 유효기간.\n\n형식: YYYY-MM",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "^([0-9]{4})-(0[1-9]|1[012])$",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"^([0-9]{4})-(0[1-9]|1[012])$\">",
-                "kind": "pattern",
-                "value": "^([0-9]{4})-(0[1-9]|1[012])$",
-                "validate": "/^([0-9]{4})-(0[1-9]|1[012])$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "birth": {
-            "description": "생년월일 YYMMDD 또는 사업자등록번호 10자리.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\\\d{10})$\">",
-                "kind": "pattern",
-                "value": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
-                "validate": "/^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "pwd_2digit": {
-            "description": "카드 비밀번호 앞 두 자리.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "pattern": "\\d{2}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{2}\">",
-                "kind": "pattern",
-                "value": "\\d{2}",
-                "validate": "/\\d{2}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "cvc": {
-            "description": "카드 인증번호 (카드 뒷면 3 자리).",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "pattern": "\\d{2}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{2}\">",
-                "kind": "pattern",
-                "value": "\\d{2}",
-                "validate": "/\\d{2}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "customer_name": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_tel": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_email": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "format": "email",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"email\">",
-                "kind": "format",
-                "value": "email",
-                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "customr_addr": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_postcode": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_uid": {
-            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          }
-        },
-        "nullable": false,
-        "required": [
-          "card_number",
-          "expiry",
-          "birth",
-          "customer_uid"
-        ],
-        "description": "간편 결제 카드 입력 정보.",
-        "x-typia-jsDocTags": []
-      },
-      "IIamportSubscription.IOnetime": {
-        "type": "object",
-        "properties": {
-          "customer_uid": {
-            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.\n\n이를 생략시 단순 결제로만 그치며, 카드 정보가 간편 결제용으로 등록되지 아니함.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "card_number": {
-            "description": "카드 번호.\n\n형식: XXXX-XXXX-XXXX-XXXX",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{4}-\\\\d{4}-\\\\d{4}-\\\\d{4}\">",
-                "kind": "pattern",
-                "value": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-                "validate": "/\\d{4}-\\d{4}-\\d{4}-\\d{4}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "expiry": {
-            "description": "카드 유효기간.\n\n형식: YYYY-MM",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "^([0-9]{4})-(0[1-9]|1[012])$",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"^([0-9]{4})-(0[1-9]|1[012])$\">",
-                "kind": "pattern",
-                "value": "^([0-9]{4})-(0[1-9]|1[012])$",
-                "validate": "/^([0-9]{4})-(0[1-9]|1[012])$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "birth": {
-            "description": "생년월일 YYMMDD 또는 사업자등록번호 10자리.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string",
-            "pattern": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\\\d{10})$\">",
-                "kind": "pattern",
-                "value": "^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$",
-                "validate": "/^(([0-9]{2})(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))|(\\d{10})$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "pwd_2digit": {
-            "description": "카드 비밀번호 앞 두 자리.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "pattern": "\\d{2}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{2}\">",
-                "kind": "pattern",
-                "value": "\\d{2}",
-                "validate": "/\\d{2}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "cvc": {
-            "description": "카드 인증번호 (카드 뒷면 3 자리).",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "pattern": "\\d{2}",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Pattern<\"\\\\d{2}\">",
-                "kind": "pattern",
-                "value": "\\d{2}",
-                "validate": "/\\d{2}/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "customer_name": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_tel": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_email": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "format": "email",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"email\">",
-                "kind": "format",
-                "value": "email",
-                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "customr_addr": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "customer_postcode": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "merchant_uid": {
-            "description": "주문 식별자 키.\n\n아임포트가 아닌 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "amount": {
-            "description": "결제 총액.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "name": {
-            "description": "주문 이름.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "currency": {
-            "description": "통화 정보.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "enum": [
-              "KRW",
-              "USD",
-              "EUR",
-              "JPY"
-            ]
-          },
-          "tax_free": {
-            "description": "면세 공급가액.\n\n기본값은 0 로써, 알아서 amount 의 1/11 로써 부가세 처리됨.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "number"
-          },
-          "card_quota": {
-            "description": "할부 개월 수.\n\n일시불은 0.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "number"
-          },
-          "buyer_name": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "buyer_email": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "format": "email",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"email\">",
-                "kind": "format",
-                "value": "email",
-                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "buyer_tel": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "buyer_addr": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "buyer_postcode": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "interest_free_by_merchant": {
-            "description": "카드할부처리할 때, 할부이자가 발생하는 경우 (카드사 무이자 프로모션 제외).\n\n부과되는 할부이자를 고객대신 가맹점이 지불하고자 PG사와 계약된 경우(현재, 나이스페이먼츠만 지원됨)",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "use_card_point": {
-            "description": "승인요청시 카드사 포인트 차감하며 결제승인처리할지 flag.\n\nPG사 영업담당자와 계약 당시 사전 협의 필요(현재, 나이스페이먼츠만 지원됨)",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "custom_data": {
-            "description": "임의 정보를 기재할 수 있다.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "notice_url": {
-            "description": "결제 성공시 통지될 Notification, 웹훅 URL.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "format": "url",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"url\">",
-                "kind": "format",
-                "value": "url",
-                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          }
-        },
-        "nullable": false,
-        "required": [
-          "card_number",
-          "expiry",
-          "birth",
-          "merchant_uid",
-          "amount",
-          "name"
-        ],
-        "description": "결제 신청 입력 정보.",
-        "x-typia-jsDocTags": []
-      },
-      "IIamportResponseIIamportCardPayment": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "description": "에러 코드.\n\n값이 0 이면 오류가 없다는 뜻.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "message": {
-            "description": "성공 또는 오류 메시지.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "response": {
-            "$ref": "#/components/schemas/IIamportCardPayment"
-          }
-        },
-        "nullable": false,
-        "required": [
-          "code",
-          "message",
-          "response"
-        ],
-        "description": "아임포트 고유의 응답 데이터.",
-        "x-typia-jsDocTags": [
-          {
-            "name": "author",
-            "text": [
-              {
-                "text": "Samchon",
-                "kind": "text"
-              }
-            ]
-          }
-        ]
-      },
-      "IIamportSubscription.IAgain": {
-        "type": "object",
-        "properties": {
-          "merchant_uid": {
-            "description": "주문 식별자 키.\n\n아임포트가 아닌 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "amount": {
-            "description": "결제 총액.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "number"
-          },
-          "name": {
-            "description": "주문 이름.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          },
-          "currency": {
-            "description": "통화 정보.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "enum": [
-              "KRW",
-              "USD",
-              "EUR",
-              "JPY"
-            ]
-          },
-          "tax_free": {
-            "description": "면세 공급가액.\n\n기본값은 0 로써, 알아서 amount 의 1/11 로써 부가세 처리됨.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "number"
-          },
-          "card_quota": {
-            "description": "할부 개월 수.\n\n일시불은 0.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "number"
-          },
-          "buyer_name": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "buyer_email": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "format": "email",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"email\">",
-                "kind": "format",
-                "value": "email",
-                "validate": "/^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$/i.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "buyer_tel": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "buyer_addr": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "buyer_postcode": {
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "interest_free_by_merchant": {
-            "description": "카드할부처리할 때, 할부이자가 발생하는 경우 (카드사 무이자 프로모션 제외).\n\n부과되는 할부이자를 고객대신 가맹점이 지불하고자 PG사와 계약된 경우(현재, 나이스페이먼츠만 지원됨)",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "use_card_point": {
-            "description": "승인요청시 카드사 포인트 차감하며 결제승인처리할지 flag.\n\nPG사 영업담당자와 계약 당시 사전 협의 필요(현재, 나이스페이먼츠만 지원됨)",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "boolean"
-          },
-          "custom_data": {
-            "description": "임의 정보를 기재할 수 있다.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string"
-          },
-          "notice_url": {
-            "description": "결제 성공시 통지될 Notification, 웹훅 URL.",
-            "x-typia-required": false,
-            "x-typia-optional": true,
-            "type": "string",
-            "format": "url",
-            "x-typia-typeTags": [
-              {
-                "target": "string",
-                "name": "Format<\"url\">",
-                "kind": "format",
-                "value": "url",
-                "validate": "/^[a-zA-Z0-9]+:\\/\\/(?:www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test($input)",
-                "exclusive": [
-                  "format",
-                  "pattern"
-                ]
-              }
-            ]
-          },
-          "customer_uid": {
-            "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함.",
-            "x-typia-required": true,
-            "x-typia-optional": false,
-            "type": "string"
-          }
-        },
-        "nullable": false,
-        "required": [
-          "merchant_uid",
-          "amount",
-          "name",
-          "customer_uid"
-        ],
-        "description": "간편 결제 카드로 결제 신청 입력 정보.",
         "x-typia-jsDocTags": []
       }
     },

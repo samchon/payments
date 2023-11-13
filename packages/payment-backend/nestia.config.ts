@@ -4,12 +4,12 @@ import { NestFactory } from "@nestjs/core";
 import { PaymentModule } from "./src/PaymentModule";
 
 const NESTIA_CONFIG: INestiaConfig = {
-    simulate: true,
-    input: async () => NestFactory.create(await PaymentModule()),
-    output: "src/api",
-    distribute: "../payment-api",
-    swagger: {
-        output: "../payment-api/swagger.json",
-    },
+  simulate: true,
+  input: () => NestFactory.create(PaymentModule),
+  output: "src/api",
+  distribute: "../payment-api",
+  swagger: {
+    output: "../payment-api/swagger.json",
+  },
 };
 export default NESTIA_CONFIG;
