@@ -6,14 +6,14 @@ import { IIamportPayment } from "./IIamportPayment";
  * @author Samchon
  */
 export interface IIamportTransferPayment
-    extends IIamportPayment.IBase<"trans"> {
-    /**
-     * 은행 식별자 코드.
-     */
-    bank_code: string;
+  extends IIamportPayment.IBase<"trans"> {
+  /**
+   * 은행 식별자 코드.
+   */
+  bank_code: string;
 
-    /**
-     * 은행 이름.
-     */
-    bank_name: string;
+  /**
+   * 은행 이름.
+   */
+  bank_name: string;
 }

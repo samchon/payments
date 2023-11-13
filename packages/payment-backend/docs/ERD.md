@@ -60,9 +60,9 @@ erDiagram
     String body "nullable"
     DateTime created_at
 }
-"payment_history_cancels" }|--|| "payment_histories" : history
-"payment_history_webhooks" }|--|| "payment_histories" : history
-"payment_history_webhook_responses" }|--|| "payment_history_webhooks" : webhook
+"payment_history_cancels" }o--|| "payment_histories" : history
+"payment_history_webhooks" }o--|| "payment_histories" : history
+"payment_history_webhook_responses" }o--|| "payment_history_webhooks" : webhook
 ```
 
 ### `payment_reservations`

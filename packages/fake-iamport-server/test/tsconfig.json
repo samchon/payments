@@ -3,5 +3,8 @@
   "compilerOptions": {
     "outDir": "../bin",
   },
-  "include": [".", "../src"]
+  "include": [
+    ".", 
+    "../src",
+  ],
 }

@@ -1,4 +1,5 @@
 bin/
+dist/
 lib/
 migrations/
 node_modules/

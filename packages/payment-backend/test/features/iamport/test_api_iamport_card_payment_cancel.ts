@@ -5,11 +5,11 @@ import { validate_payment_cancel } from "../internal/validate_payment_cancel";
 import { test_api_iamport_card_payment } from "./test_api_iamport_card_payment";
 
 export async function test_api_iamport_card_payment_cancel(
-    connection: PaymentAPI.IConnection,
+  connection: PaymentAPI.IConnection,
 ): Promise<void> {
-    // 카드 결제하기
-    const history: IPaymentHistory = await test_api_iamport_card_payment(
-        connection,
-    );
-    await validate_payment_cancel(connection, history, () => null);
+  // 카드 결제하기
+  const history: IPaymentHistory = await test_api_iamport_card_payment(
+    connection,
+  );
+  await validate_payment_cancel(connection, history, () => null);
 }

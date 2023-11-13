@@ -24,61 +24,60 @@ import { IIamportUser } from "./structures/IIamportUser";
  * @author Samchon
  */
 export class IamportConnector {
-    private readonly mutex_: SharedMutex;
-    private token_: IIamportUser | null;
+  private readonly mutex_: SharedMutex;
+  private token_: IIamportUser | null;
 
-    /**
-     * Initializer Constructor
-     *
-     * @param host 아임포트 서버의 host 주소
-     * @param accessor 아임포트에서 발급해 준 API 및 secret 키
-     * @param surplus 만료 일시로부터의 여분 시간, 기본값은 15,000 ms
-     */
-    public constructor(
-        public readonly host: string,
-        public readonly accessor: IIamportUser.IAccessor,
-        public readonly surplus: number = 15_000,
+  /**
+   * Initializer Constructor
+   *
+   * @param host 아임포트 서버의 host 주소
+   * @param accessor 아임포트에서 발급해 준 API 및 secret 키
+   * @param surplus 만료 일시로부터의 여분 시간, 기본값은 15,000 ms
+   */
+  public constructor(
+    public readonly host: string,
+    public readonly accessor: IIamportUser.IAccessor,
+    public readonly surplus: number = 15_000,
+  ) {
+    this.mutex_ = new SharedMutex();
+    this.token_ = null;
+  }
+
+  /**
+   * 커넥션 정보 구성하기.
+   *
+   * 아임포트 API 를 호출하기 위한 {@link IConnection} 정보를 구성하여 리턴한다. 이 커넥션
+   * 정보에는 아임포트의 유저 인증 토큰이 함께하는데, 만일 해당 유저 인증 토큰의 만료 일시가
+   * 도래했다면, 이를 새로운 것으로 자동 갱신해준다.
+   *
+   * @returns 커넥션 정보 with 인증 토큰
+   */
+  public async get(): Promise<IConnection> {
+    return {
+      host: this.host,
+      headers: {
+        Authorization: await this.getToken(),
+      },
+    };
+  }
+
+  private async getToken(): Promise<string> {
+    if (
+      this.token_ === null ||
+      Date.now() >= this.token_.expired_at * 1000 - this.surplus
     ) {
-        this.mutex_ = new SharedMutex();
-        this.token_ = null;
+      const locked: boolean = await UniqueLock.try_lock(
+        this.mutex_,
+        async () => {
+          const output: IIamportResponse<IIamportUser> = await users.getToken(
+            { host: this.host },
+            this.accessor,
+          );
+          this.token_ = output.response;
+        },
+      );
+      if (locked === false) await SharedLock.lock(this.mutex_, () => {});
     }
-
-    /**
-     * 커넥션 정보 구성하기.
-     *
-     * 아임포트 API 를 호출하기 위한 {@link IConnection} 정보를 구성하여 리턴한다. 이 커넥션
-     * 정보에는 아임포트의 유저 인증 토큰이 함께하는데, 만일 해당 유저 인증 토큰의 만료 일시가
-     * 도래했다면, 이를 새로운 것으로 자동 갱신해준다.
-     *
-     * @returns 커넥션 정보 with 인증 토큰
-     */
-    public async get(): Promise<IConnection> {
-        return {
-            host: this.host,
-            headers: {
-                Authorization: await this.getToken(),
-            },
-        };
-    }
-
-    private async getToken(): Promise<string> {
-        if (
-            this.token_ === null ||
-            Date.now() >= this.token_.expired_at * 1000 - this.surplus
-        ) {
-            const locked: boolean = await UniqueLock.try_lock(
-                this.mutex_,
-                async () => {
-                    const output: IIamportResponse<IIamportUser> =
-                        await users.getToken(
-                            { host: this.host },
-                            this.accessor,
-                        );
-                    this.token_ = output.response;
-                },
-            );
-            if (locked === false) await SharedLock.lock(this.mutex_, () => {});
-        }
-        return this.token_!.access_token;
-    }
+    return this.token_!.access_token;
+  }
 }

@@ -6,9 +6,8 @@ updates:
       interval: 'daily'
     open-pull-requests-limit: 25
     allow:
-      - dependency-name: "@nestia/core"
-      - dependency-name: "@nestia/e2e"
-      - dependency-name: "@nestia/sdk"
+      - dependency-name: "@nestia/*"
+      - dependency-name: "@nestjs/*"
       - dependency-name: "nestia"
       - dependency-name: "tstl"
       - dependency-name: "typia"
@@ -18,9 +17,8 @@ updates:
       interval: 'daily'
     open-pull-requests-limit: 25
     allow:
-      - dependency-name: "@nestia/core"
-      - dependency-name: "@nestia/e2e"
-      - dependency-name: "@nestia/sdk"
+      - dependency-name: "@nestia/*"
+      - dependency-name: "@nestjs/*"
       - dependency-name: "nestia"
       - dependency-name: "tstl"
       - dependency-name: "typia"
@@ -30,10 +28,8 @@ updates:
       interval: 'daily'
     open-pull-requests-limit: 25
     allow:
-      - dependency-name: "@nestia/core"
-      - dependency-name: "@nestia/e2e"
-      - dependency-name: "@nestia/sdk"
-      - dependency-name: "nestia"
+      - dependency-name: "@nestia/*"
+      - dependency-name: "@nestjs/*"
       - dependency-name: "tstl"
       - dependency-name: "typia"
 
