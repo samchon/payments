@@ -70,6 +70,39 @@ export namespace PaymentGlobal {
    * 없으니, 이 점을 착각하지 말기 바란다.
    */
   export let testing: boolean = false;
+
+  export interface IEnvironments {
+    // DEFAULT CONFIGURATIONS
+    PAYMENT_MODE: "local" | "dev" | "real";
+    PAYMENT_API_PORT: `${number}`;
+    PAYMENT_UPDATOR_PORT: `${number}`;
+    PAYMENT_SYSTEM_PASSWORD: string;
+
+    // POSTGRES CONNECTION INFO
+    PAYMENT_POSTGRES_HOST: string;
+    PAYMENT_POSTGRES_PORT: `${number}`;
+    PAYMENT_POSTGRES_DATABASE: string;
+    PAYMENT_POSTGRES_SCHEMA: string;
+    PAYMENT_POSTGRES_USERNAME: string;
+    PAYMENT_POSTGRES_USERNAME_READONLY: string;
+    PAYMENT_POSTGRES_PASSWORD: string;
+    PAYMENT_POSTGRES_URL: string;
+
+    // ENCRYPTION KEYS
+    PAYMENT_CONNECTION_ENCRYPTION_KEY: string;
+    PAYMENT_CONNECTION_ENCRYPTION_IV: string;
+    PAYMENT_HISTORY_ENCRYPTION_KEY: string;
+    PAYMENT_HISTORY_ENCRYPTION_IV: string;
+    PAYMENT_RESERVATION_ENCRYPTION_KEY: string;
+    PAYMENT_RESERVATION_ENCRYPTION_IV: string;
+    PAYMENT_CANCEL_HISTORY_ENCRYPTION_KEY: string;
+    PAYMENT_CANCEL_HISTORY_ENCRYPTION_IV: string;
+
+    // VENDOR'S SECRETS
+    PAYMENT_IAMPORT_KEY: string;
+    PAYMENT_IAMPORT_SECRET: string;
+    PAYMENT_TOSS_PAYMENTS_SECRET: string;
+  }
 }
 
 interface IMode {
@@ -77,44 +110,13 @@ interface IMode {
 }
 const modeWrapper: IMode = {};
 
-interface IEnvironments {
-  // DEFAULT CONFIGURATIONS
-  PAYMENT_MODE: "local" | "dev" | "real";
-  PAYMENT_API_PORT: `${number}`;
-  PAYMENT_UPDATOR_PORT: `${number}`;
-  PAYMENT_SYSTEM_PASSWORD: string;
-
-  // POSTGRES CONNECTION INFO
-  PAYMENT_POSTGRES_HOST: string;
-  PAYMENT_POSTGRES_PORT: `${number}`;
-  PAYMENT_POSTGRES_DATABASE: string;
-  PAYMENT_POSTGRES_SCHEMA: string;
-  PAYMENT_POSTGRES_USERNAME: string;
-  PAYMENT_POSTGRES_USERNAME_READONLY: string;
-  PAYMENT_POSTGRES_PASSWORD: string;
-  PAYMENT_POSTGRES_URL: string;
-
-  // ENCRYPTION KEYS
-  PAYMENT_CONNECTION_ENCRYPTION_KEY: string;
-  PAYMENT_CONNECTION_ENCRYPTION_IV: string;
-  PAYMENT_HISTORY_ENCRYPTION_KEY: string;
-  PAYMENT_HISTORY_ENCRYPTION_IV: string;
-  PAYMENT_RESERVATION_ENCRYPTION_KEY: string;
-  PAYMENT_RESERVATION_ENCRYPTION_IV: string;
-  PAYMENT_CANCEL_HISTORY_ENCRYPTION_KEY: string;
-  PAYMENT_CANCEL_HISTORY_ENCRYPTION_IV: string;
-
-  // VENDOR'S SECRETS
-  PAYMENT_IAMPORT_KEY: string;
-  PAYMENT_IAMPORT_SECRET: string;
-  PAYMENT_TOSS_PAYMENTS_SECRET: string;
-}
-
-const environments: Singleton<IEnvironments> = new Singleton(() => {
-  const env = dotenv.config();
-  dotenvExpand.expand(env);
-  return typia.assert<IEnvironments>(process.env);
-});
+const environments: Singleton<PaymentGlobal.IEnvironments> = new Singleton(
+  () => {
+    const env = dotenv.config();
+    dotenvExpand.expand(env);
+    return typia.assert<PaymentGlobal.IEnvironments>(process.env);
+  },
+);
 
 const prismaClient = new Singleton(
   () =>

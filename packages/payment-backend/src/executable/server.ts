@@ -1,3 +1,5 @@
+import { FakeIamportBackend } from "fake-iamport-server";
+import { FakeTossBackend } from "fake-toss-payments-server";
 import fs from "fs";
 import { randint } from "tstl/algorithm/random";
 import { Singleton } from "tstl/thread/Singleton";
@@ -52,6 +54,9 @@ async function main(): Promise<void> {
     process.argv.some((str) => str === "testing")
   )
     PaymentGlobal.testing = true;
+  else if (PaymentGlobal.mode === "local")
+    for (const server of [new FakeIamportBackend(), new FakeTossBackend()])
+      await server.open();
 
   // BACKEND SEVER LATER
   const backend: PaymentBackend = new PaymentBackend();

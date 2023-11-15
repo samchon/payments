@@ -1,5 +1,6 @@
 import cp from "child_process";
 
+import { PaymentConfiguration } from "./PaymentConfiguration";
 import { PaymentGlobal } from "./PaymentGlobal";
 
 export namespace PaymentSetupWizard {
@@ -12,7 +13,10 @@ export namespace PaymentSetupWizard {
     const execute = (type: string) => (argv: string) =>
       cp.execSync(
         `npx prisma migrate ${type} --schema=src/schema.prisma ${argv}`,
-        { stdio: "ignore" },
+        {
+          stdio: "ignore",
+          cwd: PaymentConfiguration.ROOT,
+        },
       );
     execute("reset")("--force");
     execute("dev")("--name init");
