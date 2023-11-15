@@ -7,6 +7,7 @@ import {
 } from "@nestjs/common";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { IIamportUser } from "iamport-server-api/lib/structures/IIamportUser";
+import path from "path";
 
 import { PaymentGlobal } from "./PaymentGlobal";
 
@@ -89,7 +90,13 @@ export namespace PaymentConfiguration {
   /**
    * @internal
    */
-  export const ROOT = __dirname.split("\\").join("/") + "/..";
+  export const ROOT = (() => {
+    const splitted: string[] = __dirname.split(path.sep);
+    return splitted[splitted.length - 1] === "src" &&
+      splitted[splitted.length - 2] === "bin"
+      ? path.resolve(__dirname + "/../..")
+      : path.resolve(__dirname + "/..");
+  })();
 
   /**
    * @internal
