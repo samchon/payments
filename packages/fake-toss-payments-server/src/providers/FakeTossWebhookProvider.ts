@@ -3,13 +3,7 @@ import { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITo
 import { FakeTossConfiguration } from "../FakeTossConfiguration";
 
 // POLYFILL FOR NODE
-if (
-  typeof global === "object" &&
-  typeof global.process === "object" &&
-  typeof global.process.versions === "object" &&
-  typeof global.process.versions.node !== undefined
-)
-  (global as any).fetch = require("node-fetch");
+(global as any).fetch ??= require("node-fetch");
 
 export namespace FakeTossWebhookProvider {
   export async function webhook(input: ITossPaymentWebhook): Promise<void> {

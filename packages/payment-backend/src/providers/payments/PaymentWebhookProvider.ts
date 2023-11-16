@@ -10,6 +10,8 @@ import { PaymentConfiguration } from "../../PaymentConfiguration";
 import { PaymentGlobal } from "../../PaymentGlobal";
 import { PaymentHistoryProvider } from "./PaymentHistoryProvider";
 
+(global as any).fetch ??= require("node-fetch");
+
 export namespace PaymentWebhookProvider {
   export const process =
     (vendor: "iamport" | "toss.payments") =>
