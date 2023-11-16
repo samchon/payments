@@ -6,6 +6,8 @@ import { DomainError } from "tstl/exception/DomainError";
 import { FakeIamportConfiguration } from "../FakeIamportConfiguration";
 import { FakeIamportStorage } from "./FakeIamportStorage";
 
+(global as any).fetch ??= require("node-fetch");
+
 export namespace FakeIamportPaymentProvider {
   export function store(payment: IIamportPayment): void {
     FakeIamportStorage.payments.set(payment.imp_uid, payment);
