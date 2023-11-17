@@ -235,7 +235,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA payments TO samchon_r;
 ### 2.3. Server
 NodeJS 및 PostgreSQL 의 설치가 끝났다면, 바로 `payment-backend` 구동을 시작할 수 있다. 
 
-제일 먼저 `git clone` 을 통하여, 결제 서버 프로젝트를 로컬 저장소에 복사하도록 한다. 그리고 해당 폴더로 이동하여 `npm install` 명령어를 실행함으로써, 통합 결제 서버를 구동하는 데 필요한 라이브러리들을 다운로드 한다. 그리고 `npm run build` 명령어를 입력하여, 결제 서버의 소스 코드를 컴파일한다. 마지막으로 `npm run start` 명령어를 실행해주면, 결제 서버가 구동된다. 
+제일 먼저 `git clone` 을 통하여, 결제 서버 프로젝트를 로컬 저장소에 복사하도록 한다. 그리고 해당 폴더로 이동하여 `npm install` 명령어를 실행함으로써, 통합 결제 서버를 구동하는 데 필요한 라이브러리들을 다운로드 한다. 그리고 `npm run build` 명령어를 입력하여, 결제 서버의 소스 코드를 컴파일한다. 마지막으로 `npm run pm2:start` 명령어를 실행해주면, 결제 서버가 구동된다. 
 
 다만 `payment-backend` 를 구동하기 전, 각각 [PaymentConfiguration](https://github.com/samchon/payments/tree/master/src/PaymentConfiguration.ts) 과 [PaymentGlobal](https://github.com/samchon/payments/tree/master/src/PaymentGlobal.ts) 클래스에 어떠한 속성들이 있는지 꼼꼼히 읽어보고, 귀하의 서비스에 알맞는 설정을 해 주도록 한다.
 
@@ -250,8 +250,8 @@ npm run build
 npm run schema
 
 # START SERVER & STOP SERVER
-npm run start
-npm run stop
+npm run pm2:start
+npm run pm2:stop
 ```
 
 [![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
@@ -606,40 +606,40 @@ export async function test_fake_iamport_payment_webhook
   - Build the new soure code
   - Restart the backend server without distruption
 
-이러한 무중단 업데이트를 달성하기 위해서는, 서버 인스턴스는 메인 백엔드 서버 프로그램을 시작하기 전, 업데이트 프로그램을 실행해 줄 필요가 있다. 만일 귀하의 서버 인스턴스가 ELB (Elastic Loader Balancer) 등을 통하여 여러 대로 구성되어있고, 현재의 인스턴스가 슬레이브라면, `npm run start:updator:slave` 명령어를 실행해주면 된다.
+이러한 무중단 업데이트를 달성하기 위해서는, 서버 인스턴스는 메인 백엔드 서버 프로그램을 시작하기 전, 업데이트 프로그램을 실행해 줄 필요가 있다. 만일 귀하의 서버 인스턴스가 ELB (Elastic Loader Balancer) 등을 통하여 여러 대로 구성되어있고, 현재의 인스턴스가 슬레이브라면, `npm run pm2:start:updator:slave` 명령어를 실행해주면 된다.
 
-반면 현재가 마스터 인스턴스라면, `npm run start:updator:master` 명령어를 실행하도록 한다.
+반면 현재가 마스터 인스턴스라면, `npm run pm2:start:updator:master` 명령어를 실행하도록 한다.
 
 ```bash
 #----
 # RUN UPDATOR PROGRAM
 #----
 # THE INSTANCE IS MASTER
-npm run start:updator:master
+npm run pm2:start:updator:master
 
 # THE INSTANCE IS SLAVE
-npm run start:updator:slave
+npm run pm2:start:updator:slave
 
 #----
 # MOUNT THE BACKEND SERVER UP
 #----
-npm run start real
+npm run pm2:start real
 ```
 
 ### 4.2. Local Server
-간혹 로컬에, [테스트 자동화 프로그램](#33-test-automation-program)이 아닌, `@samchon/payment-backend` 그 자체를 구동해야 할 때가 있다. 이럴 때는 아래와 같이 `npm run start local` 명령어를 입력해주면, 로컬에 `@samchon/payment-backend` 서버를 개설할 수 있다. 그리고 실행된 서버를 종료하려거든, `npm run stop` 명령어를 입력해주면 된다.
+간혹 로컬에, [테스트 자동화 프로그램](#33-test-automation-program)이 아닌, `@samchon/payment-backend` 그 자체를 구동해야 할 때가 있다. 이럴 때는 아래와 같이 `npm run pm2:start local` 명령어를 입력해주면, 로컬에 `@samchon/payment-backend` 서버를 개설할 수 있다. 그리고 실행된 서버를 종료하려거든, `npm run pm2:stop` 명령어를 입력해주면 된다.
 
 ```bash
-npm run start local
-npm run stop
+npm run pm2:start local
+npm run pm2:stop
 ```
 
-또한, 로컬 개발 환경에서의 무중단 업데이트가 얼마나 의미가 있겠냐만은, 어쨋든 `@samchon/payment-backend` 는 로컬 환경에서도 무중단 업데이트라는 것을 할 수 있다. 아래와 같이 로컬 서버를 구동하기 전 `npm run start updator:master` 명령어를 통하여 업데이트 관리자 프로그램을 구동하고, 향후 무중단 업데이트가 필요할 때마다 `npm run update local` 명령어를 입력해주면 된다.
+또한, 로컬 개발 환경에서의 무중단 업데이트가 얼마나 의미가 있겠냐만은, 어쨋든 `@samchon/payment-backend` 는 로컬 환경에서도 무중단 업데이트라는 것을 할 수 있다. 아래와 같이 로컬 서버를 구동하기 전 `npm run pm2:start updator:master` 명령어를 통하여 업데이트 관리자 프로그램을 구동하고, 향후 무중단 업데이트가 필요할 때마다 `npm run update local` 명령어를 입력해주면 된다.
 
 ```bash
 # START THE LOCAL BACKEND SERVER WITH UPDATOR PROGRAM
-npm run start updator:master
-npm run start local
+npm run pm2:start updator:master
+npm run pm2:start local
 
 # UPDATE THE LOCAL SERVER WITHOUT DISTRUPTION
 npm run update local
@@ -667,8 +667,8 @@ npm install
 npm run build
 pm2 stop all
 npm run test -- --mode=dev
-npm run start:updator:master
-npm run start dev
+npm run pm2:start:updator:master
+npm run pm2:start dev
 ```
 
 더하여 `@samchon/payment-backend` 를 개발하다보면, 문득 현재 가동 중인 `@samchon/payment-backend` 서버의 정보가 이리저리 궁금해질 수 있다. 가령 현재 가동 중인 dev 서버가 사용 중인 소스 코드가 무엇인지 알고 싶어, 해당 서버가 사용 중인 소스 코드의 commit 에 대한 hash code 를 알고싶을 수도 있는 법이다. 
