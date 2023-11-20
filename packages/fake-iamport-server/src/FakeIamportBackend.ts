@@ -31,7 +31,10 @@ export class FakeIamportBackend {
 
     // DO OPEN
     this.application_.enableCors();
-    await this.application_.listen(FakeIamportConfiguration.API_PORT);
+    await this.application_.listen(
+      FakeIamportConfiguration.API_PORT,
+      "0.0.0.0",
+    );
 
     //----
     // POST-PROCESSES
