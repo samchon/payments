@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "devDependencies": {
-    "@nestia/e2e": "^0.3.6",
+    "@nestia/e2e": "^0.4.0",
     "@nestia/sdk": "^2.3.9",
     "@types/atob": "^2.1.2",
     "@types/btoa": "^1.2.3",
