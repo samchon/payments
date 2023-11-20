@@ -48,7 +48,7 @@ export class PaymentBackend {
     this.application_.use(this.middleware.bind(this));
 
     // DO OPEN
-    await this.application_.listen(PaymentConfiguration.API_PORT());
+    await this.application_.listen(PaymentConfiguration.API_PORT(), "0.0.0.0");
 
     // CONFIGURE FAKE SERVERS IF TESTING
     if (PaymentGlobal.testing === true) {
