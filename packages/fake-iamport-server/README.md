@@ -192,7 +192,7 @@ export async function test_fake_subscription_payment_again(): Promise<IIamportCa
     );
 
     // 간편 결제 카드 등록하기
-    await imp.functional.subscribe.customers.store(
+    await imp.functional.subscribe.customers.create(
         await connector.get(),
         customer_uid,
         {

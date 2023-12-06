@@ -11,7 +11,7 @@ import { TestConnection } from "../internal/TestConnection";
 export async function test_fake_billing_payment(): Promise<ITossPayment> {
   // 간편 결제 카드 등록하기
   const billing: ITossBilling =
-    await toss.functional.v1.billing.authorizations.card.store(
+    await toss.functional.v1.billing.authorizations.card.create(
       TestConnection.FAKE,
       {
         customerKey: "some-consumer-key",

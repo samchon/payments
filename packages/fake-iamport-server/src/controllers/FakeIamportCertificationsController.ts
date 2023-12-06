@@ -63,7 +63,7 @@ export class FakeIamportCertificationsController {
   @core.TypedRoute.Post("otp/request")
   public request(
     @FakeIamportUserAuth() _user: IIamportUser.IAccessor,
-    @core.TypedBody() input: IIamportCertification.IStore,
+    @core.TypedBody() input: IIamportCertification.ICreate,
   ): IIamportResponse<IIamportCertification.IAccessor> {
     const birth: Date = new Date(
       `${input.birth.substr(0, 4)}-${input.birth.substr(

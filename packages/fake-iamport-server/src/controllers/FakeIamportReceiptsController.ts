@@ -41,10 +41,10 @@ export class FakeIamportReceiptsController {
    * @author Samchon
    */
   @core.TypedRoute.Post()
-  public store(
+  public create(
     @FakeIamportUserAuth() _user: IIamportUser.IAccessor,
     @core.TypedParam("imp_uid") imp_uid: string,
-    @core.TypedBody() input: IIamportReceipt.IStore,
+    @core.TypedBody() input: IIamportReceipt.ICreate,
   ): IIamportResponse<IIamportReceipt> {
     const payment: IIamportPayment = FakeIamportStorage.payments.get(imp_uid);
     if (!payment.paid_at)

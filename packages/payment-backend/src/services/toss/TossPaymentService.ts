@@ -73,20 +73,20 @@ export namespace TossPaymentService {
   /* ----------------------------------------------------------------
         API
     ---------------------------------------------------------------- */
-  export function store(
+  export function create(
     storeId: string,
-    input: ITossPayment.IStore,
+    input: ITossPayment.ICreate,
   ): Promise<ITossPayment> {
     if (input.method === "billing")
       return TossPaymentBillingService.pay(storeId, input);
     else if (input.method === "card")
-      return TossPaymentCardService.store(storeId, input);
-    else return TossPaymentVirtualAccountService.store(storeId, input);
+      return TossPaymentCardService.create(storeId, input);
+    else return TossPaymentVirtualAccountService.create(storeId, input);
   }
 
   export async function cancel(
     storeId: string,
-    input: ITossPaymentCancel.IStore,
+    input: ITossPaymentCancel.ICreate,
   ): Promise<ITossPayment> {
     return toss.functional.v1.payments.cancel(
       await TossAsset.connection(storeId),

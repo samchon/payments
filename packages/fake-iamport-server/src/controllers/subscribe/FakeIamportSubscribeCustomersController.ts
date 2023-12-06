@@ -15,7 +15,7 @@ export class FakeIamportSubscribeCustomersController {
   /**
    * 간편 결제 카드 정보 조회하기.
    *
-   * `subscribe.customers.at` 은 고객이 {@link store} 나 혹은 아임포트가 제공하는
+   * `subscribe.customers.at` 은 고객이 {@link create} 나 혹은 아임포트가 제공하는
    * 간편 결제 카드 등록 창을 이용하여 저장한 간편 결제 카드 정보를 조회하는 API
    * 함수이다.
    *
@@ -44,7 +44,7 @@ export class FakeIamportSubscribeCustomersController {
    * 필요할 때마다 카드 정보를 반복 입력하는 일 없이, 간편하게 결제를 진행하고자 할 때
    * 사용하는 API 함수이다.
    *
-   * 참고로 `subscribe.customers.store` 는 클라이언트 어플리케이션이 아임포트가 제공하는
+   * 참고로 `subscribe.customers.create` 는 클라이언트 어플리케이션이 아임포트가 제공하는
    * 간편 결제 카드 등록 창을 사용하는 경우, 귀하의 백엔드 서버가 이를 실 서비스에서 호출하는
    * 일은 없을 것이다. 다만, 고객이 간편 결제 카드를 등록하는 상황을 시뮬레이션하기 위하여,
    * 테스트 자동화 프로그램 수준에서 사용될 수는 있다.
@@ -57,10 +57,10 @@ export class FakeIamportSubscribeCustomersController {
    * @author Samchon
    */
   @core.TypedRoute.Post(":customer_uid")
-  public store(
+  public create(
     @FakeIamportUserAuth() _user: IIamportUser.IAccessor,
     @core.TypedParam("customer_uid") customer_uid: string,
-    @core.TypedBody() input: IIamportSubscription.IStore,
+    @core.TypedBody() input: IIamportSubscription.ICreate,
   ): IIamportResponse<IIamportSubscription> {
     // ENROLLMENT
     const subscription: IIamportSubscription = {

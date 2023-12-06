@@ -44,8 +44,8 @@ export async function test_api_iamport_vbank_payment(
    * 다음 단계인 {@link IPaymentHistory} 등록에 사용하도록 하자.
    */
   const payment: IIamportResponse<IIamportPayment> =
-    await imp.functional.vbanks.store(
-      await IamportAsset.connection("test-iamport-store-id"),
+    await imp.functional.vbanks.create(
+      await IamportAsset.connection("test-iamport-create-id"),
       {
         merchant_uid: yourOrderId,
         amount: yourOrderPrice,
@@ -78,10 +78,10 @@ export async function test_api_iamport_vbank_payment(
    * 조회할 때 필요하니, 이를 반드시 귀하의 백엔드 서버에 저장해두도록 한다.
    */
   const history: IPaymentHistory =
-    await PaymentAPI.functional.payments.histories.store(connection, {
+    await PaymentAPI.functional.payments.histories.create(connection, {
       vendor: {
         code: "iamport",
-        store_id: "test-iamport-store-id",
+        store_id: "test-iamport-create-id",
         uid: payment.response.imp_uid,
       },
       source: {
@@ -104,7 +104,7 @@ export async function test_api_iamport_vbank_payment(
    * 고객이 자신 앞을 발급된 계좌에, 결제 금액을 입금하는 상황 시뮬레이션.
    */
   await imp.functional.internal.deposit(
-    await IamportAsset.connection("test-iamport-store-id"),
+    await IamportAsset.connection("test-iamport-create-id"),
     payment.response.imp_uid,
   );
 

@@ -5,11 +5,11 @@ import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayme
 import { TossAsset } from "./TossAsset";
 
 export namespace TossPaymentBillingService {
-  export async function store(
+  export async function create(
     mid: string,
-    input: ITossBilling.IStore,
+    input: ITossBilling.ICreate,
   ): Promise<ITossBilling> {
-    return toss.functional.v1.billing.authorizations.card.store(
+    return toss.functional.v1.billing.authorizations.card.create(
       await TossAsset.connection(mid),
       input,
     );

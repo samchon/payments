@@ -47,9 +47,9 @@ export class PaymentReservationsController {
    * @returns 간편 결제 수단 정보
    */
   @core.EncryptedRoute.Post()
-  public async store(
-    @core.EncryptedBody() input: IPaymentReservation.IStore,
+  public async create(
+    @core.EncryptedBody() input: IPaymentReservation.ICreate,
   ): Promise<IPaymentReservation> {
-    return PaymentReservationProvider.store(input);
+    return PaymentReservationProvider.create(input);
   }
 }

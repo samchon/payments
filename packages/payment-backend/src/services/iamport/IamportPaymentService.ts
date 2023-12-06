@@ -70,7 +70,7 @@ export namespace IamportPaymentService {
 
   export async function cancel(
     storeId: string,
-    input: IIamportPaymentCancel.IStore,
+    input: IIamportPaymentCancel.ICreate,
   ): Promise<IIamportPayment> {
     const reply = await imp.functional.payments.cancel(
       await IamportAsset.connection(storeId),

@@ -124,7 +124,7 @@ export namespace IIamportCertification {
   /**
    * 본인 인증 입력 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 본인인증대상자 성명.
      */

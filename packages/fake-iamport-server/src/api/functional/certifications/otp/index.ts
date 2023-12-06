@@ -59,7 +59,7 @@ export async function request(
           );
 }
 export namespace request {
-    export type Input = Primitive<IIamportCertification.IStore>;
+    export type Input = Primitive<IIamportCertification.ICreate>;
     export type Output = Primitive<IIamportResponse<IIamportCertification.IAccessor>>;
 
     export const METADATA = {

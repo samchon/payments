@@ -48,7 +48,7 @@ export namespace IIamportVBankPayment {
    *   - 나이스페이먼츠
    *   - KG이니시스
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 주문 식별자 키.
      *

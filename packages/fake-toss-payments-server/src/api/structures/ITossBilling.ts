@@ -46,7 +46,7 @@ export namespace ITossBilling {
   /**
    * 간편 결제 카드 등록 정보.
    */
-  export interface IStore extends ICustomerKey {
+  export interface ICreate extends ICustomerKey {
     /**
      * 카드 번호.
      */

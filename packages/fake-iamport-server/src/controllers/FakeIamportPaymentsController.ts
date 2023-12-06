@@ -49,7 +49,7 @@ export class FakeIamportPaymentsController {
   @core.TypedRoute.Post("cancel")
   public cancel(
     @FakeIamportUserAuth() _user: IIamportUser.IAccessor,
-    @core.TypedBody() input: IIamportPaymentCancel.IStore,
+    @core.TypedBody() input: IIamportPaymentCancel.ICreate,
   ): IIamportResponse<IIamportPayment> {
     const payment: IIamportPayment = FakeIamportStorage.payments.get(
       input.imp_uid,

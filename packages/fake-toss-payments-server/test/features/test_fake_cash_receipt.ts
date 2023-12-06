@@ -12,7 +12,7 @@ export async function test_fake_cash_receipt(): Promise<void> {
   const payment: ITossVirtualAccountPayment =
     await test_fake_virtual_account_payment();
   const receipt: ITossCashReceipt =
-    await toss.functional.v1.cash_receipts.store(TestConnection.FAKE, {
+    await toss.functional.v1.cash_receipts.create(TestConnection.FAKE, {
       type: "소득공제",
       paymentKey: payment.paymentKey,
       orderId: payment.orderId,

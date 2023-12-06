@@ -35,8 +35,8 @@ export async function test_api_toss_subscription_payment(
    * 단계인 {@link IPaymentReservation} 등록에 사용하도록 하자.
    */
   const billing: ITossBilling =
-    await toss.functional.v1.billing.authorizations.card.store(
-      await TossAsset.connection("test-toss-payments-store-id"),
+    await toss.functional.v1.billing.authorizations.card.create(
+      await TossAsset.connection("test-toss-payments-create-id"),
       {
         customerKey: yourSourceId,
         cardNumber: "1111222233334444",
@@ -74,10 +74,10 @@ export async function test_api_toss_subscription_payment(
    * 결제 수단을 조회할 때 필요하니, 이를 반드시 귀하의 백엔드 서버에 저장해두도록 한다.
    */
   const reservation: IPaymentReservation =
-    await api.functional.payments.reservations.store(connection, {
+    await api.functional.payments.reservations.create(connection, {
       vendor: {
         code: "toss.payments",
-        store_id: "test-toss-payments-store-id",
+        store_id: "test-toss-payments-create-id",
         uid: billing.billingKey,
       },
       source: {

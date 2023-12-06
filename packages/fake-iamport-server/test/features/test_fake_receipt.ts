@@ -12,7 +12,7 @@ export async function test_fake_receipt(
 ): Promise<void> {
   const payment: IIamportPayment = await test_fake_card_payment(connector);
   const output: IIamportResponse<IIamportReceipt> =
-    await imp.functional.receipts.store(
+    await imp.functional.receipts.create(
       await connector.get(),
       payment.imp_uid,
       {

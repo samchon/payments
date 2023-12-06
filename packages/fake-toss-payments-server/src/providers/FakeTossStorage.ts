@@ -12,7 +12,7 @@ export namespace FakeTossStorage {
   );
   export const billings: VolatileMap<
     string,
-    [ITossBilling, ITossBilling.IStore]
+    [ITossBilling, ITossBilling.ICreate]
   > = new VolatileMap(FakeTossConfiguration.EXPIRATION);
   export const cash_receipts: VolatileMap<string, ITossCashReceipt> =
     new VolatileMap(FakeTossConfiguration.EXPIRATION);

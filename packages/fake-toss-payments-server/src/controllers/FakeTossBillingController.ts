@@ -14,11 +14,11 @@ export class FakeTossBillingController {
   /**
    * 간편 결제 카드 등록하기.
    *
-   * `billing.authorizations.card.store` 는 고객이 자신의 신록 카드를 서버에 등록해두고,
+   * `billing.authorizations.card.create` 는 고객이 자신의 신록 카드를 서버에 등록해두고,
    * 매번 결제가 필요할 때마다 카드 정보를 반복 입력하는 일 없이 간편하게 결제를
    * 진행하고자 할 때, 호출되는 API 함수이다.
    *
-   * 참고로 `billing.authorizations.card.store` 는 클라이언트 어플리케이션이 토스
+   * 참고로 `billing.authorizations.card.create` 는 클라이언트 어플리케이션이 토스
    * 페이먼츠가 제공하는 간편 결제 카드 등록 창을 사용하는 경우, 귀하의 백엔드 서버가 이를
    * 실 서비스에서 호출하는 일은 없을 것이다. 다만, 고객이 간편 결제 카드를 등록하는
    * 상황을 시뮬레이션하기 위하여, 테스트 자동화 프로그램 수준에서 사용될 수는 있다.
@@ -30,9 +30,9 @@ export class FakeTossBillingController {
    * @author Samchon
    */
   @core.TypedRoute.Post("authorizations/card")
-  public store(
+  public create(
     @FakeTossUserAuth() _0: void,
-    @core.TypedBody() input: ITossBilling.IStore,
+    @core.TypedBody() input: ITossBilling.ICreate,
   ): ITossBilling {
     const billing: ITossBilling = {
       mId: "tosspyaments",
@@ -108,7 +108,7 @@ export class FakeTossBillingController {
     @core.TypedBody() input: ITossBilling.IPaymentStore,
   ): ITossPayment {
     const tuple = FakeTossStorage.billings.get(billingKey);
-    const card: ITossBilling.IStore = tuple[1];
+    const card: ITossBilling.ICreate = tuple[1];
 
     const payment: ITossCardPayment = {
       ...FakeTossPaymentProvider.get_common_props(input),

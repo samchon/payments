@@ -29,7 +29,7 @@ export namespace IPaymentCancelHistory {
   /**
    * 결제 취소 입력 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 결제의 근간이 된 원천 레코드 정보.
      */

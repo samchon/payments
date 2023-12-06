@@ -4,11 +4,11 @@ import { ITossVirtualAccountPayment } from "toss-payments-server-api/lib/structu
 import { TossAsset } from "./TossAsset";
 
 export namespace TossPaymentVirtualAccountService {
-  export async function store(
+  export async function create(
     storeId: string,
-    input: ITossVirtualAccountPayment.IStore,
+    input: ITossVirtualAccountPayment.ICreate,
   ): Promise<ITossVirtualAccountPayment> {
-    return toss.functional.v1.virtual_accounts.store(
+    return toss.functional.v1.virtual_accounts.create(
       await TossAsset.connection(storeId),
       input,
     );

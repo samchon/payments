@@ -23,9 +23,9 @@ export class FakeTossCashReceiptsController {
    * @author Samchon
    */
   @core.TypedRoute.Post()
-  public store(
+  public create(
     @FakeTossUserAuth() _0: void,
-    @core.TypedBody() input: ITossCashReceipt.IStore,
+    @core.TypedBody() input: ITossCashReceipt.ICreate,
   ): ITossCashReceipt {
     // CHECK PAYMENT
     const payment: ITossPayment = FakeTossStorage.payments.get(

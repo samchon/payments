@@ -5,9 +5,9 @@ import { AdvancedRandomGenerator } from "../utils/AdvancedRandomGenerator";
 import { FakeIamportStorage } from "./FakeIamportStorage";
 
 export namespace FakeIamportSubscriptionProvider {
-  export function store(
+  export function create(
     customer_uid: string,
-    input: IIamportSubscription.IStore,
+    input: IIamportSubscription.ICreate,
   ): IIamportSubscription {
     const subscription: IIamportSubscription = {
       customer_uid,
