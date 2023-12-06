@@ -203,19 +203,19 @@ export namespace ITossPayment {
   /**
    * 결제 신청 정보.
    *
-   * `ITossPayment.IStore` 는 결제 신청 정보를 형상화한 자료구조이자 유니언 타입의
+   * `ITossPayment.ICreate` 는 결제 신청 정보를 형상화한 자료구조이자 유니언 타입의
    * 인터페이스로써, if condition 을 이용하여 대상 method 를 특정하면, 파생 타입이
    * 자동으로 지정된다.
    *
    * ```typescript
    * if (input.method === "card")
-   *     input.cardNumber; // input is ITossCardPayment.IStore
+   *     input.cardNumber; // input is ITossCardPayment.ICreate
    * ```
    */
-  export type IStore =
-    | ITossCardPayment.IStore
+  export type ICreate =
+    | ITossCardPayment.ICreate
     | ITossBilling.IPaymentStore
-    | ITossVirtualAccountPayment.IStore;
+    | ITossVirtualAccountPayment.ICreate;
 
   // export interface IFinalize
   // {

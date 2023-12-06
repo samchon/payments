@@ -104,7 +104,7 @@ export namespace ITossCardPayment {
   /**
    * 신용 카드를 이용한 결제 신청 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 결제 수단이 신용 카드임을 의미.
      */

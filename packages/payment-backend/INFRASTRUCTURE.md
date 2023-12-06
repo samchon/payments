@@ -140,7 +140,7 @@ sudo sysctl net.core.somaxconn=2048
 # BUILD PROJECT
 ################################
 # CLONE REPOSITORY
-git config --global credential.helper store
+git config --global credential.helper create
 git clone https://github.com/samchon/payments
 cd ${PROJECT}
 

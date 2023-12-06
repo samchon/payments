@@ -10,8 +10,8 @@ import { IPaymentVendor } from "./IPaymentVendor";
  * 결제 내역.
  *
  * `IPaymentHistory` 는 결제 내역을 형상화한 자료구조이자 유니언 타입의 인터페이이다.
- * 서비스 시스템으로부 결제 사건의 귀속 정보 ({@link IPaymentHistory.IStore.vendor} +
- * {@link IPaymentHistory.IStore.source}) 를 전달받아, 본 Payment 시스템이 PG 사에
+ * 서비스 시스템으로부 결제 사건의 귀속 정보 ({@link IPaymentHistory.ICreate.vendor} +
+ * {@link IPaymentHistory.ICreate.source}) 를 전달받아, 본 Payment 시스템이 PG 사에
  * 추가 정보를 취득하여 레코드가 완성된다.
  *
  * 그리고 만일 현 결제 건이 가상계좌와 같이 레코드 생성 시점에 지불이 이루어지지 않은
@@ -127,7 +127,7 @@ export namespace IPaymentHistory {
    *
    * SDK 에서 받은 데이터를 취합하여 결제 진행 상황을 서버에 알려준다.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 벤더사 정보
      */

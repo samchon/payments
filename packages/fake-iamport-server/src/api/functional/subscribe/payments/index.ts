@@ -23,7 +23,7 @@ import { NestiaSimulator } from "../../../utils/NestiaSimulator";
  * 
  * 다만, 정히 간편 카드 등록과 결제를 동시에 하고 싶다면,
  * `subscribe.payments.onetime` 에 {@link IIamportSubscription.IOnetime.customer_uid }
- * 를 더하기보다, {@link subscribe.customers.store } 와 {@link subscribe.payments.again }
+ * 를 더하기보다, {@link subscribe.customers.create } 와 {@link subscribe.payments.again }
  * 을 각각 호출하는 것을 권장한다. 그것이 예외적인 상황에 보다 안전하게 대처할 수 있기
  * 때문이다.
  * 

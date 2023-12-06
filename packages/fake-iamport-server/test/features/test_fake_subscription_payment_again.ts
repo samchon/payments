@@ -28,7 +28,7 @@ export async function test_fake_subscription_payment_again(
    * 카드 정보를 반복 입력하는 일 없이, `customer_uid` 만을 사용하여 매우
    * 간단하게 결제할 수 있다.
    */
-  await imp.functional.subscribe.customers.store(
+  await imp.functional.subscribe.customers.create(
     await connector.get(),
     customer_uid,
     {

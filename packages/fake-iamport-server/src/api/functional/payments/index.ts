@@ -137,7 +137,7 @@ export async function cancel(
           );
 }
 export namespace cancel {
-    export type Input = Primitive<IIamportPaymentCancel.IStore>;
+    export type Input = Primitive<IIamportPaymentCancel.ICreate>;
     export type Output = Primitive<IIamportResponse<IIamportPayment>>;
 
     export const METADATA = {

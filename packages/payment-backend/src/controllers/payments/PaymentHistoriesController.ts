@@ -55,10 +55,10 @@ export class PaymentHistoriesController {
    * @author Samchon
    */
   @core.EncryptedRoute.Post()
-  public async store(
-    @core.EncryptedBody() input: IPaymentHistory.IStore,
+  public async create(
+    @core.EncryptedBody() input: IPaymentHistory.ICreate,
   ): Promise<IPaymentHistory> {
-    return PaymentHistoryProvider.store(input);
+    return PaymentHistoryProvider.create(input);
   }
 
   /**
@@ -70,8 +70,8 @@ export class PaymentHistoriesController {
    */
   @core.EncryptedRoute.Put("cancel")
   public async cancel(
-    @core.EncryptedBody() input: IPaymentCancelHistory.IStore,
+    @core.EncryptedBody() input: IPaymentCancelHistory.ICreate,
   ): Promise<IPaymentHistory> {
-    return PaymentCancelHistoryProvider.store(input);
+    return PaymentCancelHistoryProvider.create(input);
   }
 }

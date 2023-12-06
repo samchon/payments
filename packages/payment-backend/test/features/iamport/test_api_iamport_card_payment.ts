@@ -41,7 +41,7 @@ export async function test_api_iamport_card_payment(
    */
   const payment: IIamportResponse<IIamportPayment> =
     await imp.functional.subscribe.payments.onetime(
-      await IamportAsset.connection("test-iamport-store-id"),
+      await IamportAsset.connection("test-iamport-create-id"),
       {
         card_number: "1234-1234-1234-1234",
         expiry: "2028-12",
@@ -67,10 +67,10 @@ export async function test_api_iamport_card_payment(
    * 조회할 때 필요하니, 이를 반드시 귀하의 백엔드 서버에 저장해두도록 한다.
    */
   const history: IPaymentHistory =
-    await PaymentAPI.functional.payments.histories.store(connection, {
+    await PaymentAPI.functional.payments.histories.create(connection, {
       vendor: {
         code: "iamport",
-        store_id: "test-iamport-store-id",
+        store_id: "test-iamport-create-id",
         uid: payment.response.imp_uid,
       },
       source: {

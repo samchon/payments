@@ -4,9 +4,9 @@ import { ITossCardPayment } from "toss-payments-server-api/lib/structures/ITossC
 import { TossAsset } from "./TossAsset";
 
 export namespace TossPaymentCardService {
-  export async function store(
+  export async function create(
     mid: string,
-    input: ITossCardPayment.IStore,
+    input: ITossCardPayment.ICreate,
   ): Promise<ITossCardPayment> {
     return toss.functional.v1.payments.key_in(
       await TossAsset.connection(mid),

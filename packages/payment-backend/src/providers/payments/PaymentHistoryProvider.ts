@@ -109,8 +109,8 @@ export namespace PaymentHistoryProvider {
   /* -----------------------------------------------------------
         STORE
     ----------------------------------------------------------- */
-  export async function store(
-    input: IPaymentHistory.IStore,
+  export async function create(
+    input: IPaymentHistory.ICreate,
   ): Promise<IPaymentHistory> {
     const props = await approve(input);
     const history = await PaymentGlobal.prisma.payment_histories.create({
@@ -172,7 +172,7 @@ export namespace PaymentHistoryProvider {
     };
 
   async function approve(
-    input: IPaymentHistory.IStore,
+    input: IPaymentHistory.ICreate,
   ): Promise<IPaymentHistory.IProps> {
     if (input.vendor.code === "iamport") {
       const data: IIamportPayment = await IamportPaymentService.approve(

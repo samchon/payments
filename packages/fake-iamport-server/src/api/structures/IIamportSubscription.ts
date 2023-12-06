@@ -40,7 +40,7 @@ export namespace IIamportSubscription {
   /**
    * 간편 결제 카드 입력 정보.
    */
-  export interface IStore extends IAccessor {
+  export interface ICreate extends IAccessor {
     /**
      * 카드 번호.
      *
@@ -82,7 +82,7 @@ export namespace IIamportSubscription {
    * 결제 신청 입력 정보.
    */
   export interface IOnetime
-    extends Omit<IStore, "customer_uid">,
+    extends Omit<ICreate, "customer_uid">,
       Omit<IAgain, "customer_uid"> {
     /**
      * 고객 식별자 키.

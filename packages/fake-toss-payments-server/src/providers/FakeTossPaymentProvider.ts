@@ -2,7 +2,7 @@ import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayme
 import { v4 } from "uuid";
 
 export namespace FakeTossPaymentProvider {
-  export function get_common_props(input: ITossPayment.IStore) {
+  export function get_common_props(input: ITossPayment.ICreate) {
     return {
       mId: "tosspayments",
       version: "1.3",

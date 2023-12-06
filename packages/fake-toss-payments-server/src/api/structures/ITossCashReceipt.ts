@@ -90,7 +90,7 @@ export namespace ITossCashReceipt {
   /**
    * 현금 영수증 입력 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 현금 영수증의 종류.
      */

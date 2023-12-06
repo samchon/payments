@@ -25,9 +25,9 @@ export class FakeIamportVbanksController {
    * @author Samchon
    */
   @core.TypedRoute.Post()
-  public store(
+  public create(
     @FakeIamportUserAuth() _user: IIamportUser.IAccessor,
-    @core.TypedBody() input: IIamportVBankPayment.IStore,
+    @core.TypedBody() input: IIamportVBankPayment.ICreate,
   ): IIamportResponse<IIamportVBankPayment> {
     // CONSTRUCTION
     const pg_id: string = v4();
@@ -83,7 +83,7 @@ export class FakeIamportVbanksController {
       // HIDDEN
       notice_url: input.notice_url,
     };
-    FakeIamportPaymentProvider.store(payment);
+    FakeIamportPaymentProvider.create(payment);
 
     // RETURNS
     return FakeIamportResponseProvider.success(payment);

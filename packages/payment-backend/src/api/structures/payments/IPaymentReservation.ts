@@ -90,7 +90,7 @@ export namespace IPaymentReservation {
    * 식별자ㅏ 되니, 이를 {@link IPaymentVendor.uid} 와 {@link IPaymentSource.id} 에
    * 모두 동일하게 할당해주면 된다.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 벤더사 정보.
      */

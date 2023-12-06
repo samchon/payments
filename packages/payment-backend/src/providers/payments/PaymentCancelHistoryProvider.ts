@@ -32,8 +32,8 @@ export namespace PaymentCancelHistoryProvider {
       >()({});
   }
 
-  export const store = async (
-    input: IPaymentCancelHistory.IStore,
+  export const create = async (
+    input: IPaymentCancelHistory.ICreate,
   ): Promise<IPaymentHistory> => {
     const history: IPaymentHistory = await PaymentHistoryProvider.find({
       source_schema: input.source.schema,
@@ -60,7 +60,7 @@ export namespace PaymentCancelHistoryProvider {
   const request =
     (history: IPaymentHistory) =>
     async (
-      input: IPaymentCancelHistory.IStore,
+      input: IPaymentCancelHistory.ICreate,
     ): Promise<IPaymentHistory.IProps> => {
       if (history.vendor_code === "iamport") {
         const payment: IIamportPayment = await IamportPaymentService.cancel(

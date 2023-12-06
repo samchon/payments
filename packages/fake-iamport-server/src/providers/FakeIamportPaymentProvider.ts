@@ -9,7 +9,7 @@ import { FakeIamportStorage } from "./FakeIamportStorage";
 (global as any).fetch ??= require("node-fetch");
 
 export namespace FakeIamportPaymentProvider {
-  export function store(payment: IIamportPayment): void {
+  export function create(payment: IIamportPayment): void {
     FakeIamportStorage.payments.set(payment.imp_uid, payment);
     webhook(payment).catch(() => {});
   }
@@ -22,7 +22,7 @@ export namespace FakeIamportPaymentProvider {
 
   export function cancel(
     payment: IIamportPayment,
-    input: IIamportPaymentCancel.IStore,
+    input: IIamportPaymentCancel.ICreate,
   ): void {
     // VALIDATION
     if (

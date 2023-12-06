@@ -175,7 +175,7 @@ export async function test_fake_payment_billing_payment(): Promise<void>
         }
     };
 
-    const billing: ITossBilling = await toss.functional.v1.billing.authorizations.card.store
+    const billing: ITossBilling = await toss.functional.v1.billing.authorizations.card.create
     (
         connection,
         {

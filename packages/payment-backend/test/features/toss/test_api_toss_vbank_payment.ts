@@ -42,23 +42,24 @@ export async function test_api_toss_vbank_payment(
    * {@link ITossPayment.orderId yourOrderId} 를 잘 기억해두었다가, 이를 다음 단계인
    * {@link IPaymentHistory} 등록에 사용하도록 하자.
    */
-  const payment: ITossPayment = await toss.functional.v1.virtual_accounts.store(
-    await TossAsset.connection("test-toss-payments-store-id"),
-    {
-      // 가상 계좌 정보
-      method: "virtual-account",
-      bank: "신한",
-      customerName: "Samchon",
+  const payment: ITossPayment =
+    await toss.functional.v1.virtual_accounts.create(
+      await TossAsset.connection("test-toss-payments-create-id"),
+      {
+        // 가상 계좌 정보
+        method: "virtual-account",
+        bank: "신한",
+        customerName: "Samchon",
 
-      // 주문 정보
-      orderId: yourOrderId,
-      orderName: "something",
-      amount: yourOrderPrice,
+        // 주문 정보
+        orderId: yourOrderId,
+        orderName: "something",
+        amount: yourOrderPrice,
 
-      // 고의 미승인 처리
-      __approved: false,
-    },
-  );
+        // 고의 미승인 처리
+        __approved: false,
+      },
+    );
   typia.assert(payment);
 
   /**
@@ -83,10 +84,10 @@ export async function test_api_toss_vbank_payment(
    * 조회할 때 필요하니, 이를 반드시 귀하의 백엔드 서버에 저장해두도록 한다.
    */
   const history: IPaymentHistory =
-    await api.functional.payments.histories.store(connection, {
+    await api.functional.payments.histories.create(connection, {
       vendor: {
         code: "toss.payments",
-        store_id: "test-toss-payments-store-id",
+        store_id: "test-toss-payments-create-id",
         uid: payment.paymentKey,
       },
       source: {
@@ -109,7 +110,7 @@ export async function test_api_toss_vbank_payment(
    * 고객이 자신 앞을 발급된 계좌에, 결제 금액을 입금하는 상황 시뮬레이션.
    */
   await toss.functional.internal.deposit(
-    await TossAsset.connection("test-toss-payments-store-id"),
+    await TossAsset.connection("test-toss-payments-create-id"),
     payment.paymentKey,
   );
 

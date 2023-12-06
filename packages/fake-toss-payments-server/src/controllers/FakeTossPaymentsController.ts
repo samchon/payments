@@ -54,7 +54,7 @@ export class FakeTossPaymentsController {
    * 필요한 때 대비, 훨씬 더 세심한 주의가 요구된다.
    *
    * 더하여 만약 귀하의 백엔드 서버가 `fake-toss-payments-server` 를 이용하여 고객의
-   * 카드 결제를 시뮬레이션하는 경우, {@link ITossCardPayment.IStore.__approved} 값을
+   * 카드 결제를 시뮬레이션하는 경우, {@link ITossCardPayment.ICreate.__approved} 값을
    * `false` 로 하여 카드 결제의 확정을 고의로 회피할 수 있다. 이를 통하여 토스
    * 페이먼츠의 결제 창을 이용한 카드 결제의 경우, 별도의 {@link approve} 가 필요한
    * 상황을 시뮬레이션 할 수 있다.
@@ -68,7 +68,7 @@ export class FakeTossPaymentsController {
   @core.TypedRoute.Post("key-in")
   public key_in(
     @FakeTossUserAuth() _0: void,
-    @core.TypedBody() input: ITossCardPayment.IStore,
+    @core.TypedBody() input: ITossCardPayment.ICreate,
   ): ITossCardPayment {
     const payment: ITossCardPayment = {
       ...FakeTossPaymentProvider.get_common_props(input),
@@ -104,8 +104,8 @@ export class FakeTossPaymentsController {
    * 함수이다.
    *
    * 만일 귀하가 `fake-toss-payments-server` 를 이용하여 결제를 시뮬레이션하는 경우라면,
-   * 결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.IStore.__approved} 내지
-   * {@link ITossVirtualAccountPayment.IStore.__approved} 를 `false` 로 함으로써, 별도
+   * 결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.ICreate.__approved} 내지
+   * {@link ITossVirtualAccountPayment.ICreate.__approved} 를 `false` 로 함으로써, 별도
    * 승인이 필요한 이러한 상황을 시뮬레이션 할 수 있다.
    *
    * @param paymentKey 대상 결제의 {@link ITossPayment.paymentKey}
@@ -138,7 +138,7 @@ export class FakeTossPaymentsController {
    *
    * `payments.cancel` 은 결제를 취소하는 API 이다.
    *
-   * 결제 취소 입력 정보 {@link ITossPaymentCancel.IStore} 에는 취소 사유를 비롯하여,
+   * 결제 취소 입력 정보 {@link ITossPaymentCancel.ICreate} 에는 취소 사유를 비롯하여,
    * 고객에게 환불해 줄 금액과 부가세 및 필요시 환불 계좌 정보 등을 입력하게 되어있다.
    *
    * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
@@ -152,7 +152,7 @@ export class FakeTossPaymentsController {
   public cancel(
     @FakeTossUserAuth() _0: void,
     @core.TypedParam("paymentKey") paymentKey: string,
-    @core.TypedBody() input: ITossPaymentCancel.IStore,
+    @core.TypedBody() input: ITossPaymentCancel.ICreate,
   ): ITossPayment {
     const payment: ITossPayment = FakeTossStorage.payments.get(paymentKey);
     const amount: number = input.cancelAmount ?? payment.totalAmount;

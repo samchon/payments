@@ -39,8 +39,8 @@ export async function test_api_iamport_subscription_payment(
    * 두었다가, 이를 다음 단계인 {@link IPaymentReservation} 등록에 사용하도록 하자.
    */
   const subscription: IIamportResponse<IIamportSubscription> =
-    await imp.functional.subscribe.customers.store(
-      await IamportAsset.connection("test-iamport-store-id"),
+    await imp.functional.subscribe.customers.create(
+      await IamportAsset.connection("test-iamport-create-id"),
       yourSourceId,
       {
         customer_uid: yourSourceId,
@@ -65,10 +65,10 @@ export async function test_api_iamport_subscription_payment(
    * 한다.
    */
   const reservation: IPaymentReservation =
-    await PaymentAPI.functional.payments.reservations.store(connection, {
+    await PaymentAPI.functional.payments.reservations.create(connection, {
       vendor: {
         code: "iamport",
-        store_id: "test-iamport-store-id",
+        store_id: "test-iamport-create-id",
         uid: yourSourceId,
       },
       source: {

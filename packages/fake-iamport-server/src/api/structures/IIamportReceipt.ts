@@ -73,7 +73,7 @@ export namespace IIamportReceipt {
   /**
    * 현금영수증 입력 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 귀속 결제의 {@link IIamportPayment.imp_uid}.
      */

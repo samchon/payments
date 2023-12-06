@@ -23,7 +23,7 @@ export namespace ITossVirtualAccountPayment {
   /**
    * 가상 계좌를 이용한 결제 신청 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 결제 수단이 가상 계좌임을 의미.
      */

@@ -24,7 +24,7 @@ export async function test_fake_storage_capacity(): Promise<void> {
     // GENERATE RANDOM BILLING
     const customerKey: string = v4();
     const billing: ITossBilling =
-      await toss.functional.v1.billing.authorizations.card.store(
+      await toss.functional.v1.billing.authorizations.card.create(
         TestConnection.FAKE,
         {
           customerKey,

@@ -62,8 +62,8 @@ export namespace PaymentReservationProvider {
       return json.transform(reservation);
     };
 
-  export async function store(
-    input: IPaymentReservation.IStore,
+  export async function create(
+    input: IPaymentReservation.ICreate,
   ): Promise<IPaymentReservation> {
     const data =
       input.vendor.code === "toss.payments"
@@ -89,7 +89,7 @@ export namespace PaymentReservationProvider {
   }
 
   async function get_iamport_subscription(
-    input: IPaymentReservation.IStore,
+    input: IPaymentReservation.ICreate,
   ): Promise<IIamportSubscription> {
     const { response } = await imp.functional.subscribe.customers.at(
       await IamportAsset.connection(input.vendor.store_id),
@@ -99,7 +99,7 @@ export namespace PaymentReservationProvider {
   }
 
   async function get_toss_billing(
-    input: IPaymentReservation.IStore,
+    input: IPaymentReservation.ICreate,
   ): Promise<ITossBilling> {
     return toss.functional.v1.billing.authorizations.at(
       await TossAsset.connection(input.vendor.store_id),

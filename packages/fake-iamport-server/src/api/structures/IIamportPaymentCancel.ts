@@ -17,7 +17,7 @@ export namespace IIamportPaymentCancel {
   /**
    * 결제 취소 입력 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * 결제 정보 {@link IIamportPayment} 의 식별자 키.
      */

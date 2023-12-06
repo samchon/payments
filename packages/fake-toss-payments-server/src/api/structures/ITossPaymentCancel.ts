@@ -40,7 +40,7 @@ export namespace ITossPaymentCancel {
   /**
    * 결제 취소 신청 정보.
    */
-  export interface IStore {
+  export interface ICreate {
     /**
      * {@link ITossPayment} 의 식별자 키.
      */

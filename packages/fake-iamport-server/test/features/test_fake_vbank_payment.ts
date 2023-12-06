@@ -30,7 +30,7 @@ async function issue(
    * 향후 고객이 결제 금액을 모두 입금하기 전까지, `ready` 상태가 계속된다.
    */
   const output: IIamportResponse<IIamportVBankPayment> =
-    await imp.functional.vbanks.store(await connector.get(), {
+    await imp.functional.vbanks.create(await connector.get(), {
       merchant_uid: v4(),
       amount: 40_000,
       vbank_code: AdvancedRandomGenerator.alphabets(8),

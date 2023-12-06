@@ -24,10 +24,10 @@ export async function test_fake_virtual_account_payment(): Promise<ITossVirtualA
   // 결제 창을 이용하여 직접 결제를 진행하는 경우, 백엔드 서버에서 이를 별도 승인
   // 처리해주기 전까지 정식 결제로 인정치 아니함.
   //
-  // 때문에 {@link ITossVirtualAccountPayment.IStore.__approved} 값을 `false` 로 하여,
+  // 때문에 {@link ITossVirtualAccountPayment.ICreate.__approved} 값을 `false` 로 하여,
   // 백엔드에서 해당 결제 요청 건에 대하여 별도의 승인 처리가 필요한 상황을 고의로 만듦.
   const payment: ITossVirtualAccountPayment =
-    await toss.functional.v1.virtual_accounts.store(TestConnection.FAKE, {
+    await toss.functional.v1.virtual_accounts.create(TestConnection.FAKE, {
       // 가싱 계좌 정보
       method: "virtual-account",
       bank: "신한",
