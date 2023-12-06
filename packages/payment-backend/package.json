@@ -18,7 +18,7 @@
     "dev": "npm run build:test -- --watch",
     "eslint": "eslint src && eslint test",
     "eslint:fix": "eslint src --fix && eslint test --fix",
-    "prepare": "ts-patch install && npm run build:prisma",
+    "prepare": "ts-patch install && typia patch && npm run build:prisma",
     "------------------------WEBPACK------------------------": "",
     "webpack": "rimraf dist && npm run build:prisma && webpack",
     "webpack:start": "cd dist && node server",
