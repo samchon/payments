@@ -1,6 +1,6 @@
 {
   "name": "iamport-server-api",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "API for Iamport Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -34,7 +34,7 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "@nestia/fetcher": "^2.4.2",
-    "typia": "^5.3.4"
+    "@nestia/fetcher": "^2.4.5",
+    "typia": "^5.3.11"
   }
 }
