@@ -12,7 +12,7 @@ export namespace PaymentSetupWizard {
 
     const execute = (type: string) => (argv: string) =>
       cp.execSync(
-        `npx prisma migrate ${type} --schema=src/schema.prisma ${argv}`,
+        `npx prisma migrate ${type} --schema=prisma/schema.prisma ${argv}`,
         {
           stdio: "ignore",
           cwd: PaymentConfiguration.ROOT,
