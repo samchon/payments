@@ -26,7 +26,7 @@ const deploy = (tag) => (version) => (name) => {
     for (const key of Object.keys(record))
       if (packages.includes(key.replace("@samchon/", ""))) {
         if (tag === "tgz" && fs.existsSync(`${directory}/node_modules/${key}`))
-          execute(directory)(`npm uninstall ${key}`);
+          execute(directory)(`pnpm uninstall ${key}`);
         record[key] =
           tag === "tgz"
             ? path.resolve(
@@ -40,7 +40,7 @@ const deploy = (tag) => (version) => (name) => {
 
   // SETUP UPDATED DEPENDENCIES
   fs.writeFileSync(file, JSON.stringify(info, null, 2), "utf8");
-  execute(directory)(`npm install`);
+  execute(directory)(`pnpm install`);
   execute(directory)(`npm run build`);
 
   // RUN TEST PROGRAM
