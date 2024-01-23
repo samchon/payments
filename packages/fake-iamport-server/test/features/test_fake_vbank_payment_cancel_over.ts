@@ -11,9 +11,8 @@ export async function test_fake_vbank_payment_cancel_over(
   connector: imp.IamportConnector,
 ): Promise<void> {
   // 카드 결제하기
-  const payment: IIamportVBankPayment = await test_fake_vbank_payment(
-    connector,
-  );
+  const payment: IIamportVBankPayment =
+    await test_fake_vbank_payment(connector);
 
   // 결제 취소하기 (전액 + 100)
   await TestValidator.error("over")(async () =>

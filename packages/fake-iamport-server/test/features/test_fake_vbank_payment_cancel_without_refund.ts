@@ -7,9 +7,8 @@ import { test_fake_vbank_payment } from "./test_fake_vbank_payment";
 export async function test_fake_vbank_payment_cancel_without_refund(
   connector: imp.IamportConnector,
 ): Promise<void> {
-  const payment: IIamportVBankPayment = await test_fake_vbank_payment(
-    connector,
-  );
+  const payment: IIamportVBankPayment =
+    await test_fake_vbank_payment(connector);
   await TestValidator.error("cancel without refund info")(async () =>
     imp.functional.payments.cancel(await connector.get(), {
       imp_uid: payment.imp_uid,
