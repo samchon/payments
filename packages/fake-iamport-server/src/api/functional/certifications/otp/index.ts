@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { IIamportCertification } from "../../../structures/IIamportCertification";
 import type { IIamportResponse } from "../../../structures/IIamportResponse";
-import { NestiaSimulator } from "../../../utils/NestiaSimulator";
 
 /**
  * 본인인증 요청하기.
@@ -38,25 +36,20 @@ export async function request(
     connection: IConnection,
     input: request.Input,
 ): Promise<request.Output> {
-    return !!connection.simulate
-        ? request.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...request.METADATA,
-                  path: request.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...request.METADATA,
+            path: request.path(),
+        } as const,
+        input,
+    );
 }
 export namespace request {
     export type Input = Primitive<IIamportCertification.ICreate>;
@@ -78,26 +71,6 @@ export namespace request {
 
     export const path = (): string => {
         return `/certifications/otp/request`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IIamportResponse<IIamportCertification.IAccessor>> =>
-        typia.random<Primitive<IIamportResponse<IIamportCertification.IAccessor>>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: request.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }
 
@@ -128,26 +101,20 @@ export async function confirm(
     imp_uid: string,
     input: confirm.Input,
 ): Promise<confirm.Output> {
-    return !!connection.simulate
-        ? confirm.simulate(
-              connection,
-              imp_uid,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...confirm.METADATA,
-                  path: confirm.path(imp_uid),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...confirm.METADATA,
+            path: confirm.path(imp_uid),
+        } as const,
+        input,
+    );
 }
 export namespace confirm {
     export type Input = Primitive<IIamportCertification.IConfirm>;
@@ -169,27 +136,5 @@ export namespace confirm {
 
     export const path = (imp_uid: string): string => {
         return `/certifications/otp/confirm/${encodeURIComponent(imp_uid ?? "null")}`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IIamportResponse<IIamportCertification>> =>
-        typia.random<Primitive<IIamportResponse<IIamportCertification>>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        imp_uid: string,
-        input: confirm.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(imp_uid),
-            contentType: "application/json",
-        });
-        assert.param("imp_uid")(() => typia.assert(imp_uid));
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

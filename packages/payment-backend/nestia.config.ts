@@ -4,7 +4,6 @@ import { NestFactory } from "@nestjs/core";
 import { PaymentModule } from "./src/PaymentModule";
 
 const NESTIA_CONFIG: INestiaConfig = {
-  simulate: true,
   input: () => NestFactory.create(PaymentModule),
   output: "src/api",
   distribute: "../payment-api",

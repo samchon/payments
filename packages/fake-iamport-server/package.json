@@ -1,6 +1,6 @@
 {
   "name": "fake-iamport-server",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "Fake iamport server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",

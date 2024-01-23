@@ -6,12 +6,10 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { IIamportCardPayment } from "../../../structures/IIamportCardPayment";
 import type { IIamportResponse } from "../../../structures/IIamportResponse";
 import type { IIamportSubscription } from "../../../structures/IIamportSubscription";
-import { NestiaSimulator } from "../../../utils/NestiaSimulator";
 
 /**
  * 카드로 결제하기, 더불어 간편 결제용으로 등록 가능.
@@ -45,25 +43,20 @@ export async function onetime(
     connection: IConnection,
     input: onetime.Input,
 ): Promise<onetime.Output> {
-    return !!connection.simulate
-        ? onetime.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...onetime.METADATA,
-                  path: onetime.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...onetime.METADATA,
+            path: onetime.path(),
+        } as const,
+        input,
+    );
 }
 export namespace onetime {
     export type Input = Primitive<IIamportSubscription.IOnetime>;
@@ -85,26 +78,6 @@ export namespace onetime {
 
     export const path = (): string => {
         return `/subscribe/payments/onetime`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IIamportResponse<IIamportCardPayment>> =>
-        typia.random<Primitive<IIamportResponse<IIamportCardPayment>>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: onetime.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }
 
@@ -134,25 +107,20 @@ export async function again(
     connection: IConnection,
     input: again.Input,
 ): Promise<again.Output> {
-    return !!connection.simulate
-        ? again.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...again.METADATA,
-                  path: again.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...again.METADATA,
+            path: again.path(),
+        } as const,
+        input,
+    );
 }
 export namespace again {
     export type Input = Primitive<IIamportSubscription.IAgain>;
@@ -174,25 +142,5 @@ export namespace again {
 
     export const path = (): string => {
         return `/subscribe/payments/again`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IIamportResponse<IIamportCardPayment>> =>
-        typia.random<Primitive<IIamportResponse<IIamportCardPayment>>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: again.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

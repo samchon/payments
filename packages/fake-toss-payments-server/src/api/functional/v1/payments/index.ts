@@ -6,12 +6,10 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { ITossCardPayment } from "../../../structures/ITossCardPayment";
 import type { ITossPayment } from "../../../structures/ITossPayment";
 import type { ITossPaymentCancel } from "../../../structures/ITossPaymentCancel";
-import { NestiaSimulator } from "../../../utils/NestiaSimulator";
 
 /**
  * 결제 정보 조회하기.
@@ -39,18 +37,13 @@ export async function at(
     connection: IConnection,
     paymentKey: string,
 ): Promise<at.Output> {
-    return !!connection.simulate
-        ? at.simulate(
-              connection,
-              paymentKey,
-          )
-        : PlainFetcher.fetch(
-              connection,
-              {
-                  ...at.METADATA,
-                  path: at.path(paymentKey),
-              } as const,
-          );
+    return PlainFetcher.fetch(
+        connection,
+        {
+            ...at.METADATA,
+            path: at.path(paymentKey),
+        } as const,
+    );
 }
 export namespace at {
     export type Output = Primitive<ITossPayment>;
@@ -68,26 +61,6 @@ export namespace at {
 
     export const path = (paymentKey: string): string => {
         return `/v1/payments/${encodeURIComponent(paymentKey ?? "null")}`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ITossPayment> =>
-        typia.random<Primitive<ITossPayment>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        paymentKey: string,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(paymentKey),
-            contentType: "application/json",
-        });
-        assert.param("paymentKey")(() => typia.assert(paymentKey));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }
 
@@ -125,25 +98,20 @@ export async function key_in(
     connection: IConnection,
     input: key_in.Input,
 ): Promise<key_in.Output> {
-    return !!connection.simulate
-        ? key_in.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...key_in.METADATA,
-                  path: key_in.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...key_in.METADATA,
+            path: key_in.path(),
+        } as const,
+        input,
+    );
 }
 export namespace key_in {
     export type Input = Primitive<ITossCardPayment.ICreate>;
@@ -165,26 +133,6 @@ export namespace key_in {
 
     export const path = (): string => {
         return `/v1/payments/key-in`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ITossCardPayment> =>
-        typia.random<Primitive<ITossCardPayment>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: key_in.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }
 
@@ -216,26 +164,20 @@ export async function approve(
     paymentKey: string,
     input: approve.Input,
 ): Promise<approve.Output> {
-    return !!connection.simulate
-        ? approve.simulate(
-              connection,
-              paymentKey,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...approve.METADATA,
-                  path: approve.path(paymentKey),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...approve.METADATA,
+            path: approve.path(paymentKey),
+        } as const,
+        input,
+    );
 }
 export namespace approve {
     export type Input = Primitive<ITossPayment.IApproval>;
@@ -257,28 +199,6 @@ export namespace approve {
 
     export const path = (paymentKey: string): string => {
         return `/v1/payments/${encodeURIComponent(paymentKey ?? "null")}`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ITossPayment> =>
-        typia.random<Primitive<ITossPayment>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        paymentKey: string,
-        input: approve.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(paymentKey),
-            contentType: "application/json",
-        });
-        assert.param("paymentKey")(() => typia.assert(paymentKey));
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }
 
@@ -305,26 +225,20 @@ export async function cancel(
     paymentKey: string,
     input: cancel.Input,
 ): Promise<cancel.Output> {
-    return !!connection.simulate
-        ? cancel.simulate(
-              connection,
-              paymentKey,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...cancel.METADATA,
-                  path: cancel.path(paymentKey),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...cancel.METADATA,
+            path: cancel.path(paymentKey),
+        } as const,
+        input,
+    );
 }
 export namespace cancel {
     export type Input = Primitive<ITossPaymentCancel.ICreate>;
@@ -346,27 +260,5 @@ export namespace cancel {
 
     export const path = (paymentKey: string): string => {
         return `/v1/payments/${encodeURIComponent(paymentKey ?? "null")}/cancel`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ITossPayment> =>
-        typia.random<Primitive<ITossPayment>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        paymentKey: string,
-        input: cancel.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(paymentKey),
-            contentType: "application/json",
-        });
-        assert.param("paymentKey")(() => typia.assert(paymentKey));
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }
