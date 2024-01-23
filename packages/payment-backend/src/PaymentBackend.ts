@@ -1,7 +1,6 @@
 import { INestApplication } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { FastifyAdapter } from "@nestjs/platform-fastify";
-import express from "express";
 import FakeIamport from "fake-iamport-server";
 import FakeToss from "fake-toss-payments-server";
 
@@ -17,8 +16,6 @@ import PaymentAPI from "./api";
  */
 export class PaymentBackend {
   private application_?: INestApplication;
-  private is_closing_: boolean = false;
-
   private fake_servers_: IFakeServer[] = [];
 
   /**
@@ -42,12 +39,8 @@ export class PaymentBackend {
       },
     );
 
-    // CONFIGURATIONS
-    this.is_closing_ = false;
-    this.application_.enableCors();
-    this.application_.use(this.middleware.bind(this));
-
     // DO OPEN
+    this.application_.enableCors();
     await this.application_.listen(PaymentConfiguration.API_PORT(), "0.0.0.0");
 
     // CONFIGURE FAKE SERVERS IF TESTING
@@ -66,19 +59,6 @@ export class PaymentBackend {
       FakeIamport.FakeIamportConfiguration.WEBHOOK_URL = `${host}${PaymentAPI.functional.payments.webhooks.iamport.METADATA.path}`;
       FakeToss.FakeTossConfiguration.WEBHOOK_URL = `${host}${PaymentAPI.functional.payments.webhooks.toss.METADATA.path}`;
     }
-
-    //----
-    // POST-PROCESSES
-    //----
-    // INFORM TO THE PM2
-    if (process.send) process.send("ready");
-
-    // WHEN KILL COMMAND COMES
-    process.on("SIGINT", async () => {
-      this.is_closing_ = true;
-      await this.close();
-      process.exit(0);
-    });
   }
 
   /**
@@ -91,26 +71,11 @@ export class PaymentBackend {
     await this.application_.close();
     delete this.application_;
 
-    // EXIT FROM THE CRITICAL-SERVER
-    if ((await PaymentGlobal.critical.is_loaded()) === true) {
-      const critical = await PaymentGlobal.critical.get();
-      await critical.close();
-    }
-
     // CLOSE FAKE SERVERS
     for (const server of this.fake_servers_) {
       await server.close();
     }
     this.fake_servers_ = [];
-  }
-
-  private middleware(
-    _request: express.Request,
-    response: express.Response,
-    next: FunctionLike,
-  ): void {
-    if (this.is_closing_ === true) response.set("Connection", "close");
-    next();
   }
 }
 
@@ -118,4 +83,3 @@ interface IFakeServer {
   open(): Promise<void>;
   close(): Promise<void>;
 }
-type FunctionLike = (...args: any) => any;

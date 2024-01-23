@@ -1,11 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import dotenvExpand from "dotenv-expand";
-import { MutexConnector } from "mutex-server";
-import { MutableSingleton, Singleton } from "tstl";
+import { Singleton } from "tstl";
 import typia from "typia";
-
-import { PaymentConfiguration } from "./PaymentConfiguration";
 
 /**
  * 통합 결제 서버의 전역 변수들 모음.
@@ -38,19 +35,6 @@ export class PaymentGlobal {
   public static get prisma(): PrismaClient {
     return prismaClient.get();
   }
-
-  public static readonly critical: MutableSingleton<
-    MutexConnector<string, null>
-  > = new MutableSingleton(async () => {
-    const connector: MutexConnector<string, null> = new MutexConnector(
-      PaymentConfiguration.SYSTEM_PASSWORD(),
-      null,
-    );
-    await connector.connect(
-      `ws://${PaymentConfiguration.MASTER_IP()}:${PaymentConfiguration.UPDATOR_PORT()}/api`,
-    );
-    return connector;
-  });
 }
 export namespace PaymentGlobal {
   /**

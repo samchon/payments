@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { ITossBilling } from "../../../../structures/ITossBilling";
-import { NestiaSimulator } from "../../../../utils/NestiaSimulator";
 
 export * as card from "./card";
 
@@ -38,26 +36,20 @@ export async function at(
     billingKey: string,
     input: at.Input,
 ): Promise<at.Output> {
-    return !!connection.simulate
-        ? at.simulate(
-              connection,
-              billingKey,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...at.METADATA,
-                  path: at.path(billingKey),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...at.METADATA,
+            path: at.path(billingKey),
+        } as const,
+        input,
+    );
 }
 export namespace at {
     export type Input = Primitive<ITossBilling.ICustomerKey>;
@@ -79,27 +71,5 @@ export namespace at {
 
     export const path = (billingKey: string): string => {
         return `/v1/billing/authorizations/${encodeURIComponent(billingKey ?? "null")}`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ITossBilling> =>
-        typia.random<Primitive<ITossBilling>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        billingKey: string,
-        input: at.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(billingKey),
-            contentType: "application/json",
-        });
-        assert.param("billingKey")(() => typia.assert(billingKey));
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

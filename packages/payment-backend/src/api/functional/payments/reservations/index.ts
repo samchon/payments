@@ -6,12 +6,10 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { EncryptedFetcher } from "@nestia/fetcher/lib/EncryptedFetcher";
-import typia from "typia";
 import type { Format } from "typia/lib/tags/Format";
 
 import type { IPaymentReservation } from "../../../structures/payments/IPaymentReservation";
 import type { IPaymentSource } from "../../../structures/payments/IPaymentSource";
-import { NestiaSimulator } from "../../../utils/NestiaSimulator";
 
 /**
  * 간편 결제 수단 조회하기.
@@ -27,25 +25,20 @@ export async function get(
     connection: IConnection,
     input: get.Input,
 ): Promise<get.Output> {
-    return !!connection.simulate
-        ? get.simulate(
-              connection,
-              input,
-          )
-        : EncryptedFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "text/plain",
-                  },
-              },
-              {
-                  ...get.METADATA,
-                  path: get.path(),
-              } as const,
-              input,
-          );
+    return EncryptedFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "text/plain",
+            },
+        },
+        {
+            ...get.METADATA,
+            path: get.path(),
+        } as const,
+        input,
+    );
 }
 export namespace get {
     export type Input = Primitive<IPaymentSource.IAccessor>;
@@ -68,26 +61,6 @@ export namespace get {
     export const path = (): string => {
         return `/payments/reservations/get`;
     }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IPaymentReservation> =>
-        typia.random<Primitive<IPaymentReservation>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: get.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "text/plain",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
-    }
 }
 
 /**
@@ -106,26 +79,20 @@ export async function at(
     id: string & Format<"uuid">,
     input: at.Input,
 ): Promise<at.Output> {
-    return !!connection.simulate
-        ? at.simulate(
-              connection,
-              id,
-              input,
-          )
-        : EncryptedFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "text/plain",
-                  },
-              },
-              {
-                  ...at.METADATA,
-                  path: at.path(id),
-              } as const,
-              input,
-          );
+    return EncryptedFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "text/plain",
+            },
+        },
+        {
+            ...at.METADATA,
+            path: at.path(id),
+        } as const,
+        input,
+    );
 }
 export namespace at {
     export type Input = Primitive<IPaymentSource.IPassword>;
@@ -148,28 +115,6 @@ export namespace at {
     export const path = (id: string & Format<"uuid">): string => {
         return `/payments/reservations/${encodeURIComponent(id ?? "null")}`;
     }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IPaymentReservation> =>
-        typia.random<Primitive<IPaymentReservation>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        id: string & Format<"uuid">,
-        input: at.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(id),
-            contentType: "text/plain",
-        });
-        assert.param("id")(() => typia.assert(id));
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
-    }
 }
 
 /**
@@ -186,25 +131,20 @@ export async function create(
     connection: IConnection,
     input: create.Input,
 ): Promise<create.Output> {
-    return !!connection.simulate
-        ? create.simulate(
-              connection,
-              input,
-          )
-        : EncryptedFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "text/plain",
-                  },
-              },
-              {
-                  ...create.METADATA,
-                  path: create.path(),
-              } as const,
-              input,
-          );
+    return EncryptedFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "text/plain",
+            },
+        },
+        {
+            ...create.METADATA,
+            path: create.path(),
+        } as const,
+        input,
+    );
 }
 export namespace create {
     export type Input = Primitive<IPaymentReservation.ICreate>;
@@ -226,25 +166,5 @@ export namespace create {
 
     export const path = (): string => {
         return `/payments/reservations`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IPaymentReservation> =>
-        typia.random<Primitive<IPaymentReservation>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: create.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "text/plain",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

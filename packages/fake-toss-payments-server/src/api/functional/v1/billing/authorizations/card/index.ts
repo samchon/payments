@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { ITossBilling } from "../../../../../structures/ITossBilling";
-import { NestiaSimulator } from "../../../../../utils/NestiaSimulator";
 
 /**
  * 간편 결제 카드 등록하기.
@@ -36,25 +34,20 @@ export async function create(
     connection: IConnection,
     input: create.Input,
 ): Promise<create.Output> {
-    return !!connection.simulate
-        ? create.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...create.METADATA,
-                  path: create.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...create.METADATA,
+            path: create.path(),
+        } as const,
+        input,
+    );
 }
 export namespace create {
     export type Input = Primitive<ITossBilling.ICreate>;
@@ -76,25 +69,5 @@ export namespace create {
 
     export const path = (): string => {
         return `/v1/billing/authorizations/card`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ITossBilling> =>
-        typia.random<Primitive<ITossBilling>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: create.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

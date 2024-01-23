@@ -15,17 +15,13 @@ import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
 export async function get(
     connection: IConnection,
 ): Promise<void> {
-    return !!connection.simulate
-        ? get.simulate(
-              connection,
-          )
-        : PlainFetcher.fetch(
-              connection,
-              {
-                  ...get.METADATA,
-                  path: get.path(),
-              } as const,
-          );
+    return PlainFetcher.fetch(
+        connection,
+        {
+            ...get.METADATA,
+            path: get.path(),
+        } as const,
+    );
 }
 export namespace get {
 
@@ -42,9 +38,5 @@ export namespace get {
 
     export const path = (): string => {
         return `/monitors/health`;
-    }
-    export const simulate = async (
-        _connection: IConnection,
-    ): Promise<void> => {
     }
 }

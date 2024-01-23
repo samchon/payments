@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { EncryptedFetcher } from "@nestia/fetcher/lib/EncryptedFetcher";
-import typia from "typia";
 
 import type { IPaymentWebhookHistory } from "../../../structures/payments/IPaymentWebhookHistory";
-import { NestiaSimulator } from "../../../utils/NestiaSimulator";
 
 /**
  * 
@@ -23,25 +21,20 @@ export async function webhook(
     connection: IConnection,
     input: webhook.Input,
 ): Promise<void> {
-    return !!connection.simulate
-        ? webhook.simulate(
-              connection,
-              input,
-          )
-        : EncryptedFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "text/plain",
-                  },
-              },
-              {
-                  ...webhook.METADATA,
-                  path: webhook.path(),
-              } as const,
-              input,
-          );
+    return EncryptedFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "text/plain",
+            },
+        },
+        {
+            ...webhook.METADATA,
+            path: webhook.path(),
+        } as const,
+        input,
+    );
 }
 export namespace webhook {
     export type Input = Primitive<IPaymentWebhookHistory>;
@@ -62,17 +55,5 @@ export namespace webhook {
 
     export const path = (): string => {
         return `/payments/internal/webhook`;
-    }
-    export const simulate = async (
-        connection: IConnection,
-        input: webhook.Input,
-    ): Promise<void> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "text/plain",
-        });
-        assert.body(() => typia.assert(input));
     }
 }

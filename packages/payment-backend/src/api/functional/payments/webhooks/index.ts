@@ -8,9 +8,6 @@ import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
 import type { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import type { ITossPaymentWebhook } from "toss-payments-server-api/lib/structures/ITossPaymentWebhook";
-import typia from "typia";
-
-import { NestiaSimulator } from "../../../utils/NestiaSimulator";
 
 /**
  * 
@@ -24,25 +21,20 @@ export async function iamport(
     connection: IConnection,
     input: iamport.Input,
 ): Promise<void> {
-    return !!connection.simulate
-        ? iamport.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...iamport.METADATA,
-                  path: iamport.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...iamport.METADATA,
+            path: iamport.path(),
+        } as const,
+        input,
+    );
 }
 export namespace iamport {
     export type Input = Primitive<IIamportPayment.IWebhook>;
@@ -64,18 +56,6 @@ export namespace iamport {
     export const path = (): string => {
         return `/payments/webhooks/iamport`;
     }
-    export const simulate = async (
-        connection: IConnection,
-        input: iamport.Input,
-    ): Promise<void> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-    }
 }
 
 /**
@@ -90,25 +70,20 @@ export async function toss(
     connection: IConnection,
     input: toss.Input,
 ): Promise<void> {
-    return !!connection.simulate
-        ? toss.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...toss.METADATA,
-                  path: toss.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...toss.METADATA,
+            path: toss.path(),
+        } as const,
+        input,
+    );
 }
 export namespace toss {
     export type Input = Primitive<ITossPaymentWebhook>;
@@ -129,17 +104,5 @@ export namespace toss {
 
     export const path = (): string => {
         return `/payments/webhooks/toss`;
-    }
-    export const simulate = async (
-        connection: IConnection,
-        input: toss.Input,
-    ): Promise<void> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
     }
 }

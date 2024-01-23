@@ -1,40 +1,11 @@
-import { DynamicExecutor, StopWatch } from "@nestia/e2e";
+import { DynamicExecutor } from "@nestia/e2e";
 import api from "@samchon/payment-api/lib/index";
 import fs from "fs";
 import { Singleton, randint } from "tstl";
 import { sleep_for } from "tstl/thread/global";
 
-import {
-  PaymentBackend,
-  PaymentConfiguration,
-  PaymentGlobal,
-  PaymentSetupWizard,
-} from "../src";
-import { ArgumentParser } from "../src/utils/ArgumentParser";
+import { PaymentBackend, PaymentConfiguration, PaymentGlobal } from "../src";
 import { ErrorUtil } from "../src/utils/ErrorUtil";
-
-interface IOptions {
-  reset: boolean;
-  include?: string[];
-  exclude?: string[];
-  trace: boolean;
-}
-
-const getOptions = () =>
-  ArgumentParser.parse<IOptions>(async (command, prompt, action) => {
-    command.option("--reset <true|false>", "reset local DB or not");
-    command.option("--include <string...>", "include feature files");
-    command.option("--exclude <string...>", "exclude feature files");
-    command.option("--trace <boolean>", "trace detailed errors");
-
-    return action(async (options) => {
-      if (typeof options.reset === "string")
-        options.reset = options.reset === "true";
-      options.reset ??= await prompt.boolean("reset")("Reset local DB");
-      options.trace = options.trace !== ("false" as any);
-      return options as IOptions;
-    });
-  });
 
 function cipher(val: number): string {
   if (val < 10) return "0" + val;
@@ -65,16 +36,8 @@ async function main(): Promise<void> {
   global.process.on("uncaughtException", handle_error);
   global.process.on("unhandledRejection", handle_error);
 
-  // CONFIGURE
-  const options: IOptions = await getOptions();
-  PaymentGlobal.testing = true;
-
-  if (options.reset) {
-    await StopWatch.trace("Reset DB")(PaymentSetupWizard.schema);
-    await StopWatch.trace("Seed Data")(PaymentSetupWizard.seed);
-  }
-
   // OPEN SERVER
+  PaymentGlobal.testing = true;
   const backend: PaymentBackend = new PaymentBackend();
   await backend.open();
 
@@ -94,11 +57,6 @@ async function main(): Promise<void> {
         encryption: connection.encryption,
       },
     ],
-    filter: (func) =>
-      (!options.include?.length ||
-        (options.include ?? []).some((str) => func.includes(str))) &&
-      (!options.exclude?.length ||
-        (options.exclude ?? []).every((str) => !func.includes(str))),
   })(__dirname + "/features");
 
   // TERMINATE
@@ -112,7 +70,7 @@ async function main(): Promise<void> {
     console.log("Success");
     console.log("Elapsed time", report.time.toLocaleString(), `ms`);
   } else {
-    if (options.trace !== false) for (const exp of exceptions) console.log(exp);
+    for (const exp of exceptions) console.log(exp);
     console.log("Failed");
     console.log("Elapsed time", report.time.toLocaleString(), `ms`);
     process.exit(-1);

@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { IIamportResponse } from "../../structures/IIamportResponse";
 import type { IIamportUser } from "../../structures/IIamportUser";
-import { NestiaSimulator } from "../../utils/NestiaSimulator";
 
 /**
  * 유저 인증 토큰 발행하기.
@@ -34,25 +32,20 @@ export async function getToken(
     connection: IConnection,
     input: getToken.Input,
 ): Promise<getToken.Output> {
-    return !!connection.simulate
-        ? getToken.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...getToken.METADATA,
-                  path: getToken.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...getToken.METADATA,
+            path: getToken.path(),
+        } as const,
+        input,
+    );
 }
 export namespace getToken {
     export type Input = Primitive<IIamportUser.IAccessor>;
@@ -74,25 +67,5 @@ export namespace getToken {
 
     export const path = (): string => {
         return `/users/getToken`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<IIamportResponse<IIamportUser>> =>
-        typia.random<Primitive<IIamportResponse<IIamportUser>>>(g);
-    export const simulate = async (
-        connection: IConnection,
-        input: getToken.Input,
-    ): Promise<Output> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "fake-iamport-server",
-  "version": "6.0.1",
+  "version": "6.0.3",
   "description": "Fake iamport server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -63,12 +63,14 @@
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^10.2.8",
     "@nestjs/platform-fastify": "^10.2.8",
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
     "fastify": "^4.24.3",
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^2.5.13",
     "typescript-transform-paths": "^3.4.6",
-    "typia": "^5.3.11",
+    "typia": "^5.3.12",
     "uuid": "^9.0.0"
   },
   "keywords": [

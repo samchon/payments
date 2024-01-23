@@ -6,7 +6,6 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { EncryptedFetcher } from "@nestia/fetcher/lib/EncryptedFetcher";
-import typia from "typia";
 
 import type { ISystem } from "../../../structures/monitors/ISystem";
 
@@ -18,17 +17,13 @@ import type { ISystem } from "../../../structures/monitors/ISystem";
 export async function get(
     connection: IConnection,
 ): Promise<get.Output> {
-    return !!connection.simulate
-        ? get.simulate(
-              connection,
-          )
-        : EncryptedFetcher.fetch(
-              connection,
-              {
-                  ...get.METADATA,
-                  path: get.path(),
-              } as const,
-          );
+    return EncryptedFetcher.fetch(
+        connection,
+        {
+            ...get.METADATA,
+            path: get.path(),
+        } as const,
+    );
 }
 export namespace get {
     export type Output = Primitive<ISystem>;
@@ -46,17 +41,5 @@ export namespace get {
 
     export const path = (): string => {
         return `/monitors/system`;
-    }
-    export const random = (g?: Partial<typia.IRandomGenerator>): Primitive<ISystem> =>
-        typia.random<Primitive<ISystem>>(g);
-    export const simulate = async (
-        connection: IConnection,
-    ): Promise<Output> => {
-        return random(
-            typeof connection.simulate === 'object' &&
-                connection.simulate !== null
-                ? connection.simulate
-                : undefined
-        );
     }
 }

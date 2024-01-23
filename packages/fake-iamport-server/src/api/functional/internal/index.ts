@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection, Primitive } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher/lib/PlainFetcher";
-import typia from "typia";
 
 import type { IIamportPayment } from "../../structures/IIamportPayment";
-import { NestiaSimulator } from "../../utils/NestiaSimulator";
 
 /**
  * 웹훅 이벤트 더미 리스너.
@@ -34,25 +32,20 @@ export async function webhook(
     connection: IConnection,
     input: webhook.Input,
 ): Promise<void> {
-    return !!connection.simulate
-        ? webhook.simulate(
-              connection,
-              input,
-          )
-        : PlainFetcher.fetch(
-              {
-                  ...connection,
-                  headers: {
-                      ...(connection.headers ?? {}),
-                      "Content-Type": "application/json",
-                  },
-              },
-              {
-                  ...webhook.METADATA,
-                  path: webhook.path(),
-              } as const,
-              input,
-          );
+    return PlainFetcher.fetch(
+        {
+            ...connection,
+            headers: {
+                ...(connection.headers ?? {}),
+                "Content-Type": "application/json",
+            },
+        },
+        {
+            ...webhook.METADATA,
+            path: webhook.path(),
+        } as const,
+        input,
+    );
 }
 export namespace webhook {
     export type Input = Primitive<IIamportPayment.IWebhook>;
@@ -73,18 +66,6 @@ export namespace webhook {
 
     export const path = (): string => {
         return `/internal/webhook`;
-    }
-    export const simulate = async (
-        connection: IConnection,
-        input: webhook.Input,
-    ): Promise<void> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(),
-            contentType: "application/json",
-        });
-        assert.body(() => typia.assert(input));
     }
 }
 
@@ -111,18 +92,13 @@ export async function deposit(
     connection: IConnection,
     imp_uid: string,
 ): Promise<void> {
-    return !!connection.simulate
-        ? deposit.simulate(
-              connection,
-              imp_uid,
-          )
-        : PlainFetcher.fetch(
-              connection,
-              {
-                  ...deposit.METADATA,
-                  path: deposit.path(imp_uid),
-              } as const,
-          );
+    return PlainFetcher.fetch(
+        connection,
+        {
+            ...deposit.METADATA,
+            path: deposit.path(imp_uid),
+        } as const,
+    );
 }
 export namespace deposit {
 
@@ -139,17 +115,5 @@ export namespace deposit {
 
     export const path = (imp_uid: string): string => {
         return `/internal/deposit/${encodeURIComponent(imp_uid ?? "null")}`;
-    }
-    export const simulate = async (
-        connection: IConnection,
-        imp_uid: string,
-    ): Promise<void> => {
-        const assert = NestiaSimulator.assert({
-            method: METADATA.method,
-            host: connection.host,
-            path: path(imp_uid),
-            contentType: "application/json",
-        });
-        assert.param("imp_uid")(() => typia.assert(imp_uid));
     }
 }
