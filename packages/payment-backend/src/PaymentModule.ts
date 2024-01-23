@@ -22,6 +22,6 @@ import { PaymentWebhooksController } from "./controllers/payments/PaymentWebhook
       PaymentWebhooksController,
     ],
   },
-  () => PaymentConfiguration.ENCRYPTION_PASSWORD()
+  () => PaymentConfiguration.ENCRYPTION_PASSWORD(),
 )
 export class PaymentModule {}

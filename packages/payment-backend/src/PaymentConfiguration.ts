@@ -30,8 +30,8 @@ export namespace PaymentConfiguration {
     PaymentGlobal.mode === "local"
       ? "127.0.0.1"
       : PaymentGlobal.mode === "dev"
-      ? "your-dev-server-ip"
-      : "your-real-server-master-ip";
+        ? "your-dev-server-ip"
+        : "your-real-server-master-ip";
 
   export const ENCRYPTION_PASSWORD = (): Readonly<IEncryptionPassword> => ({
     key: PaymentGlobal.env.PAYMENT_CONNECTION_ENCRYPTION_KEY ?? "",

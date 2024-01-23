@@ -45,9 +45,8 @@ export namespace PaymentWebhookProvider {
       // UPDATE HISTORY
       const data: Data = await config.fetch(record);
       const props: IPaymentHistory.IProps = config.props(data);
-      const current: IPaymentHistory = await PaymentHistoryProvider.update(
-        previous,
-      )(props);
+      const current: IPaymentHistory =
+        await PaymentHistoryProvider.update(previous)(props);
 
       // DO WEBHOOK
       const webhook: payment_history_webhooks =

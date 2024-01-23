@@ -17,9 +17,8 @@ async function main(): Promise<void> {
   };
   const performance: IPerformance =
     await PaymentAPI.functional.monitors.performance.get(connection);
-  const system: ISystem = await PaymentAPI.functional.monitors.system.get(
-    connection,
-  );
+  const system: ISystem =
+    await PaymentAPI.functional.monitors.system.get(connection);
 
   // TRACE THEM
   console.log({ performance, system });

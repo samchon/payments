@@ -12,9 +12,8 @@ export async function test_fake_vbank_payment_cancel(
   connector: imp.IamportConnector,
 ): Promise<void> {
   // 가상 계좌를 통한 결제하기
-  const payment: IIamportVBankPayment = await test_fake_vbank_payment(
-    connector,
-  );
+  const payment: IIamportVBankPayment =
+    await test_fake_vbank_payment(connector);
 
   // 검증 로직 준비
   const validate = (cancelled: boolean) => (p: IIamportPayment) => {
