@@ -99,7 +99,7 @@ export namespace IPaymentHistory {
     /**
      * 결제 정보가 갱신되었을 때, 이를 수신할 URL
      */
-    webhook_url: null | (string & tags.Format<"url">);
+    webhook_url: null | (string & tags.Format<"uri">);
 
     /**
      * 결제 레코드 생성 일시.
@@ -153,7 +153,7 @@ export namespace IPaymentHistory {
     /**
      * 결제 정보가 갱신되었을 때, 이를 수신할 URL
      */
-    webhook_url: string & tags.Format<"url">;
+    webhook_url: string & tags.Format<"uri">;
   }
 
   /**

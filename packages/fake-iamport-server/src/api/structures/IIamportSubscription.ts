@@ -164,6 +164,6 @@ export namespace IIamportSubscription {
     /**
      * 결제 성공시 통지될 Notification, 웹훅 URL.
      */
-    notice_url?: string & tags.Format<"url">;
+    notice_url?: string & tags.Format<"uri">;
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "fake-toss-payments-server",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "description": "Fake toss-payments server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -70,7 +70,7 @@
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^2.5.13",
-    "typia": "^5.3.12",
+    "typia": "^5.4.1",
     "uuid": "^9.0.0"
   },
   "keywords": [

@@ -115,7 +115,7 @@ export namespace IIamportPayment {
     /**
      * 영수증 URL.
      */
-    receipt_url: string & tags.Format<"url">;
+    receipt_url: string & tags.Format<"uri">;
 
     /**
      * 현금 영수증 발행 여부.
@@ -183,7 +183,7 @@ export namespace IIamportPayment {
     /**
      * @internal
      */
-    notice_url?: string & tags.Format<"url">;
+    notice_url?: string & tags.Format<"uri">;
   }
 
   export type PayMethod =
