@@ -36,8 +36,8 @@
   "dependencies": {
     "@nestia/fetcher": "^2.4.5",
     "@types/node": "^20.11.5",
-    "iamport-server-api": "D:\\github\\samchon\\payments\\packages\\iamport-server-api\\iamport-server-api-6.0.3.tgz",
-    "toss-payments-server-api": "D:\\github\\samchon\\payments\\packages\\toss-payments-server-api\\toss-payments-server-api-6.0.3.tgz",
+    "iamport-server-api": "^6.0.3",
+    "toss-payments-server-api": "^6.0.3",
     "typia": "^5.3.12"
   }
 }
