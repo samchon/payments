@@ -11,7 +11,7 @@ export interface IIamportPaymentCancel {
   amount: number;
   cancelled_at: number;
   reason: string;
-  receipt_url: string & tags.Format<"url">;
+  receipt_url: string & tags.Format<"uri">;
 }
 export namespace IIamportPaymentCancel {
   /**

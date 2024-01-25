@@ -88,7 +88,7 @@ export namespace ITossCardPayment {
     /**
      * 영수증 URL.
      */
-    receiptUrl: string & tags.Format<"url">;
+    receiptUrl: string & tags.Format<"uri">;
   }
 
   /**

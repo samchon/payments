@@ -39,7 +39,7 @@ export interface IIamportReceipt {
   /**
    * 현금영수증 조회 URL.
    */
-  receipt_url: string & tags.Format<"url">;
+  receipt_url: string & tags.Format<"uri">;
 
   /**
    * 현금영수증 발행 시간.
