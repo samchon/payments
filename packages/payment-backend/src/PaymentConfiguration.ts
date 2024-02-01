@@ -5,7 +5,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from "@nestjs/common";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { Prisma } from "@prisma/client";
 import { IIamportUser } from "iamport-server-api/lib/structures/IIamportUser";
 import path from "path";
 
@@ -105,7 +105,7 @@ export namespace PaymentConfiguration {
 }
 
 // CUSTOM EXCEPTIION CONVERSION
-ExceptionManager.insert(PrismaClientKnownRequestError, (exp) => {
+ExceptionManager.insert(Prisma.PrismaClientKnownRequestError, (exp) => {
   switch (exp.code) {
     case "P2025":
       return new NotFoundException(exp.message);
