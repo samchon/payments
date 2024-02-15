@@ -1,10 +1,11 @@
 import type { INestiaConfig } from "@nestia/sdk";
 import { NestFactory } from "@nestjs/core";
+import { FastifyAdapter } from "@nestjs/platform-fastify";
 
 import { FakeIamportModule } from "./src/FakeIamportModule";
 
 const NESTIA_CONFIG: INestiaConfig = {
-  input: () => NestFactory.create(FakeIamportModule),
+  input: () => NestFactory.create(FakeIamportModule, new FastifyAdapter()),
   output: "src/api",
   distribute: "../iamport-server-api",
   swagger: {
@@ -31,6 +32,8 @@ const NESTIA_CONFIG: INestiaConfig = {
         in: "header",
       },
     },
+    beautify: true,
   },
+  primitive: false,
 };
 export default NESTIA_CONFIG;
