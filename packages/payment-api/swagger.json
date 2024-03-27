@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "6.0.6",
+    "version": "7.0.0",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -490,7 +490,6 @@
             "items": {
               "type": "string"
             },
-            "title": "`process",
             "description": "`process.argv`"
           },
           "commit": {
@@ -500,7 +499,6 @@
           },
           "package": {
             "$ref": "#/components/schemas/ISystem.IPackage",
-            "title": "`package",
             "description": "`package.json`"
           },
           "created_at": {
@@ -1606,18 +1604,18 @@
           "pay_method": {
             "type": "string",
             "enum": [
-              "phone",
-              "kpay",
-              "kakaopay",
-              "payco",
-              "lpay",
-              "ssgpay",
-              "tosspay",
-              "cultureland",
-              "smartculture",
-              "happymoney",
               "booknlife",
-              "point"
+              "cultureland",
+              "happymoney",
+              "kakaopay",
+              "kpay",
+              "lpay",
+              "payco",
+              "phone",
+              "point",
+              "smartculture",
+              "ssgpay",
+              "tosspay"
             ]
           },
           "imp_uid": {
@@ -1992,9 +1990,9 @@
           "easyPay": {
             "type": "string",
             "enum": [
+              "삼성페이",
               "토스결제",
-              "페이코",
-              "삼성페이"
+              "페이코"
             ],
             "nullable": true,
             "title": "간편결제로 결제한 경우 간편결제 타입 정보",
@@ -2011,8 +2009,8 @@
           "type": {
             "type": "string",
             "enum": [
-              "NORMAL",
-              "BILLING"
+              "BILLING",
+              "NORMAL"
             ],
             "title": "결제 타입",
             "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
@@ -2020,14 +2018,14 @@
           "status": {
             "type": "string",
             "enum": [
-              "READY",
-              "IN_PROGRESS",
-              "WAITING_FOR_DEPOSIT",
-              "DONE",
-              "CANCELED",
-              "PARTIAL_CANCELED",
               "ABORTED",
-              "EXPIRED"
+              "CANCELED",
+              "DONE",
+              "EXPIRED",
+              "IN_PROGRESS",
+              "PARTIAL_CANCELED",
+              "READY",
+              "WAITING_FOR_DEPOSIT"
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -2199,9 +2197,9 @@
           "cardType": {
             "type": "string",
             "enum": [
+              "기프트",
               "신용",
-              "체크",
-              "기프트"
+              "체크"
             ],
             "title": "카드 타입",
             "description": "카드 타입."
@@ -2218,11 +2216,11 @@
           "acquireStatus": {
             "type": "string",
             "enum": [
-              "READY",
               "CANCELED",
-              "REQUESTED",
+              "CANCEL_REQUESTED",
               "COMPLETED",
-              "CANCEL_REQUESTED"
+              "READY",
+              "REQUESTED"
             ],
             "title": "카드 결제의 매입 상태",
             "description": "카드 결제의 매입 상태.\n\n - READY: 매입 대기\n - REQUESTED: 매입 요청됨\n - COMPLETED: 매입 완료\n - CANCEL_REQUESTED: 매입 취소 요청됨\n - CANCELD: 매입 취소됨"
@@ -2384,14 +2382,14 @@
           "status": {
             "type": "string",
             "enum": [
-              "READY",
-              "IN_PROGRESS",
-              "WAITING_FOR_DEPOSIT",
-              "DONE",
-              "CANCELED",
-              "PARTIAL_CANCELED",
               "ABORTED",
-              "EXPIRED"
+              "CANCELED",
+              "DONE",
+              "EXPIRED",
+              "IN_PROGRESS",
+              "PARTIAL_CANCELED",
+              "READY",
+              "WAITING_FOR_DEPOSIT"
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -2573,14 +2571,14 @@
           "status": {
             "type": "string",
             "enum": [
-              "READY",
-              "IN_PROGRESS",
-              "WAITING_FOR_DEPOSIT",
-              "DONE",
-              "CANCELED",
-              "PARTIAL_CANCELED",
               "ABORTED",
-              "EXPIRED"
+              "CANCELED",
+              "DONE",
+              "EXPIRED",
+              "IN_PROGRESS",
+              "PARTIAL_CANCELED",
+              "READY",
+              "WAITING_FOR_DEPOSIT"
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -2768,14 +2766,14 @@
           "status": {
             "type": "string",
             "enum": [
-              "READY",
-              "IN_PROGRESS",
-              "WAITING_FOR_DEPOSIT",
-              "DONE",
-              "CANCELED",
-              "PARTIAL_CANCELED",
               "ABORTED",
-              "EXPIRED"
+              "CANCELED",
+              "DONE",
+              "EXPIRED",
+              "IN_PROGRESS",
+              "PARTIAL_CANCELED",
+              "READY",
+              "WAITING_FOR_DEPOSIT"
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -2962,14 +2960,14 @@
           "status": {
             "type": "string",
             "enum": [
-              "READY",
-              "IN_PROGRESS",
-              "WAITING_FOR_DEPOSIT",
-              "DONE",
-              "CANCELED",
-              "PARTIAL_CANCELED",
               "ABORTED",
-              "EXPIRED"
+              "CANCELED",
+              "DONE",
+              "EXPIRED",
+              "IN_PROGRESS",
+              "PARTIAL_CANCELED",
+              "READY",
+              "WAITING_FOR_DEPOSIT"
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -3111,8 +3109,8 @@
           "accountType": {
             "type": "string",
             "enum": [
-              "일반",
-              "고정"
+              "고정",
+              "일반"
             ],
             "title": "가상 계좌 타입",
             "description": "가상 계좌 타입."
@@ -3151,10 +3149,10 @@
             "type": "string",
             "enum": [
               "COMPLETED",
-              "NONE",
               "FAILED",
-              "PENDING",
-              "PARTIAL_FAILED"
+              "NONE",
+              "PARTIAL_FAILED",
+              "PENDING"
             ],
             "title": "환불 처리 상태",
             "description": "환불 처리 상태.\n\n - NONE: 해당 없음\n - FAILED: 환불 실패\n - PENDING: 환불 처리중\n - PARTIAL_FAILED: 부분 환불 실패\n - COMPLETED: 환불 완료"
@@ -3661,10 +3659,10 @@
           "status": {
             "type": "string",
             "enum": [
-              "paid",
-              "ready",
+              "cancelled",
               "failed",
-              "cancelled"
+              "paid",
+              "ready"
             ],
             "title": "현재 상태",
             "description": "현재 상태."

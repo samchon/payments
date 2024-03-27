@@ -4,7 +4,7 @@ import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayme
 import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
 import { IIamportUser } from "iamport-server-api/lib/structures/IIamportUser";
 import { IIamportVBankPayment } from "iamport-server-api/lib/structures/IIamportVBankPayment";
-import { randint } from "tstl/algorithm/random";
+import { randint } from "tstl";
 import { v4 } from "uuid";
 
 import { FakeIamportUserAuth } from "../decorators/FakeIamportUserAuth";

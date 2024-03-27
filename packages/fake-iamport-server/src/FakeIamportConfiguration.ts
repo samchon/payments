@@ -5,9 +5,7 @@ import {
   NotFoundException,
   UnprocessableEntityException,
 } from "@nestjs/common";
-import { DomainError } from "tstl/exception/DomainError";
-import { InvalidArgument } from "tstl/exception/InvalidArgument";
-import { OutOfRange } from "tstl/exception/OutOfRange";
+import { DomainError, InvalidArgument, OutOfRange } from "tstl";
 
 /* eslint-disable */
 const EXTENSION = __filename.substring(__filename.length - 2);

@@ -1,8 +1,7 @@
 import { FakeIamportBackend } from "fake-iamport-server";
 import { FakeTossBackend } from "fake-toss-payments-server";
 import fs from "fs";
-import { randint } from "tstl/algorithm/random";
-import { Singleton } from "tstl/thread/Singleton";
+import { Singleton, randint } from "tstl";
 
 import { PaymentBackend } from "../PaymentBackend";
 import { PaymentGlobal } from "../PaymentGlobal";

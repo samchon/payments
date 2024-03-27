@@ -1,6 +1,4 @@
-import { SharedLock } from "tstl/thread/SharedLock";
-import { SharedMutex } from "tstl/thread/SharedMutex";
-import { UniqueLock } from "tstl/thread/UniqueLock";
+import { SharedLock, SharedMutex, UniqueLock } from "tstl";
 
 import { IConnection } from "./IConnection";
 import { users } from "./functional";

@@ -52,7 +52,7 @@ import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IP
 import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { sleep_for } from "tstl/thread/global";
+import { sleep_for } from "tstl";
 import typia from "typia";
 import { v4 } from "uuid";
 
@@ -326,7 +326,7 @@ import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResp
 import PaymentAPI from "@samchon/payment-api";
 import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
-import { sleep_for } from "tstl/thread/global";
+import { sleep_for } from "tstl";
 import typia from "typia";
 import { v4 } from "uuid";
 
@@ -490,7 +490,7 @@ npm run test
 
 ```typescript
 import { v4 } from "uuid";
-import { sleep_for } from "tstl/thread/global";
+import { sleep_for } from "tstl";
 
 import imp from "iamport-server-api";
 import payments from "../../../../api";
