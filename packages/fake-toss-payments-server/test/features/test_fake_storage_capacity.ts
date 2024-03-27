@@ -2,8 +2,7 @@ import { TestValidator } from "@nestia/e2e";
 import toss from "toss-payments-server-api";
 import { ITossBilling } from "toss-payments-server-api/lib/structures/ITossBilling";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { randint } from "tstl/algorithm/random";
-import { IPointer } from "tstl/functional/IPointer";
+import { IPointer, randint } from "tstl";
 import { assert } from "typia";
 import { v4 } from "uuid";
 

@@ -1,6 +1,5 @@
 import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
-import { randint } from "tstl/algorithm/random";
-import { Pair } from "tstl/utility/Pair";
+import { Pair, randint } from "tstl";
 import { v4 } from "uuid";
 
 export namespace TokenManager {

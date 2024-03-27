@@ -2,7 +2,7 @@ import { DynamicExecutor, StopWatch } from "@nestia/e2e";
 import api from "@samchon/payment-api/lib/index";
 import fs from "fs";
 import { Singleton, randint } from "tstl";
-import { sleep_for } from "tstl/thread/global";
+import { sleep_for } from "tstl";
 
 import {
   PaymentBackend,

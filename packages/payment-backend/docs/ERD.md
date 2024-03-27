@@ -7,58 +7,58 @@
 ```mermaid
 erDiagram
 "payment_reservations" {
-    String id PK
-    String source_schema
-    String source_table
-    String source_id
-    String vendor_code
-    String vendor_uid
-    String vendor_store_id
-    String title
-    String data
-    String password
-    DateTime created_at
+  String id PK
+  String source_schema
+  String source_table
+  String source_id
+  String vendor_code
+  String vendor_uid
+  String vendor_store_id
+  String title
+  String data
+  String password
+  DateTime created_at
 }
 "payment_histories" {
-    String id PK
-    String source_schema
-    String source_table
-    String source_id
-    String vendor_code
-    String vendor_uid
-    String vendor_store_id
-    String currency
-    Float price
-    Float refund "nullable"
-    String webhook_url
-    String data
-    String password
-    DateTime created_at
-    DateTime paid_at "nullable"
-    DateTime cancelled_at "nullable"
+  String id PK
+  String source_schema
+  String source_table
+  String source_id
+  String vendor_code
+  String vendor_uid
+  String vendor_store_id
+  String currency
+  Float price
+  Float refund "nullable"
+  String webhook_url
+  String data
+  String password
+  DateTime created_at
+  DateTime paid_at "nullable"
+  DateTime cancelled_at "nullable"
 }
 "payment_history_cancels" {
-    String id PK
-    String payment_history_id FK
-    Float amount
-    String reason
-    String data
-    DateTime created_at
+  String id PK
+  String payment_history_id FK
+  Float amount
+  String reason
+  String data
+  DateTime created_at
 }
 "payment_history_webhooks" {
-    String id PK
-    String payment_history_id FK
-    String previous
-    String current
-    String data
-    DateTime created_at
+  String id PK
+  String payment_history_id FK
+  String previous
+  String current
+  String data
+  DateTime created_at
 }
 "payment_history_webhook_responses" {
-    String id PK
-    String payment_history_webhook_id FK
-    Int status "nullable"
-    String body "nullable"
-    DateTime created_at
+  String id PK
+  String payment_history_webhook_id FK
+  Int status "nullable"
+  String body "nullable"
+  DateTime created_at
 }
 "payment_history_cancels" }o--|| "payment_histories" : history
 "payment_history_webhooks" }o--|| "payment_histories" : history

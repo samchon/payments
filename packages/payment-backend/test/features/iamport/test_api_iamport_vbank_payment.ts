@@ -5,7 +5,7 @@ import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/paym
 import imp from "iamport-server-api";
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { IIamportResponse } from "iamport-server-api/lib/structures/IIamportResponse";
-import { sleep_for } from "tstl/thread/global";
+import { sleep_for } from "tstl";
 import typia from "typia";
 import { v4 } from "uuid";
 

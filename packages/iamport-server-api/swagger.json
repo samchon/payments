@@ -13,7 +13,7 @@
   "info": {
     "title": "Iamport API",
     "description": "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "6.0.6",
+    "version": "7.0.0",
     "license": {
       "name": "MIT"
     }
@@ -936,10 +936,10 @@
           "currency": {
             "type": "string",
             "enum": [
-              "KRW",
-              "USD",
               "EUR",
-              "JPY"
+              "JPY",
+              "KRW",
+              "USD"
             ],
             "title": "통화 정보",
             "description": "통화 정보."
@@ -1319,10 +1319,10 @@
           "currency": {
             "type": "string",
             "enum": [
-              "KRW",
-              "USD",
               "EUR",
-              "JPY"
+              "JPY",
+              "KRW",
+              "USD"
             ],
             "title": "통화 정보",
             "description": "통화 정보."
@@ -1464,9 +1464,9 @@
           "carrier": {
             "type": "string",
             "enum": [
-              "SKT",
               "KT",
-              "LGT"
+              "LGT",
+              "SKT"
             ],
             "title": "본인인증 대상자 통신사 코드",
             "description": "본인인증 대상자 통신사 코드."
@@ -1556,9 +1556,9 @@
           "carrier": {
             "type": "string",
             "enum": [
-              "SKT",
               "KT",
-              "LGT"
+              "LGT",
+              "SKT"
             ],
             "title": "본인인증 대상자 통신사 코드",
             "description": "본인인증 대상자 통신사 코드."
@@ -1667,10 +1667,10 @@
           "status": {
             "type": "string",
             "enum": [
-              "paid",
-              "ready",
+              "cancelled",
               "failed",
-              "cancelled"
+              "paid",
+              "ready"
             ],
             "title": "현재 상태",
             "description": "현재 상태."
@@ -2160,18 +2160,18 @@
           "pay_method": {
             "type": "string",
             "enum": [
-              "phone",
-              "kpay",
-              "kakaopay",
-              "payco",
-              "lpay",
-              "ssgpay",
-              "tosspay",
-              "cultureland",
-              "smartculture",
-              "happymoney",
               "booknlife",
-              "point"
+              "cultureland",
+              "happymoney",
+              "kakaopay",
+              "kpay",
+              "lpay",
+              "payco",
+              "phone",
+              "point",
+              "smartculture",
+              "ssgpay",
+              "tosspay"
             ]
           },
           "imp_uid": {
@@ -2446,7 +2446,7 @@
         "properties": {
           "imp_uid": {
             "type": "string",
-            "title": "귀속 결제의 {@link IIamportPayment",
+            "title": "귀속 결제의 {@link IIamportPayment.imp_uid }",
             "description": "귀속 결제의 {@link IIamportPayment.imp_uid }."
           },
           "receipt_uid": {
@@ -2518,7 +2518,7 @@
         "properties": {
           "imp_uid": {
             "type": "string",
-            "title": "귀속 결제의 {@link IIamportPayment",
+            "title": "귀속 결제의 {@link IIamportPayment.imp_uid }",
             "description": "귀속 결제의 {@link IIamportPayment.imp_uid }."
           },
           "identifier": {
@@ -2529,9 +2529,9 @@
           "identifier_type": {
             "type": "string",
             "enum": [
-              "phone",
-              "person",
               "business",
+              "person",
+              "phone",
               "taxcard"
             ],
             "title": "현금영수증 발행대상 유형",
@@ -2540,8 +2540,8 @@
           "type": {
             "type": "string",
             "enum": [
-              "person",
-              "company"
+              "company",
+              "person"
             ],
             "title": "현금영수증 발행 타입 (대상)",
             "description": "현금영수증 발행 타입 (대상).\n\n누락시 person 이 사용됨."
@@ -2756,7 +2756,7 @@
         "properties": {
           "imp_uid": {
             "type": "string",
-            "title": "대상 결제 기록의 {@link IIamportPayment",
+            "title": "대상 결제 기록의 {@link IIamportPayment.imp_uid }",
             "description": "대상 결제 기록의 {@link IIamportPayment.imp_uid }."
           },
           "amount": {

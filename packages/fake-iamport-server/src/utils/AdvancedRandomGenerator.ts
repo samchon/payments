@@ -1,5 +1,5 @@
 import { RandomGenerator } from "@nestia/e2e";
-import { randint } from "tstl/algorithm/random";
+import { randint } from "tstl";
 
 export const AdvancedRandomGenerator = {
   ...RandomGenerator,

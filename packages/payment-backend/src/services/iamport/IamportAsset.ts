@@ -1,6 +1,6 @@
 import fake from "fake-iamport-server";
 import imp from "iamport-server-api";
-import { VariadicSingleton } from "tstl/thread/VariadicSingleton";
+import { VariadicSingleton } from "tstl";
 
 import { PaymentConfiguration } from "../../PaymentConfiguration";
 import { PaymentGlobal } from "../../PaymentGlobal";

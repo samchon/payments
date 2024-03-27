@@ -3,7 +3,7 @@ import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
 import { payment_histories, payment_history_webhooks } from "@prisma/client";
 import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentHistory";
 import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
-import { InvalidArgument } from "tstl/exception/InvalidArgument";
+import { InvalidArgument } from "tstl";
 import { v4 } from "uuid";
 
 import { PaymentConfiguration } from "../../PaymentConfiguration";

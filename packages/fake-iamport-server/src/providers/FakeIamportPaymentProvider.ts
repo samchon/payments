@@ -1,7 +1,7 @@
 import { IIamportPayment } from "iamport-server-api/lib/structures/IIamportPayment";
 import { IIamportPaymentCancel } from "iamport-server-api/lib/structures/IIamportPaymentCancel";
 import { IIamportVBankPayment } from "iamport-server-api/lib/structures/IIamportVBankPayment";
-import { DomainError } from "tstl/exception/DomainError";
+import { DomainError } from "tstl";
 
 import { FakeIamportConfiguration } from "../FakeIamportConfiguration";
 import { FakeIamportStorage } from "./FakeIamportStorage";

@@ -1,8 +1,4 @@
-import { HashMap } from "tstl/container/HashMap";
-import { TreeMap } from "tstl/container/TreeMap";
-import { OutOfRange } from "tstl/exception/OutOfRange";
-import { equal_to } from "tstl/functional/comparators";
-import { hash } from "tstl/functional/hash";
+import { HashMap, OutOfRange, TreeMap, equal_to, hash } from "tstl";
 
 export class VolatileMap<Key, T> {
   private readonly dict_: HashMap<Key, T>;

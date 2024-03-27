@@ -48,7 +48,7 @@ import { IPaymentHistory } from "@samchon/payment-api/lib/structures/payments/IP
 import { IPaymentWebhookHistory } from "@samchon/payment-api/lib/structures/payments/IPaymentWebhookHistory";
 import toss from "toss-payments-server-api";
 import { ITossPayment } from "toss-payments-server-api/lib/structures/ITossPayment";
-import { sleep_for } from "tstl/thread/global";
+import { sleep_for } from "tstl";
 import typia from "typia";
 import { v4 } from "uuid";
 

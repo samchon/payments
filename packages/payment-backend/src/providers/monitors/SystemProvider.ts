@@ -1,6 +1,6 @@
 import fs from "fs";
 import git from "git-last-commit";
-import { Singleton } from "tstl/thread/Singleton";
+import { Singleton } from "tstl";
 import { v4 } from "uuid";
 
 import { PaymentConfiguration } from "../../PaymentConfiguration";
