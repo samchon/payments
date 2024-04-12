@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "servers": [
     {
       "url": "http://localhost:30771",
@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
-    "version": "7.0.0",
+    "version": "8.0.0",
     "license": {
       "name": "MIT"
     }
@@ -545,7 +545,6 @@
                 "description": "3DS 인증 결과에 대한 코드 값."
               }
             },
-            "nullable": false,
             "required": [
               "cavv",
               "xid",
@@ -560,7 +559,6 @@
             "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
           }
         },
-        "nullable": false,
         "required": [
           "cardNumber",
           "cardExpirationYear",
@@ -585,10 +583,7 @@
             "description": "{@link ITossBilling } 의 식별자 키."
           },
           "method": {
-            "type": "string",
-            "enum": [
-              "카드"
-            ],
+            "const": "카드",
             "title": "결제 수단",
             "description": "결제 수단."
           },
@@ -615,7 +610,6 @@
             "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
           }
         },
-        "nullable": false,
         "required": [
           "mId",
           "billingKey",
@@ -636,7 +630,6 @@
             "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
           }
         },
-        "nullable": false,
         "required": [
           "customerKey"
         ],
@@ -646,10 +639,7 @@
         "type": "object",
         "properties": {
           "method": {
-            "type": "string",
-            "enum": [
-              "billing"
-            ],
+            "const": "billing",
             "title": "결제 수단이 간편 결제임을 의미함",
             "description": "결제 수단이 간편 결제임을 의미함."
           },
@@ -674,7 +664,6 @@
             "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
           }
         },
-        "nullable": false,
         "required": [
           "method",
           "billingKey",
@@ -713,49 +702,78 @@
             "description": "카드 정보."
           },
           "discount": {
-            "$ref": "#/components/schemas/ITossCardPayment.IDiscount.Nullable",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCardPayment.IDiscount"
+              }
+            ],
             "title": "카드사의 즉시 할인 프로모션 정보",
             "description": "카드사의 즉시 할인 프로모션 정보."
           },
           "easyPay": {
-            "type": "string",
-            "enum": [
-              "삼성페이",
-              "토스결제",
-              "페이코"
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "const": "토스결제"
+              },
+              {
+                "const": "페이코"
+              },
+              {
+                "const": "삼성페이"
+              }
             ],
-            "nullable": true,
             "title": "간편결제로 결제한 경우 간편결제 타입 정보",
             "description": "간편결제로 결제한 경우 간편결제 타입 정보."
           },
           "method": {
-            "type": "string",
-            "enum": [
-              "카드"
-            ],
+            "const": "카드",
             "title": "결제 수단",
             "description": "결제 수단."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "BILLING",
-              "NORMAL"
+            "oneOf": [
+              {
+                "const": "NORMAL"
+              },
+              {
+                "const": "BILLING"
+              }
             ],
             "title": "결제 타입",
             "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "ABORTED",
-              "CANCELED",
-              "DONE",
-              "EXPIRED",
-              "IN_PROGRESS",
-              "PARTIAL_CANCELED",
-              "READY",
-              "WAITING_FOR_DEPOSIT"
+            "oneOf": [
+              {
+                "const": "READY"
+              },
+              {
+                "const": "IN_PROGRESS"
+              },
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              },
+              {
+                "const": "ABORTED"
+              },
+              {
+                "const": "EXPIRED"
+              }
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -837,28 +855,46 @@
             "description": "결제 요청 일시."
           },
           "approvedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
             "title": "결제 승인 일시",
             "description": "결제 승인 일시."
           },
           "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ITossPaymentCancel"
-            },
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ITossPaymentCancel"
+                }
+              }
+            ],
             "title": "결제 취소 내역",
             "description": "결제 취소 내역."
           },
           "cashReceipt": {
-            "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCashReceipt.ISummary"
+              }
+            ],
             "title": "현금 영수증 정보",
             "description": "현금 영수증 정보."
           }
         },
-        "nullable": false,
         "required": [
           "card",
           "discount",
@@ -917,40 +953,54 @@
             "description": "승인 번호."
           },
           "useCardPoint": {
-            "type": "boolean",
-            "enum": [
-              false
-            ],
+            "const": false,
             "title": "카드 포인트 사용 여부",
             "description": "카드 포인트 사용 여부."
           },
           "cardType": {
-            "type": "string",
-            "enum": [
-              "기프트",
-              "신용",
-              "체크"
+            "oneOf": [
+              {
+                "const": "신용"
+              },
+              {
+                "const": "체크"
+              },
+              {
+                "const": "기프트"
+              }
             ],
             "title": "카드 타입",
             "description": "카드 타입."
           },
           "ownerType": {
-            "type": "string",
-            "enum": [
-              "개인",
-              "법인"
+            "oneOf": [
+              {
+                "const": "개인"
+              },
+              {
+                "const": "법인"
+              }
             ],
             "title": "카드의 소유자 타입",
             "description": "카드의 소유자 타입."
           },
           "acquireStatus": {
-            "type": "string",
-            "enum": [
-              "CANCELED",
-              "CANCEL_REQUESTED",
-              "COMPLETED",
-              "READY",
-              "REQUESTED"
+            "oneOf": [
+              {
+                "const": "READY"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "REQUESTED"
+              },
+              {
+                "const": "COMPLETED"
+              },
+              {
+                "const": "CANCEL_REQUESTED"
+              }
             ],
             "title": "카드 결제의 매입 상태",
             "description": "카드 결제의 매입 상태.\n\n - READY: 매입 대기\n - REQUESTED: 매입 요청됨\n - COMPLETED: 매입 완료\n - CANCEL_REQUESTED: 매입 취소 요청됨\n - CANCELD: 매입 취소됨"
@@ -962,7 +1012,6 @@
             "description": "영수증 URL."
           }
         },
-        "nullable": false,
         "required": [
           "company",
           "number",
@@ -977,7 +1026,7 @@
         ],
         "description": "카드 정보."
       },
-      "ITossCardPayment.IDiscount.Nullable": {
+      "ITossCardPayment.IDiscount": {
         "type": "object",
         "properties": {
           "amount": {
@@ -986,7 +1035,6 @@
             "description": "카드사의 즉시 할인 프로모션을 적용한 금액."
           }
         },
-        "nullable": true,
         "required": [
           "amount"
         ],
@@ -1027,7 +1075,6 @@
             "description": "취소 일시."
           }
         },
-        "nullable": false,
         "required": [
           "cancelAmount",
           "cancelReason",
@@ -1038,7 +1085,7 @@
         ],
         "description": "결제 취소 정보."
       },
-      "ITossCashReceipt.ISummary.Nullable": {
+      "ITossCashReceipt.ISummary": {
         "type": "object",
         "properties": {
           "type": {
@@ -1067,7 +1114,6 @@
             "description": "현금영수증 조회 페이지 주소."
           }
         },
-        "nullable": true,
         "required": [
           "type",
           "amount",
@@ -1078,10 +1124,13 @@
         "description": "현금 영수증 요약 정보."
       },
       "ITossCashReceipt.Type": {
-        "type": "string",
-        "enum": [
-          "소득공제",
-          "지출증빙"
+        "oneOf": [
+          {
+            "const": "소득공제"
+          },
+          {
+            "const": "지출증빙"
+          }
         ],
         "description": "현금 영수증의 종류."
       },
@@ -1094,32 +1143,41 @@
             "description": "상품권 정보."
           },
           "method": {
-            "type": "string",
-            "enum": [
-              "상품권"
-            ],
+            "const": "상품권",
             "title": "결제 수단",
             "description": "결제 수단."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "NORMAL"
-            ],
+            "const": "NORMAL",
             "title": "결제 타입",
             "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "ABORTED",
-              "CANCELED",
-              "DONE",
-              "EXPIRED",
-              "IN_PROGRESS",
-              "PARTIAL_CANCELED",
-              "READY",
-              "WAITING_FOR_DEPOSIT"
+            "oneOf": [
+              {
+                "const": "READY"
+              },
+              {
+                "const": "IN_PROGRESS"
+              },
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              },
+              {
+                "const": "ABORTED"
+              },
+              {
+                "const": "EXPIRED"
+              }
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -1201,28 +1259,46 @@
             "description": "결제 요청 일시."
           },
           "approvedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
             "title": "결제 승인 일시",
             "description": "결제 승인 일시."
           },
           "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ITossPaymentCancel"
-            },
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ITossPaymentCancel"
+                }
+              }
+            ],
             "title": "결제 취소 내역",
             "description": "결제 취소 내역."
           },
           "cashReceipt": {
-            "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCashReceipt.ISummary"
+              }
+            ],
             "title": "현금 영수증 정보",
             "description": "현금 영수증 정보."
           }
         },
-        "nullable": false,
         "required": [
           "giftCertificate",
           "method",
@@ -1258,16 +1334,18 @@
             "description": "승인 번호."
           },
           "settlementStatus": {
-            "type": "string",
-            "enum": [
-              "COMPLETE",
-              "INCOMPLETE"
+            "oneOf": [
+              {
+                "const": "COMPLETE"
+              },
+              {
+                "const": "INCOMPLETE"
+              }
             ],
             "title": "정산 상태",
             "description": "정산 상태."
           }
         },
-        "nullable": false,
         "required": [
           "approveNo",
           "settlementStatus"
@@ -1283,32 +1361,41 @@
             "description": "휴대폰 정보."
           },
           "method": {
-            "type": "string",
-            "enum": [
-              "휴대폰"
-            ],
+            "const": "휴대폰",
             "title": "결제 수단",
             "description": "결제 수단."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "NORMAL"
-            ],
+            "const": "NORMAL",
             "title": "결제 타입",
             "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "ABORTED",
-              "CANCELED",
-              "DONE",
-              "EXPIRED",
-              "IN_PROGRESS",
-              "PARTIAL_CANCELED",
-              "READY",
-              "WAITING_FOR_DEPOSIT"
+            "oneOf": [
+              {
+                "const": "READY"
+              },
+              {
+                "const": "IN_PROGRESS"
+              },
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              },
+              {
+                "const": "ABORTED"
+              },
+              {
+                "const": "EXPIRED"
+              }
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -1390,28 +1477,46 @@
             "description": "결제 요청 일시."
           },
           "approvedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
             "title": "결제 승인 일시",
             "description": "결제 승인 일시."
           },
           "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ITossPaymentCancel"
-            },
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ITossPaymentCancel"
+                }
+              }
+            ],
             "title": "결제 취소 내역",
             "description": "결제 취소 내역."
           },
           "cashReceipt": {
-            "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCashReceipt.ISummary"
+              }
+            ],
             "title": "현금 영수증 정보",
             "description": "현금 영수증 정보."
           }
         },
-        "nullable": false,
         "required": [
           "mobilePhone",
           "method",
@@ -1452,16 +1557,18 @@
             "description": "고객 휴대폰 번호."
           },
           "settlementStatus": {
-            "type": "string",
-            "enum": [
-              "COMPLETED",
-              "INCOMPLETED"
+            "oneOf": [
+              {
+                "const": "COMPLETED"
+              },
+              {
+                "const": "INCOMPLETED"
+              }
             ],
             "title": "정산 상태",
             "description": "정산 상태."
           }
         },
-        "nullable": false,
         "required": [
           "carrier",
           "customerMobilePhone",
@@ -1478,32 +1585,41 @@
             "description": "계좌 이체 정보."
           },
           "method": {
-            "type": "string",
-            "enum": [
-              "계좌이체"
-            ],
+            "const": "계좌이체",
             "title": "결제 수단",
             "description": "결제 수단."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "NORMAL"
-            ],
+            "const": "NORMAL",
             "title": "결제 타입",
             "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "ABORTED",
-              "CANCELED",
-              "DONE",
-              "EXPIRED",
-              "IN_PROGRESS",
-              "PARTIAL_CANCELED",
-              "READY",
-              "WAITING_FOR_DEPOSIT"
+            "oneOf": [
+              {
+                "const": "READY"
+              },
+              {
+                "const": "IN_PROGRESS"
+              },
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              },
+              {
+                "const": "ABORTED"
+              },
+              {
+                "const": "EXPIRED"
+              }
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -1585,28 +1701,46 @@
             "description": "결제 요청 일시."
           },
           "approvedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
             "title": "결제 승인 일시",
             "description": "결제 승인 일시."
           },
           "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ITossPaymentCancel"
-            },
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ITossPaymentCancel"
+                }
+              }
+            ],
             "title": "결제 취소 내역",
             "description": "결제 취소 내역."
           },
           "cashReceipt": {
-            "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCashReceipt.ISummary"
+              }
+            ],
             "title": "현금 영수증 정보",
             "description": "현금 영수증 정보."
           }
         },
-        "nullable": false,
         "required": [
           "transfer",
           "method",
@@ -1642,16 +1776,18 @@
             "description": "은행명."
           },
           "settlementStatus": {
-            "type": "string",
-            "enum": [
-              "COMPLETED",
-              "INCOMPLETED"
+            "oneOf": [
+              {
+                "const": "COMPLETED"
+              },
+              {
+                "const": "INCOMPLETED"
+              }
             ],
             "title": "이체 상태",
             "description": "이체 상태."
           }
         },
-        "nullable": false,
         "required": [
           "bank",
           "settlementStatus"
@@ -1672,32 +1808,41 @@
             "description": "가상 계좌 정보."
           },
           "method": {
-            "type": "string",
-            "enum": [
-              "가상계좌"
-            ],
+            "const": "가상계좌",
             "title": "결제 수단",
             "description": "결제 수단."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "NORMAL"
-            ],
+            "const": "NORMAL",
             "title": "결제 타입",
             "description": "결제 타입.\n\n  - NORMAL: 일반 결제\n  - BILLING: 미리 등록한 카드에 의한 간편 결제."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "ABORTED",
-              "CANCELED",
-              "DONE",
-              "EXPIRED",
-              "IN_PROGRESS",
-              "PARTIAL_CANCELED",
-              "READY",
-              "WAITING_FOR_DEPOSIT"
+            "oneOf": [
+              {
+                "const": "READY"
+              },
+              {
+                "const": "IN_PROGRESS"
+              },
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              },
+              {
+                "const": "ABORTED"
+              },
+              {
+                "const": "EXPIRED"
+              }
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n  - READY\n  - IN_PROGRESS\n  - WAITING_FOR_DEPOSIT\n  - DONE\n  - CANCELED\n  - PARTIAL_CANCELED\n  - ABORTED\n  - EXPIRED"
@@ -1779,28 +1924,46 @@
             "description": "결제 요청 일시."
           },
           "approvedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
             "title": "결제 승인 일시",
             "description": "결제 승인 일시."
           },
           "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ITossPaymentCancel"
-            },
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ITossPaymentCancel"
+                }
+              }
+            ],
             "title": "결제 취소 내역",
             "description": "결제 취소 내역."
           },
           "cashReceipt": {
-            "$ref": "#/components/schemas/ITossCashReceipt.ISummary.Nullable",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCashReceipt.ISummary"
+              }
+            ],
             "title": "현금 영수증 정보",
             "description": "현금 영수증 정보."
           }
         },
-        "nullable": false,
         "required": [
           "secret",
           "virtualAccount",
@@ -1837,10 +2000,13 @@
             "description": "계좌 번호."
           },
           "accountType": {
-            "type": "string",
-            "enum": [
-              "고정",
-              "일반"
+            "oneOf": [
+              {
+                "const": "일반"
+              },
+              {
+                "const": "고정"
+              }
             ],
             "title": "가상 계좌 타입",
             "description": "가상 계좌 타입."
@@ -1867,28 +2033,39 @@
             "description": "가상 계좌 만료 여부."
           },
           "settlementStatus": {
-            "type": "string",
-            "enum": [
-              "COMPLETED",
-              "INCOMPLETED"
+            "oneOf": [
+              {
+                "const": "COMPLETED"
+              },
+              {
+                "const": "INCOMPLETED"
+              }
             ],
             "title": "정산 상태",
             "description": "정산 상태."
           },
           "refundStatus": {
-            "type": "string",
-            "enum": [
-              "COMPLETED",
-              "FAILED",
-              "NONE",
-              "PARTIAL_FAILED",
-              "PENDING"
+            "oneOf": [
+              {
+                "const": "COMPLETED"
+              },
+              {
+                "const": "NONE"
+              },
+              {
+                "const": "FAILED"
+              },
+              {
+                "const": "PENDING"
+              },
+              {
+                "const": "PARTIAL_FAILED"
+              }
             ],
             "title": "환불 처리 상태",
             "description": "환불 처리 상태.\n\n - NONE: 해당 없음\n - FAILED: 환불 실패\n - PENDING: 환불 처리중\n - PARTIAL_FAILED: 부분 환불 실패\n - COMPLETED: 환불 완료"
           }
         },
-        "nullable": false,
         "required": [
           "accountNumber",
           "accountType",
@@ -1905,10 +2082,13 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "enum": [
-              "소득공제",
-              "지출증빙"
+            "oneOf": [
+              {
+                "const": "소득공제"
+              },
+              {
+                "const": "지출증빙"
+              }
             ],
             "title": "현금 영수증의 종류",
             "description": "현금 영수증의 종류."
@@ -1949,7 +2129,6 @@
             "description": "사업자 등록번호."
           }
         },
-        "nullable": false,
         "required": [
           "type",
           "paymentKey",
@@ -1995,9 +2174,15 @@
             "description": "현금 영수증 승인 일시."
           },
           "canceledAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
             "title": "현금 영수증 취소 일시",
             "description": "현금 영수증 취소 일시."
           },
@@ -2007,7 +2192,6 @@
             "description": "영수증 URL."
           }
         },
-        "nullable": false,
         "required": [
           "receiptKey",
           "type",
@@ -2029,17 +2213,13 @@
             "description": "취소 금액.\n\n미 입력시 현금 영수증에 기재된 {@link ITossCashReceipt.amount 총액}이 취소됨."
           }
         },
-        "nullable": false,
         "description": "현금 영수증 취소 입력 정보."
       },
       "ITossPaymentWebhook": {
         "type": "object",
         "properties": {
           "eventType": {
-            "type": "string",
-            "enum": [
-              "PAYMENT_STATUS_CHANGED"
-            ],
+            "const": "PAYMENT_STATUS_CHANGED",
             "title": "이벤트 타입",
             "description": "이벤트 타입."
           },
@@ -2049,7 +2229,6 @@
             "description": "이벤트 데이터."
           }
         },
-        "nullable": false,
         "required": [
           "eventType",
           "data"
@@ -2070,18 +2249,24 @@
             "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "CANCELED",
-              "DONE",
-              "PARTIAL_CANCELED",
-              "WAITING_FOR_DEPOSIT"
+            "oneOf": [
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              }
             ],
             "title": "결제 상태",
             "description": "결제 상태.\n\n - DONE: 결제 완료\n - CANCELED: 결제가 취소됨\n - PARTIAL_CANCELED: 결제가 부분 취소됨\n - WAITING_FOR_DEPOSIT: 입금 대기 중"
           }
         },
-        "nullable": false,
         "required": [
           "paymentKey",
           "orderId",
@@ -2093,10 +2278,7 @@
         "type": "object",
         "properties": {
           "method": {
-            "type": "string",
-            "enum": [
-              "card"
-            ],
+            "const": "card",
             "title": "결제 수단이 신용 카드임을 의미",
             "description": "결제 수단이 신용 카드임을 의미."
           },
@@ -2179,7 +2361,6 @@
                 "description": "3DS 인증 결과에 대한 코드 값."
               }
             },
-            "nullable": false,
             "required": [
               "cavv",
               "xid",
@@ -2194,7 +2375,6 @@
             "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써,\n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트\n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는\n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우,\n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지\n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
           }
         },
-        "nullable": false,
         "required": [
           "method",
           "cardNumber",
@@ -2219,7 +2399,6 @@
             "description": "결제 총액."
           }
         },
-        "nullable": false,
         "required": [
           "orderId",
           "amount"
@@ -2264,7 +2443,6 @@
                 "description": "예금주."
               }
             },
-            "nullable": false,
             "required": [
               "bank",
               "accountNumber",
@@ -2289,7 +2467,6 @@
             "description": "결제 취소 후 환불 가능 잔액."
           }
         },
-        "nullable": false,
         "required": [
           "paymentKey",
           "cancelReason"
@@ -2300,10 +2477,7 @@
         "type": "object",
         "properties": {
           "method": {
-            "type": "string",
-            "enum": [
-              "virtual-account"
-            ],
+            "const": "virtual-account",
             "title": "결제 수단이 가상 계좌임을 의미",
             "description": "결제 수단이 가상 계좌임을 의미."
           },
@@ -2338,7 +2512,6 @@
             "description": "결제 승인 여부.\n\n오직 가짜 페이먼츠 서버 `fake-toss-payments-server` 에서만 사용되는 값으로써,\n결제 승인을 고의로 지연시키거나 할 때 사용된다. 이 값을 `false` 로 하면, 프론트\n어플리케이션이 토스 페이먼츠가 제공해주는 결제 창을 사용하여 결제를 진행하는\n상황을 시뮬레이션할 수 있다.\n\n본디 토스 페이먼츠 서버는 프론트 어플리케이션에서 백엔드 서버를 거치지 않고,\n토스 페이먼츠가 제공해주는 결제 창을 이용하여 직접 결제를 요청하는 경우,\n백엔드에서 이를 별도 {@link functional.payments.approve 승인} 처리해주기 전까지\n정식 결제로 인청치 아니한다.\n\n반면 백엔드 서버에서 토스 페이먼츠 서버의 API 를 호출하는 경우, 토스 페이먼츠는\n이를 그 즉시로 승인해주기, `fake-toss-payments-server` 에서 별도의 승인 처리가\n필요한 상황을 시뮬레이션하기 위해서는 이러한 속성이 필요한 것."
           }
         },
-        "nullable": false,
         "required": [
           "method",
           "orderId",
@@ -2357,5 +2530,6 @@
         "in": "header"
       }
     }
-  }
+  },
+  "tags": []
 }
