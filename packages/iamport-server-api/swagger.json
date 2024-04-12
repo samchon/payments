@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "servers": [
     {
       "url": "http://localhost:10851",
@@ -13,7 +13,7 @@
   "info": {
     "title": "Iamport API",
     "description": "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "7.0.0",
+    "version": "8.0.0",
     "license": {
       "name": "MIT"
     }
@@ -720,7 +720,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -750,24 +749,54 @@
             "type": "string"
           },
           "customer_name": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_tel": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_email": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_addr": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_postcode": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "inserted": {
             "type": "number"
@@ -781,7 +810,6 @@
             "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함."
           }
         },
-        "nullable": false,
         "required": [
           "pg_provider",
           "pg_id",
@@ -855,7 +883,6 @@
             "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함."
           }
         },
-        "nullable": false,
         "required": [
           "card_number",
           "expiry",
@@ -934,12 +961,19 @@
             "description": "주문 이름."
           },
           "currency": {
-            "type": "string",
-            "enum": [
-              "EUR",
-              "JPY",
-              "KRW",
-              "USD"
+            "oneOf": [
+              {
+                "const": "KRW"
+              },
+              {
+                "const": "USD"
+              },
+              {
+                "const": "EUR"
+              },
+              {
+                "const": "JPY"
+              }
             ],
             "title": "통화 정보",
             "description": "통화 정보."
@@ -992,7 +1026,6 @@
             "description": "결제 성공시 통지될 Notification, 웹훅 URL."
           }
         },
-        "nullable": false,
         "required": [
           "card_number",
           "expiry",
@@ -1022,7 +1055,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -1060,10 +1092,13 @@
             "description": "카드사 승인번호."
           },
           "pay_method": {
-            "type": "string",
-            "enum": [
-              "card",
-              "samsung"
+            "oneOf": [
+              {
+                "const": "card"
+              },
+              {
+                "const": "samsung"
+              }
             ]
           },
           "imp_uid": {
@@ -1077,8 +1112,14 @@
             "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
           },
           "name": {
-            "type": "string",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
             "title": "주문명, 누락 가능",
             "description": "주문명, 누락 가능."
           },
@@ -1115,8 +1156,14 @@
             "type": "string"
           },
           "emb_pg_provider": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "pg_id": {
             "type": "string"
@@ -1128,41 +1175,95 @@
             "type": "boolean"
           },
           "buyer_name": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_email": {
-            "type": "string",
-            "format": "email",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
           },
           "buyer_tel": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_addr": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_postcode": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid_usage": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "custom_data": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "user_agent": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "status": {
             "$ref": "#/components/schemas/IIamportPayment.Status",
@@ -1190,12 +1291,24 @@
             "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
           },
           "fail_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_history": {
             "type": "array",
@@ -1204,7 +1317,6 @@
             }
           }
         },
-        "nullable": false,
         "required": [
           "card_code",
           "card_name",
@@ -1247,21 +1359,35 @@
         "description": "카드 결제 정보."
       },
       "IIamportPayment.Currency": {
-        "type": "string",
-        "enum": [
-          "KRW",
-          "USD",
-          "EUR",
-          "JPY"
+        "oneOf": [
+          {
+            "const": "KRW"
+          },
+          {
+            "const": "USD"
+          },
+          {
+            "const": "EUR"
+          },
+          {
+            "const": "JPY"
+          }
         ]
       },
       "IIamportPayment.Status": {
-        "type": "string",
-        "enum": [
-          "paid",
-          "ready",
-          "failed",
-          "cancelled"
+        "oneOf": [
+          {
+            "const": "paid"
+          },
+          {
+            "const": "ready"
+          },
+          {
+            "const": "failed"
+          },
+          {
+            "const": "cancelled"
+          }
         ]
       },
       "IIamportPaymentCancel": {
@@ -1287,7 +1413,6 @@
             "format": "uri"
           }
         },
-        "nullable": false,
         "required": [
           "pg_id",
           "pg_tid",
@@ -1317,12 +1442,19 @@
             "description": "주문 이름."
           },
           "currency": {
-            "type": "string",
-            "enum": [
-              "EUR",
-              "JPY",
-              "KRW",
-              "USD"
+            "oneOf": [
+              {
+                "const": "KRW"
+              },
+              {
+                "const": "USD"
+              },
+              {
+                "const": "EUR"
+              },
+              {
+                "const": "JPY"
+              }
             ],
             "title": "통화 정보",
             "description": "통화 정보."
@@ -1380,7 +1512,6 @@
             "description": "고객 식별자 키.\n\n아임포트가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키.\n\n다만 고객이라기보다 실제로는 카드의 식별자 키로 써야함."
           }
         },
-        "nullable": false,
         "required": [
           "merchant_uid",
           "amount",
@@ -1408,7 +1539,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -1425,8 +1555,14 @@
             "description": "아임포트가 발급해 준 식별자 번호."
           },
           "merchant_uid": {
-            "type": "string",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
             "title": "서비스로부터의 식별자 키",
             "description": "서비스로부터의 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
           },
@@ -1462,11 +1598,16 @@
             "description": "본인인증 대상자 핸드폰 번호."
           },
           "carrier": {
-            "type": "string",
-            "enum": [
-              "KT",
-              "LGT",
-              "SKT"
+            "oneOf": [
+              {
+                "const": "SKT"
+              },
+              {
+                "const": "KT"
+              },
+              {
+                "const": "LGT"
+              }
             ],
             "title": "본인인증 대상자 통신사 코드",
             "description": "본인인증 대상자 통신사 코드."
@@ -1508,7 +1649,6 @@
             "description": "(테스트 전용) OTP 코드.\n\n오직 `fake-iamport-server` 에서만 쓰이는 속성으로써, 본인인증을 시뮬레이션할 때,\n어떠한 OTP 코드가 발급되었는 지를 확인하기 위하여 사용된다. 이를 이용하여\n{@link functional.certifications.otp.confirm } 함수를 호출하면, 본인인증을 완료할\n수 있다."
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid",
           "merchant_uid",
@@ -1554,11 +1694,16 @@
             "description": "주민등록 뒷부분 첫 자리."
           },
           "carrier": {
-            "type": "string",
-            "enum": [
-              "KT",
-              "LGT",
-              "SKT"
+            "oneOf": [
+              {
+                "const": "SKT"
+              },
+              {
+                "const": "KT"
+              },
+              {
+                "const": "LGT"
+              }
             ],
             "title": "본인인증 대상자 통신사 코드",
             "description": "본인인증 대상자 통신사 코드."
@@ -1584,7 +1729,6 @@
             "description": "PG 사 구분자.\n\n다날 상점아이디를 2개 이상 동시에 사용하시려는 경우에 설정하면 된다.\n\n**danal.{상점아이디}** 형태로 지정."
           }
         },
-        "nullable": false,
         "required": [
           "name",
           "phone",
@@ -1613,7 +1757,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -1630,7 +1773,6 @@
             "description": "본인인증정보의 식별자 키."
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid"
         ],
@@ -1645,7 +1787,6 @@
             "description": "SMS 로 전송된 본인인증 번호."
           }
         },
-        "nullable": false,
         "required": [
           "otp"
         ],
@@ -1665,18 +1806,24 @@
             "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "cancelled",
-              "failed",
-              "paid",
-              "ready"
+            "oneOf": [
+              {
+                "const": "paid"
+              },
+              {
+                "const": "ready"
+              },
+              {
+                "const": "failed"
+              },
+              {
+                "const": "cancelled"
+              }
             ],
             "title": "현재 상태",
             "description": "현재 상태."
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid",
           "merchant_uid",
@@ -1693,7 +1840,6 @@
             "description": "페이팔의 경우, 이 값을 `true` 로 할 것."
           }
         },
-        "nullable": false,
         "description": "결제 수단이 페이팔인 경우, 페이팔의 구매자 보호정책에 의해 결제 승인 시점에\nPending 상태를 만든 후, 내부 심사등을 통해 최종 결제 완료라고 변경함.\n\n`iamport` 의 기술적 이슈로 해당 상태를 status: failed 로 기록함. 추후\n페이팔에서 최종결제완료로 변경된 경우, `iamport` 에서 `paid` 로 변경 후,\n해당건에 대한 웹훅 발송. `iamport` 를 사용하는 고객사에서는, failed 로 이미\n처리된 결제건에 대한 paid 상태의 웹훅을 받는 문제점이 생김.\n\n이에, `iamport` 에서 제공하는 `/payment/{imp_uid}` 에 query-string 으로\n`extension=true` 옵션을 추가해야 함"
       },
       "IIamportResponseIIamportPayment": {
@@ -1715,7 +1861,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -1754,10 +1899,7 @@
             "description": "은행 이름."
           },
           "pay_method": {
-            "type": "string",
-            "enum": [
-              "trans"
-            ]
+            "const": "trans"
           },
           "imp_uid": {
             "type": "string",
@@ -1770,8 +1912,14 @@
             "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
           },
           "name": {
-            "type": "string",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
             "title": "주문명, 누락 가능",
             "description": "주문명, 누락 가능."
           },
@@ -1808,8 +1956,14 @@
             "type": "string"
           },
           "emb_pg_provider": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "pg_id": {
             "type": "string"
@@ -1821,41 +1975,95 @@
             "type": "boolean"
           },
           "buyer_name": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_email": {
-            "type": "string",
-            "format": "email",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
           },
           "buyer_tel": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_addr": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_postcode": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid_usage": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "custom_data": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "user_agent": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "status": {
             "$ref": "#/components/schemas/IIamportPayment.Status",
@@ -1883,12 +2091,24 @@
             "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
           },
           "fail_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_history": {
             "type": "array",
@@ -1897,7 +2117,6 @@
             }
           }
         },
-        "nullable": false,
         "required": [
           "bank_code",
           "bank_name",
@@ -1968,10 +2187,7 @@
             "description": "가상 계좌 개설 일시."
           },
           "pay_method": {
-            "type": "string",
-            "enum": [
-              "vbank"
-            ]
+            "const": "vbank"
           },
           "imp_uid": {
             "type": "string",
@@ -1984,8 +2200,14 @@
             "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
           },
           "name": {
-            "type": "string",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
             "title": "주문명, 누락 가능",
             "description": "주문명, 누락 가능."
           },
@@ -2022,8 +2244,14 @@
             "type": "string"
           },
           "emb_pg_provider": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "pg_id": {
             "type": "string"
@@ -2035,41 +2263,95 @@
             "type": "boolean"
           },
           "buyer_name": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_email": {
-            "type": "string",
-            "format": "email",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
           },
           "buyer_tel": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_addr": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_postcode": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid_usage": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "custom_data": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "user_agent": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "status": {
             "$ref": "#/components/schemas/IIamportPayment.Status",
@@ -2097,12 +2379,24 @@
             "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
           },
           "fail_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_history": {
             "type": "array",
@@ -2111,7 +2405,6 @@
             }
           }
         },
-        "nullable": false,
         "required": [
           "vbank_code",
           "vbank_name",
@@ -2158,20 +2451,43 @@
         "type": "object",
         "properties": {
           "pay_method": {
-            "type": "string",
-            "enum": [
-              "booknlife",
-              "cultureland",
-              "happymoney",
-              "kakaopay",
-              "kpay",
-              "lpay",
-              "payco",
-              "phone",
-              "point",
-              "smartculture",
-              "ssgpay",
-              "tosspay"
+            "oneOf": [
+              {
+                "const": "phone"
+              },
+              {
+                "const": "kpay"
+              },
+              {
+                "const": "kakaopay"
+              },
+              {
+                "const": "payco"
+              },
+              {
+                "const": "lpay"
+              },
+              {
+                "const": "ssgpay"
+              },
+              {
+                "const": "tosspay"
+              },
+              {
+                "const": "cultureland"
+              },
+              {
+                "const": "smartculture"
+              },
+              {
+                "const": "happymoney"
+              },
+              {
+                "const": "booknlife"
+              },
+              {
+                "const": "point"
+              }
             ]
           },
           "imp_uid": {
@@ -2185,8 +2501,14 @@
             "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
           },
           "name": {
-            "type": "string",
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
             "title": "주문명, 누락 가능",
             "description": "주문명, 누락 가능."
           },
@@ -2223,8 +2545,14 @@
             "type": "string"
           },
           "emb_pg_provider": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "pg_id": {
             "type": "string"
@@ -2236,41 +2564,95 @@
             "type": "boolean"
           },
           "buyer_name": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_email": {
-            "type": "string",
-            "format": "email",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
           },
           "buyer_tel": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_addr": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "buyer_postcode": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer_uid_usage": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "custom_data": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "user_agent": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "status": {
             "$ref": "#/components/schemas/IIamportPayment.Status",
@@ -2298,12 +2680,24 @@
             "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
           },
           "fail_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_reason": {
-            "type": "string",
-            "nullable": true
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "cancel_history": {
             "type": "array",
@@ -2312,7 +2706,6 @@
             }
           }
         },
-        "nullable": false,
         "required": [
           "pay_method",
           "imp_uid",
@@ -2368,9 +2761,15 @@
             "description": "취소 금액, 부분 취소도 가능하다.\n\n누락시 전액 취소."
           },
           "checksum": {
-            "type": "number",
-            "minimum": 0,
-            "nullable": true,
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "number",
+                "minimum": 0
+              }
+            ],
             "title": "취소 트랜잭션 수행 전, 현재 시점의 취소 가능한 잔액",
             "description": "취소 트랜잭션 수행 전, 현재 시점의 취소 가능한 잔액.\n\nAPI요청자가 기록하고 있는 취소가능 잔액과 아임포트가 기록하고 있는 취소가능 잔액이\n일치하는지 사전에 검증하고, 검증에 실패하면 트랜잭션을 수행하지 않는다.\n\n`null` 인 경우에는 검증 프로세스를 생략."
           },
@@ -2381,7 +2780,6 @@
           },
           "tax_free": {
             "type": "number",
-            "default": 0,
             "title": "취소요청금액 중 면세금액",
             "description": "취소요청금액 중 면세금액."
           },
@@ -2405,7 +2803,6 @@
             "description": "환불계좌 예금주 연락처"
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid",
           "merchant_uid",
@@ -2433,7 +2830,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -2491,7 +2887,6 @@
             "description": "현금영수증 취소 시간.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid",
           "receipt_uid",
@@ -2506,10 +2901,13 @@
         "description": "현금 영수증 정보."
       },
       "IIamportReceipt.Type": {
-        "type": "string",
-        "enum": [
-          "person",
-          "company"
+        "oneOf": [
+          {
+            "const": "person"
+          },
+          {
+            "const": "company"
+          }
         ],
         "description": "현금영수증 발행 타입 (대상)."
       },
@@ -2527,21 +2925,31 @@
             "description": "현금영수증 발생대상 식별정보.\n\n  - 국세청현금영수증카드\n  - 휴대폰번호\n  - 주민등록번호\n  - 사업자등록번호"
           },
           "identifier_type": {
-            "type": "string",
-            "enum": [
-              "business",
-              "person",
-              "phone",
-              "taxcard"
+            "oneOf": [
+              {
+                "const": "phone"
+              },
+              {
+                "const": "person"
+              },
+              {
+                "const": "business"
+              },
+              {
+                "const": "taxcard"
+              }
             ],
             "title": "현금영수증 발행대상 유형",
             "description": "현금영수증 발행대상 유형.\n\n - person: 주민등록번호\n - business: 사업자등록번호\n - phone: 휴대폰번호\n - taxcard: 국세청현금영수증카드\n\n일부 PG 사의 경우 이 항목이 없어 된다는데, 어지간하면 그냥 쓰기 바람."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "company",
-              "person"
+            "oneOf": [
+              {
+                "const": "person"
+              },
+              {
+                "const": "company"
+              }
             ],
             "title": "현금영수증 발행 타입 (대상)",
             "description": "현금영수증 발행 타입 (대상).\n\n누락시 person 이 사용됨."
@@ -2567,7 +2975,6 @@
             "description": "면세 금액."
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid",
           "identifier"
@@ -2588,7 +2995,6 @@
             "description": "Secret 키."
           }
         },
-        "nullable": false,
         "required": [
           "imp_key",
           "imp_secret"
@@ -2614,7 +3020,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -2641,7 +3046,6 @@
             "description": "유저 인증 토큰."
           }
         },
-        "nullable": false,
         "required": [
           "now",
           "expired_at",
@@ -2714,7 +3118,6 @@
             "description": "[이니시스 전용] 가맹점 콘솔에서 확인한 API 값."
           }
         },
-        "nullable": false,
         "required": [
           "merchant_uid",
           "amount",
@@ -2743,7 +3146,6 @@
             "description": "응답 데이터, 사실상 본문."
           }
         },
-        "nullable": false,
         "required": [
           "code",
           "message",
@@ -2770,7 +3172,6 @@
             "description": "수정할 가상계좌 입금 기한."
           }
         },
-        "nullable": false,
         "required": [
           "imp_uid"
         ],
@@ -2784,5 +3185,6 @@
         "in": "header"
       }
     }
-  }
+  },
+  "tags": []
 }

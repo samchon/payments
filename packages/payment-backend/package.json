@@ -1,6 +1,6 @@
 {
   "name": "@samchon/payment-backend",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Payment Backend Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -37,8 +37,8 @@
   },
   "homepage": "https://github.com/samchon/payments",
   "devDependencies": {
-    "@nestia/fetcher": "^2.6.2",
-    "@nestia/sdk": "^2.6.2",
+    "@nestia/fetcher": "^3.0.1",
+    "@nestia/sdk": "^3.0.1",
     "@types/atob": "^2.1.2",
     "@types/bcryptjs": "^2.4.4",
     "@types/btoa": "^1.2.3",
@@ -53,12 +53,12 @@
     "cli": "^1.0.1",
     "copy-webpack-plugin": "^11.0.0",
     "copyfiles": "^2.4.1",
-    "iamport-server-api": "^7.0.0",
+    "iamport-server-api": "^8.0.0",
     "nestia": "^5.0.3",
     "pm2": "^4.5.6",
     "rimraf": "^3.0.2",
     "sloc": "^0.2.1",
-    "toss-payments-server-api": "^7.0.0",
+    "toss-payments-server-api": "^8.0.0",
     "ts-loader": "^9.5.0",
     "ts-node": "^10.9.1",
     "ts-patch": "^3.1.1",
@@ -69,7 +69,7 @@
     "write-file-webpack-plugin": "^4.5.1"
   },
   "dependencies": {
-    "@nestia/core": "^2.6.2",
+    "@nestia/core": "^3.0.1",
     "@nestia/e2e": "^0.4.1",
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^10.2.8",
@@ -81,8 +81,8 @@
     "commander": "10.0.0",
     "dotenv": "^16.3.1",
     "dotenv-expand": "^10.0.0",
-    "fake-iamport-server": "^7.0.0",
-    "fake-toss-payments-server": "^7.0.0",
+    "fake-iamport-server": "^8.0.0",
+    "fake-toss-payments-server": "^8.0.0",
     "fastify": "^4.24.3",
     "git-last-commit": "^1.0.0",
     "inquirer": "^8.2.5",
@@ -92,7 +92,7 @@
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^3.0.0",
-    "typia": "^5.5.7",
+    "typia": "^6.0.1",
     "uuid": "^9.0.1"
   },
   "files": [
