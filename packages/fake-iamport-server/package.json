@@ -59,7 +59,7 @@
   "dependencies": {
     "@nestia/core": "^2.6.2",
     "@nestia/e2e": "^0.4.1",
-    "@nestia/fetcher": "^2.6.2",
+    "@nestia/fetcher": "^3.0.1",
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^10.2.8",
     "@nestjs/platform-fastify": "^10.2.8",
