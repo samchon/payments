@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/samchon/payments",
   "devDependencies": {
-    "@nestia/fetcher": "^2.6.2",
+    "@nestia/fetcher": "^3.0.1",
     "@nestia/sdk": "^2.6.2",
     "@types/atob": "^2.1.2",
     "@types/bcryptjs": "^2.4.4",
