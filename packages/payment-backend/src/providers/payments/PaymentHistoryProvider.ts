@@ -43,10 +43,12 @@ export namespace PaymentHistoryProvider {
       refund: history.refund !== 0 ? history.refund : null,
       data: JSON.parse(decrypt(history.data)),
       webhook_url: history.webhook_url ?? null,
-      created_at: history.created_at.toString(),
-      paid_at: history.paid_at !== null ? history.paid_at.toString() : null,
+      created_at: history.created_at.toISOString(),
+      paid_at: history.paid_at !== null ? history.paid_at.toISOString() : null,
       cancelled_at:
-        history.cancelled_at !== null ? history.cancelled_at.toString() : null,
+        history.cancelled_at !== null
+          ? history.cancelled_at.toISOString()
+          : null,
     });
 
     export const select = () =>

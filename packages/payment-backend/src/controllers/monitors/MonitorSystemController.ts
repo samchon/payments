@@ -13,7 +13,7 @@ export class MonitorSystemController {
       arguments: process.argv,
       package: await SystemProvider.package(),
       commit: await SystemProvider.commit(),
-      created_at: SystemProvider.created_at.toString(),
+      created_at: SystemProvider.created_at.toISOString(),
     };
   }
 }

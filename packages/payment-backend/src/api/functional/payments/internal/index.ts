@@ -31,6 +31,7 @@ export async function webhook(
     },
     {
       ...webhook.METADATA,
+      template: webhook.METADATA.path,
       path: webhook.path(),
     },
     input,
