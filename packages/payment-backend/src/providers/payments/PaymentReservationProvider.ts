@@ -34,7 +34,7 @@ export namespace PaymentReservationProvider {
       },
       title: reservation.title,
       data: JSON.parse(decrypt(reservation.data)),
-      created_at: reservation.created_at.toString(),
+      created_at: reservation.created_at.toISOString(),
     });
 
     export const select = () =>

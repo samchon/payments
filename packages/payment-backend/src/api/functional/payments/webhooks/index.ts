@@ -31,6 +31,7 @@ export async function iamport(
     },
     {
       ...iamport.METADATA,
+      template: iamport.METADATA.path,
       path: iamport.path(),
     },
     input,
@@ -78,6 +79,7 @@ export async function toss(
     },
     {
       ...toss.METADATA,
+      template: toss.METADATA.path,
       path: toss.path(),
     },
     input,

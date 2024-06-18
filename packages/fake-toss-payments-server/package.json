@@ -1,6 +1,6 @@
 {
   "name": "fake-toss-payments-server",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Fake toss-payments server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "devDependencies": {
-    "@nestia/e2e": "^0.4.1",
-    "@nestia/sdk": "^3.0.1",
+    "@nestia/e2e": "^0.5.4",
+    "@nestia/sdk": "^3.2.2",
     "@types/atob": "^2.1.2",
     "@types/btoa": "^1.2.3",
     "@types/cli": "^0.11.19",
@@ -59,8 +59,8 @@
     "typescript-transform-paths": "^3.4.6"
   },
   "dependencies": {
-    "@nestia/core": "^3.0.1",
-    "@nestia/fetcher": "^3.0.1",
+    "@nestia/core": "^3.2.2",
+    "@nestia/fetcher": "^3.2.2",
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^10.2.8",
     "@nestjs/platform-fastify": "^10.2.8",
@@ -70,7 +70,7 @@
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^3.0.0",
-    "typia": "^6.0.1",
+    "typia": "^6.1.0",
     "uuid": "^9.0.0"
   },
   "keywords": [

@@ -17,6 +17,7 @@ import type { ISystem } from "../../../structures/monitors/ISystem";
 export async function get(connection: IConnection): Promise<get.Output> {
   return EncryptedFetcher.fetch(connection, {
     ...get.METADATA,
+    template: get.METADATA.path,
     path: get.path(),
   });
 }

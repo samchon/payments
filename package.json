@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@samchon/payments",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Collection of Payment system of Samchon",
   "scripts": {
     "package:latest": "node deploy latest",

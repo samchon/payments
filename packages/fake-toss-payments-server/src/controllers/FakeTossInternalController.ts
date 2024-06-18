@@ -59,7 +59,7 @@ export class FakeTossInternalController {
       throw new UnprocessableEntityException("Invalid target.");
 
     payment.virtualAccount.settlementStatus = "COMPLETED";
-    payment.approvedAt = new Date().toString();
+    payment.approvedAt = new Date().toISOString();
     payment.status = "DONE";
 
     FakeTossWebhookProvider.webhook({

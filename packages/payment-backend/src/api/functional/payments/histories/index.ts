@@ -37,6 +37,7 @@ export async function get(
     },
     {
       ...get.METADATA,
+      template: get.METADATA.path,
       path: get.path(),
     },
     input,
@@ -90,6 +91,7 @@ export async function at(
     },
     {
       ...at.METADATA,
+      template: at.METADATA.path,
       path: at.path(id),
     },
     input,
@@ -142,6 +144,7 @@ export async function create(
     },
     {
       ...create.METADATA,
+      template: create.METADATA.path,
       path: create.path(),
     },
     input,
@@ -192,6 +195,7 @@ export async function cancel(
     },
     {
       ...cancel.METADATA,
+      template: cancel.METADATA.path,
       path: cancel.path(),
     },
     input,
