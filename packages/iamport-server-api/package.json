@@ -1,6 +1,6 @@
 {
   "name": "iamport-server-api",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "API for Iamport Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -30,11 +30,11 @@
   "devDependencies": {
     "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
-    "ts-patch": "^3.1.1",
-    "typescript": "^5.3.2"
+    "ts-patch": "^3.2.1",
+    "typescript": "^5.5.2"
   },
   "dependencies": {
-    "@nestia/fetcher": "^3.2.2",
-    "typia": "^6.1.0"
+    "@nestia/fetcher": "^3.3.2",
+    "typia": "^6.3.1"
   }
 }

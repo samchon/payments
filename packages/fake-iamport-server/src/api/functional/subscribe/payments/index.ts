@@ -15,13 +15,13 @@ import type { IIamportSubscription } from "../../../structures/IIamportSubscript
  * 카드로 결제하기, 더불어 간편 결제용으로 등록 가능.
  *
  * `subscribe.payments.onetime` 은 카드를 매개로 한 결제를 하고자 할 때 호출하는 API
- * 함수이다. 더하여 입력 값에 {@link IIamportSubscription.IOnetime.customer_uid } 를
+ * 함수이다. 더하여 입력 값에 {@link IIamportSubscription.IOnetime.customer_uid} 를
  * 기입하는 경우, 결제에 사용한 카드를 그대로 간편 결제용 카드
- * {@link IIamportSubscription } 로 등록해버린다.
+ * {@link IIamportSubscription} 로 등록해버린다.
  *
  * 다만, 정히 간편 카드 등록과 결제를 동시에 하고 싶다면,
- * `subscribe.payments.onetime` 에 {@link IIamportSubscription.IOnetime.customer_uid }
- * 를 더하기보다, {@link subscribe.customers.create } 와 {@link subscribe.payments.again }
+ * `subscribe.payments.onetime` 에 {@link IIamportSubscription.IOnetime.customer_uid}
+ * 를 더하기보다, {@link subscribe.customers.create} 와 {@link subscribe.payments.again}
  * 을 각각 호출하는 것을 권장한다. 그것이 예외적인 상황에 보다 안전하게 대처할 수 있기
  * 때문이다.
  *
@@ -85,7 +85,7 @@ export namespace onetime {
  *
  * `subscribe.payments.again` 은 고객이 간편 결제에 등록한 카드로 결제를 진행하고자 할 때
  * 호출하는 API 함수이다. 이는 간편하고 불편하고를 떠나, 본질적으로 카드 결제의 일환이기에,
- * 리턴값은 일반적인 카드 결제 때와 동일한 {@link IIamportCardPayment } 이다.
+ * 리턴값은 일반적인 카드 결제 때와 동일한 {@link IIamportCardPayment} 이다.
  *
  * 그리고 `subscribe.payments.again` 은 결제 수단 중 유일하게, 클라이언트 어플리케이션이
  * 아임포트가 제공하는 결체 창을 사용할 수 없어, 오직 귀하의 백엔드 서버가 아임포트의 API

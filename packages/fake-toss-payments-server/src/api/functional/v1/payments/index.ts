@@ -22,7 +22,7 @@ import type { ITossPaymentCancel } from "../../../structures/ITossPaymentCancel"
  *
  * 참고로 토스 페이먼츠는 다른 결제 PG 사들과 다르게, 클라이언트 어플리케이션에서 토스
  * 페이먼츠의 결제 창을 이용하여 진행한 결제가 바로 확정되는 것은 아니다. 귀사의 백엔드
- * 서버가 현재의 `payments.at` 을 통하여 해당 결제 정보를 확인하고, {@link approve } 를
+ * 서버가 현재의 `payments.at` 을 통하여 해당 결제 정보를 확인하고, {@link approve} 를
  * 호출하여 직접 승인하기 전까지, 해당 결제는 확정되지 않으니, 이 점에 유의하기 바란다.
  *
  * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
@@ -73,13 +73,13 @@ export namespace at {
  *
  * 그리고 귀하의 백엔드 서버가 `payments.key-in` 을 직접 호출하는 경우, 토스 페이먼츠
  * 서버는 이를 완전히 승인된 결제로 보고 바로 확정한다. 때문에 `payments.key-in` 을
- * 직접 호출하는 경우, 토스 페이먼츠의 결제 창을 이용하여 별도의 {@link approve } 가
+ * 직접 호출하는 경우, 토스 페이먼츠의 결제 창을 이용하여 별도의 {@link approve} 가
  * 필요한 때 대비, 훨씬 더 세심한 주의가 요구된다.
  *
  * 더하여 만약 귀하의 백엔드 서버가 `fake-toss-payments-server` 를 이용하여 고객의
- * 카드 결제를 시뮬레이션하는 경우, {@link ITossCardPayment.ICreate.__approved } 값을
+ * 카드 결제를 시뮬레이션하는 경우, {@link ITossCardPayment.ICreate.__approved} 값을
  * `false` 로 하여 카드 결제의 확정을 고의로 회피할 수 있다. 이를 통하여 토스
- * 페이먼츠의 결제 창을 이용한 카드 결제의 경우, 별도의 {@link approve } 가 필요한
+ * 페이먼츠의 결제 창을 이용한 카드 결제의 경우, 별도의 {@link approve} 가 필요한
  * 상황을 시뮬레이션 할 수 있다.
  *
  * @param input 카드 결제 입력 정보
@@ -141,8 +141,8 @@ export namespace key_in {
  * 함수이다.
  *
  * 만일 귀하가 `fake-toss-payments-server` 를 이용하여 결제를 시뮬레이션하는 경우라면,
- * 결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.ICreate.__approved } 내지
- * {@link ITossVirtualAccountPayment.ICreate.__approved } 를 `false` 로 함으로써, 별도
+ * 결제 관련 API 를 호출함에 있어 {@link ITossCardPayment.ICreate.__approved} 내지
+ * {@link ITossVirtualAccountPayment.ICreate.__approved} 를 `false` 로 함으로써, 별도
  * 승인이 필요한 이러한 상황을 시뮬레이션 할 수 있다.
  *
  * @param paymentKey 대상 결제의 {@link ITossPayment.paymentKey}
@@ -203,7 +203,7 @@ export namespace approve {
  *
  * `payments.cancel` 은 결제를 취소하는 API 이다.
  *
- * 결제 취소 입력 정보 {@link ITossPaymentCancel.ICreate } 에는 취소 사유를 비롯하여,
+ * 결제 취소 입력 정보 {@link ITossPaymentCancel.ICreate} 에는 취소 사유를 비롯하여,
  * 고객에게 환불해 줄 금액과 부가세 및 필요시 환불 계좌 정보 등을 입력하게 되어있다.
  *
  * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}

@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "8.0.1",
+    "version": "8.0.2",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -716,7 +716,7 @@
           "id",
           "password"
         ],
-        "description": "접근자 정보.\n\n`IPaymentSource.IAccessor` 는 {@link IPaymentHistory 결제 내역} 내지\n{@link IPaymentReservation 간편 결제 수단 정보}를 조회할 때, 그것의 고유 식별자\nID 가 아닌 원천 레코드 식별자 정보 {@link IPaymentSource } 를 통하여 조회할 때\n사용하는 접근자 정보이다.\n\n다만 `payments-server` 의 모든 개별 레코드는 이를 조회할 시 비밀번호가 필요하기에,\n{@link IPaymentSource } 의 속성들에 비밀번호가 하나 더 추가되었을 뿐이다."
+        "description": "접근자 정보.\n\n`IPaymentSource.IAccessor` 는 {@link IPaymentHistory 결제 내역} 내지\n{@link IPaymentReservation 간편 결제 수단 정보}를 조회할 때, 그것의 고유 식별자\nID 가 아닌 원천 레코드 식별자 정보 {@link IPaymentSource} 를 통하여 조회할 때\n사용하는 접근자 정보이다.\n\n다만 `payments-server` 의 모든 개별 레코드는 이를 조회할 시 비밀번호가 필요하기에,\n{@link IPaymentSource} 의 속성들에 비밀번호가 하나 더 추가되었을 뿐이다."
       },
       "IPaymentHistory": {
         "oneOf": [
@@ -727,7 +727,7 @@
             "$ref": "#/components/schemas/IPaymentHistory.TossType"
           }
         ],
-        "description": "결제 내역.\n\n`IPaymentHistory` 는 결제 내역을 형상화한 자료구조이자 유니언 타입의 인터페이이다.\n서비스 시스템으로부 결제 사건의 귀속 정보 ({@link IPaymentHistory.ICreate.vendor } +\n{@link IPaymentHistory.ICreate.source }) 를 전달받아, 본 Payment 시스템이 PG 사에\n추가 정보를 취득하여 레코드가 완성된다.\n\n그리고 만일 현 결제 건이 가상계좌와 같이 레코드 생성 시점에 지불이 이루어지지 않은\n경우라면, 사후 {@link IPaymentWebhook 웹훅 이벤트}를 통하여 지불 완료 시각을 뜻하는\n{@link paid_at } 가 설정될 수 있다. 그리고 반대로 이미 결제가 완료된 경우라도,\n환불 등의 이유로 인하여 {@link cancelled_at } 이 사후 기재될 수 있다.\n\n참고로 `if condition` 을 통하여 {@link IPaymentHistory.vendor_code } 값을 특정하면,\n파생 타입이 자동으로 다운 캐스팅 된다.\n\n```typescript\nif (history.vendor_code === \"toss.payments\")\n    history.data.paymentKey; // history.data be ITossPayment\n```"
+        "description": "결제 내역.\n\n`IPaymentHistory` 는 결제 내역을 형상화한 자료구조이자 유니언 타입의 인터페이이다.\n서비스 시스템으로부 결제 사건의 귀속 정보 ({@link IPaymentHistory.ICreate.vendor} +\n{@link IPaymentHistory.ICreate.source}) 를 전달받아, 본 Payment 시스템이 PG 사에\n추가 정보를 취득하여 레코드가 완성된다.\n\n그리고 만일 현 결제 건이 가상계좌와 같이 레코드 생성 시점에 지불이 이루어지지 않은\n경우라면, 사후 {@link IPaymentWebhook 웹훅 이벤트}를 통하여 지불 완료 시각을 뜻하는\n{@link paid_at} 가 설정될 수 있다. 그리고 반대로 이미 결제가 완료된 경우라도,\n환불 등의 이유로 인하여 {@link cancelled_at} 이 사후 기재될 수 있다.\n\n참고로 `if condition` 을 통하여 {@link IPaymentHistory.vendor_code} 값을 특정하면,\n파생 타입이 자동으로 다운 캐스팅 된다.\n\n```typescript\nif (history.vendor_code === \"toss.payments\")\n    history.data.paymentKey; // history.data be ITossPayment\n```"
       },
       "IPaymentHistory.IamportType": {
         "type": "object",
@@ -741,7 +741,7 @@
           "vendor_code": {
             "const": "iamport",
             "title": "벤더사 식별자 코드",
-            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code }와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data }의 타입을 특정할 수 있다."
+            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data}의 타입을 특정할 수 있다."
           },
           "vendor": {
             "$ref": "#/components/schemas/IPaymentVendoriamport",
@@ -867,7 +867,7 @@
           "uid": {
             "type": "string",
             "title": "벤더사로부터 발급받은 식별자 번호",
-            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id } 를 동일하게 할당해주어야 한다."
+            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id} 를 동일하게 할당해주어야 한다."
           }
         },
         "required": [
@@ -959,8 +959,8 @@
           },
           "imp_uid": {
             "type": "string",
-            "title": "결제 정보 {@link IIamportPayment } 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키."
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
           },
           "merchant_uid": {
             "type": "string",
@@ -1297,8 +1297,8 @@
           },
           "imp_uid": {
             "type": "string",
-            "title": "결제 정보 {@link IIamportPayment } 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키."
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
           },
           "merchant_uid": {
             "type": "string",
@@ -1585,8 +1585,8 @@
           },
           "imp_uid": {
             "type": "string",
-            "title": "결제 정보 {@link IIamportPayment } 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키."
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
           },
           "merchant_uid": {
             "type": "string",
@@ -1886,8 +1886,8 @@
           },
           "imp_uid": {
             "type": "string",
-            "title": "결제 정보 {@link IIamportPayment } 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키."
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
           },
           "merchant_uid": {
             "type": "string",
@@ -2176,7 +2176,7 @@
           "vendor_code": {
             "const": "toss.payments",
             "title": "벤더사 식별자 코드",
-            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code }와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data }의 타입을 특정할 수 있다."
+            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data}의 타입을 특정할 수 있다."
           },
           "vendor": {
             "$ref": "#/components/schemas/IPaymentVendortoss.payments",
@@ -2302,7 +2302,7 @@
           "uid": {
             "type": "string",
             "title": "벤더사로부터 발급받은 식별자 번호",
-            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id } 를 동일하게 할당해주어야 한다."
+            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id} 를 동일하게 할당해주어야 한다."
           }
         },
         "required": [
@@ -2440,7 +2440,7 @@
           "transactionKey": {
             "type": "string",
             "title": "거래 건에 대한 고유한 키 값",
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey } 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
           },
           "orderName": {
             "type": "string",
@@ -2844,7 +2844,7 @@
           "transactionKey": {
             "type": "string",
             "title": "거래 건에 대한 고유한 키 값",
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey } 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
           },
           "orderName": {
             "type": "string",
@@ -3062,7 +3062,7 @@
           "transactionKey": {
             "type": "string",
             "title": "거래 건에 대한 고유한 키 값",
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey } 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
           },
           "orderName": {
             "type": "string",
@@ -3286,7 +3286,7 @@
           "transactionKey": {
             "type": "string",
             "title": "거래 건에 대한 고유한 키 값",
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey } 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
           },
           "orderName": {
             "type": "string",
@@ -3509,7 +3509,7 @@
           "transactionKey": {
             "type": "string",
             "title": "거래 건에 대한 고유한 키 값",
-            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey } 와 달리, 이를 사용할 일은 없더라."
+            "description": "거래 건에 대한 고유한 키 값.\n\n{@link paymentKey} 와 달리, 이를 사용할 일은 없더라."
           },
           "orderName": {
             "type": "string",
@@ -3792,7 +3792,7 @@
           "uid": {
             "type": "string",
             "title": "벤더사로부터 발급받은 식별자 번호",
-            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id } 를 동일하게 할당해주어야 한다."
+            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id} 를 동일하게 할당해주어야 한다."
           }
         },
         "required": [
@@ -3889,7 +3889,7 @@
             "$ref": "#/components/schemas/IPaymentReservation.TossType"
           }
         ],
-        "description": "간편 결제 수단 정보.\n\n`IPaymentReservation` 은 간편 결제 수단을 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 {@link IPaymentReservation.vendor_code } 값을\n특정하면, 파생 타입이 자동으로 다운 캐스팅 된다.\n\n```typescript\nif (history.vendor_code === \"toss.payments\")\n    history.data.billingKey; // history.data be ITossBilling\n```"
+        "description": "간편 결제 수단 정보.\n\n`IPaymentReservation` 은 간편 결제 수단을 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 {@link IPaymentReservation.vendor_code} 값을\n특정하면, 파생 타입이 자동으로 다운 캐스팅 된다.\n\n```typescript\nif (history.vendor_code === \"toss.payments\")\n    history.data.billingKey; // history.data be ITossBilling\n```"
       },
       "IPaymentReservation.IamportType": {
         "type": "object",
@@ -3903,7 +3903,7 @@
           "vendor_code": {
             "const": "iamport",
             "title": "벤더사 코드",
-            "description": "벤더사 코드.\n\n{@link IPaymentVendor.code }와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. If else condition 을 통하여\n{@link IPaymentReservation.data }의 타입을 특정할 수 있다."
+            "description": "벤더사 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. If else condition 을 통하여\n{@link IPaymentReservation.data}의 타입을 특정할 수 있다."
           },
           "vendor": {
             "$ref": "#/components/schemas/IPaymentVendoriamport",
@@ -4056,7 +4056,7 @@
           "vendor_code": {
             "const": "toss.payments",
             "title": "벤더사 코드",
-            "description": "벤더사 코드.\n\n{@link IPaymentVendor.code }와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. If else condition 을 통하여\n{@link IPaymentReservation.data }의 타입을 특정할 수 있다."
+            "description": "벤더사 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. If else condition 을 통하여\n{@link IPaymentReservation.data}의 타입을 특정할 수 있다."
           },
           "vendor": {
             "$ref": "#/components/schemas/IPaymentVendortoss.payments",
@@ -4106,8 +4106,8 @@
           },
           "billingKey": {
             "type": "string",
-            "title": "{@link ITossBilling } 의 식별자 키",
-            "description": "{@link ITossBilling } 의 식별자 키."
+            "title": "{@link ITossBilling} 의 식별자 키",
+            "description": "{@link ITossBilling} 의 식별자 키."
           },
           "method": {
             "const": "카드",
@@ -4177,7 +4177,7 @@
           "title",
           "password"
         ],
-        "description": "간편 결제 수단 등록 정보.\n\n결제사의 팝업 창로부터 전달받은 식별자 정보를 취합하여 전달한다.\n\n참고로 아임포트의 경우 간편 결제로 등록한 카드에 자체 식별자 번호를 부여하지 않는다.\n따라서 귀하의 서비스가 발행한 식별자 ID 가 곧, 해당 간편 결제 수단의 유일무이한\n식별자ㅏ 되니, 이를 {@link IPaymentVendor.uid } 와 {@link IPaymentSource.id } 에\n모두 동일하게 할당해주면 된다."
+        "description": "간편 결제 수단 등록 정보.\n\n결제사의 팝업 창로부터 전달받은 식별자 정보를 취합하여 전달한다.\n\n참고로 아임포트의 경우 간편 결제로 등록한 카드에 자체 식별자 번호를 부여하지 않는다.\n따라서 귀하의 서비스가 발행한 식별자 ID 가 곧, 해당 간편 결제 수단의 유일무이한\n식별자ㅏ 되니, 이를 {@link IPaymentVendor.uid} 와 {@link IPaymentSource.id} 에\n모두 동일하게 할당해주면 된다."
       },
       "IPaymentVendorIPaymentVendor.Code": {
         "type": "object",
@@ -4202,7 +4202,7 @@
           "uid": {
             "type": "string",
             "title": "벤더사로부터 발급받은 식별자 번호",
-            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id } 를 동일하게 할당해주어야 한다."
+            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id} 를 동일하게 할당해주어야 한다."
           }
         },
         "required": [
@@ -4217,8 +4217,8 @@
         "properties": {
           "imp_uid": {
             "type": "string",
-            "title": "결제 정보 {@link IIamportPayment } 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment } 의 식별자 키."
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
           },
           "merchant_uid": {
             "type": "string",
