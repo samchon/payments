@@ -13,7 +13,7 @@ import type { IIamportSubscription } from "../../../structures/IIamportSubscript
 /**
  * 간편 결제 카드 정보 조회하기.
  *
- * `subscribe.customers.at` 은 고객이 {@link create } 나 혹은 아임포트가 제공하는
+ * `subscribe.customers.at` 은 고객이 {@link create} 나 혹은 아임포트가 제공하는
  * 간편 결제 카드 등록 창을 이용하여 저장한 간편 결제 카드 정보를 조회하는 API
  * 함수이다.
  *

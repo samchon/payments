@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@samchon/payments",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Collection of Payment system of Samchon",
   "scripts": {
     "package:latest": "node deploy latest",
@@ -36,6 +36,6 @@
     "prettier": "^3.2.4",
     "prettier-plugin-prisma": "^5.0.0",
     "rimraf": "^5.0.5",
-    "typescript": "^5.3.2"
+    "typescript": "^5.5.2"
   }
 }

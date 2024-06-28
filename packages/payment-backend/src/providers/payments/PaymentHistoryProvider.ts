@@ -16,8 +16,6 @@ import { TossPaymentService } from "../../services/toss/TossPaymentService";
 import { BcryptUtil } from "../../utils/BcryptUtil";
 import { PaymentCancelHistoryProvider } from "./PaymentCancelHistoryProvider";
 
-(global as any).fetch ??= require("node-fetch");
-
 export namespace PaymentHistoryProvider {
   export namespace json {
     export const transform = (

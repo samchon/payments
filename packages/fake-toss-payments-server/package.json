@@ -1,6 +1,6 @@
 {
   "name": "fake-toss-payments-server",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Fake toss-payments server for testing",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -39,11 +39,11 @@
   "homepage": "https://github.com/samchon/fake-toss-payments-server",
   "devDependencies": {
     "@nestia/e2e": "^0.6.0",
-    "@nestia/sdk": "^3.2.2",
+    "@nestia/sdk": "^3.3.2",
     "@types/atob": "^2.1.2",
     "@types/btoa": "^1.2.3",
     "@types/cli": "^0.11.19",
-    "@types/node": "^15.6.1",
+    "@types/node": "^20.14.9",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
@@ -54,13 +54,13 @@
     "rimraf": "^3.0.2",
     "sloc": "^0.2.1",
     "ts-node": "^10.9.1",
-    "ts-patch": "^3.1.1",
-    "typescript": "^5.1.6",
+    "ts-patch": "^3.2.1",
+    "typescript": "^5.5.2",
     "typescript-transform-paths": "^3.4.6"
   },
   "dependencies": {
-    "@nestia/core": "^3.2.2",
-    "@nestia/fetcher": "^3.2.2",
+    "@nestia/core": "^3.3.2",
+    "@nestia/fetcher": "^3.3.2",
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^10.2.8",
     "@nestjs/platform-fastify": "^10.2.8",
@@ -70,7 +70,7 @@
     "serialize-error": "^4.1.0",
     "source-map-support": "^0.5.19",
     "tstl": "^3.0.0",
-    "typia": "^6.1.0",
+    "typia": "^6.3.1",
     "uuid": "^9.0.0"
   },
   "keywords": [
