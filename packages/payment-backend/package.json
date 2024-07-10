@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@nestia/core": "^3.3.2",
-    "@nestia/e2e": "^0.6.0",
+    "@nestia/e2e": "^0.7.0",
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^10.2.8",
     "@nestjs/platform-fastify": "^10.2.8",
