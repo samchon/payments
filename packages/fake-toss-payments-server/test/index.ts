@@ -1,4 +1,5 @@
 import { DynamicExecutor } from "@nestia/e2e";
+import chalk from "chalk";
 
 import { FakeTossBackend } from "../src/FakeTossBackend";
 import { FakeTossConfiguration } from "../src/FakeTossConfiguration";
@@ -18,8 +19,19 @@ async function main(): Promise<void> {
   const report: DynamicExecutor.IReport = await DynamicExecutor.validate({
     extension: __filename.substr(-2),
     prefix: "test",
+    location: __dirname + "/features",
     parameters: () => [connection],
-  })(__dirname + "/features");
+    onComplete: (exec) => {
+      const trace = (str: string) =>
+        console.log(`  - ${chalk.green(exec.name)}: ${str}`);
+      if (exec.error === null) {
+        const elapsed: number =
+          new Date(exec.completed_at).getTime() -
+          new Date(exec.started_at).getTime();
+        trace(`${chalk.yellow(elapsed.toLocaleString())} ms`);
+      } else trace(chalk.red(exec.error.name));
+    },
+  });
 
   // TERMINATE
   await backend.close();

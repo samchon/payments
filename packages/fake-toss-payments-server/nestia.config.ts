@@ -7,9 +7,9 @@ import { FakeTossModule } from "./src/FakeTossModule";
 const NESTIA_CONFIG: INestiaConfig = {
   input: () => NestFactory.create(FakeTossModule, new FastifyAdapter()),
   output: "src/api",
-  distribute: "../toss-payments-server-api",
+  distribute: "packages/api",
   swagger: {
-    output: "../toss-payments-server-api/swagger.json",
+    output: "packages/api/swagger.json",
     info: {
       title: "Toss Payments API",
       description:

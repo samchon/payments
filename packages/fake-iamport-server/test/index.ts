@@ -1,4 +1,5 @@
 import { DynamicExecutor } from "@nestia/e2e";
+import chalk from "chalk";
 import { IamportConnector } from "iamport-server-api";
 
 import { FakeIamportBackend } from "../src/FakeIamportBackend";
@@ -28,8 +29,19 @@ async function main(): Promise<void> {
   // DO TEST
   const report: DynamicExecutor.IReport = await DynamicExecutor.validate({
     prefix: "test",
+    location: __dirname + "/features",
     parameters: () => [connector],
-  })(__dirname + "/features");
+    onComplete: (exec) => {
+      const trace = (str: string) =>
+        console.log(`  - ${chalk.green(exec.name)}: ${str}`);
+      if (exec.error === null) {
+        const elapsed: number =
+          new Date(exec.completed_at).getTime() -
+          new Date(exec.started_at).getTime();
+        trace(`${chalk.yellow(elapsed.toLocaleString())} ms`);
+      } else trace(chalk.red(exec.error.name));
+    },
+  });
 
   // TERMINATE
   await backend.close();

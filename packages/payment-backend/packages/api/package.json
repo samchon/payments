@@ -1,12 +1,13 @@
 {
-  "name": "toss-payments-server-api",
-  "version": "8.0.2",
-  "description": "API for Toss Payments Server",
+  "name": "@samchon/payment-api",
+  "version": "8.1.0",
+  "description": "API for Payment Backend",
   "main": "lib/index.js",
+  "module": "lib/index.mjs",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "npm run build:sdk && npm run compile",
-    "build:sdk": "rimraf ../fake-toss-payments-server/src/api/functional && cd ../fake-toss-payments-server && npx nestia sdk && cd ../toss-payments-server-api",
+    "build": "npm run build:sdk && npm run compile && rollup -c",
+    "build:sdk": "rimraf ../payment-backend/src/api/functional && cd ../payment-backend && npx nestia sdk && cd ../payment-api",
     "compile": "rimraf lib && tsc",
     "deploy": "npm run build && npm publish",
     "prepare": "ts-patch install && typia patch"
@@ -28,13 +29,19 @@
     "README.md"
   ],
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.14.9",
     "rimraf": "^5.0.1",
+    "rollup": "^4.18.1",
     "ts-node": "^10.9.1",
     "ts-patch": "^3.2.1",
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "@nestia/fetcher": "^3.3.2",
-    "typia": "^6.3.1"
+    "@nestia/fetcher": "^3.7.0",
+    "iamport-server-api": "^8.1.0",
+    "toss-payments-server-api": "^8.1.0",
+    "typia": "^6.5.0"
   }
 }

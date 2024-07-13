@@ -12,7 +12,7 @@
 참고로 [`nestia`](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-toss-payments-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 토스 페이먼츠가 공식 제공하는 개발자 가이드 문서보다, `fake-toss-payments-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
 
   - 서버 주소: http://localhost:30771
-  - **Swagger Editor**: [toss-payments-server-api/swagger.json](https://stackblitz.com/edit/kltfqh?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
+  - **Swagger Editor**: [fake-toss-payments-server/packages/api/swagger.json](https://stackblitz.com/edit/kltfqh?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
   - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts)
   - API 함수: [src/api/functional/v1/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/functional/v1/payments/index.ts)
   - 예제 코드
@@ -149,7 +149,7 @@ npm install --save toss-payments-server-api
 
 참고로 [`nestia`](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-toss-payments-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 토스 페이먼츠가 공식 제공하는 개발자 가이드 문서보다, `fake-toss-payments-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
 
-  - **Swagger Editor**: [toss-payments-server-api/swagger.json](https://stackblitz.com/edit/kltfqh?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
+  - **Swagger Editor**: [fake-toss-payments-server/packages/api/swagger.json](https://stackblitz.com/edit/kltfqh?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
   - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts)
   - API 함수: [src/api/functional/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/functional/payments/index.ts)
   - 예제 코드

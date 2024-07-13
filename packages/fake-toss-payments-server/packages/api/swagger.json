@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
-    "version": "8.0.2",
+    "version": "8.1.0",
     "license": {
       "name": "MIT"
     }
@@ -65,8 +65,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 정보의 {@link ITossBilling.billingKey}"
           }
         ],
         "requestBody": {
@@ -111,8 +111,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "간편 결제에 등록한 수단의 ",
-            "required": true
+            "required": true,
+            "description": " 간편 결제에 등록한 수단의 {@link ITossBilling.billingKey}"
           }
         ],
         "requestBody": {
@@ -193,8 +193,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "현금 영수증의 ",
-            "required": true
+            "required": true,
+            "description": " 현금 영수증의 {@link ITossCashReceipt.receiptKey}"
           }
         ],
         "requestBody": {
@@ -263,8 +263,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 가상 계좌 결제 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 가상 계좌 결제 정보의 {@link ITossPayment.paymentKey}"
           }
         ],
         "responses": {
@@ -298,8 +298,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "결제 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 결제 정보의 {@link ITossPayment.paymentKey}"
           }
         ],
         "responses": {
@@ -326,8 +326,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 결제의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 결제의 {@link ITossPayment.paymentKey}"
           }
         ],
         "requestBody": {
@@ -408,8 +408,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "결제 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 결제 정보의 {@link ITossPayment.paymentKey}"
           }
         ],
         "requestBody": {

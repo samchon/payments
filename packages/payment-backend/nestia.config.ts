@@ -7,9 +7,9 @@ import { PaymentModule } from "./src/PaymentModule";
 const NESTIA_CONFIG: INestiaConfig = {
   input: () => NestFactory.create(PaymentModule, new FastifyAdapter()),
   output: "src/api",
-  distribute: "../payment-api",
+  distribute: "packages/api",
   swagger: {
-    output: "../payment-api/swagger.json",
+    output: "packages/api/swagger.json",
     beautify: true,
   },
   primitive: false,
