@@ -1,0 +1,29 @@
+{
+  "name": "iamport-server-api",
+  "version": "8.1.0",
+  "description": "API for Iamport Server",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "typings": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samchon/payments"
+  },
+  "author": "Jeongho Nam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samchon/payments/issues"
+  },
+  "homepage": "https://github.com/samchon/payments",
+  "files": [
+    "lib",
+    "package.json",
+    "swagger.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "@nestia/fetcher": "^3.7.0",
+    "tstl": "^3.0.0",
+    "typia": "^6.5.0"
+  }
+}

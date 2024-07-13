@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "8.0.2",
+    "version": "8.1.0-dev.20240713-3",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -108,8 +108,8 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Primary Key",
-            "required": true
+            "required": true,
+            "description": " Primary Key"
           }
         ],
         "requestBody": {
@@ -251,8 +251,8 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Primary Key",
-            "required": true
+            "required": true,
+            "description": " Primary Key"
           }
         ],
         "requestBody": {

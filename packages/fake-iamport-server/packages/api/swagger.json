@@ -13,7 +13,7 @@
   "info": {
     "title": "Iamport API",
     "description": "Built by [fake-iamport-server](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) with [nestia](https://github.com/samchon/nestia)",
-    "version": "8.0.2",
+    "version": "8.1.0",
     "license": {
       "name": "MIT"
     }
@@ -29,8 +29,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "고객 (간편 결제 카드) 식별자 키",
-            "required": true
+            "required": true,
+            "description": " 고객 (간편 결제 카드) 식별자 키"
           }
         ],
         "responses": {
@@ -62,8 +62,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "고객 (간편 결제 카드) 식별자 키",
-            "required": true
+            "required": true,
+            "description": " 고객 (간편 결제 카드) 식별자 키"
           }
         ],
         "requestBody": {
@@ -106,8 +106,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "고객 (간편 결제 카드) 식별자 키",
-            "required": true
+            "required": true,
+            "description": " 고객 (간편 결제 카드) 식별자 키"
           }
         ],
         "responses": {
@@ -213,8 +213,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 본인인증 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 본인인증 정보의 {@link IIamportCertification.imp_uid}"
           }
         ],
         "responses": {
@@ -246,8 +246,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 본인인증 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 본인인증 정보의 {@link IIamportCertification.imp_uid}"
           }
         ],
         "responses": {
@@ -317,8 +317,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 본인인증 정보의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 본인인증 정보의 {@link IIamportCertification.imp_uid}"
           }
         ],
         "requestBody": {
@@ -387,8 +387,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 결제의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 결제의 {@link IIamportVBankPayment.imp_uid }"
           }
         ],
         "responses": {
@@ -415,17 +415,20 @@
             "schema": {
               "type": "string"
             },
-            "description": "대상 결제 기록의 ",
-            "required": true
+            "required": true,
+            "description": " 대상 결제 기록의 {@link IIamportPayment.imp_uid}"
           },
           {
-            "name": "query",
+            "name": "extension",
             "in": "query",
             "schema": {
-              "$ref": "#/components/schemas/IIamportPayment.IQuery"
+              "type": "boolean",
+              "title": "페이팔의 경우, 이 값을 `true` 로 할 것",
+              "description": "페이팔의 경우, 이 값을 `true` 로 할 것."
             },
-            "description": "결제 수단이 페이팔인 경우에 사용",
-            "required": true
+            "required": false,
+            "title": "페이팔의 경우, 이 값을 `true` 로 할 것",
+            "description": "페이팔의 경우, 이 값을 `true` 로 할 것."
           }
         ],
         "responses": {
@@ -495,8 +498,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "귀속 결제의 ",
-            "required": true
+            "required": true,
+            "description": " 귀속 결제의 {@link IIamportPayment.imp_uid}"
           }
         ],
         "responses": {
@@ -528,8 +531,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "귀속 결제의 ",
-            "required": true
+            "required": true,
+            "description": " 귀속 결제의 {@link IIamportPayment.imp_uid}"
           }
         ],
         "requestBody": {
@@ -572,8 +575,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "귀속 결제의 ",
-            "required": true
+            "required": true,
+            "description": " 귀속 결제의 {@link IIamportPayment.imp_uid}"
           }
         ],
         "responses": {

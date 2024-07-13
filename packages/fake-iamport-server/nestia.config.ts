@@ -7,9 +7,9 @@ import { FakeIamportModule } from "./src/FakeIamportModule";
 const NESTIA_CONFIG: INestiaConfig = {
   input: () => NestFactory.create(FakeIamportModule, new FastifyAdapter()),
   output: "src/api",
-  distribute: "../iamport-server-api",
+  distribute: "packages/api",
   swagger: {
-    output: "../iamport-server-api/swagger.json",
+    output: "packages/api/swagger.json",
     info: {
       title: "Iamport API",
       description:
