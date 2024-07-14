@@ -1,6 +1,6 @@
 # Payment API
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
-[![npm version](https://badge.fury.io/js/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
+[![npm version](https://img.shields.io/npm/v/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
 [![Downloads](https://img.shields.io/npm/dm/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 

@@ -1,6 +1,6 @@
 # Iamport Server API
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/LICENSE)
-[![npm version](https://badge.fury.io/js/iamport-server-api.svg)](https://www.npmjs.com/package/iamport-server-api)
+[![npm version](https://img.shields.io/npm/v/iamport-server-api.svg)](https://www.npmjs.com/package/iamport-server-api)
 [![Downloads](https://img.shields.io/npm/dm/iamport-server-api.svg)](https://www.npmjs.com/package/iamport-server-api)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
@@ -12,7 +12,7 @@ npm install --save iamport-server-api
 
 고로 아임포트와 연동하는 TypeScript 기반 백엔드 서버를 개발함에 있어, 가짜 아임포트 서버 [`fake-iamport-server`](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server) 는 직접 이용치 않더라도, 실제 아임포트 서버와의 연동을 위하여, 본 SDK 라이브러리만큼은 반드시 설치하기를 권장하는 바이다.
 
-  - **Swagger Editor**: [packages/fake-iamport-server/packages/api/swagger.json](https://stackblitz.com/edit/5jpnps?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
+  - **Swagger Editor**: [packages/fake-iamport-server/packages/api/swagger.json](https://stackblitz.com/edit/45iyes?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
   - 자료 구조: [src/api/structures/IIamportPayment.ts](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts)
   - API 함수: [src/api/functional/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server/src/api/functional/payments/index.ts)
   - 예제 코드

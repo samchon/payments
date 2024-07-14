@@ -1,7 +1,7 @@
 # Fake Toss Payments Server
 ## 1. Outline
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
-[![npm version](https://badge.fury.io/js/toss-payments-server-api.svg)](https://www.npmjs.com/package/toss-payments-server-api)
+[![npm version](https://img.shields.io/npm/v/toss-payments-server-api.svg)](https://www.npmjs.com/package/toss-payments-server-api)
 [![Downloads](https://img.shields.io/npm/dm/toss-payments-server-api.svg)](https://www.npmjs.com/package/toss-payments-server-api)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
@@ -12,7 +12,7 @@
 참고로 [`nestia`](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-toss-payments-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 토스 페이먼츠가 공식 제공하는 개발자 가이드 문서보다, `fake-toss-payments-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
 
   - 서버 주소: http://localhost:30771
-  - **Swagger Editor**: [fake-toss-payments-server/packages/api/swagger.json](https://stackblitz.com/edit/kltfqh?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
+  - **Swagger Editor**: [fake-toss-payments-server/packages/api/swagger.json](https://stackblitz.com/edit/n35pdm-bms43z?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
   - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts)
   - API 함수: [src/api/functional/v1/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/functional/v1/payments/index.ts)
   - 예제 코드
@@ -104,7 +104,7 @@ npm run start
 npm run stop
 ```
 
-[![npm version](https://badge.fury.io/js/fake-toss-payments-server.svg)](https://www.npmjs.com/package/fake-toss-payments-server)
+[![npm version](https://img.shields.io/npm/v/fake-toss-payments-server.svg)](https://www.npmjs.com/package/fake-toss-payments-server)
 [![Downloads](https://img.shields.io/npm/dm/fake-toss-payments-server.svg)](https://www.npmjs.com/package/fake-toss-payments-server)
 
 더하여 `fake-toss-payments-server` 는 npm 모듈로 설치하여 구동할 수도 있다.
@@ -132,7 +132,7 @@ async function main(): Promise<void>
 ```
 
 ### 2.3. Software Development Kit
-[![npm version](https://badge.fury.io/js/toss-payments-server-api.svg)](https://www.npmjs.com/package/toss-payments-server-api)
+[![npm version](https://img.shields.io/npm/v/toss-payments-server-api.svg)](https://www.npmjs.com/package/toss-payments-server-api)
 [![Downloads](https://img.shields.io/npm/dm/toss-payments-server-api.svg)](https://www.npmjs.com/package/toss-payments-server-api)
 
 본 백엔드 프로젝트 `fake-toss-payments-server` 는 비록 토스 페이먼츠의 API 를 흉내내어 만든 가짜이지만, 이것을 통하여 만들어지는 SDK (Software Development Kit) 만큼은 진짜이다. 이 SDK 를 이용하면, `fake-toss-payments-server` 뿐 아니라 진짜 토스 페이먼츠 서버와도 원활히 연동할 수 있기 때문이다.
@@ -149,7 +149,7 @@ npm install --save toss-payments-server-api
 
 참고로 [`nestia`](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-toss-payments-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 토스 페이먼츠가 공식 제공하는 개발자 가이드 문서보다, `fake-toss-payments-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
 
-  - **Swagger Editor**: [fake-toss-payments-server/packages/api/swagger.json](https://stackblitz.com/edit/kltfqh?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
+  - **Swagger Editor**: [fake-toss-payments-server/packages/api/swagger.json](https://stackblitz.com/edit/n35pdm-bms43z?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
   - 자료 구조: [src/api/structures/ITossBilling.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/structures/ITossBilling.ts)
   - API 함수: [src/api/functional/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-toss-payments-server/src/api/functional/payments/index.ts)
   - 예제 코드

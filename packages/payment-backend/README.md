@@ -1,7 +1,7 @@
 # Payment Backend
 ## 1. Outline
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/tree/master/LICENSE)
-[![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
+[![npm version](https://img.shields.io/npm/v/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
 [![Downloads](https://img.shields.io/npm/dm/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
@@ -254,7 +254,7 @@ npm run pm2:start
 npm run pm2:stop
 ```
 
-[![npm version](https://badge.fury.io/js/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
+[![npm version](https://img.shields.io/npm/v/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
 [![Downloads](https://img.shields.io/npm/dm/@samchon/payment-backend.svg)](https://www.npmjs.com/package/@samchon/payment-backend)
 
 더하여 `@samchon/payment-backend` 는 npm 모듈로 설치하여 `import` 할 수 있다.
@@ -285,7 +285,7 @@ async function main(): Promise<void>
 ```
 
 ### 2.4. Software Development Kit
-[![npm version](https://badge.fury.io/js/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
+[![npm version](https://img.shields.io/npm/v/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
 [![Downloads](https://img.shields.io/npm/dm/@samchon/payment-api.svg)](https://www.npmjs.com/package/@samchon/payment-api)
 
 본 프로젝트 `@samchon/payment-backend` 는 연동을 위한 SDK 라이브러리를 제공한다.

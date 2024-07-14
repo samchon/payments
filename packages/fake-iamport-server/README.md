@@ -1,7 +1,7 @@
 # Fake Iamport Server
 ## 1. Outline
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/payments/LICENSE)
-[![npm version](https://badge.fury.io/js/iamport-server-api.svg)](https://www.npmjs.com/package/fake-iamport-server)
+[![npm version](https://img.shields.io/npm/v/iamport-server-api.svg)](https://www.npmjs.com/package/fake-iamport-server)
 [![Downloads](https://img.shields.io/npm/dm/iamport-server-api.svg)](https://www.npmjs.com/package/fake-iamport-server)
 [![Build Status](https://github.com/samchon/payments/workflows/build/badge.svg)](https://github.com/samchon/payments/actions?query=workflow%3Abuild)
 
@@ -12,7 +12,7 @@
 참고로 [`nestia`](https://github.com/samchon/nestia) 는 SDK 뿐 아니라 Swagger 또한 빌드할 수 있는데, 이 또한 `fake-iamport-server` 의 소스코드 및 DTO 를 컴파일러 수준에서 분석하여 만들어지는 것인지라, 그 퀄리티가 상당하다. 어쩌면 아임포트가 공식 제공하는 개발자 가이드 문서보다, `fake-iamport-server` 로 생성한 Swagger 가 더 개발자 친화적이고 일목요연할지도?
 
   - 서버 주소: http://localhost:10851
-  - **Swagger Editor**: [packages/fake-iamport-server/packages/api/swagger.json](https://stackblitz.com/edit/5jpnps?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
+  - **Swagger Editor**: [packages/fake-iamport-server/packages/api/swagger.json](https://stackblitz.com/edit/45iyes?file=README.md,test%2Fstart.ts&startScript=swagger&startScript=hello)
   - 자료 구조: [src/api/structures/IIamportPayment.ts](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server/src/api/structures/IIamportPayment.ts)
   - API 함수: [src/api/functional/payments/index.ts](https://github.com/samchon/payments/tree/master/packages/fake-iamport-server/src/api/functional/payments/index.ts)
   - 예제 코드
@@ -118,7 +118,7 @@ npm run start
 npm run stop
 ```
 
-[![npm version](https://badge.fury.io/js/fake-iamport-server.svg)](https://www.npmjs.com/package/fake-iamport-server)
+[![npm version](https://img.shields.io/npm/v/fake-iamport-server.svg)](https://www.npmjs.com/package/fake-iamport-server)
 [![Downloads](https://img.shields.io/npm/dm/fake-iamport-server.svg)](https://www.npmjs.com/package/fake-iamport-server)
 
 더하여 `fake-iamport-server` 는 npm 모듈로 설치하여 구동할 수도 있다.
@@ -147,7 +147,7 @@ async function main(): Promise<void>
 ```
 
 ### 2.3. Software Development Kit
-[![npm version](https://badge.fury.io/js/iamport-server-api.svg)](https://www.npmjs.com/package/iamport-server-api)
+[![npm version](https://img.shields.io/npm/v/iamport-server-api.svg)](https://www.npmjs.com/package/iamport-server-api)
 [![Downloads](https://img.shields.io/npm/dm/iamport-server-api.svg)](https://www.npmjs.com/package/iamport-server-api)
 
 본 백엔드 프로젝트 `fake-iamport-server` 는 비록 아임포트의 API 를 흉내내어 만든 가짜이지만, 이것을 통하여 만들어지는 SDK (Software Development Kit) 만큼은 진짜이다. 이 SDK 를 이용하면, `fake-iamport-server` 뿐 아니라 진짜 아임포트 서버와도 원활히 연동할 수 있기 때문이다.
