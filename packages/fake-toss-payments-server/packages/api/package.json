@@ -34,7 +34,7 @@
     "rollup": "^4.18.1",
     "ts-node": "^10.9.1",
     "ts-patch": "^3.2.1",
-    "typescript": "^5.5.2"
+    "typescript": "5.5.4"
   },
   "dependencies": {
     "@nestia/fetcher": "^3.7.0",
