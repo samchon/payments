@@ -74,7 +74,7 @@ export namespace onetime {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/subscribe/payments/onetime";
@@ -137,7 +137,7 @@ export namespace again {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/subscribe/payments/again";

@@ -47,11 +47,11 @@ export namespace at {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (customer_uid: string) =>
-    `/subscribe/customers/${encodeURIComponent(customer_uid ?? "null")}`;
+    `/subscribe/customers/${encodeURIComponent(customer_uid?.toString() ?? "null")}`;
 }
 
 /**
@@ -112,11 +112,11 @@ export namespace create {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (customer_uid: string) =>
-    `/subscribe/customers/${encodeURIComponent(customer_uid ?? "null")}`;
+    `/subscribe/customers/${encodeURIComponent(customer_uid?.toString() ?? "null")}`;
 }
 
 /**
@@ -154,9 +154,9 @@ export namespace erase {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (customer_uid: string) =>
-    `/subscribe/customers/${encodeURIComponent(customer_uid ?? "null")}`;
+    `/subscribe/customers/${encodeURIComponent(customer_uid?.toString() ?? "null")}`;
 }

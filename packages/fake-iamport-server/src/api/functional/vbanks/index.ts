@@ -57,7 +57,7 @@ export namespace create {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/vbanks";
@@ -110,7 +110,7 @@ export namespace update {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = () => "/vbanks";

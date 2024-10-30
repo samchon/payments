@@ -67,6 +67,7 @@ const deploy = (tag) => (version) => (pack) => {
     JSON.stringify(info, null, 2), 
     "utf8",
   );
+  execute(location)("npm cache clean --force");
   execute(location)(`npm install`);
   execute(location)(`npm run build`);
 

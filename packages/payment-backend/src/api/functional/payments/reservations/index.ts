@@ -56,7 +56,7 @@ export namespace get {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = () => "/payments/reservations/get";
@@ -109,11 +109,11 @@ export namespace at {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (id: string & Format<"uuid">) =>
-    `/payments/reservations/${encodeURIComponent(id ?? "null")}`;
+    `/payments/reservations/${encodeURIComponent(id?.toString() ?? "null")}`;
 }
 
 /**
@@ -161,7 +161,7 @@ export namespace create {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/payments/reservations";

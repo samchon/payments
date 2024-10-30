@@ -63,7 +63,7 @@ export namespace getToken {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/users/getToken";

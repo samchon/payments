@@ -49,7 +49,7 @@ export namespace webhook {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/payments/internal/webhook";

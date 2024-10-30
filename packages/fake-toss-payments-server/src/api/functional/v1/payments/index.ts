@@ -25,7 +25,7 @@ import type { ITossPaymentCancel } from "../../../structures/ITossPaymentCancel"
  * 서버가 현재의 `payments.at` 을 통하여 해당 결제 정보를 확인하고, {@link approve} 를
  * 호출하여 직접 승인하기 전까지, 해당 결제는 확정되지 않으니, 이 점에 유의하기 바란다.
  *
- * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
+ * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey }
  * @returns 결제 정보
  * @author Samchon
  *
@@ -54,11 +54,11 @@ export namespace at {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (paymentKey: string) =>
-    `/v1/payments/${encodeURIComponent(paymentKey ?? "null")}`;
+    `/v1/payments/${encodeURIComponent(paymentKey?.toString() ?? "null")}`;
 }
 
 /**
@@ -126,7 +126,7 @@ export namespace key_in {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/v1/payments/key-in";
@@ -145,7 +145,7 @@ export namespace key_in {
  * {@link ITossVirtualAccountPayment.ICreate.__approved} 를 `false` 로 함으로써, 별도
  * 승인이 필요한 이러한 상황을 시뮬레이션 할 수 있다.
  *
- * @param paymentKey 대상 결제의 {@link ITossPayment.paymentKey}
+ * @param paymentKey 대상 결제의 {@link ITossPayment.paymentKey }
  * @param input 주문 정보 확인
  * @returns 승인된 결제 정보
  * @security basic
@@ -191,11 +191,11 @@ export namespace approve {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (paymentKey: string) =>
-    `/v1/payments/${encodeURIComponent(paymentKey ?? "null")}`;
+    `/v1/payments/${encodeURIComponent(paymentKey?.toString() ?? "null")}`;
 }
 
 /**
@@ -206,7 +206,7 @@ export namespace approve {
  * 결제 취소 입력 정보 {@link ITossPaymentCancel.ICreate} 에는 취소 사유를 비롯하여,
  * 고객에게 환불해 줄 금액과 부가세 및 필요시 환불 계좌 정보 등을 입력하게 되어있다.
  *
- * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey}
+ * @param paymentKey 결제 정보의 {@link ITossPayment.paymentKey }
  * @param input 취소 입력 정보
  * @returns 취소된 결제 정보
  * @security basic
@@ -252,9 +252,9 @@ export namespace cancel {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (paymentKey: string) =>
-    `/v1/payments/${encodeURIComponent(paymentKey ?? "null")}/cancel`;
+    `/v1/payments/${encodeURIComponent(paymentKey?.toString() ?? "null")}/cancel`;
 }

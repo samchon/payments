@@ -62,7 +62,7 @@ export namespace webhook {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/internal/webhook";
@@ -106,9 +106,9 @@ export namespace deposit {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (imp_uid: string) =>
-    `/internal/deposit/${encodeURIComponent(imp_uid ?? "null")}`;
+    `/internal/deposit/${encodeURIComponent(imp_uid?.toString() ?? "null")}`;
 }
