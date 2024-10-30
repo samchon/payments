@@ -29,7 +29,7 @@ export * as authorizations from "./authorizations";
  * `billing.pay` 는 이처럼 부차적인 승인 과정 필요없이 그 즉시로 결제가 완성되니, 이를
  * 호출하는 상황에 대하여 세심히 주의를 기울일 필요가 있다
  *
- * @param billingKey 간편 결제에 등록한 수단의 {@link ITossBilling.billingKey}
+ * @param billingKey 간편 결제에 등록한 수단의 {@link ITossBilling.billingKey }
  * @param input 주문 정보
  * @returns 결제 정보
  * @security basic
@@ -75,9 +75,9 @@ export namespace pay {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (billingKey: string) =>
-    `/v1/billing/${encodeURIComponent(billingKey ?? "null")}`;
+    `/v1/billing/${encodeURIComponent(billingKey?.toString() ?? "null")}`;
 }

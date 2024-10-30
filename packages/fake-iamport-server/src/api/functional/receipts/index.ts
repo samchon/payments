@@ -13,7 +13,7 @@ import type { IIamportResponse } from "../../structures/IIamportResponse";
 /**
  * 현금 영수증 조회하기.
  *
- * @param imp_uid 귀속 결제의 {@link IIamportPayment.imp_uid}
+ * @param imp_uid 귀속 결제의 {@link IIamportPayment.imp_uid }
  * @returns 현금 영수증 정보
  * @security bearer
  * @author Samchon
@@ -43,17 +43,17 @@ export namespace at {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (imp_uid: string) =>
-    `/receipts/${encodeURIComponent(imp_uid ?? "null")}`;
+    `/receipts/${encodeURIComponent(imp_uid?.toString() ?? "null")}`;
 }
 
 /**
  * 현금 영수증 발행하기.
  *
- * @param imp_uid 귀속 결제의 {@link IIamportPayment.imp_uid}
+ * @param imp_uid 귀속 결제의 {@link IIamportPayment.imp_uid }
  * @param input 현금 영수증 입력 정보
  * @returns 현금 영수증 정보
  * @security bearer
@@ -99,17 +99,17 @@ export namespace create {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (imp_uid: string) =>
-    `/receipts/${encodeURIComponent(imp_uid ?? "null")}`;
+    `/receipts/${encodeURIComponent(imp_uid?.toString() ?? "null")}`;
 }
 
 /**
  * 현금 영수증 취소하기.
  *
- * @param imp_uid 귀속 결제의 {@link IIamportPayment.imp_uid}
+ * @param imp_uid 귀속 결제의 {@link IIamportPayment.imp_uid }
  * @returns 취소된 현금 영수증 정보
  * @security bearer
  * @author Samchon
@@ -139,9 +139,9 @@ export namespace erase {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (imp_uid: string) =>
-    `/receipts/${encodeURIComponent(imp_uid ?? "null")}`;
+    `/receipts/${encodeURIComponent(imp_uid?.toString() ?? "null")}`;
 }

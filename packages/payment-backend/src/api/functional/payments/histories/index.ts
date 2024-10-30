@@ -58,7 +58,7 @@ export namespace get {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = () => "/payments/histories/get";
@@ -112,11 +112,11 @@ export namespace at {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (id: string & Format<"uuid">) =>
-    `/payments/histories/${encodeURIComponent(id ?? "null")}`;
+    `/payments/histories/${encodeURIComponent(id?.toString() ?? "null")}`;
 }
 
 /**
@@ -165,7 +165,7 @@ export namespace create {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/payments/histories";
@@ -216,7 +216,7 @@ export namespace cancel {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = () => "/payments/histories/cancel";

@@ -56,7 +56,7 @@ export namespace create {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/v1/cash-receipts";
@@ -65,7 +65,7 @@ export namespace create {
 /**
  * 현금 영수증 취소하기.
  *
- * @param receiptKey 현금 영수증의 {@link ITossCashReceipt.receiptKey}
+ * @param receiptKey 현금 영수증의 {@link ITossCashReceipt.receiptKey }
  * @param input 취소 입력 정보
  * @returns 취소된 현금 영수증 정보
  * @security basic
@@ -111,9 +111,9 @@ export namespace cancel {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (receiptKey: string) =>
-    `/v1/cash-receipts/${encodeURIComponent(receiptKey ?? "null")}/cancel`;
+    `/v1/cash-receipts/${encodeURIComponent(receiptKey?.toString() ?? "null")}/cancel`;
 }

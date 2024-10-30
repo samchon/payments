@@ -32,7 +32,7 @@ export namespace get {
       type: "text/plain",
       encrypted: true,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = () => "/monitors/performance";

@@ -17,12 +17,12 @@ const NESTIA_CONFIG: INestiaConfig = {
     },
     servers: [
       {
-        url: "http://localhost:30771",
-        description: "fake",
-      },
-      {
         url: "https://api.tosspayments.com",
         description: "real",
+      },
+      {
+        url: "http://localhost:30771",
+        description: "fake",
       },
     ],
     security: {

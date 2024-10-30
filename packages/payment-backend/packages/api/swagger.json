@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "8.1.0",
+    "version": "8.1.1",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -21,7 +21,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
           }
         }
       }
@@ -32,7 +35,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.G.et](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Get](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -51,7 +54,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.G.et](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Get](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -66,6 +69,8 @@
     },
     "/payments/histories/get": {
       "patch": {
+        "summary": "결제 내역 상세 조회하기",
+        "description": "결제 내역 상세 조회하기.",
         "tags": [],
         "parameters": [],
         "requestBody": {
@@ -82,23 +87,37 @@
         },
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.atch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Patch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentHistory"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentHistory.TossType",
+                      "iamport": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
-        },
-        "summary": "결제 내역 상세 조회하기",
-        "description": "결제 내역 상세 조회하기."
+        }
       }
     },
     "/payments/histories/{id}": {
       "patch": {
+        "summary": "결제 내역 상세 조회하기",
+        "description": "결제 내역 상세 조회하기.",
         "tags": [],
         "parameters": [
           {
@@ -126,23 +145,37 @@
         },
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.atch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Patch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentHistory"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentHistory.TossType",
+                      "iamport": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
-        },
-        "summary": "결제 내역 상세 조회하기",
-        "description": "결제 내역 상세 조회하기."
+        }
       }
     },
     "/payments/histories": {
       "post": {
+        "summary": "결제 내역 발행하기",
+        "description": "결제 내역 발행하기.",
         "tags": [],
         "parameters": [],
         "requestBody": {
@@ -159,23 +192,37 @@
         },
         "responses": {
           "201": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.ost](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Post](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentHistory"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentHistory.TossType",
+                      "iamport": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
-        },
-        "summary": "결제 내역 발행하기",
-        "description": "결제 내역 발행하기."
+        }
       }
     },
     "/payments/histories/cancel": {
       "put": {
+        "summary": "결제 취소하기",
+        "description": "결제 취소하기.",
         "tags": [],
         "parameters": [],
         "requestBody": {
@@ -192,23 +239,64 @@
         },
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.ut](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Put](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentHistory"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentHistory.TossType",
+                      "iamport": "#/components/schemas/IPaymentHistory.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
+        }
+      }
+    },
+    "/payments/internal/webhook": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "## Warning\n\nRequest body must be encrypted.\n\nThe request body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedBody](https://github.com/samchon/@nestia/core#encryptedbody) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
+          "content": {
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/IPaymentWebhookHistory"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": true
         },
-        "summary": "결제 취소하기",
-        "description": "결제 취소하기."
+        "responses": {
+          "201": {
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Post](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
+            "content": {
+              "text/plain": {}
+            },
+            "x-nestia-encrypted": true
+          }
+        }
       }
     },
     "/payments/reservations/get": {
       "patch": {
+        "summary": "간편 결제 수단 조회하기",
+        "description": "간편 결제 수단 조회하기.",
         "tags": [],
         "parameters": [],
         "requestBody": {
@@ -225,23 +313,37 @@
         },
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.atch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Patch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n결제 내역",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentReservation"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentReservation.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentReservation.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentReservation.TossType",
+                      "iamport": "#/components/schemas/IPaymentReservation.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
-        },
-        "summary": "간편 결제 수단 조회하기",
-        "description": "간편 결제 수단 조회하기."
+        }
       }
     },
     "/payments/reservations/{id}": {
       "patch": {
+        "summary": "간편 결제 수단 조회하기",
+        "description": "간편 결제 수단 조회하기.",
         "tags": [],
         "parameters": [
           {
@@ -269,23 +371,37 @@
         },
         "responses": {
           "200": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.atch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n간편 결제 수단 정보",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Patch](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n간편 결제 수단 정보",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentReservation"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentReservation.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentReservation.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentReservation.TossType",
+                      "iamport": "#/components/schemas/IPaymentReservation.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
-        },
-        "summary": "간편 결제 수단 조회하기",
-        "description": "간편 결제 수단 조회하기."
+        }
       }
     },
     "/payments/reservations": {
       "post": {
+        "summary": "간편 결제 수단 등록하기",
+        "description": "간편 결제 수단 등록하기.",
         "tags": [],
         "parameters": [],
         "requestBody": {
@@ -302,19 +418,31 @@
         },
         "responses": {
           "201": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.P.ost](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n간편 결제 수단 정보",
+            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Post](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.\n\n----------------\n\n간편 결제 수단 정보",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/IPaymentReservation"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IPaymentReservation.TossType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IPaymentReservation.IamportType"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "vendor_code",
+                    "mapping": {
+                      "toss.payments": "#/components/schemas/IPaymentReservation.TossType",
+                      "iamport": "#/components/schemas/IPaymentReservation.IamportType"
+                    }
+                  }
                 }
               }
             },
             "x-nestia-encrypted": true
           }
-        },
-        "summary": "간편 결제 수단 등록하기",
-        "description": "간편 결제 수단 등록하기."
+        }
       }
     },
     "/payments/webhooks/iamport": {
@@ -333,7 +461,34 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payments/webhooks/toss": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ITossPaymentWebhook"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
           }
         }
       }
@@ -688,1482 +843,6 @@
           "type": "string"
         }
       },
-      "IPaymentSource.IAccessor": {
-        "type": "object",
-        "properties": {
-          "schema": {
-            "type": "string",
-            "description": "DB 스키마 이름"
-          },
-          "table": {
-            "type": "string",
-            "description": "DB 테이블 명"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "참조 레코드의 PK"
-          },
-          "password": {
-            "type": "string",
-            "title": "레코드 조회를 위한 비밀번호 입력",
-            "description": "레코드 조회를 위한 비밀번호 입력."
-          }
-        },
-        "required": [
-          "schema",
-          "table",
-          "id",
-          "password"
-        ],
-        "description": "접근자 정보.\n\n`IPaymentSource.IAccessor` 는 {@link IPaymentHistory 결제 내역} 내지\n{@link IPaymentReservation 간편 결제 수단 정보}를 조회할 때, 그것의 고유 식별자\nID 가 아닌 원천 레코드 식별자 정보 {@link IPaymentSource} 를 통하여 조회할 때\n사용하는 접근자 정보이다.\n\n다만 `payments-server` 의 모든 개별 레코드는 이를 조회할 시 비밀번호가 필요하기에,\n{@link IPaymentSource} 의 속성들에 비밀번호가 하나 더 추가되었을 뿐이다."
-      },
-      "IPaymentHistory": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/IPaymentHistory.IamportType"
-          },
-          {
-            "$ref": "#/components/schemas/IPaymentHistory.TossType"
-          }
-        ],
-        "description": "결제 내역.\n\n`IPaymentHistory` 는 결제 내역을 형상화한 자료구조이자 유니언 타입의 인터페이이다.\n서비스 시스템으로부 결제 사건의 귀속 정보 ({@link IPaymentHistory.ICreate.vendor} +\n{@link IPaymentHistory.ICreate.source}) 를 전달받아, 본 Payment 시스템이 PG 사에\n추가 정보를 취득하여 레코드가 완성된다.\n\n그리고 만일 현 결제 건이 가상계좌와 같이 레코드 생성 시점에 지불이 이루어지지 않은\n경우라면, 사후 {@link IPaymentWebhook 웹훅 이벤트}를 통하여 지불 완료 시각을 뜻하는\n{@link paid_at} 가 설정될 수 있다. 그리고 반대로 이미 결제가 완료된 경우라도,\n환불 등의 이유로 인하여 {@link cancelled_at} 이 사후 기재될 수 있다.\n\n참고로 `if condition` 을 통하여 {@link IPaymentHistory.vendor_code} 값을 특정하면,\n파생 타입이 자동으로 다운 캐스팅 된다.\n\n```typescript\nif (history.vendor_code === \"toss.payments\")\n    history.data.paymentKey; // history.data be ITossPayment\n```"
-      },
-      "IPaymentHistory.IamportType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Primary Key",
-            "description": "Primary Key."
-          },
-          "vendor_code": {
-            "const": "iamport",
-            "title": "벤더사 식별자 코드",
-            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data}의 타입을 특정할 수 있다."
-          },
-          "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendoriamport",
-            "title": "벤더 정보",
-            "description": "벤더 정보."
-          },
-          "source": {
-            "$ref": "#/components/schemas/IPaymentSource",
-            "title": "원천 래코드 정보",
-            "description": "원천 래코드 정보."
-          },
-          "data": {
-            "$ref": "#/components/schemas/IIamportPayment",
-            "title": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것",
-            "description": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것."
-          },
-          "currency": {
-            "type": "string",
-            "description": "통화 단위\n\nKRW, USB, JPY 등."
-          },
-          "price": {
-            "type": "number",
-            "minimum": 0,
-            "title": "결제 가격",
-            "description": "결제 가격."
-          },
-          "refund": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "number",
-                "minimum": 0
-              }
-            ],
-            "title": "결제 취소시의 환불 금액",
-            "description": "결제 취소시의 환불 금액."
-          },
-          "webhook_url": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "uri"
-              }
-            ],
-            "description": "결제 정보가 갱신되었을 때, 이를 수신할 URL"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "결제 레코드 생성 일시",
-            "description": "결제 레코드 생성 일시."
-          },
-          "paid_at": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "date-time"
-              }
-            ],
-            "title": "결제 완료 일시",
-            "description": "결제 완료 일시."
-          },
-          "cancelled_at": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "date-time"
-              }
-            ],
-            "title": "결제 취소 일시",
-            "description": "결제 취소 일시."
-          },
-          "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IPaymentCancelHistory"
-            },
-            "title": "결제 취소 내역 리스트",
-            "description": "결제 취소 내역 리스트."
-          }
-        },
-        "required": [
-          "id",
-          "vendor_code",
-          "vendor",
-          "source",
-          "data",
-          "currency",
-          "price",
-          "refund",
-          "webhook_url",
-          "created_at",
-          "paid_at",
-          "cancelled_at",
-          "cancels"
-        ],
-        "description": "아임포트로부터의 결제 내역."
-      },
-      "IPaymentVendoriamport": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "const": "iamport",
-            "title": "벤더사 식별자 코드",
-            "description": "벤더사 식별자 코드.\n\n아임포트의 경우에는 `iamport` 를, 토스의 경우에는 `toss.payments` 를 적어주면 된다."
-          },
-          "store_id": {
-            "type": "string",
-            "title": "벤더사에 등록한 스토어 ID",
-            "description": "벤더사에 등록한 스토어 ID.\n\n결제 PG 사들은 서비스 주소가 다르거나, 또는 동일한 서비스이되 연결되는 백엔드 서버\n주소가 다르거든, 각기 다른 스토어 계정을 신청해 사용하라고 한다. 이는 요즘같이 MSA\n(Micro Service Architecture) 가 대세인 시대에 매우 불합리한 방식이기는 하지만, 어쨋든\n이러한 이유로 인하여, 한 회사 내지 단체가 복수의 스토어 ID 를 가지는 경우가 왕왕\n있다.\n\n때문에 `payments-server` 는, {@link IPaymentHistory 결제 내역}을 발행하거나\n{@link IPaymentReservation 간편 결제 수단}을 등록할 때 모두, 사용된 스토어의 ID\n를 반드시 기재하도록 하고 있다."
-          },
-          "uid": {
-            "type": "string",
-            "title": "벤더사로부터 발급받은 식별자 번호",
-            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id} 를 동일하게 할당해주어야 한다."
-          }
-        },
-        "required": [
-          "code",
-          "store_id",
-          "uid"
-        ],
-        "description": "벤더사 정보.\n\n`IPaymentVendor` 결제 PG 벤더사에 관련된 정보를 형상화한 자료구조 인터페이스이다."
-      },
-      "IPaymentSource": {
-        "type": "object",
-        "properties": {
-          "schema": {
-            "type": "string",
-            "description": "DB 스키마 이름"
-          },
-          "table": {
-            "type": "string",
-            "description": "DB 테이블 명"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "참조 레코드의 PK"
-          }
-        },
-        "required": [
-          "schema",
-          "table",
-          "id"
-        ],
-        "description": "원천 레코드 참조 정보.\n\n`IPaymentSource` 는 {@link IPaymentHistory 결제 내역} 및\n{@link IPaymentResrvation 간편 결제 수단}의 원천이 되는 레코드의 참조 정보를 형상화한\n자료구조 인터페이이다. 만일 대상이 {@link IPaymentHistory 결제 내역}이라면 결제의\n근원이 되는 주문에 대한 참조 정보를, 대상이 {@link IPaymentResrvation 간편 결제 수단}\n이라면 이를 기록한 귀사 서비스의 참조 정보를 기입하면 된다."
-      },
-      "IIamportPayment": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/IIamportCardPayment"
-          },
-          {
-            "$ref": "#/components/schemas/IIamportTransferPayment"
-          },
-          {
-            "$ref": "#/components/schemas/IIamportVBankPayment"
-          },
-          {
-            "$ref": "#/components/schemas/IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint"
-          }
-        ],
-        "description": "결제 정보.\n\n`IIamportPayment` 는 아임포트의 결제 정보를 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 method 값을 특정하면, 파생 타입이 자동으로\n지정된다.\n\n```typescript\nif (payment.pay_method === \"card\")\n   payment.card_number; // payment be IIamportCardPayment\n```"
-      },
-      "IIamportCardPayment": {
-        "type": "object",
-        "properties": {
-          "card_code": {
-            "type": "string",
-            "title": "카드 식별자 코드",
-            "description": "카드 식별자 코드."
-          },
-          "card_name": {
-            "type": "string",
-            "title": "카드 이름",
-            "description": "카드 이름."
-          },
-          "card_number": {
-            "type": "string",
-            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
-            "title": "카드 번호",
-            "description": "카드 번호."
-          },
-          "card_quota": {
-            "type": "integer",
-            "title": "할부 개월 수",
-            "description": "할부 개월 수."
-          },
-          "apply_num": {
-            "type": "string",
-            "title": "카드사 승인번호",
-            "description": "카드사 승인번호."
-          },
-          "pay_method": {
-            "oneOf": [
-              {
-                "const": "card"
-              },
-              {
-                "const": "samsung"
-              }
-            ]
-          },
-          "imp_uid": {
-            "type": "string",
-            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
-          },
-          "merchant_uid": {
-            "type": "string",
-            "title": "주문 식별자 키",
-            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
-          },
-          "name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "주문명, 누락 가능",
-            "description": "주문명, 누락 가능."
-          },
-          "amount": {
-            "type": "number",
-            "title": "결제 총액",
-            "description": "결제 총액."
-          },
-          "cancel_amount": {
-            "type": "number",
-            "title": "결제 취소, 환불 총액",
-            "description": "결제 취소, 환불 총액."
-          },
-          "currency": {
-            "$ref": "#/components/schemas/IIamportPayment.Currency",
-            "title": "통화 단위",
-            "description": "통화 단위."
-          },
-          "receipt_url": {
-            "type": "string",
-            "format": "uri",
-            "title": "영수증 URL",
-            "description": "영수증 URL."
-          },
-          "cash_receipt_issue": {
-            "type": "boolean",
-            "title": "현금 영수증 발행 여부",
-            "description": "현금 영수증 발행 여부."
-          },
-          "channel": {
-            "type": "string"
-          },
-          "pg_provider": {
-            "type": "string"
-          },
-          "emb_pg_provider": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "pg_id": {
-            "type": "string"
-          },
-          "pg_tid": {
-            "type": "string"
-          },
-          "escrow": {
-            "type": "boolean"
-          },
-          "buyer_name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_email": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "email"
-              }
-            ]
-          },
-          "buyer_tel": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_addr": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_postcode": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid_usage": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "custom_data": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "user_agent": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/IIamportPayment.Status",
-            "title": "결제의 현재 (진행) 상태",
-            "description": "결제의 현재 (진행) 상태."
-          },
-          "started_at": {
-            "type": "number",
-            "title": "결제 신청 일시",
-            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
-          },
-          "paid_at": {
-            "type": "number",
-            "title": "결제 (지불) 완료 일시",
-            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "failed_at": {
-            "type": "number",
-            "title": "결제 실패 일시",
-            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "cancelled_at": {
-            "type": "number",
-            "title": "결제 취소 일시",
-            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "fail_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_history": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IIamportPaymentCancel"
-            }
-          }
-        },
-        "required": [
-          "card_code",
-          "card_name",
-          "card_number",
-          "card_quota",
-          "apply_num",
-          "pay_method",
-          "imp_uid",
-          "merchant_uid",
-          "name",
-          "amount",
-          "cancel_amount",
-          "currency",
-          "receipt_url",
-          "cash_receipt_issue",
-          "channel",
-          "pg_provider",
-          "emb_pg_provider",
-          "pg_id",
-          "pg_tid",
-          "escrow",
-          "buyer_name",
-          "buyer_email",
-          "buyer_tel",
-          "buyer_addr",
-          "buyer_postcode",
-          "customer_uid",
-          "customer_uid_usage",
-          "custom_data",
-          "user_agent",
-          "status",
-          "started_at",
-          "paid_at",
-          "failed_at",
-          "cancelled_at",
-          "fail_reason",
-          "cancel_reason",
-          "cancel_history"
-        ],
-        "description": "카드 결제 정보."
-      },
-      "IIamportPayment.Currency": {
-        "oneOf": [
-          {
-            "const": "KRW"
-          },
-          {
-            "const": "USD"
-          },
-          {
-            "const": "EUR"
-          },
-          {
-            "const": "JPY"
-          }
-        ]
-      },
-      "IIamportPayment.Status": {
-        "oneOf": [
-          {
-            "const": "paid"
-          },
-          {
-            "const": "ready"
-          },
-          {
-            "const": "failed"
-          },
-          {
-            "const": "cancelled"
-          }
-        ]
-      },
-      "IIamportPaymentCancel": {
-        "type": "object",
-        "properties": {
-          "pg_id": {
-            "type": "string"
-          },
-          "pg_tid": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "number"
-          },
-          "cancelled_at": {
-            "type": "number"
-          },
-          "reason": {
-            "type": "string"
-          },
-          "receipt_url": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "required": [
-          "pg_id",
-          "pg_tid",
-          "amount",
-          "cancelled_at",
-          "reason",
-          "receipt_url"
-        ],
-        "description": "결제 취소 정보."
-      },
-      "IIamportTransferPayment": {
-        "type": "object",
-        "properties": {
-          "bank_code": {
-            "type": "string",
-            "title": "은행 식별자 코드",
-            "description": "은행 식별자 코드."
-          },
-          "bank_name": {
-            "type": "string",
-            "title": "은행 이름",
-            "description": "은행 이름."
-          },
-          "pay_method": {
-            "const": "trans"
-          },
-          "imp_uid": {
-            "type": "string",
-            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
-          },
-          "merchant_uid": {
-            "type": "string",
-            "title": "주문 식별자 키",
-            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
-          },
-          "name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "주문명, 누락 가능",
-            "description": "주문명, 누락 가능."
-          },
-          "amount": {
-            "type": "number",
-            "title": "결제 총액",
-            "description": "결제 총액."
-          },
-          "cancel_amount": {
-            "type": "number",
-            "title": "결제 취소, 환불 총액",
-            "description": "결제 취소, 환불 총액."
-          },
-          "currency": {
-            "$ref": "#/components/schemas/IIamportPayment.Currency",
-            "title": "통화 단위",
-            "description": "통화 단위."
-          },
-          "receipt_url": {
-            "type": "string",
-            "format": "uri",
-            "title": "영수증 URL",
-            "description": "영수증 URL."
-          },
-          "cash_receipt_issue": {
-            "type": "boolean",
-            "title": "현금 영수증 발행 여부",
-            "description": "현금 영수증 발행 여부."
-          },
-          "channel": {
-            "type": "string"
-          },
-          "pg_provider": {
-            "type": "string"
-          },
-          "emb_pg_provider": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "pg_id": {
-            "type": "string"
-          },
-          "pg_tid": {
-            "type": "string"
-          },
-          "escrow": {
-            "type": "boolean"
-          },
-          "buyer_name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_email": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "email"
-              }
-            ]
-          },
-          "buyer_tel": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_addr": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_postcode": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid_usage": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "custom_data": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "user_agent": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/IIamportPayment.Status",
-            "title": "결제의 현재 (진행) 상태",
-            "description": "결제의 현재 (진행) 상태."
-          },
-          "started_at": {
-            "type": "number",
-            "title": "결제 신청 일시",
-            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
-          },
-          "paid_at": {
-            "type": "number",
-            "title": "결제 (지불) 완료 일시",
-            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "failed_at": {
-            "type": "number",
-            "title": "결제 실패 일시",
-            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "cancelled_at": {
-            "type": "number",
-            "title": "결제 취소 일시",
-            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "fail_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_history": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IIamportPaymentCancel"
-            }
-          }
-        },
-        "required": [
-          "bank_code",
-          "bank_name",
-          "pay_method",
-          "imp_uid",
-          "merchant_uid",
-          "name",
-          "amount",
-          "cancel_amount",
-          "currency",
-          "receipt_url",
-          "cash_receipt_issue",
-          "channel",
-          "pg_provider",
-          "emb_pg_provider",
-          "pg_id",
-          "pg_tid",
-          "escrow",
-          "buyer_name",
-          "buyer_email",
-          "buyer_tel",
-          "buyer_addr",
-          "buyer_postcode",
-          "customer_uid",
-          "customer_uid_usage",
-          "custom_data",
-          "user_agent",
-          "status",
-          "started_at",
-          "paid_at",
-          "failed_at",
-          "cancelled_at",
-          "fail_reason",
-          "cancel_reason",
-          "cancel_history"
-        ],
-        "description": "계좌 이체 결제 정보."
-      },
-      "IIamportVBankPayment": {
-        "type": "object",
-        "properties": {
-          "vbank_code": {
-            "type": "string",
-            "title": "가상 계좌 식별자 코드",
-            "description": "가상 계좌 식별자 코드."
-          },
-          "vbank_name": {
-            "type": "string",
-            "description": "가상 게좌 이름"
-          },
-          "vbank_num": {
-            "type": "string",
-            "description": "가상 계좌 번호"
-          },
-          "vbank_holder": {
-            "type": "string",
-            "title": "가상 계좌 예금주",
-            "description": "가상 계좌 예금주."
-          },
-          "vbank_date": {
-            "type": "number",
-            "title": "가상 계좌 입금 만료 기한",
-            "description": "가상 계좌 입금 만료 기한."
-          },
-          "vbank_issued_at": {
-            "type": "number",
-            "title": "가상 계좌 개설 일시",
-            "description": "가상 계좌 개설 일시."
-          },
-          "pay_method": {
-            "const": "vbank"
-          },
-          "imp_uid": {
-            "type": "string",
-            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
-          },
-          "merchant_uid": {
-            "type": "string",
-            "title": "주문 식별자 키",
-            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
-          },
-          "name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "주문명, 누락 가능",
-            "description": "주문명, 누락 가능."
-          },
-          "amount": {
-            "type": "number",
-            "title": "결제 총액",
-            "description": "결제 총액."
-          },
-          "cancel_amount": {
-            "type": "number",
-            "title": "결제 취소, 환불 총액",
-            "description": "결제 취소, 환불 총액."
-          },
-          "currency": {
-            "$ref": "#/components/schemas/IIamportPayment.Currency",
-            "title": "통화 단위",
-            "description": "통화 단위."
-          },
-          "receipt_url": {
-            "type": "string",
-            "format": "uri",
-            "title": "영수증 URL",
-            "description": "영수증 URL."
-          },
-          "cash_receipt_issue": {
-            "type": "boolean",
-            "title": "현금 영수증 발행 여부",
-            "description": "현금 영수증 발행 여부."
-          },
-          "channel": {
-            "type": "string"
-          },
-          "pg_provider": {
-            "type": "string"
-          },
-          "emb_pg_provider": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "pg_id": {
-            "type": "string"
-          },
-          "pg_tid": {
-            "type": "string"
-          },
-          "escrow": {
-            "type": "boolean"
-          },
-          "buyer_name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_email": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "email"
-              }
-            ]
-          },
-          "buyer_tel": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_addr": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_postcode": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid_usage": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "custom_data": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "user_agent": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/IIamportPayment.Status",
-            "title": "결제의 현재 (진행) 상태",
-            "description": "결제의 현재 (진행) 상태."
-          },
-          "started_at": {
-            "type": "number",
-            "title": "결제 신청 일시",
-            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
-          },
-          "paid_at": {
-            "type": "number",
-            "title": "결제 (지불) 완료 일시",
-            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "failed_at": {
-            "type": "number",
-            "title": "결제 실패 일시",
-            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "cancelled_at": {
-            "type": "number",
-            "title": "결제 취소 일시",
-            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "fail_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_history": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IIamportPaymentCancel"
-            }
-          }
-        },
-        "required": [
-          "vbank_code",
-          "vbank_name",
-          "vbank_num",
-          "vbank_holder",
-          "vbank_date",
-          "vbank_issued_at",
-          "pay_method",
-          "imp_uid",
-          "merchant_uid",
-          "name",
-          "amount",
-          "cancel_amount",
-          "currency",
-          "receipt_url",
-          "cash_receipt_issue",
-          "channel",
-          "pg_provider",
-          "emb_pg_provider",
-          "pg_id",
-          "pg_tid",
-          "escrow",
-          "buyer_name",
-          "buyer_email",
-          "buyer_tel",
-          "buyer_addr",
-          "buyer_postcode",
-          "customer_uid",
-          "customer_uid_usage",
-          "custom_data",
-          "user_agent",
-          "status",
-          "started_at",
-          "paid_at",
-          "failed_at",
-          "cancelled_at",
-          "fail_reason",
-          "cancel_reason",
-          "cancel_history"
-        ],
-        "description": "가상 계좌 결제 정보."
-      },
-      "IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint": {
-        "type": "object",
-        "properties": {
-          "pay_method": {
-            "oneOf": [
-              {
-                "const": "phone"
-              },
-              {
-                "const": "kpay"
-              },
-              {
-                "const": "kakaopay"
-              },
-              {
-                "const": "payco"
-              },
-              {
-                "const": "lpay"
-              },
-              {
-                "const": "ssgpay"
-              },
-              {
-                "const": "tosspay"
-              },
-              {
-                "const": "cultureland"
-              },
-              {
-                "const": "smartculture"
-              },
-              {
-                "const": "happymoney"
-              },
-              {
-                "const": "booknlife"
-              },
-              {
-                "const": "point"
-              }
-            ]
-          },
-          "imp_uid": {
-            "type": "string",
-            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
-            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
-          },
-          "merchant_uid": {
-            "type": "string",
-            "title": "주문 식별자 키",
-            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
-          },
-          "name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "주문명, 누락 가능",
-            "description": "주문명, 누락 가능."
-          },
-          "amount": {
-            "type": "number",
-            "title": "결제 총액",
-            "description": "결제 총액."
-          },
-          "cancel_amount": {
-            "type": "number",
-            "title": "결제 취소, 환불 총액",
-            "description": "결제 취소, 환불 총액."
-          },
-          "currency": {
-            "$ref": "#/components/schemas/IIamportPayment.Currency",
-            "title": "통화 단위",
-            "description": "통화 단위."
-          },
-          "receipt_url": {
-            "type": "string",
-            "format": "uri",
-            "title": "영수증 URL",
-            "description": "영수증 URL."
-          },
-          "cash_receipt_issue": {
-            "type": "boolean",
-            "title": "현금 영수증 발행 여부",
-            "description": "현금 영수증 발행 여부."
-          },
-          "channel": {
-            "type": "string"
-          },
-          "pg_provider": {
-            "type": "string"
-          },
-          "emb_pg_provider": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "pg_id": {
-            "type": "string"
-          },
-          "pg_tid": {
-            "type": "string"
-          },
-          "escrow": {
-            "type": "boolean"
-          },
-          "buyer_name": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_email": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "email"
-              }
-            ]
-          },
-          "buyer_tel": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_addr": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "buyer_postcode": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "customer_uid_usage": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "custom_data": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "user_agent": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/IIamportPayment.Status",
-            "title": "결제의 현재 (진행) 상태",
-            "description": "결제의 현재 (진행) 상태."
-          },
-          "started_at": {
-            "type": "number",
-            "title": "결제 신청 일시",
-            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
-          },
-          "paid_at": {
-            "type": "number",
-            "title": "결제 (지불) 완료 일시",
-            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "failed_at": {
-            "type": "number",
-            "title": "결제 실패 일시",
-            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "cancelled_at": {
-            "type": "number",
-            "title": "결제 취소 일시",
-            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
-          },
-          "fail_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_reason": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "cancel_history": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IIamportPaymentCancel"
-            }
-          }
-        },
-        "required": [
-          "pay_method",
-          "imp_uid",
-          "merchant_uid",
-          "name",
-          "amount",
-          "cancel_amount",
-          "currency",
-          "receipt_url",
-          "cash_receipt_issue",
-          "channel",
-          "pg_provider",
-          "emb_pg_provider",
-          "pg_id",
-          "pg_tid",
-          "escrow",
-          "buyer_name",
-          "buyer_email",
-          "buyer_tel",
-          "buyer_addr",
-          "buyer_postcode",
-          "customer_uid",
-          "customer_uid_usage",
-          "custom_data",
-          "user_agent",
-          "status",
-          "started_at",
-          "paid_at",
-          "failed_at",
-          "cancelled_at",
-          "fail_reason",
-          "cancel_reason",
-          "cancel_history"
-        ],
-        "description": "결제 기본 (공통) 정보."
-      },
-      "IPaymentCancelHistory": {
-        "type": "object",
-        "properties": {
-          "reason": {
-            "type": "string",
-            "title": "결제 취소 사유",
-            "description": "결제 취소 사유."
-          },
-          "price": {
-            "type": "number",
-            "minimum": 0,
-            "title": "환불 금액",
-            "description": "환불 금액."
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "레코드 생성 일시",
-            "description": "레코드 생성 일시.\n\n즉, 결제 취소가 발생한 시각."
-          }
-        },
-        "required": [
-          "reason",
-          "price",
-          "created_at"
-        ],
-        "description": "결제 취소 내역."
-      },
       "IPaymentHistory.TossType": {
         "type": "object",
         "properties": {
@@ -2189,7 +868,23 @@
             "description": "원천 래코드 정보."
           },
           "data": {
-            "$ref": "#/components/schemas/ITossPayment",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ITossCardPayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossGiftCertificatePayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossMobilePhonePayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossTransferPayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossVirtualAccountPayment"
+              }
+            ],
             "title": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것",
             "description": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것."
           },
@@ -2312,25 +1007,29 @@
         ],
         "description": "벤더사 정보.\n\n`IPaymentVendor` 결제 PG 벤더사에 관련된 정보를 형상화한 자료구조 인터페이스이다."
       },
-      "ITossPayment": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/ITossCardPayment"
+      "IPaymentSource": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+            "description": "DB 스키마 이름"
           },
-          {
-            "$ref": "#/components/schemas/ITossGiftCertificatePayment"
+          "table": {
+            "type": "string",
+            "description": "DB 테이블 명"
           },
-          {
-            "$ref": "#/components/schemas/ITossMobilePhonePayment"
-          },
-          {
-            "$ref": "#/components/schemas/ITossTransferPayment"
-          },
-          {
-            "$ref": "#/components/schemas/ITossVirtualAccountPayment"
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "참조 레코드의 PK"
           }
+        },
+        "required": [
+          "schema",
+          "table",
+          "id"
         ],
-        "description": "결제 정보.\n\n`ITossPayment` 는 토스 페이먼츠의 결제 정보를 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 method 값을 특정하면, 파생 타입이 자동으로\n지정된다.\n\n```typescript\nif (payment.method === \"카드\")\n    payment.card; // payment be ITossCardPayment\n```"
+        "description": "원천 레코드 참조 정보.\n\n`IPaymentSource` 는 {@link IPaymentHistory 결제 내역} 및\n{@link IPaymentResrvation 간편 결제 수단}의 원천이 되는 레코드의 참조 정보를 형상화한\n자료구조 인터페이이다. 만일 대상이 {@link IPaymentHistory 결제 내역}이라면 결제의\n근원이 되는 주문에 대한 참조 정보를, 대상이 {@link IPaymentResrvation 간편 결제 수단}\n이라면 이를 기록한 귀사 서비스의 참조 정보를 기입하면 된다."
       },
       "ITossCardPayment": {
         "type": "object",
@@ -2728,7 +1427,14 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ITossCashReceipt.Type",
+            "oneOf": [
+              {
+                "const": "소득공제"
+              },
+              {
+                "const": "지출증빙"
+              }
+            ],
             "title": "현금 영수증의 종류",
             "description": "현금 영수증의 종류."
           },
@@ -2761,17 +1467,6 @@
           "receiptUrl"
         ],
         "description": "현금 영수증 요약 정보."
-      },
-      "ITossCashReceipt.Type": {
-        "oneOf": [
-          {
-            "const": "소득공제"
-          },
-          {
-            "const": "지출증빙"
-          }
-        ],
-        "description": "현금 영수증의 종류."
       },
       "ITossGiftCertificatePayment": {
         "type": "object",
@@ -3717,6 +2412,1515 @@
         ],
         "description": "가상 계좌 정보."
       },
+      "IPaymentCancelHistory": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "title": "결제 취소 사유",
+            "description": "결제 취소 사유."
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "title": "환불 금액",
+            "description": "환불 금액."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "레코드 생성 일시",
+            "description": "레코드 생성 일시.\n\n즉, 결제 취소가 발생한 시각."
+          }
+        },
+        "required": [
+          "reason",
+          "price",
+          "created_at"
+        ],
+        "description": "결제 취소 내역."
+      },
+      "IPaymentHistory.IamportType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Primary Key",
+            "description": "Primary Key."
+          },
+          "vendor_code": {
+            "const": "iamport",
+            "title": "벤더사 식별자 코드",
+            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data}의 타입을 특정할 수 있다."
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/IPaymentVendoriamport",
+            "title": "벤더 정보",
+            "description": "벤더 정보."
+          },
+          "source": {
+            "$ref": "#/components/schemas/IPaymentSource",
+            "title": "원천 래코드 정보",
+            "description": "원천 래코드 정보."
+          },
+          "data": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IIamportCardPayment"
+              },
+              {
+                "$ref": "#/components/schemas/IIamportTransferPayment"
+              },
+              {
+                "$ref": "#/components/schemas/IIamportVBankPayment"
+              },
+              {
+                "$ref": "#/components/schemas/IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint"
+              }
+            ],
+            "title": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것",
+            "description": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것."
+          },
+          "currency": {
+            "type": "string",
+            "description": "통화 단위\n\nKRW, USB, JPY 등."
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "title": "결제 가격",
+            "description": "결제 가격."
+          },
+          "refund": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "number",
+                "minimum": 0
+              }
+            ],
+            "title": "결제 취소시의 환불 금액",
+            "description": "결제 취소시의 환불 금액."
+          },
+          "webhook_url": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "uri"
+              }
+            ],
+            "description": "결제 정보가 갱신되었을 때, 이를 수신할 URL"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "결제 레코드 생성 일시",
+            "description": "결제 레코드 생성 일시."
+          },
+          "paid_at": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
+            "title": "결제 완료 일시",
+            "description": "결제 완료 일시."
+          },
+          "cancelled_at": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
+            "title": "결제 취소 일시",
+            "description": "결제 취소 일시."
+          },
+          "cancels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IPaymentCancelHistory"
+            },
+            "title": "결제 취소 내역 리스트",
+            "description": "결제 취소 내역 리스트."
+          }
+        },
+        "required": [
+          "id",
+          "vendor_code",
+          "vendor",
+          "source",
+          "data",
+          "currency",
+          "price",
+          "refund",
+          "webhook_url",
+          "created_at",
+          "paid_at",
+          "cancelled_at",
+          "cancels"
+        ],
+        "description": "아임포트로부터의 결제 내역."
+      },
+      "IPaymentVendoriamport": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "const": "iamport",
+            "title": "벤더사 식별자 코드",
+            "description": "벤더사 식별자 코드.\n\n아임포트의 경우에는 `iamport` 를, 토스의 경우에는 `toss.payments` 를 적어주면 된다."
+          },
+          "store_id": {
+            "type": "string",
+            "title": "벤더사에 등록한 스토어 ID",
+            "description": "벤더사에 등록한 스토어 ID.\n\n결제 PG 사들은 서비스 주소가 다르거나, 또는 동일한 서비스이되 연결되는 백엔드 서버\n주소가 다르거든, 각기 다른 스토어 계정을 신청해 사용하라고 한다. 이는 요즘같이 MSA\n(Micro Service Architecture) 가 대세인 시대에 매우 불합리한 방식이기는 하지만, 어쨋든\n이러한 이유로 인하여, 한 회사 내지 단체가 복수의 스토어 ID 를 가지는 경우가 왕왕\n있다.\n\n때문에 `payments-server` 는, {@link IPaymentHistory 결제 내역}을 발행하거나\n{@link IPaymentReservation 간편 결제 수단}을 등록할 때 모두, 사용된 스토어의 ID\n를 반드시 기재하도록 하고 있다."
+          },
+          "uid": {
+            "type": "string",
+            "title": "벤더사로부터 발급받은 식별자 번호",
+            "description": "벤더사로부터 발급받은 식별자 번호.\n\n결제 PG 사들이 제공하는 팝업창을 이용하여 결제를 진행하거나 혹은 간편 결제 수단을\n등록하거든, 결제 PG 사들은 해당 건에 대하여 별도의 식별자 번호를 발급한다.\n`IPaymentVendor.uid` 는 이처럼 결제 PG 사들이 발급해 준 식별자 번호를 기재하는\n속성이다.\n\n단 예외가 하나 있어, 아임포트는 간편 결제 카드 등록 건에 대하여 별도의 식별자 번호를\n부여하지 않고, 귀하의 서비스에서 발급해 준 ID 를 그대로 사용한다. 때문에 아임포트를\n통한 간편 결제 카드 등록의 건만 예외적으로, `IPaymentVendor.uid` 에\n{@link IPaymentSource.id} 를 동일하게 할당해주어야 한다."
+          }
+        },
+        "required": [
+          "code",
+          "store_id",
+          "uid"
+        ],
+        "description": "벤더사 정보.\n\n`IPaymentVendor` 결제 PG 벤더사에 관련된 정보를 형상화한 자료구조 인터페이스이다."
+      },
+      "IIamportCardPayment": {
+        "type": "object",
+        "properties": {
+          "card_code": {
+            "type": "string",
+            "title": "카드 식별자 코드",
+            "description": "카드 식별자 코드."
+          },
+          "card_name": {
+            "type": "string",
+            "title": "카드 이름",
+            "description": "카드 이름."
+          },
+          "card_number": {
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+            "title": "카드 번호",
+            "description": "카드 번호."
+          },
+          "card_quota": {
+            "type": "integer",
+            "title": "할부 개월 수",
+            "description": "할부 개월 수."
+          },
+          "apply_num": {
+            "type": "string",
+            "title": "카드사 승인번호",
+            "description": "카드사 승인번호."
+          },
+          "pay_method": {
+            "oneOf": [
+              {
+                "const": "card"
+              },
+              {
+                "const": "samsung"
+              }
+            ]
+          },
+          "imp_uid": {
+            "type": "string",
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
+          },
+          "merchant_uid": {
+            "type": "string",
+            "title": "주문 식별자 키",
+            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
+          },
+          "name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "주문명, 누락 가능",
+            "description": "주문명, 누락 가능."
+          },
+          "amount": {
+            "type": "number",
+            "title": "결제 총액",
+            "description": "결제 총액."
+          },
+          "cancel_amount": {
+            "type": "number",
+            "title": "결제 취소, 환불 총액",
+            "description": "결제 취소, 환불 총액."
+          },
+          "currency": {
+            "oneOf": [
+              {
+                "const": "KRW"
+              },
+              {
+                "const": "USD"
+              },
+              {
+                "const": "EUR"
+              },
+              {
+                "const": "JPY"
+              }
+            ],
+            "title": "통화 단위",
+            "description": "통화 단위."
+          },
+          "receipt_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "영수증 URL",
+            "description": "영수증 URL."
+          },
+          "cash_receipt_issue": {
+            "type": "boolean",
+            "title": "현금 영수증 발행 여부",
+            "description": "현금 영수증 발행 여부."
+          },
+          "channel": {
+            "type": "string"
+          },
+          "pg_provider": {
+            "type": "string"
+          },
+          "emb_pg_provider": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "pg_id": {
+            "type": "string"
+          },
+          "pg_tid": {
+            "type": "string"
+          },
+          "escrow": {
+            "type": "boolean"
+          },
+          "buyer_name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_email": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
+          },
+          "buyer_tel": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_addr": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_postcode": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid_usage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "custom_data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "user_agent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "paid"
+              },
+              {
+                "const": "ready"
+              },
+              {
+                "const": "failed"
+              },
+              {
+                "const": "cancelled"
+              }
+            ],
+            "title": "결제의 현재 (진행) 상태",
+            "description": "결제의 현재 (진행) 상태."
+          },
+          "started_at": {
+            "type": "number",
+            "title": "결제 신청 일시",
+            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
+          },
+          "paid_at": {
+            "type": "number",
+            "title": "결제 (지불) 완료 일시",
+            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "failed_at": {
+            "type": "number",
+            "title": "결제 실패 일시",
+            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "cancelled_at": {
+            "type": "number",
+            "title": "결제 취소 일시",
+            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "fail_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IIamportPaymentCancel"
+            }
+          }
+        },
+        "required": [
+          "card_code",
+          "card_name",
+          "card_number",
+          "card_quota",
+          "apply_num",
+          "pay_method",
+          "imp_uid",
+          "merchant_uid",
+          "name",
+          "amount",
+          "cancel_amount",
+          "currency",
+          "receipt_url",
+          "cash_receipt_issue",
+          "channel",
+          "pg_provider",
+          "emb_pg_provider",
+          "pg_id",
+          "pg_tid",
+          "escrow",
+          "buyer_name",
+          "buyer_email",
+          "buyer_tel",
+          "buyer_addr",
+          "buyer_postcode",
+          "customer_uid",
+          "customer_uid_usage",
+          "custom_data",
+          "user_agent",
+          "status",
+          "started_at",
+          "paid_at",
+          "failed_at",
+          "cancelled_at",
+          "fail_reason",
+          "cancel_reason",
+          "cancel_history"
+        ],
+        "description": "카드 결제 정보."
+      },
+      "IIamportPaymentCancel": {
+        "type": "object",
+        "properties": {
+          "pg_id": {
+            "type": "string"
+          },
+          "pg_tid": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "cancelled_at": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "receipt_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "pg_id",
+          "pg_tid",
+          "amount",
+          "cancelled_at",
+          "reason",
+          "receipt_url"
+        ],
+        "description": "결제 취소 정보."
+      },
+      "IIamportTransferPayment": {
+        "type": "object",
+        "properties": {
+          "bank_code": {
+            "type": "string",
+            "title": "은행 식별자 코드",
+            "description": "은행 식별자 코드."
+          },
+          "bank_name": {
+            "type": "string",
+            "title": "은행 이름",
+            "description": "은행 이름."
+          },
+          "pay_method": {
+            "const": "trans"
+          },
+          "imp_uid": {
+            "type": "string",
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
+          },
+          "merchant_uid": {
+            "type": "string",
+            "title": "주문 식별자 키",
+            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
+          },
+          "name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "주문명, 누락 가능",
+            "description": "주문명, 누락 가능."
+          },
+          "amount": {
+            "type": "number",
+            "title": "결제 총액",
+            "description": "결제 총액."
+          },
+          "cancel_amount": {
+            "type": "number",
+            "title": "결제 취소, 환불 총액",
+            "description": "결제 취소, 환불 총액."
+          },
+          "currency": {
+            "oneOf": [
+              {
+                "const": "KRW"
+              },
+              {
+                "const": "USD"
+              },
+              {
+                "const": "EUR"
+              },
+              {
+                "const": "JPY"
+              }
+            ],
+            "title": "통화 단위",
+            "description": "통화 단위."
+          },
+          "receipt_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "영수증 URL",
+            "description": "영수증 URL."
+          },
+          "cash_receipt_issue": {
+            "type": "boolean",
+            "title": "현금 영수증 발행 여부",
+            "description": "현금 영수증 발행 여부."
+          },
+          "channel": {
+            "type": "string"
+          },
+          "pg_provider": {
+            "type": "string"
+          },
+          "emb_pg_provider": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "pg_id": {
+            "type": "string"
+          },
+          "pg_tid": {
+            "type": "string"
+          },
+          "escrow": {
+            "type": "boolean"
+          },
+          "buyer_name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_email": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
+          },
+          "buyer_tel": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_addr": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_postcode": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid_usage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "custom_data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "user_agent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "paid"
+              },
+              {
+                "const": "ready"
+              },
+              {
+                "const": "failed"
+              },
+              {
+                "const": "cancelled"
+              }
+            ],
+            "title": "결제의 현재 (진행) 상태",
+            "description": "결제의 현재 (진행) 상태."
+          },
+          "started_at": {
+            "type": "number",
+            "title": "결제 신청 일시",
+            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
+          },
+          "paid_at": {
+            "type": "number",
+            "title": "결제 (지불) 완료 일시",
+            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "failed_at": {
+            "type": "number",
+            "title": "결제 실패 일시",
+            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "cancelled_at": {
+            "type": "number",
+            "title": "결제 취소 일시",
+            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "fail_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IIamportPaymentCancel"
+            }
+          }
+        },
+        "required": [
+          "bank_code",
+          "bank_name",
+          "pay_method",
+          "imp_uid",
+          "merchant_uid",
+          "name",
+          "amount",
+          "cancel_amount",
+          "currency",
+          "receipt_url",
+          "cash_receipt_issue",
+          "channel",
+          "pg_provider",
+          "emb_pg_provider",
+          "pg_id",
+          "pg_tid",
+          "escrow",
+          "buyer_name",
+          "buyer_email",
+          "buyer_tel",
+          "buyer_addr",
+          "buyer_postcode",
+          "customer_uid",
+          "customer_uid_usage",
+          "custom_data",
+          "user_agent",
+          "status",
+          "started_at",
+          "paid_at",
+          "failed_at",
+          "cancelled_at",
+          "fail_reason",
+          "cancel_reason",
+          "cancel_history"
+        ],
+        "description": "계좌 이체 결제 정보."
+      },
+      "IIamportVBankPayment": {
+        "type": "object",
+        "properties": {
+          "vbank_code": {
+            "type": "string",
+            "title": "가상 계좌 식별자 코드",
+            "description": "가상 계좌 식별자 코드."
+          },
+          "vbank_name": {
+            "type": "string",
+            "description": "가상 게좌 이름"
+          },
+          "vbank_num": {
+            "type": "string",
+            "description": "가상 계좌 번호"
+          },
+          "vbank_holder": {
+            "type": "string",
+            "title": "가상 계좌 예금주",
+            "description": "가상 계좌 예금주."
+          },
+          "vbank_date": {
+            "type": "number",
+            "title": "가상 계좌 입금 만료 기한",
+            "description": "가상 계좌 입금 만료 기한."
+          },
+          "vbank_issued_at": {
+            "type": "number",
+            "title": "가상 계좌 개설 일시",
+            "description": "가상 계좌 개설 일시."
+          },
+          "pay_method": {
+            "const": "vbank"
+          },
+          "imp_uid": {
+            "type": "string",
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
+          },
+          "merchant_uid": {
+            "type": "string",
+            "title": "주문 식별자 키",
+            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
+          },
+          "name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "주문명, 누락 가능",
+            "description": "주문명, 누락 가능."
+          },
+          "amount": {
+            "type": "number",
+            "title": "결제 총액",
+            "description": "결제 총액."
+          },
+          "cancel_amount": {
+            "type": "number",
+            "title": "결제 취소, 환불 총액",
+            "description": "결제 취소, 환불 총액."
+          },
+          "currency": {
+            "oneOf": [
+              {
+                "const": "KRW"
+              },
+              {
+                "const": "USD"
+              },
+              {
+                "const": "EUR"
+              },
+              {
+                "const": "JPY"
+              }
+            ],
+            "title": "통화 단위",
+            "description": "통화 단위."
+          },
+          "receipt_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "영수증 URL",
+            "description": "영수증 URL."
+          },
+          "cash_receipt_issue": {
+            "type": "boolean",
+            "title": "현금 영수증 발행 여부",
+            "description": "현금 영수증 발행 여부."
+          },
+          "channel": {
+            "type": "string"
+          },
+          "pg_provider": {
+            "type": "string"
+          },
+          "emb_pg_provider": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "pg_id": {
+            "type": "string"
+          },
+          "pg_tid": {
+            "type": "string"
+          },
+          "escrow": {
+            "type": "boolean"
+          },
+          "buyer_name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_email": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
+          },
+          "buyer_tel": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_addr": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_postcode": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid_usage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "custom_data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "user_agent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "paid"
+              },
+              {
+                "const": "ready"
+              },
+              {
+                "const": "failed"
+              },
+              {
+                "const": "cancelled"
+              }
+            ],
+            "title": "결제의 현재 (진행) 상태",
+            "description": "결제의 현재 (진행) 상태."
+          },
+          "started_at": {
+            "type": "number",
+            "title": "결제 신청 일시",
+            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
+          },
+          "paid_at": {
+            "type": "number",
+            "title": "결제 (지불) 완료 일시",
+            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "failed_at": {
+            "type": "number",
+            "title": "결제 실패 일시",
+            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "cancelled_at": {
+            "type": "number",
+            "title": "결제 취소 일시",
+            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "fail_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IIamportPaymentCancel"
+            }
+          }
+        },
+        "required": [
+          "vbank_code",
+          "vbank_name",
+          "vbank_num",
+          "vbank_holder",
+          "vbank_date",
+          "vbank_issued_at",
+          "pay_method",
+          "imp_uid",
+          "merchant_uid",
+          "name",
+          "amount",
+          "cancel_amount",
+          "currency",
+          "receipt_url",
+          "cash_receipt_issue",
+          "channel",
+          "pg_provider",
+          "emb_pg_provider",
+          "pg_id",
+          "pg_tid",
+          "escrow",
+          "buyer_name",
+          "buyer_email",
+          "buyer_tel",
+          "buyer_addr",
+          "buyer_postcode",
+          "customer_uid",
+          "customer_uid_usage",
+          "custom_data",
+          "user_agent",
+          "status",
+          "started_at",
+          "paid_at",
+          "failed_at",
+          "cancelled_at",
+          "fail_reason",
+          "cancel_reason",
+          "cancel_history"
+        ],
+        "description": "가상 계좌 결제 정보."
+      },
+      "IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint": {
+        "type": "object",
+        "properties": {
+          "pay_method": {
+            "oneOf": [
+              {
+                "const": "phone"
+              },
+              {
+                "const": "kpay"
+              },
+              {
+                "const": "kakaopay"
+              },
+              {
+                "const": "payco"
+              },
+              {
+                "const": "lpay"
+              },
+              {
+                "const": "ssgpay"
+              },
+              {
+                "const": "tosspay"
+              },
+              {
+                "const": "cultureland"
+              },
+              {
+                "const": "smartculture"
+              },
+              {
+                "const": "happymoney"
+              },
+              {
+                "const": "booknlife"
+              },
+              {
+                "const": "point"
+              }
+            ]
+          },
+          "imp_uid": {
+            "type": "string",
+            "title": "결제 정보 {@link IIamportPayment} 의 식별자 키",
+            "description": "결제 정보 {@link IIamportPayment} 의 식별자 키."
+          },
+          "merchant_uid": {
+            "type": "string",
+            "title": "주문 식별자 키",
+            "description": "주문 식별자 키.\n\n아임포트 서버가 아닌, 이를 사용하는 서비스가 자체적으로 발급하고 관리한다."
+          },
+          "name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "주문명, 누락 가능",
+            "description": "주문명, 누락 가능."
+          },
+          "amount": {
+            "type": "number",
+            "title": "결제 총액",
+            "description": "결제 총액."
+          },
+          "cancel_amount": {
+            "type": "number",
+            "title": "결제 취소, 환불 총액",
+            "description": "결제 취소, 환불 총액."
+          },
+          "currency": {
+            "oneOf": [
+              {
+                "const": "KRW"
+              },
+              {
+                "const": "USD"
+              },
+              {
+                "const": "EUR"
+              },
+              {
+                "const": "JPY"
+              }
+            ],
+            "title": "통화 단위",
+            "description": "통화 단위."
+          },
+          "receipt_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "영수증 URL",
+            "description": "영수증 URL."
+          },
+          "cash_receipt_issue": {
+            "type": "boolean",
+            "title": "현금 영수증 발행 여부",
+            "description": "현금 영수증 발행 여부."
+          },
+          "channel": {
+            "type": "string"
+          },
+          "pg_provider": {
+            "type": "string"
+          },
+          "emb_pg_provider": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "pg_id": {
+            "type": "string"
+          },
+          "pg_tid": {
+            "type": "string"
+          },
+          "escrow": {
+            "type": "boolean"
+          },
+          "buyer_name": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_email": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "email"
+              }
+            ]
+          },
+          "buyer_tel": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_addr": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "buyer_postcode": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "customer_uid_usage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "custom_data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "user_agent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "paid"
+              },
+              {
+                "const": "ready"
+              },
+              {
+                "const": "failed"
+              },
+              {
+                "const": "cancelled"
+              }
+            ],
+            "title": "결제의 현재 (진행) 상태",
+            "description": "결제의 현재 (진행) 상태."
+          },
+          "started_at": {
+            "type": "number",
+            "title": "결제 신청 일시",
+            "description": "결제 신청 일시.\n\n리눅스 타임이 쓰임."
+          },
+          "paid_at": {
+            "type": "number",
+            "title": "결제 (지불) 완료 일시",
+            "description": "결제 (지불) 완료 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "failed_at": {
+            "type": "number",
+            "title": "결제 실패 일시",
+            "description": "결제 실패 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "cancelled_at": {
+            "type": "number",
+            "title": "결제 취소 일시",
+            "description": "결제 취소 일시.\n\n리눅스 타임이 쓰이며, `null` 대신 0 을 씀."
+          },
+          "fail_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "cancel_history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IIamportPaymentCancel"
+            }
+          }
+        },
+        "required": [
+          "pay_method",
+          "imp_uid",
+          "merchant_uid",
+          "name",
+          "amount",
+          "cancel_amount",
+          "currency",
+          "receipt_url",
+          "cash_receipt_issue",
+          "channel",
+          "pg_provider",
+          "emb_pg_provider",
+          "pg_id",
+          "pg_tid",
+          "escrow",
+          "buyer_name",
+          "buyer_email",
+          "buyer_tel",
+          "buyer_addr",
+          "buyer_postcode",
+          "customer_uid",
+          "customer_uid_usage",
+          "custom_data",
+          "user_agent",
+          "status",
+          "started_at",
+          "paid_at",
+          "failed_at",
+          "cancelled_at",
+          "fail_reason",
+          "cancel_reason",
+          "cancel_history"
+        ],
+        "description": "결제 기본 (공통) 정보."
+      },
+      "IPaymentSource.IAccessor": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+            "description": "DB 스키마 이름"
+          },
+          "table": {
+            "type": "string",
+            "description": "DB 테이블 명"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "참조 레코드의 PK"
+          },
+          "password": {
+            "type": "string",
+            "title": "레코드 조회를 위한 비밀번호 입력",
+            "description": "레코드 조회를 위한 비밀번호 입력."
+          }
+        },
+        "required": [
+          "schema",
+          "table",
+          "id",
+          "password"
+        ],
+        "description": "접근자 정보.\n\n`IPaymentSource.IAccessor` 는 {@link IPaymentHistory 결제 내역} 내지\n{@link IPaymentReservation 간편 결제 수단 정보}를 조회할 때, 그것의 고유 식별자\nID 가 아닌 원천 레코드 식별자 정보 {@link IPaymentSource} 를 통하여 조회할 때\n사용하는 접근자 정보이다.\n\n다만 `payments-server` 의 모든 개별 레코드는 이를 조회할 시 비밀번호가 필요하기에,\n{@link IPaymentSource} 의 속성들에 비밀번호가 하나 더 추가되었을 뿐이다."
+      },
       "IPaymentSource.IPassword": {
         "type": "object",
         "properties": {
@@ -3880,16 +4084,307 @@
         ],
         "description": "은행 계좌 정보.\n\n가상 계좌로 입금한 경우, 결제 취소시, 이를 환불받을 계좌가 필요함.\n\n단, 이 정보는 본 결제 시스템에 저장하지 아니함."
       },
-      "IPaymentReservation": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/IPaymentReservation.IamportType"
+      "IPaymentWebhookHistory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Primary Key",
+            "description": "Primary Key."
           },
-          {
-            "$ref": "#/components/schemas/IPaymentReservation.TossType"
+          "source": {
+            "$ref": "#/components/schemas/IPaymentSource",
+            "title": "원천 레코드 정보",
+            "description": "원천 레코드 정보."
+          },
+          "previous": {
+            "$ref": "#/components/schemas/IPaymentWebhookHistory.IHistory",
+            "title": "웹훅 이벤트 수신 전 결제 내역 정보",
+            "description": "웹훅 이벤트 수신 전 결제 내역 정보.\n\nPG 사로부터 웹훅 이벤트 데이터를 수신하기 전, 즉 이전 상태의 결제 내역 정보."
+          },
+          "current": {
+            "$ref": "#/components/schemas/IPaymentWebhookHistory.IHistory",
+            "title": "웹훅 이벤트 수신 후 결제 내역 정보",
+            "description": "웹훅 이벤트 수신 후 결제 내역 정보.\n\nPG 사로부터 웹훅 이벤트 데이터를 수신하여, 새로이 바뀌게 된 결제 내역 정보."
           }
+        },
+        "required": [
+          "id",
+          "source",
+          "previous",
+          "current"
         ],
-        "description": "간편 결제 수단 정보.\n\n`IPaymentReservation` 은 간편 결제 수단을 형상화한 자료구조이자 유니언 타입의\n인터페이스로써, if condition 을 통하여 {@link IPaymentReservation.vendor_code} 값을\n특정하면, 파생 타입이 자동으로 다운 캐스팅 된다.\n\n```typescript\nif (history.vendor_code === \"toss.payments\")\n    history.data.billingKey; // history.data be ITossBilling\n```"
+        "description": "웹훅 이벤트 레코드.\n\n`IPaymentHistoryWebhook` 는 PG 벤더사로부터의 이벤트를 기록하는 엔티티이다.\n\n웹훅 이벤트는 고객이 가상계좌를 선택하고 사후에 지불을 완료했다던가, 이미 결제한\n금액을 환불하여 결제가 취소되었다던가 하는 등의 이유로 발생한다. 그리고 웹훅 이벤트\n레코드의 발생은 곧, 원천 결제 레코드에 해당하는 {@link IPaymentHistory.data} 의\n수정을 불러온다.\n\n때문에 `IPaymentHistoryWebhook` 에는 {@link previous} 라 하여, 웹훅 이벤트가\n발생하기 전의 {@link PaymentHistory.data} 를 기록하는 속성이 존재한다. 만일 웹훅\n이벤트가 발생하여 변동된 데이터를 보고 싶다면, 현 웹훅 이벤트가 가장 최신인지 여부를\n따져, {@link IPaymentHistory.data} 를 조회하던가 아니면 그 다음 웹훅 레코드의\n{@link previous} 를 조회하던가 하면 된다."
+      },
+      "IPaymentWebhookHistory.IHistory": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "description": "통화 단위\n\nKRW, USB, JPY 등."
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "title": "결제 가격",
+            "description": "결제 가격."
+          },
+          "refund": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "number",
+                "minimum": 0
+              }
+            ],
+            "title": "결제 취소시의 환불 금액",
+            "description": "결제 취소시의 환불 금액."
+          },
+          "webhook_url": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "uri"
+              }
+            ],
+            "description": "결제 정보가 갱신되었을 때, 이를 수신할 URL"
+          },
+          "paid_at": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
+            "title": "결제 완료 일시",
+            "description": "결제 완료 일시."
+          },
+          "cancelled_at": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ],
+            "title": "결제 취소 일시",
+            "description": "결제 취소 일시."
+          },
+          "cancels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IPaymentCancelHistory"
+            },
+            "title": "결제 취소 내역 리스트",
+            "description": "결제 취소 내역 리스트."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "결제 레코드 생성 일시",
+            "description": "결제 레코드 생성 일시."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Primary Key",
+            "description": "Primary Key."
+          },
+          "data": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IIamportCardPayment"
+              },
+              {
+                "$ref": "#/components/schemas/IIamportTransferPayment"
+              },
+              {
+                "$ref": "#/components/schemas/IIamportVBankPayment"
+              },
+              {
+                "$ref": "#/components/schemas/IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint"
+              },
+              {
+                "$ref": "#/components/schemas/ITossCardPayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossGiftCertificatePayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossMobilePhonePayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossTransferPayment"
+              },
+              {
+                "$ref": "#/components/schemas/ITossVirtualAccountPayment"
+              }
+            ],
+            "title": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것",
+            "description": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것."
+          },
+          "vendor_code": {
+            "oneOf": [
+              {
+                "const": "iamport"
+              },
+              {
+                "const": "toss.payments"
+              }
+            ],
+            "title": "벤더사 식별자 코드",
+            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data}의 타입을 특정할 수 있다."
+          },
+          "vendor": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IPaymentVendoriamport"
+              },
+              {
+                "$ref": "#/components/schemas/IPaymentVendortoss.payments"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "code",
+              "mapping": {
+                "iamport": "#/components/schemas/IPaymentVendoriamport",
+                "toss.payments": "#/components/schemas/IPaymentVendortoss.payments"
+              }
+            },
+            "title": "벤더 정보",
+            "description": "벤더 정보."
+          }
+        },
+        "required": [
+          "currency",
+          "price",
+          "refund",
+          "webhook_url",
+          "paid_at",
+          "cancelled_at",
+          "cancels",
+          "created_at",
+          "id",
+          "data",
+          "vendor_code",
+          "vendor"
+        ],
+        "description": "결제 내역 정보.\n\n본래의 결제 내역 {@link IPaymentHistory} 에서 중복되는 원천 레코드 정보\n{@link IPaymentSource} 를 뺌."
+      },
+      "IPaymentReservation.TossType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Primary Key",
+            "description": "Primary Key."
+          },
+          "vendor_code": {
+            "const": "toss.payments",
+            "title": "벤더사 코드",
+            "description": "벤더사 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. If else condition 을 통하여\n{@link IPaymentReservation.data}의 타입을 특정할 수 있다."
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/IPaymentVendortoss.payments",
+            "title": "벤더사",
+            "description": "벤더사."
+          },
+          "source": {
+            "$ref": "#/components/schemas/IPaymentSource",
+            "title": "대상 액터의 참조 정보",
+            "description": "대상 액터의 참조 정보."
+          },
+          "title": {
+            "type": "string",
+            "title": "제목",
+            "description": "제목."
+          },
+          "data": {
+            "$ref": "#/components/schemas/ITossBilling",
+            "title": "벤더사 데이터",
+            "description": "벤더사 데이터."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "레코드 생성 일시",
+            "description": "레코드 생성 일시."
+          }
+        },
+        "required": [
+          "id",
+          "vendor_code",
+          "vendor",
+          "source",
+          "title",
+          "data",
+          "created_at"
+        ],
+        "description": "토스의 간편 결제 수단 정보."
+      },
+      "ITossBilling": {
+        "type": "object",
+        "properties": {
+          "mId": {
+            "type": "string",
+            "title": "가맹점 ID",
+            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
+          },
+          "billingKey": {
+            "type": "string",
+            "title": "{@link ITossBilling} 의 식별자 키",
+            "description": "{@link ITossBilling} 의 식별자 키."
+          },
+          "method": {
+            "const": "카드",
+            "title": "결제 수단",
+            "description": "결제 수단."
+          },
+          "cardCompany": {
+            "type": "string",
+            "title": "카드사 이름",
+            "description": "카드사 이름."
+          },
+          "cardNumber": {
+            "type": "string",
+            "pattern": "[0-9]{16}",
+            "title": "카드 번호",
+            "description": "카드 번호."
+          },
+          "authenticatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "인증 일시",
+            "description": "인증 일시."
+          },
+          "customerKey": {
+            "type": "string",
+            "title": "고객 식별자 키",
+            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+          }
+        },
+        "required": [
+          "mId",
+          "billingKey",
+          "method",
+          "cardCompany",
+          "cardNumber",
+          "authenticatedAt",
+          "customerKey"
+        ],
+        "description": "간편 결제 등록 수단 정보.\n\n`ITossBilling` 은 간편 결제 등록 수단을 형상화한 자료구조 인터페이스로써, 고객이 자신의\n신용 카드를 서버에 등록해두고, 매번 결제가 필요할 때마다 카드 정보를 반복 입려하는 일\n없이 간편하게 결제를 진행하고자 할 때 사용한다."
       },
       "IPaymentReservation.IamportType": {
         "type": "object",
@@ -4044,110 +4539,6 @@
         ],
         "description": "간편 결제 카드 정보."
       },
-      "IPaymentReservation.TossType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Primary Key",
-            "description": "Primary Key."
-          },
-          "vendor_code": {
-            "const": "toss.payments",
-            "title": "벤더사 코드",
-            "description": "벤더사 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. If else condition 을 통하여\n{@link IPaymentReservation.data}의 타입을 특정할 수 있다."
-          },
-          "vendor": {
-            "$ref": "#/components/schemas/IPaymentVendortoss.payments",
-            "title": "벤더사",
-            "description": "벤더사."
-          },
-          "source": {
-            "$ref": "#/components/schemas/IPaymentSource",
-            "title": "대상 액터의 참조 정보",
-            "description": "대상 액터의 참조 정보."
-          },
-          "title": {
-            "type": "string",
-            "title": "제목",
-            "description": "제목."
-          },
-          "data": {
-            "$ref": "#/components/schemas/ITossBilling",
-            "title": "벤더사 데이터",
-            "description": "벤더사 데이터."
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "레코드 생성 일시",
-            "description": "레코드 생성 일시."
-          }
-        },
-        "required": [
-          "id",
-          "vendor_code",
-          "vendor",
-          "source",
-          "title",
-          "data",
-          "created_at"
-        ],
-        "description": "토스의 간편 결제 수단 정보."
-      },
-      "ITossBilling": {
-        "type": "object",
-        "properties": {
-          "mId": {
-            "type": "string",
-            "title": "가맹점 ID",
-            "description": "가맹점 ID.\n\n현재 tosspayments 가 쓰임."
-          },
-          "billingKey": {
-            "type": "string",
-            "title": "{@link ITossBilling} 의 식별자 키",
-            "description": "{@link ITossBilling} 의 식별자 키."
-          },
-          "method": {
-            "const": "카드",
-            "title": "결제 수단",
-            "description": "결제 수단."
-          },
-          "cardCompany": {
-            "type": "string",
-            "title": "카드사 이름",
-            "description": "카드사 이름."
-          },
-          "cardNumber": {
-            "type": "string",
-            "pattern": "[0-9]{16}",
-            "title": "카드 번호",
-            "description": "카드 번호."
-          },
-          "authenticatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "title": "인증 일시",
-            "description": "인증 일시."
-          },
-          "customerKey": {
-            "type": "string",
-            "title": "고객 식별자 키",
-            "description": "고객 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
-          }
-        },
-        "required": [
-          "mId",
-          "billingKey",
-          "method",
-          "cardCompany",
-          "cardNumber",
-          "authenticatedAt",
-          "customerKey"
-        ],
-        "description": "간편 결제 등록 수단 정보.\n\n`ITossBilling` 은 간편 결제 등록 수단을 형상화한 자료구조 인터페이스로써, 고객이 자신의\n신용 카드를 서버에 등록해두고, 매번 결제가 필요할 때마다 카드 정보를 반복 입려하는 일\n없이 간편하게 결제를 진행하고자 할 때 사용한다."
-      },
       "IPaymentReservation.ICreate": {
         "type": "object",
         "properties": {
@@ -4250,6 +4641,65 @@
           "status"
         ],
         "description": "웹훅 데이터."
+      },
+      "ITossPaymentWebhook": {
+        "type": "object",
+        "properties": {
+          "eventType": {
+            "const": "PAYMENT_STATUS_CHANGED",
+            "title": "이벤트 타입",
+            "description": "이벤트 타입."
+          },
+          "data": {
+            "$ref": "#/components/schemas/ITossPaymentWebhook.IData",
+            "title": "이벤트 데이터",
+            "description": "이벤트 데이터."
+          }
+        },
+        "required": [
+          "eventType",
+          "data"
+        ],
+        "description": "웹훅 이벤트 정보."
+      },
+      "ITossPaymentWebhook.IData": {
+        "type": "object",
+        "properties": {
+          "paymentKey": {
+            "type": "string",
+            "title": "{@link ITossPayment} 의 식별자 키",
+            "description": "{@link ITossPayment} 의 식별자 키."
+          },
+          "orderId": {
+            "type": "string",
+            "title": "주문 식별자 키",
+            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "WAITING_FOR_DEPOSIT"
+              },
+              {
+                "const": "DONE"
+              },
+              {
+                "const": "CANCELED"
+              },
+              {
+                "const": "PARTIAL_CANCELED"
+              }
+            ],
+            "title": "결제 상태",
+            "description": "결제 상태.\n\n - DONE: 결제 완료\n - CANCELED: 결제가 취소됨\n - PARTIAL_CANCELED: 결제가 부분 취소됨\n - WAITING_FOR_DEPOSIT: 입금 대기 중"
+          }
+        },
+        "required": [
+          "paymentKey",
+          "orderId",
+          "status"
+        ],
+        "description": "웹훅 이벤트 데이터."
       }
     }
   },

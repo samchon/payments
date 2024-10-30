@@ -63,7 +63,7 @@ export namespace webhook {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/internal/webhook";
@@ -80,7 +80,7 @@ export namespace webhook {
  * 입금을 하고, 그에 따라 토스 페이먼츠 서버에서 webhook 이벤트가 발생하여 이를 귀하의
  * 백엔드 서버로 전송하는 일련의 상황을 테스트하기 위한 함수인 셈이다.
  *
- * @param paymentKey 대상 가상 계좌 결제 정보의 {@link ITossPayment.paymentKey}
+ * @param paymentKey 대상 가상 계좌 결제 정보의 {@link ITossPayment.paymentKey }
  * @returns 입금 완료된 가상 꼐좌 결제 정보
  * @security basic
  * @author Samchon
@@ -110,9 +110,9 @@ export namespace deposit {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (paymentKey: string) =>
-    `/internal/${encodeURIComponent(paymentKey ?? "null")}/deposit`;
+    `/internal/${encodeURIComponent(paymentKey?.toString() ?? "null")}/deposit`;
 }

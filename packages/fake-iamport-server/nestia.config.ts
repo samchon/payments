@@ -17,12 +17,12 @@ const NESTIA_CONFIG: INestiaConfig = {
     },
     servers: [
       {
-        url: "http://localhost:10851",
-        description: "fake",
-      },
-      {
         url: "https://api.iamport.kr",
         description: "real",
+      },
+      {
+        url: "http://localhost:10851",
+        description: "fake",
       },
     ],
     security: {

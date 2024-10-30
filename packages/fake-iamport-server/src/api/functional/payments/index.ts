@@ -16,7 +16,7 @@ import type { IIamportResponse } from "../../structures/IIamportResponse";
  *
  * 아임포트를 통하여 발생한 결제 기록을 열람한다.
  *
- * @param imp_uid 대상 결제 기록의 {@link IIamportPayment.imp_uid}
+ * @param imp_uid 대상 결제 기록의 {@link IIamportPayment.imp_uid }
  * @param query 결제 수단이 페이팔인 경우에 사용
  * @returns 결제 정보
  * @security bearer
@@ -49,7 +49,7 @@ export namespace at {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 200,
   } as const;
 
   export const path = (imp_uid: string, query: at.Query) => {
@@ -59,7 +59,7 @@ export namespace at {
       else if (Array.isArray(value))
         value.forEach((elem: any) => variables.append(key, String(elem)));
       else variables.set(key, String(value));
-    const location: string = `/payments/${encodeURIComponent(imp_uid ?? "null")}`;
+    const location: string = `/payments/${encodeURIComponent(imp_uid?.toString() ?? "null")}`;
     return 0 === variables.size
       ? location
       : `${location}?${variables.toString()}`;
@@ -115,7 +115,7 @@ export namespace cancel {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/payments/cancel";

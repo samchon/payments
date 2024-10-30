@@ -67,7 +67,7 @@ export namespace request {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = () => "/certifications/otp/request";
@@ -85,7 +85,7 @@ export namespace request {
  * {@link IIamportCertification.certified} 값이 비로소 `true` 로 변경되어,
  * 비로소 완결된다.
  *
- * @param imp_uid 대상 본인인증 정보의 {@link IIamportCertification.imp_uid}
+ * @param imp_uid 대상 본인인증 정보의 {@link IIamportCertification.imp_uid }
  * @param input OTP 코드
  * @returns 인증 완료된 본인인증 정보
  * @security bearer
@@ -131,9 +131,9 @@ export namespace confirm {
       type: "application/json",
       encrypted: false,
     },
-    status: null,
+    status: 201,
   } as const;
 
   export const path = (imp_uid: string) =>
-    `/certifications/otp/confirm/${encodeURIComponent(imp_uid ?? "null")}`;
+    `/certifications/otp/confirm/${encodeURIComponent(imp_uid?.toString() ?? "null")}`;
 }
