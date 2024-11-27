@@ -13,7 +13,7 @@
   "info": {
     "title": "Toss Payments API",
     "description": "Built by [fake-toss-payments-server](https://github.com/samchon/payments/tree/master/packages/toss-payments-server-api) with [nestia](https://github.com/samchon/nestia)",
-    "version": "8.1.1",
+    "version": "9.0.0-dev.20241127",
     "license": {
       "name": "MIT"
     }
@@ -2279,6 +2279,7 @@
             "description": "취소 금액.\n\n미 입력시 현금 영수증에 기재된 {@link ITossCashReceipt.amount 총액}이 취소됨."
           }
         },
+        "required": [],
         "description": "현금 영수증 취소 입력 정보."
       },
       "ITossPaymentWebhook": {

@@ -7,7 +7,7 @@
     }
   ],
   "info": {
-    "version": "8.1.1",
+    "version": "9.0.0-dev.20241127",
     "title": "@samchon/payment-backend",
     "description": "Payment Backend Server",
     "license": {
@@ -266,33 +266,6 @@
         }
       }
     },
-    "/payments/internal/webhook": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "description": "## Warning\n\nRequest body must be encrypted.\n\nThe request body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedBody](https://github.com/samchon/@nestia/core#encryptedbody) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
-          "content": {
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/IPaymentWebhookHistory"
-              }
-            }
-          },
-          "required": true,
-          "x-nestia-encrypted": true
-        },
-        "responses": {
-          "201": {
-            "description": "## Warning\n\nResponse data have been encrypted.\n\nThe response body data would be encrypted as \"AES-128(256) / CBC mode / PKCS#5 Padding / Base64 Encoding\", through the [EncryptedRoute.Post](https://github.com/samchon/@nestia/core#encryptedroute) component.\n\nTherefore, just utilize this swagger editor only for referencing. If you need to call the real API, using [SDK](https://github.com/samchon/nestia#software-development-kit) would be much better.",
-            "content": {
-              "text/plain": {}
-            },
-            "x-nestia-encrypted": true
-          }
-        }
-      }
-    },
     "/payments/reservations/get": {
       "patch": {
         "summary": "간편 결제 수단 조회하기",
@@ -454,30 +427,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/IIamportPayment.IWebhook"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
-      }
-    },
-    "/payments/webhooks/toss": {
-      "post": {
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ITossPaymentWebhook"
               }
             }
           },
@@ -838,6 +787,7 @@
       "Recordstringstring": {
         "type": "object",
         "properties": {},
+        "required": [],
         "description": "Construct a type with a set of properties K of type T",
         "additionalProperties": {
           "type": "string"
@@ -4084,204 +4034,6 @@
         ],
         "description": "은행 계좌 정보.\n\n가상 계좌로 입금한 경우, 결제 취소시, 이를 환불받을 계좌가 필요함.\n\n단, 이 정보는 본 결제 시스템에 저장하지 아니함."
       },
-      "IPaymentWebhookHistory": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Primary Key",
-            "description": "Primary Key."
-          },
-          "source": {
-            "$ref": "#/components/schemas/IPaymentSource",
-            "title": "원천 레코드 정보",
-            "description": "원천 레코드 정보."
-          },
-          "previous": {
-            "$ref": "#/components/schemas/IPaymentWebhookHistory.IHistory",
-            "title": "웹훅 이벤트 수신 전 결제 내역 정보",
-            "description": "웹훅 이벤트 수신 전 결제 내역 정보.\n\nPG 사로부터 웹훅 이벤트 데이터를 수신하기 전, 즉 이전 상태의 결제 내역 정보."
-          },
-          "current": {
-            "$ref": "#/components/schemas/IPaymentWebhookHistory.IHistory",
-            "title": "웹훅 이벤트 수신 후 결제 내역 정보",
-            "description": "웹훅 이벤트 수신 후 결제 내역 정보.\n\nPG 사로부터 웹훅 이벤트 데이터를 수신하여, 새로이 바뀌게 된 결제 내역 정보."
-          }
-        },
-        "required": [
-          "id",
-          "source",
-          "previous",
-          "current"
-        ],
-        "description": "웹훅 이벤트 레코드.\n\n`IPaymentHistoryWebhook` 는 PG 벤더사로부터의 이벤트를 기록하는 엔티티이다.\n\n웹훅 이벤트는 고객이 가상계좌를 선택하고 사후에 지불을 완료했다던가, 이미 결제한\n금액을 환불하여 결제가 취소되었다던가 하는 등의 이유로 발생한다. 그리고 웹훅 이벤트\n레코드의 발생은 곧, 원천 결제 레코드에 해당하는 {@link IPaymentHistory.data} 의\n수정을 불러온다.\n\n때문에 `IPaymentHistoryWebhook` 에는 {@link previous} 라 하여, 웹훅 이벤트가\n발생하기 전의 {@link PaymentHistory.data} 를 기록하는 속성이 존재한다. 만일 웹훅\n이벤트가 발생하여 변동된 데이터를 보고 싶다면, 현 웹훅 이벤트가 가장 최신인지 여부를\n따져, {@link IPaymentHistory.data} 를 조회하던가 아니면 그 다음 웹훅 레코드의\n{@link previous} 를 조회하던가 하면 된다."
-      },
-      "IPaymentWebhookHistory.IHistory": {
-        "type": "object",
-        "properties": {
-          "currency": {
-            "type": "string",
-            "description": "통화 단위\n\nKRW, USB, JPY 등."
-          },
-          "price": {
-            "type": "number",
-            "minimum": 0,
-            "title": "결제 가격",
-            "description": "결제 가격."
-          },
-          "refund": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "number",
-                "minimum": 0
-              }
-            ],
-            "title": "결제 취소시의 환불 금액",
-            "description": "결제 취소시의 환불 금액."
-          },
-          "webhook_url": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "uri"
-              }
-            ],
-            "description": "결제 정보가 갱신되었을 때, 이를 수신할 URL"
-          },
-          "paid_at": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "date-time"
-              }
-            ],
-            "title": "결제 완료 일시",
-            "description": "결제 완료 일시."
-          },
-          "cancelled_at": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "type": "string",
-                "format": "date-time"
-              }
-            ],
-            "title": "결제 취소 일시",
-            "description": "결제 취소 일시."
-          },
-          "cancels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IPaymentCancelHistory"
-            },
-            "title": "결제 취소 내역 리스트",
-            "description": "결제 취소 내역 리스트."
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "결제 레코드 생성 일시",
-            "description": "결제 레코드 생성 일시."
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Primary Key",
-            "description": "Primary Key."
-          },
-          "data": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/IIamportCardPayment"
-              },
-              {
-                "$ref": "#/components/schemas/IIamportTransferPayment"
-              },
-              {
-                "$ref": "#/components/schemas/IIamportVBankPayment"
-              },
-              {
-                "$ref": "#/components/schemas/IIamportPayment.IBasephonekpaykakaopaypaycolpayssgpaytosspayculturelandsmartculturehappymoneybooknlifepoint"
-              },
-              {
-                "$ref": "#/components/schemas/ITossCardPayment"
-              },
-              {
-                "$ref": "#/components/schemas/ITossGiftCertificatePayment"
-              },
-              {
-                "$ref": "#/components/schemas/ITossMobilePhonePayment"
-              },
-              {
-                "$ref": "#/components/schemas/ITossTransferPayment"
-              },
-              {
-                "$ref": "#/components/schemas/ITossVirtualAccountPayment"
-              }
-            ],
-            "title": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것",
-            "description": "결제 상세 데이터, 벤더별로 데이터 양식이 다르니 주의할 것."
-          },
-          "vendor_code": {
-            "oneOf": [
-              {
-                "const": "iamport"
-              },
-              {
-                "const": "toss.payments"
-              }
-            ],
-            "title": "벤더사 식별자 코드",
-            "description": "벤더사 식별자 코드.\n\n{@link IPaymentVendor.code}와 완전히 동일한 값이되, 단지 union type\nspecialization 을 위해 중복 표기하였을 뿐이다. `if condition` 을 통하여\n{@link IPaymentHistory.data}의 타입을 특정할 수 있다."
-          },
-          "vendor": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/IPaymentVendoriamport"
-              },
-              {
-                "$ref": "#/components/schemas/IPaymentVendortoss.payments"
-              }
-            ],
-            "discriminator": {
-              "propertyName": "code",
-              "mapping": {
-                "iamport": "#/components/schemas/IPaymentVendoriamport",
-                "toss.payments": "#/components/schemas/IPaymentVendortoss.payments"
-              }
-            },
-            "title": "벤더 정보",
-            "description": "벤더 정보."
-          }
-        },
-        "required": [
-          "currency",
-          "price",
-          "refund",
-          "webhook_url",
-          "paid_at",
-          "cancelled_at",
-          "cancels",
-          "created_at",
-          "id",
-          "data",
-          "vendor_code",
-          "vendor"
-        ],
-        "description": "결제 내역 정보.\n\n본래의 결제 내역 {@link IPaymentHistory} 에서 중복되는 원천 레코드 정보\n{@link IPaymentSource} 를 뺌."
-      },
       "IPaymentReservation.TossType": {
         "type": "object",
         "properties": {
@@ -4641,65 +4393,6 @@
           "status"
         ],
         "description": "웹훅 데이터."
-      },
-      "ITossPaymentWebhook": {
-        "type": "object",
-        "properties": {
-          "eventType": {
-            "const": "PAYMENT_STATUS_CHANGED",
-            "title": "이벤트 타입",
-            "description": "이벤트 타입."
-          },
-          "data": {
-            "$ref": "#/components/schemas/ITossPaymentWebhook.IData",
-            "title": "이벤트 데이터",
-            "description": "이벤트 데이터."
-          }
-        },
-        "required": [
-          "eventType",
-          "data"
-        ],
-        "description": "웹훅 이벤트 정보."
-      },
-      "ITossPaymentWebhook.IData": {
-        "type": "object",
-        "properties": {
-          "paymentKey": {
-            "type": "string",
-            "title": "{@link ITossPayment} 의 식별자 키",
-            "description": "{@link ITossPayment} 의 식별자 키."
-          },
-          "orderId": {
-            "type": "string",
-            "title": "주문 식별자 키",
-            "description": "주문 식별자 키.\n\n토스 페이먼츠가 아닌, 이를 이용하는 서비스에서 자체적으로 관리하는 식별자 키."
-          },
-          "status": {
-            "oneOf": [
-              {
-                "const": "WAITING_FOR_DEPOSIT"
-              },
-              {
-                "const": "DONE"
-              },
-              {
-                "const": "CANCELED"
-              },
-              {
-                "const": "PARTIAL_CANCELED"
-              }
-            ],
-            "title": "결제 상태",
-            "description": "결제 상태.\n\n - DONE: 결제 완료\n - CANCELED: 결제가 취소됨\n - PARTIAL_CANCELED: 결제가 부분 취소됨\n - WAITING_FOR_DEPOSIT: 입금 대기 중"
-          }
-        },
-        "required": [
-          "paymentKey",
-          "orderId",
-          "status"
-        ],
-        "description": "웹훅 이벤트 데이터."
       }
     }
   },
