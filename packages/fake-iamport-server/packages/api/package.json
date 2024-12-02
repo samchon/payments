@@ -1,6 +1,6 @@
 {
   "name": "iamport-server-api",
-  "version": "9.0.0-dev.20241127",
+  "version": "9.0.0",
   "description": "API for Iamport Server",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -22,8 +22,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@nestia/fetcher": "^4.0.0-dev.20241127-4",
+    "@nestia/fetcher": "^4.0.0",
     "tstl": "^3.0.0",
-    "typia": "^7.0.0-dev.20241127-2"
+    "typia": "^7.0.0"
   }
 }

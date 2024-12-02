@@ -1,6 +1,6 @@
 {
   "name": "toss-payments-server-api",
-  "version": "9.0.0-dev.20241127",
+  "version": "9.0.0",
   "description": "API for Toss Payments Server",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -37,7 +37,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@nestia/fetcher": "^4.0.0-dev.20241127-4",
-    "typia": "^7.0.0-dev.20241127-2"
+    "@nestia/fetcher": "^4.0.0",
+    "typia": "^7.0.0"
   }
 }
